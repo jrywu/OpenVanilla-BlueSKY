@@ -94,7 +94,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.\;..\AmphiVanilla\;..\OVIMEUI\Headers;..\..\..\Framework\OpenVanilla\Headers;..\..\..\Modules\SharedHeaders;..\..\..\Dep\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\AmphiVanilla\;..\OVIMEUI\Headers;..\..\..\Frameworks\OpenVanilla\Headers;..\..\..\Modules\SharedHeaders;..\..\..\Dep\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;TIXML_USE_STL;OVIME_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <MinimalRebuild>true</MinimalRebuild>
@@ -128,7 +128,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.\;..\AmphiVanilla\;..\OVIMEUI\Headers;..\..\..\Framework\OpenVanilla\Headers;..\..\..\Modules\SharedHeaders;..\..\..\Dep\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\AmphiVanilla\;..\OVIMEUI\Headers;..\..\..\Frameworks\OpenVanilla\Headers;..\..\..\Modules\SharedHeaders;..\..\..\Dep\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>X64;WIN32;_DEBUG;_WINDOWS;_USRDLL;TIXML_USE_STL;OVIME_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -162,7 +162,7 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>.\;..\AmphiVanilla\;..\OVIMEUI\Headers;..\..\..\Framework\OpenVanilla\Headers;..\..\..\Modules\SharedHeaders;..\..\..\Dep\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\AmphiVanilla\;..\OVIMEUI\Headers;..\..\..\Frameworks\OpenVanilla\Headers;..\..\..\Modules\SharedHeaders;..\..\..\Dep\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;TIXML_USE_STL;OVIME_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
@@ -197,7 +197,7 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>.\;..\AmphiVanilla\;..\OVIMEUI\Headers;..\..\..\Framework\OpenVanilla\Headers;..\..\..\Modules\SharedHeaders;..\..\..\Dep\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\AmphiVanilla\;..\OVIMEUI\Headers;..\..\..\Frameworks\OpenVanilla\Headers;..\..\..\Modules\SharedHeaders;..\..\..\Dep\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>X64;WIN32;NDEBUG;_WINDOWS;_USRDLL;TIXML_USE_STL;OVIME_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
@@ -250,11 +250,11 @@
     <ClInclude Include="immdev.h" />
     <ClInclude Include="ImmModel.h" />
     <ClInclude Include="..\..\..\dependencies\ltdl.h" />
-    <ClInclude Include="..\..\..\Framework\Headers\OpenVanilla.h" />
+    <ClInclude Include="..\..\..\Frameworks\Headers\OpenVanilla.h" />
     <ClInclude Include="..\..\..\Modules\SharedHeaders\OVCandidateList.h" />
     <ClInclude Include="OVIME.h" />
-    <ClInclude Include="..\..\..\Framework\Headers\OVLibrary.h" />
-    <ClInclude Include="..\..\..\Framework\Headers\OVUtility.h" />
+    <ClInclude Include="..\..\..\Frameworks\Headers\OVLibrary.h" />
+    <ClInclude Include="..\..\..\Frameworks\Headers\OVUtility.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="resource1.h" />
     <ClInclude Include="Vk.h" />
