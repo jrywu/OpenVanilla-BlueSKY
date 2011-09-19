@@ -53,13 +53,13 @@ int main(int argc, char *argv[])
 		NSString *userOVPath = [[dirs objectAtIndex:0] stringByAppendingPathComponent:OPENVANILLA_NAME];
 		BOOL isDir = YES;
 		if (![[NSFileManager defaultManager] fileExistsAtPath:userOVPath isDirectory:&isDir]) {
-			[[NSFileManager defaultManager] createDirectoryAtPath:userOVPath attributes:nil];
+			[[NSFileManager defaultManager] createDirectoryAtPath:userOVPath withIntermediateDirectories:YES attributes:nil error:nil];
 		}		
 		
 		isDir = YES;
 		NSString *userModulePath = [userOVPath stringByAppendingPathComponent:@"Modules"];
 		if (![[NSFileManager defaultManager] fileExistsAtPath:userModulePath isDirectory:&isDir]) {
-			[[NSFileManager defaultManager] createDirectoryAtPath:userModulePath attributes:nil];
+			[[NSFileManager defaultManager] createDirectoryAtPath:userModulePath withIntermediateDirectories:YES attributes:nil error:nil];
 		}		
 		
 		if (isDir) {		

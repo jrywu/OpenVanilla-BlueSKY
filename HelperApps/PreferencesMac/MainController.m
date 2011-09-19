@@ -74,11 +74,11 @@
 	
 	BOOL isDir = NO;
 	if (![[NSFileManager defaultManager] fileExistsAtPath:prefPath isDirectory:&isDir]) {
-		[[NSFileManager defaultManager] createDirectoryAtPath:prefPath attributes:nil];
+		[[NSFileManager defaultManager] createDirectoryAtPath:prefPath withIntermediateDirectories:YES attributes:nil error:nil];
 	}
 	if (!isDir) {
 		[[NSFileManager defaultManager] removeItemAtPath:prefPath error:nil];
-		[[NSFileManager defaultManager] createDirectoryAtPath:prefPath attributes:nil];
+		[[NSFileManager defaultManager] createDirectoryAtPath:prefPath withIntermediateDirectories:YES attributes:nil error:nil];
 	}
 	return [prefPath stringByAppendingPathComponent:OPENVANILLA_LOADER_PLIST_FILENAME];
 }

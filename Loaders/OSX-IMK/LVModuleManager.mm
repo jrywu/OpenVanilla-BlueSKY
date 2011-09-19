@@ -197,7 +197,7 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 	if (data) {
 		[data writeToFile:[self _configFilePath] atomically:YES];
 		
-		NSDictionary *attr = [[NSFileManager defaultManager] fileAttributesAtPath:[self _configFilePath] traverseLink:YES];
+		NSDictionary *attr = [[NSFileManager defaultManager] attributesOfItemAtPath:[self _configFilePath] error:nil];
 		_configTimestamp = [[attr objectForKey:NSFileModificationDate] timeIntervalSince1970];
 	}
 }
@@ -286,7 +286,7 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 	NSDictionary *oldConfigDict = [[_configDictionary mutableDeepCopy] autorelease];
 	
 	// get a list of all keys
-	NSDictionary *attr = [[NSFileManager defaultManager] fileAttributesAtPath:[self _configFilePath] traverseLink:YES];
+	NSDictionary *attr = [[NSFileManager defaultManager] attributesOfItemAtPath:[self _configFilePath] error:nil];
 	NSTimeInterval nowTimestamp = [[attr objectForKey:NSFileModificationDate] timeIntervalSince1970];
 	
 	if (!attr) {
@@ -429,7 +429,7 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 						if (initLib(_loaderService, [resourceDir UTF8String])) {
 							size_t moduleIterator = 0;
 							OVModule *module;
-							while (module = getModule(moduleIterator)) {
+							while ((module = getModule(moduleIterator))) {
 								LVModule *loadedModule = [LVModule moduleWithModuleObject:module moduleDataPath:resourceDir];
 								[_loadedModuleDictionary setObject:loadedModule forKey:[loadedModule moduleIdentifier]];
 								moduleIterator++;
@@ -631,21 +631,21 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 
 	BOOL isDir = YES;
 	if (![[NSFileManager defaultManager] fileExistsAtPath:userPath isDirectory:&isDir]) {
-		[[NSFileManager defaultManager] createDirectoryAtPath:userPath attributes:nil];
+		[[NSFileManager defaultManager] createDirectoryAtPath:userPath withIntermediateDirectories:YES attributes:nil error:nil];
 	}	
 	NSAssert1(isDir, @"%@ must be a directory", userPath);	
 	
 	NSString *userDataPath = [userPath stringByAppendingPathComponent:@"UserData"];
 	isDir = YES;
 	if (![[NSFileManager defaultManager] fileExistsAtPath:userDataPath isDirectory:&isDir]) {
-		[[NSFileManager defaultManager] createDirectoryAtPath:userDataPath attributes:nil];
+		[[NSFileManager defaultManager] createDirectoryAtPath:userDataPath withIntermediateDirectories:YES attributes:nil error:nil];
 	}	
 	NSAssert1(isDir, @"%@ must be a directory", userDataPath);	
 	
 	NSString *moduleDataPath = [userDataPath stringByAppendingPathComponent:moduleID];
 	isDir = YES;
 	if (![[NSFileManager defaultManager] fileExistsAtPath:moduleDataPath isDirectory:&isDir]) {
-		[[NSFileManager defaultManager] createDirectoryAtPath:moduleDataPath attributes:nil];
+		[[NSFileManager defaultManager] createDirectoryAtPath:moduleDataPath withIntermediateDirectories:YES attributes:nil error:nil];
 	}	
 	NSAssert1(isDir, @"%@ must be a directory", moduleDataPath);		
 	

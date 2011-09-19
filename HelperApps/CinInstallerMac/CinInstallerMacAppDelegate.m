@@ -40,27 +40,35 @@
 	NSString *appSupportPath = [libPath stringByAppendingPathComponent:@"Application Support"];
 	BOOL isDir = NO;
 	if (![[NSFileManager defaultManager] fileExistsAtPath:appSupportPath isDirectory:&isDir]) {
-		[[NSFileManager defaultManager] createDirectoryAtPath:appSupportPath attributes:nil];
+		[[NSFileManager defaultManager] createDirectoryAtPath:appSupportPath withIntermediateDirectories:YES attributes:nil error:nil];
 	}
 	if (!isDir) {
 		[[NSFileManager defaultManager] removeItemAtPath:appSupportPath error:nil];
-		[[NSFileManager defaultManager] createDirectoryAtPath:appSupportPath attributes:nil];
+		[[NSFileManager defaultManager] createDirectoryAtPath:appSupportPath withIntermediateDirectories:YES attributes:nil error:nil];
 	}
 	NSString *ovPath = [appSupportPath stringByAppendingPathComponent:@"OpenVanilla"];
 	if (![[NSFileManager defaultManager] fileExistsAtPath:ovPath isDirectory:&isDir]) {
-		[[NSFileManager defaultManager] createDirectoryAtPath:ovPath attributes:nil];
+		[[NSFileManager defaultManager] createDirectoryAtPath:ovPath withIntermediateDirectories:YES attributes:nil error:nil];
 	}
 	if (!isDir) {
 		[[NSFileManager defaultManager] removeItemAtPath:ovPath error:nil];
-		[[NSFileManager defaultManager] createDirectoryAtPath:ovPath attributes:nil];
+		[[NSFileManager defaultManager] createDirectoryAtPath:ovPath withIntermediateDirectories:YES attributes:nil error:nil];
 	}
-	NSString *genericPath = [ovPath stringByAppendingPathComponent:@"OVIMGeneric"];
+    NSString *ovUserPath = [ovPath stringByAppendingPathComponent:@"UserData"];
+	if (![[NSFileManager defaultManager] fileExistsAtPath:ovUserPath isDirectory:&isDir]) {
+		[[NSFileManager defaultManager] createDirectoryAtPath:ovUserPath withIntermediateDirectories:YES attributes:nil error:nil];
+	}
+	if (!isDir) {
+		[[NSFileManager defaultManager] removeItemAtPath:ovUserPath error:nil];
+		[[NSFileManager defaultManager] createDirectoryAtPath:ovUserPath withIntermediateDirectories:YES attributes:nil error:nil];
+	}
+	NSString *genericPath = [ovUserPath stringByAppendingPathComponent:@"OVIMGeneric"];
 	if (![[NSFileManager defaultManager] fileExistsAtPath:genericPath isDirectory:&isDir]) {
-		[[NSFileManager defaultManager] createDirectoryAtPath:genericPath attributes:nil];
+		[[NSFileManager defaultManager] createDirectoryAtPath:genericPath withIntermediateDirectories:YES attributes:nil error:nil];
 	}
 	if (!isDir) {
 		[[NSFileManager defaultManager] removeItemAtPath:genericPath error:nil];
-		[[NSFileManager defaultManager] createDirectoryAtPath:genericPath attributes:nil];
+		[[NSFileManager defaultManager] createDirectoryAtPath:genericPath withIntermediateDirectories:YES attributes:nil error:nil];
 	}
 	return genericPath;
 }

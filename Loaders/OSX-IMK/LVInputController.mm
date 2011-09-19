@@ -299,7 +299,7 @@ static id LVICCurrentlyActiveSender = nil;
 		// hide notify message tooltip if there's already one, otherwise do nothing
 	}
 }
-- (unsigned int)recognizedEvents:(id)sender
+- (NSUInteger)recognizedEvents:(id)sender
 {
     return NSKeyDownMask | NSKeyUpMask | NSFlagsChangedMask | NSMouseEnteredMask | NSLeftMouseDownMask | NSLeftMouseDragged;
 }
