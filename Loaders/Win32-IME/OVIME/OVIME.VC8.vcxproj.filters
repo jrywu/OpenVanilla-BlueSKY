@@ -57,19 +57,10 @@
     <ClInclude Include="..\..\..\dependencies\ltdl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Framework\Headers\OpenVanilla.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="OVIME.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Framework\Headers\OVLibrary.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Vk.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Framework\Headers\OVUtility.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
@@ -78,6 +69,9 @@
     <ClInclude Include="resource1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Frameworks\Headers\OpenVanilla.h" />
+    <ClInclude Include="..\..\..\Frameworks\Headers\OVLibrary.h" />
+    <ClInclude Include="..\..\..\Frameworks\Headers\OVUtility.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OVIME.ico">
