@@ -53,15 +53,16 @@ extern "C" int OVInitializeLibrary(OVService *s, const char *libpath) {
 
     const char *pathsep=s->pathSeparator();
  
-    // will be something like this on OS X:
-    //     ~/Library/OpenVanilla/version/UserSpace/OVIMGeneric/
-    string userpath=s->userSpacePath("OVIMGeneric");
-
-	murmur(" userSpacePath %s", userpath.c_str());
-    // will be something like this on OS X:
-    //     /Library/OpenVanilla/version/Modules/OVIMGeneric/
-	// will be something like this on Windows Vista/7+
+    // will be something like this on OS X (IMK):
+    //     ~/Library/Application Support/OpenVanilla/UserData/OVIMGeneric/
+    // will be something like this on Windows Vista/7+
 	//     c:\users\[username]\appdata\roadming\Openmanilla\OVIMGeneric
+    string userpath=s->userSpacePath("OVIMGeneric");
+	murmur(" userSpacePath %s", userpath.c_str());
+    
+    // will be something like this on OS X (TSM):
+    //     /Library/OpenVanilla/version/Modules/OVIMGeneric/
+    // and inside the bundle of OS X (IMK
     string datapath=string(libpath) + string(pathsep) + string("OVIMGeneric");
 
 	murmur(" dataPath %s", datapath.c_str());
@@ -176,8 +177,10 @@ const char* OVIMGeneric::identifier()
 
 const char* OVIMGeneric::localizedName(const char* locale)
 {
-    if (!strcasecmp(locale, "zh_TW")) return cininfo.tcname.c_str();
-    if (!strcasecmp(locale, "zh_CN")) return cininfo.scname.c_str();
+    if (!strcasecmp(locale, "zh_TW") || !strcasecmp(locale, "zh-Hant"))
+		return cininfo.tcname.c_str();
+    if (!strcasecmp(locale, "zh_CN")  || !strcasecmp(locale, "zh-Hans"))
+		return cininfo.scname.c_str();
     return cininfo.ename.c_str();
 }
 
@@ -456,7 +459,7 @@ int OVGenericContext::keyEvent(OVKeyCode *key, OVBuffer *buf, OVCandidate *textb
     		keyseq.length() == parent->maxSeqLen())
     	{
             updateDisplay(buf);
-			srv->notify("\xE6\x8C\x89\xE9\x8D\xB5\xE6\x9C\x89\xE8\xAA\xA4 1"); //���䦳�~
+			srv->notify("\xE6\x8C\x89\xE9\x8D\xB5\xE6\x9C\x89\xE8\xAA\xA4 1"); //´ˆ¡‰¶≥ª~
             if (parent->isBeep())
 				srv->beep();
             return 1;
@@ -504,7 +507,7 @@ int OVGenericContext::keyEvent(OVKeyCode *key, OVBuffer *buf, OVCandidate *textb
     }
     
     if (!buf->isEmpty()) {
-		srv->notify("\xE6\x8C\x89\xE9\x8D\xB5\xE6\x9C\x89\xE8\xAA\xA4 2"); //���䦳�~
+		srv->notify("\xE6\x8C\x89\xE9\x8D\xB5\xE6\x9C\x89\xE8\xAA\xA4 2"); //´ˆ¡‰¶≥ª~
         if (parent->isBeep())
 			srv->beep();
         return 1;
@@ -540,7 +543,7 @@ int OVGenericContext::compose(OVBuffer *buf, OVCandidate *textbar, OVService *sr
 	
     if (size == 0)
     {
-		srv->notify("\xE6\x8C\x89\xE9\x8D\xB5\xE6\x9C\x89\xE8\xAA\xA4 3"); //���䦳�~
+		srv->notify("\xE6\x8C\x89\xE9\x8D\xB5\xE6\x9C\x89\xE8\xAA\xA4 3"); //´ˆ¡‰¶≥ª~
         if (parent->isBeep())
 			srv->beep();
         return 1;
@@ -626,7 +629,7 @@ int OVGenericContext::candidateEvent(OVKeyCode *key, OVBuffer *buf,
 
     string output;
     if (candi.select(c, output)) {
-		murmur("candi.select: %c, %s\n",c, output);
+		//murmur("candi.select: %c, %s\n",c, output);
         buf->clear()->append(output.c_str())->update()->send();
 
         candi.cancel();
@@ -679,7 +682,7 @@ int OVGenericContext::candidateEvent(OVKeyCode *key, OVBuffer *buf,
 		return 1;			
     }
 	
-	srv->notify("\xE6\x8C\x89\xE9\x8D\xB5\xE6\x9C\x89\xE8\xAA\xA4 4"); //���䦳�~
+	srv->notify("\xE6\x8C\x89\xE9\x8D\xB5\xE6\x9C\x89\xE8\xAA\xA4 4"); //´ˆ¡‰¶≥ª~
 	if (parent->isBeep())
 		srv->beep();
 

@@ -60,8 +60,8 @@ const char* OVOFReverseLookup::identifier() {
 const char* OVOFReverseLookup::localizedName(const char* locale) {
 
 	
-	if (!strcasecmp(locale, "zh_TW")) localizedname = cininfo.tcname + string("-\xE5\x8F\x8d\xE6\x9F\xA5"); 
-    else if (!strcasecmp(locale, "zh_CN")) localizedname = cininfo.scname + string("-\xE5\x8F\x8d\xE6\x9F\xA5");
+	if (!strcasecmp(locale, "zh_TW")|| !strcasecmp(locale, "zh-Hant")) localizedname = cininfo.tcname + string("-\xE5\x8F\x8d\xE6\x9F\xA5"); 
+    else if (!strcasecmp(locale, "zh_CN")|| !strcasecmp(locale, "zh-Hans")) localizedname = cininfo.scname + string("-\xE5\x8F\x8d\xE6\x9F\xA5");
     else localizedname = cininfo.ename + string("-Reverse Look Up");
 
 	return localizedname.c_str();
@@ -100,10 +100,10 @@ const char *OVOFReverseLookup::process(const char *src, OVService *srv) {
         if (u8==NULL) {
 			/*
             if (!strcasecmp(srv->locale(), "zh_TW")) {
-                srv->notify("?�查失�?：Unicode字碼?�誤");
+                srv->notify("?çÊü•Â§±Ê?ÔºöUnicodeÂ≠óÁ¢º?ØË™§");
             }
             else if (!strcasecmp(srv->locale(), "zh_CN")) {
-                srv->notify("?�查失败：Unicode字�??�误");
+                srv->notify("?çÊü•Â§±Ë¥•ÔºöUnicodeÂ≠óÁ??ôËØØ");
             }
             else {
                 srv->notify("Look-up failed: Bad Unicode codepoint");
