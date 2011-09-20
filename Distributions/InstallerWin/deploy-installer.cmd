@@ -9,24 +9,31 @@ mkdir "..\InstallerWin\OpenVanilla\Modules\OVIMArray"
 mkdir "..\InstallerWin\OpenVanilla\Modules\OVIMGeneric"
 rem mkdir "..\InstallerWin\OpenVanilla\Modules\OVIMRomanNew"
 rem mkdir "..\InstallerWin\OpenVanilla\Modules\OVOFReverseLookup
-rem mkdir "..\InstallerWin\OpenVanilla\en-US"
-rem mkdir "..\InstallerWin\OpenVanilla\zh-TW"
+mkdir "..\InstallerWin\OpenVanilla\en-US"
+mkdir "..\InstallerWin\OpenVanilla\zh-TW"
 copy "..\..\Dep\x86\libltdl3.dll" ..\InstallerWin\system32.x86\
 copy "..\..\Dep\x86\libhunspell.dll" ..\InstallerWin\system32.x86\
-copy "..\..\Dep\x86\sqlite3.dll" ..\InstallerWin\system32.x86\
+copy "..\..\Dep\x86\msvcp100.dll" ..\InstallerWin\system32.x86\
+copy "..\..\Dep\x86\msvcp100d.dll" ..\InstallerWin\system32.x86\
+copy "..\..\Dep\x86\msvcr100.dll" ..\InstallerWin\system32.x86\
+copy "..\..\Dep\x86\msvcr100d.dll" ..\InstallerWin\system32.x86\
 copy "..\..\Dep\x64\libltdl-3.dll" ..\InstallerWin\system32.x64\
 copy "..\..\Dep\x64\libhunspell.dll" ..\InstallerWin\system32.x64\
 copy "..\..\Dep\x64\sqlite3.dll" ..\InstallerWin\system32.x64\
+copy "..\..\Dep\x64\msvcp100.dll" ..\InstallerWin\system32.x64\
+copy "..\..\Dep\x64\msvcp100d.dll" ..\InstallerWin\system32.x64\
+copy "..\..\Dep\x64\msvcr100.dll" ..\InstallerWin\system32.x64\
+copy "..\..\Dep\x64\msvcr100d.dll" ..\InstallerWin\system32.x64\
 copy "..\..\Loaders\Win32-IME\OVManagedUI\bin\Release\OVManagedUI.dll" ..\InstallerWin\OpenVanilla\
 copy "..\..\Loaders\Win32-IME\OVManagedUI\bin\Release\OVManagedUI.dll" ..\InstallerWin\OpenVanilla\
-copy "..\..\HelperApps\GacUtil\bin\Release\GacUtil.exe" ..\InstallerWin\OpenVanilla\
 copy ..\..\Loaders\Win32-IME\OVIMEUI\Release\x86\OVIMEUI.dll ..\InstallerWin\system32.x86\
 copy ..\..\Loaders\Win32-IME\OVIMEUI\Release\x64\OVIMEUI.dll ..\InstallerWin\system32.x64\
 copy ..\..\Loaders\Win32-IME\OVIME\Release\x86\OVIME.ime ..\InstallerWin\system32.x86\
 copy ..\..\Loaders\Win32-IME\OVIME\Release\x64\OVIME.ime ..\InstallerWin\system32.x64\
-copy ..\..\Loaders\Win32-IME\OVPreferences\bin\Release\OVPreferences.exe ..\InstallerWin\OpenVanilla\
-copy ..\..\Loaders\Win32-IME\OVPreferences\bin\Release\zh-TW\* ..\InstallerWin\OpenVanilla\zh-TW
-copy ..\..\Loaders\Win32-IME\OVPreferences\bin\Release\en-US\* ..\InstallerWin\OpenVanilla\en-US
+copy ..\..\HelperApps\GacUtil\bin\Release\GacUtil.exe ..\InstallerWin\OpenVanilla\
+copy ..\..\HelperApps\PreferencesWin\bin\Release\OVPreferences.exe ..\InstallerWin\OpenVanilla\
+copy ..\..\HelperApps\PreferencesWin\bin\Release\zh-TW\* ..\InstallerWin\OpenVanilla\zh-TW
+copy ..\..\HelperApps\PreferencesWin\bin\Release\en-US\* ..\InstallerWin\OpenVanilla\en-US
 copy "..\..\Modules\OVIMArray\Release\x86\OVIMArray.dll" "..\InstallerWin\OpenVanilla\Modules\x86\"
 copy "..\..\Modules\OVIMArray\Release\x64\OVIMArray.dll" "..\InstallerWin\OpenVanilla\Modules\x64\"
 copy "..\..\Modules\OVIMEsperanto\Release\x86\OVIMEsperanto.dll" "..\InstallerWin\OpenVanilla\Modules\x86\"
@@ -36,6 +43,7 @@ copy "..\..\DataTables\array-special.cin" "..\InstallerWin\OpenVanilla\Modules\O
 copy "..\..\DataTables\array-shortcode.cin" "..\InstallerWin\OpenVanilla\Modules\OVIMArray\"
 copy "..\..\Modules\OVIMGenericSQ\Release\x86\OVIMGenericSQ.dll" "..\InstallerWin\OpenVanilla\Modules\x86\"
 copy "..\..\Modules\OVIMGenericSQ\Release\x64\OVIMGenericSQ.dll" "..\InstallerWin\OpenVanilla\Modules\x64\"
+copy "..\..\DataTables\assoc.cin" "..\InstallerWin\OpenVanilla\Modules\OVIMGeneric\"
 copy "..\..\DataTables\dayi3-patched.cin" "..\InstallerWin\OpenVanilla\Modules\OVIMGeneric\"
 copy "..\..\DataTables\cj-ext.cin" "..\InstallerWin\OpenVanilla\Modules\OVIMGeneric\"
 copy "..\..\DataTables\simplex-ext.cin" "..\InstallerWin\OpenVanilla\Modules\OVIMGeneric\"
