@@ -140,28 +140,24 @@ OVCINSQList::OVCINSQList(const char *pathseparator, const char* dbpath, const ch
     int OVCINSQList::load(const char *loadpath, const char *extension) {
 #ifndef WIN32
         clExtension=extension;
-        struct dirent **files;
-		struct state fileinfo;
+        
+        struct dirent **files = NULL;
+        struct stat fileinfo;
         int count=scandir(loadpath, &files, CLFileSelect, alphasort);        
-
+        
         int loaded=0;
         for (int i=0; i<count; i++) {
-			state(files[i]->dname, &fileinfo);
-            if (preparse(loadpath, files[i]->d_name, fileinfo.st_mtimespec.tv_sec, fileinfo.st_mtimespec.tv_nsec)) {
-				loaded++;
-				//Add time stamp infto to infolist.		
-				//state(files[i]->dname, &fileinfo);
-				//list.back().dwHighTimeStamp = blah blah... 
-				//list.back().dwHighTimeStamp = fileinfo.st_mtimespec.tv_sec;
-				//list.back().dwLowTimeStamp = blah blah...
-				//list.back().dwLowTimeStamp = fileinfo.st_mtimespec.tv_nsec;
-			}
-			
+            stat(files[i]->d_name, &fileinfo);
+            if (preparse(loadpath, files[i]->d_name, fileinfo.st_mtimespec.tv_sec, fileinfo.st_mtimespec.tv_nsec)) loaded++;
             free(files[i]);
         }
-        free(files);
+		
+		if (files) {
+			free(files);
+		}
+		
         return loaded;
-
+        
 #else   
 		int loaded=0;
 		BOOL fFinished;
@@ -222,7 +218,7 @@ OVCINSQList::OVCINSQList(const char *pathseparator, const char* dbpath, const ch
 	}
 
 
-bool OVCINSQList::preparse(const char *loadpath, const char *filename, int highTimeStamp, int lowTimeStamp) {
+bool OVCINSQList::preparse(const char *loadpath, const char *filename, long highTimeStamp, long lowTimeStamp) {
     // check if a file of the same short name has been alread loaded
     for (size_t i=0; i<list.size(); i++) {
         OVCINSQInfo &x=list[i];

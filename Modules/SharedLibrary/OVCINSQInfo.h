@@ -34,8 +34,8 @@ struct OVCINSQInfo
     string tcname;
     string scname;
 
-	int lowTimeStamp;
-	int highTimeStamp;
+	long lowTimeStamp;
+	long highTimeStamp;
 
 };
 
@@ -55,7 +55,7 @@ public:
 	SQLite3 *getdb(){ return db;};
 	
 protected:
-    bool preparse(const char *loadpath, const char *filename, int highTimeStamp, int lowTimeStamp);
+    bool preparse(const char *loadpath, const char *filename, long highTimeStamp, long lowTimeStamp);
 	SQLite3 *db;
     string pathsep;	
 
