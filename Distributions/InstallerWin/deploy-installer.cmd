@@ -13,6 +13,7 @@ mkdir "..\InstallerWin\OpenVanilla\en-US"
 mkdir "..\InstallerWin\OpenVanilla\zh-TW"
 copy "..\..\Dep\x86\libltdl3.dll" ..\InstallerWin\system32.x86\
 copy "..\..\Dep\x86\libhunspell.dll" ..\InstallerWin\system32.x86\
+copy "..\..\Dep\x86\sqlite3.dll" ..\InstallerWin\system32.x86\
 copy "..\..\Dep\x86\msvcp100.dll" ..\InstallerWin\system32.x86\
 copy "..\..\Dep\x86\msvcp100d.dll" ..\InstallerWin\system32.x86\
 copy "..\..\Dep\x86\msvcr100.dll" ..\InstallerWin\system32.x86\
