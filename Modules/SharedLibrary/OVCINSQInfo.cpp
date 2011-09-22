@@ -29,7 +29,7 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 
-#define OV_DEBUG
+//#define OV_DEBUG
 
 #include "OVCINSQInfo.h"
 
@@ -101,14 +101,22 @@ void CLSplitString(const char *s, string& k, string& v) {
 #endif
 
 
-OVCINSQList::OVCINSQList(const char *pathseparator, const char* dbpath, const char* userdbpath){
+OVCINSQList::OVCINSQList(const char *pathseparator, const char* datapath, const char* userpath){
     pathsep=pathseparator;
+
+	string preloadDbpath = datapath + string(pathseparator) + string("ovimgeneric.db"); //preloaded db path Jeremy '11,9,22
+	string dbpath = userpath + string("imdb.db");
+	string userdbpath = userpath + string("userdb.db");
+
+	bool preloadDbExist = fileExist(preloadDbpath.c_str());
+	bool imdbExist = fileExist(dbpath.c_str());
+	murmur("Preload db %s exist: %d ; im db %s Exist: %d",preloadDbpath.c_str(), preloadDbExist, dbpath.c_str(), imdbExist);
 
 	db = new  SQLite3;  
 	
 	murmur(" Initializing SQLite3 db files...");
 	murmur("dbfile:%s",dbpath);
-	if (int err=db->open(dbpath) )
+	if (int err=db->open(dbpath.c_str()) )
         murmur("SQLite3 error! code=%d", err);
    	 
 	if (int err=db->execute(
@@ -119,9 +127,9 @@ OVCINSQList::OVCINSQList(const char *pathseparator, const char* dbpath, const ch
 	
 	// Attach user frequency database...
 
-	murmur("Attach user database: attach %s as userdb;", userdbpath);
+	murmur("Attach user database: attach %s as userdb;", userdbpath.c_str());
 	
-	if (int err=db->execute("attach '%q' as userdb;", userdbpath))
+	if (int err=db->execute("attach '%q' as userdb;", userdbpath.c_str()))
 		murmur("SQLite3: attach user  db error! code=%d", err);
 	if (int err=db->execute("create table userdb.phrase (key, count);"))
 		murmur("SQLite3: create userdb.phrase table error! code=%d", err);
@@ -224,6 +232,21 @@ OVCINSQList::OVCINSQList(const char *pathseparator, const char* dbpath, const ch
 #endif
 	}
 
+bool OVCINSQList::fileExist(const char *filepath){
+#ifndef WIN32
+    struct stat fileinfo;
+    if(stat(filespath, &fileinfo) == 0)
+		return true;
+#else
+	WIN32_FIND_DATAW FileData;
+	WCHAR wbuf[MAX_PATH];
+	MultiByteToWideChar(CP_UTF8, 0, filepath, (int)(strlen(filepath)+1), wbuf, MAX_PATH);
+	HANDLE hList = FindFirstFileW(wbuf, &FileData);
+	if(hList != INVALID_HANDLE_VALUE)
+		return true ;
+#endif
+	return false;
+}
 
 bool OVCINSQList::preparse(const char *loadpath, const char *filename, long highTimeStamp, long lowTimeStamp) {
     // check if a file of the same short name has been alread loaded
@@ -232,7 +255,7 @@ bool OVCINSQList::preparse(const char *loadpath, const char *filename, long high
         OVCINSQInfo &x=list[i];
         if (x.shortfilename==filename) {
             murmur("OVCINSQList: file %s not loaded, short name '%s' already exists", loadpath, filename);
-			list.erase(list.begin()+i); //removed the old one. replacing for new finded.
+			list.erase(list.begin()+i); //removed the old one. replacing for new one..
 			exist = true;
             //return false;
         }
@@ -289,13 +312,12 @@ bool OVCINSQList::preparse(const char *loadpath, const char *filename, long high
 	if(info.shortfilename==string("assoc.cin"))
 	{
 		assocCinInfo =info;
-		//list.insert(list.begin(),info);
 		murmur("assoc found");
 	}
 	else
 		list.push_back(info);
 	
-	murmur("Loaded: longfilename=%s, shortfilename=%s, ename=%s, cname=%s, tcname=%s, scname=%s, highTimeStamp:%u, lowTimeStamp:%d",
+	murmur("Loaded: longfilename=%s, shortfilename=%s, ename=%s, cname=%s, tcname=%s, scname=%s, highTimeStamp:%d, lowTimeStamp:%d",
 	   info.longfilename.c_str(), info.shortfilename.c_str(), info.ename.c_str(), 
 	   info.cname.c_str(), info.tcname.c_str(), info.scname.c_str(), info.highTimeStamp, info.lowTimeStamp);
 	if(exist) return 0;
@@ -329,7 +351,7 @@ int OVCINSQList::loadfromdb(){
 		sth = db->prepare(
 			"select shortfilename, longfilename, ename, cname, tcname, scname, \
 				dwHighTimeStamp, dwLowTimeStamp from tablelist where name != 'assoc' \
- 				and dwHighTimeStamp=-1, dwLowTimeStamp=-1 ;"); 
+ 				and dwHighTimeStamp = '-1' and dwLowTimeStamp = '-1' ;"); 
 
 
 		if (sth){

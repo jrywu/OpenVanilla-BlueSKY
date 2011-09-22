@@ -67,9 +67,9 @@ extern "C" int OVInitializeLibrary(OVService *s, const char *libpath) {
 
 	murmur(" dataPath %s", datapath.c_str());
  
-    string dbfile = userpath + string("imdb.db");
-	string userdbfile = userpath + string("userdb.db");
-	cinlist = new OVCINSQList(pathsep, dbfile.c_str(), userdbfile.c_str());
+    //string dbfile = userpath + string("imdb.db");  //Moved to OVCINSQInfo Jeremy '11,9,22
+	//string userdbfile = userpath + string("userdb.db");
+	cinlist = new OVCINSQList(pathsep, datapath.c_str(), userpath.c_str());
     if (!cinlist) return false;
 
 	
@@ -77,13 +77,14 @@ extern "C" int OVInitializeLibrary(OVService *s, const char *libpath) {
     int loaded=0;
 
     //watch.start(); 
-    loaded += cinlist->load(userpath.c_str(), ".cin", true);
+	loaded += cinlist->load(datapath.c_str(), ".cin", true);
+    
     //watch.stop();
-	if (!loaded) 		loaded = cinlist->loadfromdb(); // Jeremy '11,9,22 for preloaded sqlite db.
     //murmur("Loaded modules from %s in %1.3f",userpath.c_str(), watch.getSec());
+	if (!loaded) 		loaded = cinlist->loadfromdb(); // Jeremy '11,9,22 for preloaded sqlite db.
 
     //watch.start(); 
-    loaded += cinlist->load(datapath.c_str(), ".cin");
+    loaded += cinlist->load(userpath.c_str(), ".cin", false);
     //watch.stop();
 
     //murmur("Loaded modules from %s in %1.3f", datapath.c_str(), watch.getSec());

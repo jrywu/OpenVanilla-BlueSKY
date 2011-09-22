@@ -28,7 +28,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE. 
 
-#define  OV_DEBUG
+//#define  OV_DEBUG
 #define candiLimit 200
 
 #include "OVCINSQ.h"
@@ -57,12 +57,12 @@ OVCINSQ::OVCINSQ(const OVCINSQInfo& cininfo, SQLite3 *globaldb) : db(globaldb)
 		int timestampHi = atoi(sth->column_text(0));
 		int timestampLo = atoi(sth->column_text(1));
 		delete sth;
-		murmur("timestamp:%u, %u", timestampHi, timestampLo);
+		murmur("timestamp:%d, %d", timestampHi, timestampLo);
 		if(timestampHi!=cininfo.highTimeStamp ||timestampLo!=cininfo.lowTimeStamp)
 		{
 			murmur("Table:%s updated:  delete from '%q' where 1;",tablename.c_str());
 			db->execute("delete from '%q' where 1;",tablename.c_str());
-			murmur("update tablelist set dwHighTimeStamp='%u', dwLowTimeStamp='%u' where name ='%s';"
+			murmur("update tablelist set dwHighTimeStamp='%d', dwLowTimeStamp='%d' where name ='%s';"
 				,cininfo.highTimeStamp, cininfo.lowTimeStamp, tablename.c_str());
 			db->execute("update tablelist set dwHighTimeStamp='%d', dwLowTimeStamp='%d' where name ='%q';"
 				,cininfo.highTimeStamp, cininfo.lowTimeStamp, tablename.c_str());
@@ -73,7 +73,7 @@ OVCINSQ::OVCINSQ(const OVCINSQInfo& cininfo, SQLite3 *globaldb) : db(globaldb)
 	else 
 	{	
 		
-		murmur("create table '%s': insert into tablelist values ('%s','%s','%s','%s','%s','%s','%s','%u','%u');"
+		murmur("create table '%s': insert into tablelist values ('%s','%s','%s','%s','%s','%s','%s','%d','%d');"
 				,tablename.c_str(),tablename.c_str()
 				, cininfo.shortfilename.c_str(), cininfo.longfilename.c_str()
 				,cininfo.ename.c_str(), cininfo.cname.c_str()

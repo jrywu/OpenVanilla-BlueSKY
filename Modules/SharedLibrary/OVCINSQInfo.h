@@ -42,10 +42,11 @@ struct OVCINSQInfo
 class OVCINSQList //: public OVCINList
 {
 public:
-	OVCINSQList(const char *pathseparator, const char* dbpath, const char* userdbpath);
+	OVCINSQList(const char *pathseparator, const char* datapath, const char* userpath);
     int load(const char *loadpath, const char *extension=".cin", bool preLoad = false);
 
 	int loadfromdb();
+	bool OVCINSQList::fileExist(const char *filepath);
 	
 
     size_t count() { return list.size(); }
