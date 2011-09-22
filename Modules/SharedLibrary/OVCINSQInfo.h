@@ -43,7 +43,7 @@ class OVCINSQList //: public OVCINList
 {
 public:
 	OVCINSQList(const char *pathseparator, const char* dbpath, const char* userdbpath);
-    int load(const char *loadpath, const char *extension=".cin");
+    int load(const char *loadpath, const char *extension=".cin", bool preLoad = false);
 
 	int loadfromdb();
 	

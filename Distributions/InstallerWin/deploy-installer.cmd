@@ -31,7 +31,7 @@ copy ..\..\Loaders\Win32-IME\OVIMEUI\Release\x86\OVIMEUI.dll ..\InstallerWin\sys
 copy ..\..\Loaders\Win32-IME\OVIMEUI\Release\x64\OVIMEUI.dll ..\InstallerWin\system32.x64\
 copy ..\..\Loaders\Win32-IME\OVIME\Release\x86\OVIME.ime ..\InstallerWin\system32.x86\
 copy ..\..\Loaders\Win32-IME\OVIME\Release\x64\OVIME.ime ..\InstallerWin\system32.x64\
-copy ..\..\HelperApps\GacUtil\bin\Release\GacUtil.exe ..\InstallerWin\OpenVanilla\
+copy ..\InstallerWin\OVUtil\bin\Release\OVUtil.exe ..\InstallerWin\OpenVanilla\
 copy ..\..\HelperApps\PreferencesWin\bin\Release\OVPreferences.exe ..\InstallerWin\OpenVanilla\
 copy ..\..\HelperApps\PreferencesWin\bin\Release\zh-TW\* ..\InstallerWin\OpenVanilla\zh-TW
 copy ..\..\HelperApps\PreferencesWin\bin\Release\en-US\* ..\InstallerWin\OpenVanilla\en-US
