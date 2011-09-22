@@ -648,8 +648,8 @@ Section "Modules" SEC02
 SetOutPath $PROGRAMFILES
   SetOVerwrite ifnewer
   File /r /x ".svn" /x "x64" "OpenVanilla"
-  nsExec::ExecToStack '"$INSTDIR\GacUtil.exe" uninstall "$INSTDIR\OVManagedUI.dll"'
-  nsExec::ExecToStack '"$INSTDIR\GacUtil.exe" install "$INSTDIR\OVManagedUI.dll"'
+  nsExec::ExecToStack '"$INSTDIR\OVUtil.exe" uninstall "$INSTDIR\OVManagedUI.dll"'
+  nsExec::ExecToStack '"$INSTDIR\OVUtil.exe" install "$INSTDIR\OVManagedUI.dll"'
 ;SetOutPath "$APPDATA\OpenVanilla\"
 ;  File /r /x ".svn" "UserData\*.*"
 ;  File "config.xml"
@@ -721,7 +721,7 @@ Section Uninstall
   ${registry::MoveKey} "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\excel-new.exe" "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\\excel.exe" $R5
   ${registry::MoveKey} "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\winword-new.exe" "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\\winword.exe" $R6
 
-  nsExec::ExecToStack '"$INSTDIR\GacUtil.exe" uninstall "OVIME.dll"'
+  nsExec::ExecToStack '"$INSTDIR\OVUtil.exe" uninstall "OVIME.dll"'
 
   Delete "$SYSDIR\OVIMEUI.dll"
   Delete "$SYSDIR\libltdl3.dll"

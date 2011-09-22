@@ -34,19 +34,7 @@
         "Entry"
         {
         "MsmKey" = "8:_05AE4C1390C83E25527AFE45D3039A0D"
-        "OwnerKey" = "8:_93EDD275543A80177F0A7D96DE51D4F3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_05AE4C1390C83E25527AFE45D3039A0D"
-        "OwnerKey" = "8:_A6B6657DBBD5435192356EA773E7B05A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_05AE4C1390C83E25527AFE45D3039A0D"
-        "OwnerKey" = "8:_51906409DFFC4BC79B9DAAEA9D8CE5C9"
+        "OwnerKey" = "8:_CA7EF821A30B6CB9CF74772AFFCBF1AB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -58,7 +46,19 @@
         "Entry"
         {
         "MsmKey" = "8:_05AE4C1390C83E25527AFE45D3039A0D"
-        "OwnerKey" = "8:_CA7EF821A30B6CB9CF74772AFFCBF1AB"
+        "OwnerKey" = "8:_51906409DFFC4BC79B9DAAEA9D8CE5C9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_05AE4C1390C83E25527AFE45D3039A0D"
+        "OwnerKey" = "8:_A6B6657DBBD5435192356EA773E7B05A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_05AE4C1390C83E25527AFE45D3039A0D"
+        "OwnerKey" = "8:_93EDD275543A80177F0A7D96DE51D4F3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -412,37 +412,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_93EDD275543A80177F0A7D96DE51D4F3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A6B6657DBBD5435192356EA773E7B05A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_51906409DFFC4BC79B9DAAEA9D8CE5C9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_324487314F79480A80896C183F3D0BE3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CA7EF821A30B6CB9CF74772AFFCBF1AB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_301C803A275448AD92D3FC6FECBBD85D"
+        "OwnerKey" = "8:_0D486186E0C44412B5FF98AF28174572"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -454,7 +424,37 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0D486186E0C44412B5FF98AF28174572"
+        "OwnerKey" = "8:_301C803A275448AD92D3FC6FECBBD85D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_CA7EF821A30B6CB9CF74772AFFCBF1AB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_324487314F79480A80896C183F3D0BE3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_51906409DFFC4BC79B9DAAEA9D8CE5C9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_A6B6657DBBD5435192356EA773E7B05A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_93EDD275543A80177F0A7D96DE51D4F3"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -604,11 +604,6 @@
             "AssemblyAsmDisplayName" = "8:OVManagedUI, Version=2.0.3033.23777, Culture=neutral, PublicKeyToken=ad4dc29b1041b19b, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_05AE4C1390C83E25527AFE45D3039A0D"
-                    {
-                    "Name" = "8:OVManagedUI.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:OVManagedUI.dll"
             "TargetName" = "8:"
@@ -815,11 +810,6 @@
             "AssemblyAsmDisplayName" = "8:OVIMEUI, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_93EDD275543A80177F0A7D96DE51D4F3"
-                    {
-                    "Name" = "8:OVIMEUI.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:OVIMEUI.dll"
             "TargetName" = "8:"
@@ -886,11 +876,6 @@
             "AssemblyAsmDisplayName" = "8:OVIMEUI, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_CA7EF821A30B6CB9CF74772AFFCBF1AB"
-                    {
-                    "Name" = "8:OVIMEUI.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:OVIMEUI.dll"
             "TargetName" = "8:"
@@ -1227,100 +1212,6 @@
                             "Transitive" = "11:FALSE"
                                 "Keys"
                                 {
-                                }
-                                "Values"
-                                {
-                                }
-                            }
-                        }
-                        "Values"
-                        {
-                        }
-                    }
-                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_88A53F7A60D348A18C464ECC3FA241DB"
-                    {
-                    "Name" = "8:SYSTEM"
-                    "Condition" = "8:"
-                    "AlwaysCreate" = "11:FALSE"
-                    "DeleteAtUninstall" = "11:FALSE"
-                    "Transitive" = "11:FALSE"
-                        "Keys"
-                        {
-                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_09838A9225CE43DCB9149D79A69DC183"
-                            {
-                            "Name" = "8:CurrentControlSet"
-                            "Condition" = "8:"
-                            "AlwaysCreate" = "11:FALSE"
-                            "DeleteAtUninstall" = "11:FALSE"
-                            "Transitive" = "11:FALSE"
-                                "Keys"
-                                {
-                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_2CEB8EDAC900461987275B2BA8586415"
-                                    {
-                                    "Name" = "8:Control"
-                                    "Condition" = "8:"
-                                    "AlwaysCreate" = "11:FALSE"
-                                    "DeleteAtUninstall" = "11:FALSE"
-                                    "Transitive" = "11:FALSE"
-                                        "Keys"
-                                        {
-                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_0B449C7CA33146618CEDD1F7F99FB67A"
-                                            {
-                                            "Name" = "8:Keyboard Layouts"
-                                            "Condition" = "8:"
-                                            "AlwaysCreate" = "11:FALSE"
-                                            "DeleteAtUninstall" = "11:FALSE"
-                                            "Transitive" = "11:FALSE"
-                                                "Keys"
-                                                {
-                                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_7B76022AE6D247B3952F0A75C48C435B"
-                                                    {
-                                                    "Name" = "8:E0200404"
-                                                    "Condition" = "8:"
-                                                    "AlwaysCreate" = "11:FALSE"
-                                                    "DeleteAtUninstall" = "11:FALSE"
-                                                    "Transitive" = "11:FALSE"
-                                                        "Keys"
-                                                        {
-                                                        }
-                                                        "Values"
-                                                        {
-                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_3A81A095F7E7486AA6A19F24E77CFE2A"
-                                                            {
-                                                            "Name" = "8:Layout File"
-                                                            "Condition" = "8:"
-                                                            "Transitive" = "11:FALSE"
-                                                            "ValueTypes" = "3:1"
-                                                            "Value" = "8:kbdus.dll"
-                                                            }
-                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_615EFC8699D444958DB212907961D00E"
-                                                            {
-                                                            "Name" = "8:Layout Text"
-                                                            "Condition" = "8:"
-                                                            "Transitive" = "11:FALSE"
-                                                            "ValueTypes" = "3:1"
-                                                            "Value" = "8:OpenVanilla 0.9b"
-                                                            }
-                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_67F27488425A454484DAFB6C27F5537C"
-                                                            {
-                                                            "Name" = "8:Ime File"
-                                                            "Condition" = "8:"
-                                                            "Transitive" = "11:FALSE"
-                                                            "ValueTypes" = "3:1"
-                                                            "Value" = "8:OVIME.IME"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                "Values"
-                                                {
-                                                }
-                                            }
-                                        }
-                                        "Values"
-                                        {
-                                        }
-                                    }
                                 }
                                 "Values"
                                 {

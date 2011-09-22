@@ -652,8 +652,8 @@ Section "Modules" SEC02
 SetOutPath $PROGRAMFILES64
   SetOVerwrite ifnewer
   File /r /x ".svn" "OpenVanilla"
-  nsExec::ExecToStack '"$PROGRAMFILES64\Openvanilla\GacUtil.exe" uninstall "$PROGRAMFILES64\Openvanilla\OVManagedUI.dll"'
-  nsExec::ExecToStack '"$PROGRAMFILES64\Openvanilla\GacUtil.exe" install "$PROGRAMFILES64\Openvanilla\OVManagedUI.dll"'
+  nsExec::ExecToStack '"$PROGRAMFILES64\Openvanilla\OVUtil.exe" uninstall "$PROGRAMFILES64\Openvanilla\OVManagedUI.dll"'
+  nsExec::ExecToStack '"$PROGRAMFILES64\Openvanilla\OVUtil.exe" install "$PROGRAMFILES64\Openvanilla\OVManagedUI.dll"'
 ;SetOutPath "$APPDATA\OpenVanilla\"
 ;  File /r /x ".svn" "UserData\*.*"
 ;  File "config.xml"
@@ -727,7 +727,7 @@ Section Uninstall
   ${registry::MoveKey} "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\excel-new.exe" "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\\excel.exe" $R5
   ${registry::MoveKey} "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\winword-new.exe" "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\\winword.exe" $R6
 
-  nsExec::ExecToStack '"$PROGRAMFILES64\OpenVanilla\GacUtil.exe" uninstall "$PROGRAMFILES64\Openvanilla\OVManagedUI.dll"'
+  nsExec::ExecToStack '"$PROGRAMFILES64\OpenVanilla\OVUtil.exe" uninstall "$PROGRAMFILES64\Openvanilla\OVManagedUI.dll"'
 	
   ${DisableX64FSRedirection}
   Delete "$SYSDIR\OVIMEUI.dll"
