@@ -77,9 +77,9 @@ extern "C" int OVInitializeLibrary(OVService *s, const char *libpath) {
     int loaded=0;
 
     //watch.start(); 
-    loaded += cinlist->load(userpath.c_str(), ".cin");
+    loaded += cinlist->load(userpath.c_str(), ".cin", true);
     //watch.stop();
-
+	if (!loaded) 		loaded = cinlist->loadfromdb(); // Jeremy '11,9,22 for preloaded sqlite db.
     //murmur("Loaded modules from %s in %1.3f",userpath.c_str(), watch.getSec());
 
     //watch.start(); 
@@ -88,7 +88,7 @@ extern "C" int OVInitializeLibrary(OVService *s, const char *libpath) {
 
     //murmur("Loaded modules from %s in %1.3f", datapath.c_str(), watch.getSec());
 
-	if (!loaded) 		loaded = cinlist->loadfromdb();
+	
 	if (!loaded)
 	{
 	        murmur ("OVIMGeneric: nothing loaded, init failed");
@@ -105,14 +105,9 @@ extern "C" OVModule *OVGetModuleFromLibrary(int x) {
 		
 	if ((size_t)x < ( cinlist->count() ))    // IM Modules
 	{
-
 		murmur("OVGetModuleFromLibrary:%s", cinlist->cinInfo((size_t)x).shortfilename.c_str());
-	
-		//if(cinlist->getAssocCinInfo().shortfilename =="assoc.cin") {
-			return new OVIMGeneric(cinlist->cinInfo((size_t)x), cinlist->getAssocCinInfo(), cinlist->getdb());
-		//}
-		//else
-		//	return new OVIMGeneric(cinlist->cinInfo((size_t)x), cinlist->getdb());
+		return new OVIMGeneric(cinlist->cinInfo((size_t)x), cinlist->getAssocCinInfo(), cinlist->getdb());
+		
 	}
 #ifndef WINCE 
 	else if ((size_t)x < 2* cinlist->count())  // Reverse lookup
@@ -459,7 +454,7 @@ int OVGenericContext::keyEvent(OVKeyCode *key, OVBuffer *buf, OVCandidate *textb
     		keyseq.length() == parent->maxSeqLen())
     	{
             updateDisplay(buf);
-			srv->notify("\xE6\x8C\x89\xE9\x8D\xB5\xE6\x9C\x89\xE8\xAA\xA4 1"); //´ˆ¡‰¶≥ª~
+			srv->notify("\xE6\x8C\x89\xE9\x8D\xB5\xE6\x9C\x89\xE8\xAA\xA4"); //按鍵有誤
             if (parent->isBeep())
 				srv->beep();
             return 1;
@@ -507,7 +502,7 @@ int OVGenericContext::keyEvent(OVKeyCode *key, OVBuffer *buf, OVCandidate *textb
     }
     
     if (!buf->isEmpty()) {
-		srv->notify("\xE6\x8C\x89\xE9\x8D\xB5\xE6\x9C\x89\xE8\xAA\xA4 2"); //´ˆ¡‰¶≥ª~
+		srv->notify("\xE6\x8C\x89\xE9\x8D\xB5\xE6\x9C\x89\xE8\xAA\xA4"); //按鍵有誤
         if (parent->isBeep())
 			srv->beep();
         return 1;
@@ -543,7 +538,7 @@ int OVGenericContext::compose(OVBuffer *buf, OVCandidate *textbar, OVService *sr
 	
     if (size == 0)
     {
-		srv->notify("\xE6\x8C\x89\xE9\x8D\xB5\xE6\x9C\x89\xE8\xAA\xA4 3"); //´ˆ¡‰¶≥ª~
+		srv->notify("\xE6\x8C\x89\xE9\x8D\xB5\xE6\x9C\x89\xE8\xAA\xA4");//按鍵有誤
         if (parent->isBeep())
 			srv->beep();
         return 1;
@@ -682,7 +677,7 @@ int OVGenericContext::candidateEvent(OVKeyCode *key, OVBuffer *buf,
 		return 1;			
     }
 	
-	srv->notify("\xE6\x8C\x89\xE9\x8D\xB5\xE6\x9C\x89\xE8\xAA\xA4 4"); //´ˆ¡‰¶≥ª~
+	srv->notify("\xE6\x8C\x89\xE9\x8D\xB5\xE6\x9C\x89\xE8\xAA\xA4"); //按鍵有誤
 	if (parent->isBeep())
 		srv->beep();
 

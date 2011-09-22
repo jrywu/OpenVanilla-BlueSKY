@@ -29,7 +29,7 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 
-//#define OV_DEBUG
+#define OV_DEBUG
 
 #include "OVCINSQInfo.h"
 
@@ -137,7 +137,7 @@ OVCINSQList::OVCINSQList(const char *pathseparator, const char* dbpath, const ch
 }
 
 
-    int OVCINSQList::load(const char *loadpath, const char *extension) {
+    int OVCINSQList::load(const char *loadpath, const char *extension, bool preload) {
 #ifndef WIN32
         clExtension=extension;
         
@@ -148,7 +148,13 @@ OVCINSQList::OVCINSQList(const char *pathseparator, const char* dbpath, const ch
         int loaded=0;
         for (int i=0; i<count; i++) {
             stat(files[i]->d_name, &fileinfo);
-            if (preparse(loadpath, files[i]->d_name, fileinfo.st_mtimespec.tv_sec, fileinfo.st_mtimespec.tv_nsec)) loaded++;
+			long highTimeStamp = fileinfo.st_mtimespec.tv_sec;
+			long lowTimeStamp = fileinfo.st_mtimespec.tv_nsec;
+			if(preload){
+				highTimeStamp = -1;
+				lowTimeStamp = -1;
+			}
+            if (preparse(loadpath, files[i]->d_name, highTimeStamp, lowTimeStamp)) loaded++;
             free(files[i]);
         }
 		
@@ -190,14 +196,15 @@ OVCINSQList::OVCINSQList(const char *pathseparator, const char* dbpath, const ch
 				if(strstr(buf, extension) )
 				{
 					murmur(" Loading %s...", buf);
-					if (preparse(loadpath, buf, 
-							FileData.ftLastWriteTime.dwHighDateTime, FileData.ftLastWriteTime.dwLowDateTime)) 
-						loaded++;
-					// Add time stamp info to infolist. ----------------------------------
-					//list.back().dwHighTimeStamp = FileData.ftLastWriteTime.dwHighDateTime;
-					//list.back().dwLowTimeStamp = FileData.ftLastWriteTime.dwLowDateTime;
-					//murmur("Timestamp:%u,%u", FileData.ftLastWriteTime.dwHighDateTime,FileData.ftLastWriteTime.dwLowDateTime);
-					//---------------------------------------------------------------------
+					long highTimeStamp = FileData.ftLastWriteTime.dwHighDateTime;
+					long lowTimeStamp = FileData.ftLastWriteTime.dwLowDateTime;
+					if(preload){
+						highTimeStamp = -1;
+						lowTimeStamp = -1;
+					}
+
+					if (preparse(loadpath, buf, highTimeStamp, lowTimeStamp)) loaded++;
+					
 					
 				}
 				if (!FindNextFileW(hList, &FileData))
@@ -220,11 +227,14 @@ OVCINSQList::OVCINSQList(const char *pathseparator, const char* dbpath, const ch
 
 bool OVCINSQList::preparse(const char *loadpath, const char *filename, long highTimeStamp, long lowTimeStamp) {
     // check if a file of the same short name has been alread loaded
+	bool exist = false;
     for (size_t i=0; i<list.size(); i++) {
         OVCINSQInfo &x=list[i];
         if (x.shortfilename==filename) {
             murmur("OVCINSQList: file %s not loaded, short name '%s' already exists", loadpath, filename);
-            return false;
+			list.erase(list.begin()+i); //removed the old one. replacing for new finded.
+			exist = true;
+            //return false;
         }
     }
 
@@ -288,8 +298,8 @@ bool OVCINSQList::preparse(const char *loadpath, const char *filename, long high
 	murmur("Loaded: longfilename=%s, shortfilename=%s, ename=%s, cname=%s, tcname=%s, scname=%s, highTimeStamp:%u, lowTimeStamp:%d",
 	   info.longfilename.c_str(), info.shortfilename.c_str(), info.ename.c_str(), 
 	   info.cname.c_str(), info.tcname.c_str(), info.scname.c_str(), info.highTimeStamp, info.lowTimeStamp);
-	
-    return 1;
+	if(exist) return 0;
+    else return 1;
 }
 
 
@@ -317,8 +327,9 @@ int OVCINSQList::loadfromdb(){
 		}
 
 		sth = db->prepare(
-			"select shortfilename, longfilename, ename, cname, tcname, scname,\
- dwHighTimeStamp, dwLowTimeStamp from tablelist where name != 'assoc';"); 
+			"select shortfilename, longfilename, ename, cname, tcname, scname, \
+				dwHighTimeStamp, dwLowTimeStamp from tablelist where name != 'assoc' \
+ 				and dwHighTimeStamp=-1, dwLowTimeStamp=-1 ;"); 
 
 
 		if (sth){
