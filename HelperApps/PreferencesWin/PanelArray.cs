@@ -14,6 +14,9 @@ namespace OVPreferences
         private OVConfig m_ovConf = null;
         private XmlDocument m_ovConfDOM = null;
         private OVConfigDom m_ovConfDomHandler = null;
+        private bool m_doAssociatedPhrase;
+        private bool m_doOrderWordsByFreq;
+        private bool m_doLearnAssociatedPhrase;
 
         public PanelArray()
         {
@@ -46,6 +49,25 @@ namespace OVPreferences
                    m_ovConfDomHandler.GetAttribute(
                        m_ovConf.moduleName, "快打模式", "1")));
 
+            m_doAssociatedPhrase =
+               Convert.ToBoolean(Convert.ToInt32(
+               m_ovConfDomHandler.GetAttribute(
+                       m_ovConf.moduleName, "associatedPhrase", "1")));
+
+            m_doLearnAssociatedPhrase =
+                Convert.ToBoolean(Convert.ToInt32(
+                m_ovConfDomHandler.GetAttribute(
+                        m_ovConf.moduleName, "learnAssociatedPhrase", "1")));
+
+            m_doOrderWordsByFreq =
+                Convert.ToBoolean(Convert.ToInt32(
+                m_ovConfDomHandler.GetAttribute(
+                        m_ovConf.moduleName, "orderWordsByFreq", "0")));
+
+            m_cbAssociatedPhrase.Checked = m_doAssociatedPhrase;
+            m_cbOrderWordsByFreq.Checked = m_doOrderWordsByFreq;
+            m_cbLearnAssociatedPhrase.Checked = m_doLearnAssociatedPhrase;
+
         }
             
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -70,6 +92,36 @@ namespace OVPreferences
               m_ovConf.moduleName,
               "快打模式",
               checkBox1.Checked ? "1" : "0");
+        }
+        private void m_cbAssociatedPhrase_CheckedChanged(object sender, EventArgs e)
+        {
+            m_doAssociatedPhrase = m_cbAssociatedPhrase.Checked;
+            m_ovConfDomHandler.SetAttribute(
+                m_ovConf.moduleName,
+                "associatedPhrase",
+                m_doAssociatedPhrase ? "1" : "0");
+
+        }
+
+
+        private void m_cbOrderWordsByFreq_CheckedChanged(object sender, EventArgs e)
+        {
+            m_doOrderWordsByFreq = m_cbOrderWordsByFreq.Checked;
+            m_ovConfDomHandler.SetAttribute(
+                m_ovConf.moduleName,
+                "orderWordsByFreq",
+                m_doOrderWordsByFreq ? "1" : "0");
+
+        }
+
+        private void m_cbLearnAssociatePhrase_CheckedChanged(object sender, EventArgs e)
+        {
+            m_doLearnAssociatedPhrase = m_cbLearnAssociatedPhrase.Checked;
+            m_ovConfDomHandler.SetAttribute(
+                m_ovConf.moduleName,
+                "learnAssociatedPhrase",
+                m_doLearnAssociatedPhrase ? "1" : "0");
+
         }
     }
 }

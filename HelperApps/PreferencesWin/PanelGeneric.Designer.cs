@@ -30,6 +30,7 @@ namespace OVPreferences
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PanelGeneric));
             this.m_pnSelf = new System.Windows.Forms.Panel();
+            this.m_cbLearnAssociatedPhrase = new System.Windows.Forms.CheckBox();
             this.m_cbOrderWordsByFreq = new System.Windows.Forms.CheckBox();
             this.m_cbAssociatedPhrase = new System.Windows.Forms.CheckBox();
             this.m_tbselectKey = new System.Windows.Forms.TextBox();
@@ -45,7 +46,6 @@ namespace OVPreferences
             this.m_lbMatchZeroOrMoreChar = new System.Windows.Forms.Label();
             this.m_lbMatchOneChar = new System.Windows.Forms.Label();
             this.m_lbMaxKeySequenceLength = new System.Windows.Forms.Label();
-            this.m_cbLearnAssociatedPhrase = new System.Windows.Forms.CheckBox();
             this.m_pnSelf.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,6 +69,13 @@ namespace OVPreferences
             this.m_pnSelf.Controls.Add(this.m_lbMaxKeySequenceLength);
             resources.ApplyResources(this.m_pnSelf, "m_pnSelf");
             this.m_pnSelf.Name = "m_pnSelf";
+            // 
+            // m_cbLearnAssociatedPhrase
+            // 
+            resources.ApplyResources(this.m_cbLearnAssociatedPhrase, "m_cbLearnAssociatedPhrase");
+            this.m_cbLearnAssociatedPhrase.Name = "m_cbLearnAssociatedPhrase";
+            this.m_cbLearnAssociatedPhrase.UseVisualStyleBackColor = true;
+            this.m_cbLearnAssociatedPhrase.CheckedChanged += new System.EventHandler(this.m_cbLearnAssociatePhrase_CheckedChanged);
             // 
             // m_cbOrderWordsByFreq
             // 
@@ -162,13 +169,6 @@ namespace OVPreferences
             // 
             resources.ApplyResources(this.m_lbMaxKeySequenceLength, "m_lbMaxKeySequenceLength");
             this.m_lbMaxKeySequenceLength.Name = "m_lbMaxKeySequenceLength";
-            // 
-            // m_cbLearnAssociatedPhrase
-            // 
-            resources.ApplyResources(this.m_cbLearnAssociatedPhrase, "m_cbLearnAssociatedPhrase");
-            this.m_cbLearnAssociatedPhrase.Name = "m_cbLearnAssociatedPhrase";
-            this.m_cbLearnAssociatedPhrase.UseVisualStyleBackColor = true;
-            this.m_cbLearnAssociatedPhrase.CheckedChanged += new System.EventHandler(this.m_cbLearnAssociatePhrase_CheckedChanged);
             // 
             // PanelGeneric
             // 

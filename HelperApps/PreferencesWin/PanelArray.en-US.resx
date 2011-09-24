@@ -122,13 +122,13 @@
     <value>98, 16</value>
   </data>
   <data name="checkBox2.Text" xml:space="preserve">
-    <value>Fast Typing Mode</value>
+    <value>Quick Mode</value>
   </data>
   <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 16</value>
   </data>
   <data name="checkBox1.Text" xml:space="preserve">
-    <value>Special Code Prompt</value>
+    <value>Special Code</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 12</value>
