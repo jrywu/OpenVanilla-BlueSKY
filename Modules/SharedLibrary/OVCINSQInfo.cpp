@@ -104,48 +104,60 @@ void CLSplitString(const char *s, string& k, string& v) {
 OVCINSQList::OVCINSQList(const char *pathseparator, const char* datapath, const char* userpath){
     pathsep=pathseparator;
 
-	string preloadDbpath = datapath + string(pathseparator) + string("ovimgeneric.db"); //preloaded db path Jeremy '11,9,22
-	string dbpath = userpath + string("imdb.db");
-	string userdbpath = userpath + string("userdb.db");
-
-	bool preloadDbExist = fileExist(preloadDbpath.c_str());
-	bool imdbExist = fileExist(dbpath.c_str());
+	string preloadDbpath = OVPathHelper::PathCat(datapath, string("ovimgeneric.db")); //preloaded db path Jeremy '11,9,22
+	string dbpath = OVPathHelper::PathCat (userpath, string("imdb.db"));
+	string userdbpath = OVPathHelper::PathCat( userpath , string("userdb.db"));
+	
+	bool preloadDbExist = OVPathHelper::PathExists(preloadDbpath);
+	bool imdbExist = OVPathHelper::PathExists(dbpath);
 	murmur("Preload db %s exist: %d ; im db %s Exist: %d",preloadDbpath.c_str(), preloadDbExist, dbpath.c_str(), imdbExist);
+
+	if(preloadDbExist && !imdbExist){ // copy preloaded db as imdb in userspace if it's not exist
+		murmur("copying preloaded db as imdb in userspace...");
+		ifstream f1 (preloadDbpath,fstream::binary);
+		ofstream f2 (dbpath,fstream::trunc|fstream::binary);
+		f2<<f1.rdbuf();
+	}
 
 	db = new  SQLite3;  
 	
 	murmur(" Initializing SQLite3 db files...");
-	murmur("dbfile:%s",dbpath);
+	murmur("dbfile:%s",dbpath.c_str());
 	if (int err=db->open(dbpath.c_str()) )
         murmur("SQLite3 error! code=%d", err);
-   	 
-	if (int err=db->execute(
-		"create table tablelist (name, shortfilename, longfilename, ename, cname, tcname, scname, dwHighTimeStamp, dwLowTimeStamp);"))
-		murmur("SQLite3 create table error! code=%d", err);
+   	if(!preloadDbExist && !imdbExist) { // both preload db and user imdb are not exist. new imdb will be created.
+		if (int err=db->execute(
+			"create table tablelist (name, shortfilename, longfilename, ename, cname, tcname, scname, dwHighTimeStamp, dwLowTimeStamp);"))
+			murmur("SQLite3 create table error! code=%d", err);
+	}
+
 
 
 	
 	// Attach user frequency database...
-
-	murmur("Attach user database: attach %s as userdb;", userdbpath.c_str());
-	
+	bool userDbExist = OVPathHelper::PathExists(userdbpath);
+	murmur("Attach user database: attach %s as userdb. userDbExist= %d", userdbpath.c_str(), userDbExist);
 	if (int err=db->execute("attach '%q' as userdb;", userdbpath.c_str()))
-		murmur("SQLite3: attach user  db error! code=%d", err);
-	if (int err=db->execute("create table userdb.phrase (key, count);"))
-		murmur("SQLite3: create userdb.phrase table error! code=%d", err);
-	if (int err=db->execute("create index userdb.phrase_index_key on phrase (key);"))
-		murmur("SQLite3: create userdb.phrase table index error! code=%d", err);
-	if (int err=db->execute("create table userdb.phraseLearned (key, value, ord);"))
-		murmur("SQLite3: create userdb.phraseLearned table error! code=%d", err);
-	if (int err=db->execute("create index userdb.phraseLearned_index_key on phraseLearned (key);"))
-		murmur("SQLite3: create userdb.phraseLearned table key index error! code=%d", err);
-	if (int err=db->execute("create index userdb.phraseLearned_index_value on phraseLearned (value);"))
-		murmur("SQLite3: create userdb.phraseLearned table value index error! code=%d", err);
+			murmur("SQLite3: attach user  db error! code=%d", err);
+	if(!userDbExist) {  // userdb was not exist and new userdb created.
+		murmur("userdb was not exist and new userdb created." );	
+		if (int err=db->execute("create table userdb.phrase (key, count);"))
+			murmur("SQLite3: create userdb.phrase table error! code=%d", err);
+		if (int err=db->execute("create index userdb.phrase_index_key on phrase (key);"))
+			murmur("SQLite3: create userdb.phrase table index error! code=%d", err);
+		if (int err=db->execute("create table userdb.phraseLearned (key, value, ord);"))
+			murmur("SQLite3: create userdb.phraseLearned table error! code=%d", err);
+		if (int err=db->execute("create index userdb.phraseLearned_index_key on phraseLearned (key);"))
+			murmur("SQLite3: create userdb.phraseLearned table key index error! code=%d", err);
+		if (int err=db->execute("create index userdb.phraseLearned_index_value on phraseLearned (value);"))
+			murmur("SQLite3: create userdb.phraseLearned table value index error! code=%d", err);
+	}
 	// ---------------------------------------------
 }
 
 
     int OVCINSQList::load(const char *loadpath, const char *extension, bool preload) {
+
 #ifndef WIN32
         clExtension=extension;
         
@@ -155,14 +167,11 @@ OVCINSQList::OVCINSQList(const char *pathseparator, const char* datapath, const 
         
         int loaded=0;
         for (int i=0; i<count; i++) {
-            stat(files[i]->d_name, &fileinfo);
-			long highTimeStamp = fileinfo.st_mtimespec.tv_sec;
-			long lowTimeStamp = fileinfo.st_mtimespec.tv_nsec;
-			if(preload){
-				highTimeStamp = -1;
-				lowTimeStamp = -1;
-			}
-            if (preparse(loadpath, files[i]->d_name, highTimeStamp, lowTimeStamp)) loaded++;
+			OVFileTimestamp timestamp = OVPathHelper::TimestampForPath(
+				OVPathHelper::PathCat(loadpath, files[i]->d_name), true);
+			if(preload)
+				 timestamp = OVFileTimestamp(-1,-1);
+            if (preparse(loadpath, files[i]->d_name, timestamp)) loaded++;
             free(files[i]);
         }
 		
@@ -198,20 +207,18 @@ OVCINSQList::OVCINSQList(const char *pathseparator, const char* datapath, const 
 			fFinished = FALSE;
 			while (!fFinished)
 			{
-				//wcstombs(buf, FileData.cFileName, MAX_PATH);
 				WideCharToMultiByte(CP_UTF8, 0, FileData.cFileName, (int)(wcslen(FileData.cFileName)+1), buf, MAX_PATH,NULL, NULL);
 				murmur(" Checking %s...", buf);
 				if(strstr(buf, extension) )
 				{
 					murmur(" Loading %s...", buf);
-					long highTimeStamp = FileData.ftLastWriteTime.dwHighDateTime;
-					long lowTimeStamp = FileData.ftLastWriteTime.dwLowDateTime;
-					if(preload){
-						highTimeStamp = -1;
-						lowTimeStamp = -1;
-					}
+					OVFileTimestamp timestamp = OVPathHelper::TimestampForPath(
+							OVPathHelper::PathCat(loadpath, OVUTF8::FromUTF16(FileData.cFileName)), true);
+					
+					if(preload)
+						timestamp = OVFileTimestamp(-1,-1);
 
-					if (preparse(loadpath, buf, highTimeStamp, lowTimeStamp)) loaded++;
+					if (preparse(loadpath, buf, timestamp)) loaded++;
 					
 					
 				}
@@ -231,7 +238,7 @@ OVCINSQList::OVCINSQList(const char *pathseparator, const char* datapath, const 
  
 #endif
 	}
-
+/*
 bool OVCINSQList::fileExist(const char *filepath){
 #ifndef WIN32
     struct stat fileinfo;
@@ -247,8 +254,8 @@ bool OVCINSQList::fileExist(const char *filepath){
 #endif
 	return false;
 }
-
-bool OVCINSQList::preparse(const char *loadpath, const char *filename, long highTimeStamp, long lowTimeStamp) {
+*/
+bool OVCINSQList::preparse(const char *loadpath, const char *filename, OVFileTimestamp timestamp) {
     // check if a file of the same short name has been alread loaded
 	bool exist = false;
     for (size_t i=0; i<list.size(); i++) {
@@ -273,8 +280,10 @@ bool OVCINSQList::preparse(const char *loadpath, const char *filename, long high
     OVCINSQInfo info;
     info.shortfilename=filename;
     info.longfilename=longname;
-	info.highTimeStamp = highTimeStamp;
-	info.lowTimeStamp = lowTimeStamp;
+	info.timestamp = timestamp;
+	//info.highTimeStamp = timestamp.m_timestamp;
+	//info.lowTimeStamp = timestamp.m_timestamp;
+
 
     int line=0;
     const size_t bs=2049;
@@ -319,7 +328,7 @@ bool OVCINSQList::preparse(const char *loadpath, const char *filename, long high
 	
 	murmur("Loaded: longfilename=%s, shortfilename=%s, ename=%s, cname=%s, tcname=%s, scname=%s, highTimeStamp:%d, lowTimeStamp:%d",
 	   info.longfilename.c_str(), info.shortfilename.c_str(), info.ename.c_str(), 
-	   info.cname.c_str(), info.tcname.c_str(), info.scname.c_str(), info.highTimeStamp, info.lowTimeStamp);
+	   info.cname.c_str(), info.tcname.c_str(), info.scname.c_str(), (info.timestamp).getTimestamp(), (info.timestamp).getSubTimestamp());
 	if(exist) return 0;
     else return 1;
 }
@@ -339,8 +348,9 @@ int OVCINSQList::loadfromdb(){
 			info.cname = string(sth->column_text(3));
 			info.tcname = string(sth->column_text(4));
 			info.scname = string(sth->column_text(5));
-			info.highTimeStamp =atoi(sth->column_text(6));
-			info.lowTimeStamp =atoi(sth->column_text(7));
+			//info.highTimeStamp =atoi(sth->column_text(6));
+			//info.lowTimeStamp =atoi(sth->column_text(7));
+			info.timestamp = ( atol(sth->column_text(6)), atol(sth->column_text(7)));
 			
 			//list.push_back(info);
 			assocCinInfo = info;
@@ -363,8 +373,9 @@ int OVCINSQList::loadfromdb(){
 				info.cname = string(sth->column_text(3));
 				info.tcname = string(sth->column_text(4));
 				info.scname = string(sth->column_text(5));
-				info.highTimeStamp =atoi(sth->column_text(6));
-				info.lowTimeStamp =atoi(sth->column_text(7));
+				info.timestamp = ( atol(sth->column_text(6)), atol(sth->column_text(7)));
+				//info.highTimeStamp =atoi(sth->column_text(6));
+				//info.lowTimeStamp =atoi(sth->column_text(7));
 			
 				list.push_back(info);
 			

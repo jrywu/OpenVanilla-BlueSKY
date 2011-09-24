@@ -226,6 +226,7 @@
     <ClCompile Include="OVOFReverseLookupSQ.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Frameworks\OpenVanilla\Headers\OVFileHelper.h" />
     <ClInclude Include="CIN-Defaults.h" />
     <ClInclude Include="OVIMGenericSQ.h" />
     <ClInclude Include="OVOFReverseLookupSQ.h" />

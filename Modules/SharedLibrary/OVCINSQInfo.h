@@ -3,8 +3,17 @@
 
 #include <string>
 #include <vector>
+#include <fstream>
+#ifndef WIN32
+#include <OpenVanilla/OVFileHelper.h>
+#else
+#include "OVFileHelper.h"
+#endif
 #include "OVSQLite3.h"
+
 using namespace std;
+using namespace OpenVanilla;
+
 
 const int CL_PREPARSELIMIT=32;      // preparse won't exceed first 64 lines
 
@@ -14,7 +23,8 @@ struct OVCINSQInfo
 	OVCINSQInfo(const OVCINSQInfo &c) :
 		longfilename(c.longfilename), shortfilename(c.shortfilename),
         ename(c.ename), cname(c.cname), tcname(c.tcname), scname(c.scname), 
-		lowTimeStamp(c.lowTimeStamp), highTimeStamp(c.highTimeStamp) {}
+		//lowTimeStamp(c.lowTimeStamp), highTimeStamp(c.highTimeStamp) {}
+		timestamp(c.timestamp){}
     const OVCINSQInfo& operator=(const OVCINSQInfo& c) {
         longfilename=c.longfilename;
         shortfilename=c.shortfilename;
@@ -22,8 +32,9 @@ struct OVCINSQInfo
         cname=c.cname;
         tcname=c.tcname;
         scname=c.scname;
-		lowTimeStamp=c.lowTimeStamp;
-		highTimeStamp=c.highTimeStamp;
+		//lowTimeStamp=c.lowTimeStamp;
+		//highTimeStamp=c.highTimeStamp;
+		timestamp = c.timestamp;
         return *this;
     }
 
@@ -34,8 +45,9 @@ struct OVCINSQInfo
     string tcname;
     string scname;
 
-	long lowTimeStamp;
-	long highTimeStamp;
+	//long lowTimeStamp;
+	//long highTimeStamp;
+	OVFileTimestamp timestamp;
 
 };
 
@@ -56,7 +68,7 @@ public:
 	SQLite3 *getdb(){ return db;};
 	
 protected:
-    bool preparse(const char *loadpath, const char *filename, long highTimeStamp, long lowTimeStamp);
+    bool preparse(const char *loadpath, const char *filename, OVFileTimestamp timestmp);
 	SQLite3 *db;
     string pathsep;	
 

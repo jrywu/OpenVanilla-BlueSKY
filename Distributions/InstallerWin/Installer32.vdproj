@@ -45,6 +45,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0F68211C0C465352C7A78BC1DA5B1613"
+        "OwnerKey" = "8:_0CBAB34B5A054FB28E9AC32371F9CBF4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_225249F57A0346C9A45E510054AC3BE8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -76,30 +82,6 @@
         "Entry"
         {
         "MsmKey" = "8:_3748450A2D9C42C7AEE56ABE7F2D54F3"
-        "OwnerKey" = "8:_A5854C5ADC954CC68AB116617DBA59AA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3748450A2D9C42C7AEE56ABE7F2D54F3"
-        "OwnerKey" = "8:_6B6C98F225C147D1A92E0F2EF075C5CE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3748450A2D9C42C7AEE56ABE7F2D54F3"
-        "OwnerKey" = "8:_0CBAB34B5A054FB28E9AC32371F9CBF4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3748450A2D9C42C7AEE56ABE7F2D54F3"
-        "OwnerKey" = "8:_050CB8C04C0347B9B1B7989815F3B0F8"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3748450A2D9C42C7AEE56ABE7F2D54F3"
         "OwnerKey" = "8:_296379C1DB2E4EB5B93AC3EA6C7A9D86"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -107,12 +89,6 @@
         {
         "MsmKey" = "8:_39FC260FA32B4234967B81934056AC4B"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3E6FE40BD86F157309D0F79CBCCFFE7A"
-        "OwnerKey" = "8:_0CBAB34B5A054FB28E9AC32371F9CBF4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -141,18 +117,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6BA4A2375C309585DD95509DFB9DBFD8"
-        "OwnerKey" = "8:_A5854C5ADC954CC68AB116617DBA59AA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_6F193D5CD223A7A4F062706937D4F16D"
-        "OwnerKey" = "8:_0CBAB34B5A054FB28E9AC32371F9CBF4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_7F49DA8B468B427D853ECC7546DA4965"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -172,13 +136,7 @@
         "Entry"
         {
         "MsmKey" = "8:_99AB687888677BFEDBE9E8A2DC9878CA"
-        "OwnerKey" = "8:_D4AEF5EF1FAA514B2B2526649830C83E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_99AB687888677BFEDBE9E8A2DC9878CA"
-        "OwnerKey" = "8:_6F193D5CD223A7A4F062706937D4F16D"
+        "OwnerKey" = "8:_0F68211C0C465352C7A78BC1DA5B1613"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -207,12 +165,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D4AEF5EF1FAA514B2B2526649830C83E"
-        "OwnerKey" = "8:_0CBAB34B5A054FB28E9AC32371F9CBF4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_DE19D55F367F4AC0A8EC313F91120D07"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -231,12 +183,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_EA16287A031DBAADB643297B85F80D50"
-        "OwnerKey" = "8:_0CBAB34B5A054FB28E9AC32371F9CBF4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_F8125B08163142668CF1E50E944E1FA4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -249,6 +195,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_FC8169BD1C8849E697591096FEA7A73C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_39FC260FA32B4234967B81934056AC4B"
         "MsmSig" = "8:_UNDEFINED"
@@ -256,13 +208,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D4AEF5EF1FAA514B2B2526649830C83E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6F193D5CD223A7A4F062706937D4F16D"
+        "OwnerKey" = "8:_0F68211C0C465352C7A78BC1DA5B1613"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -274,13 +220,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_665D641FC4C44EB781E33EAF49BCD2A4"
+        "OwnerKey" = "8:_E7E80D8587BE4B00B2E2251108D48D49"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E7E80D8587BE4B00B2E2251108D48D49"
+        "OwnerKey" = "8:_665D641FC4C44EB781E33EAF49BCD2A4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -483,6 +429,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0F68211C0C465352C7A78BC1DA5B1613"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:OVIMEUI, Version=0.0.0.0, Culture=neutral, processorArchitecture=AMD64"
+                "ScatterAssemblies"
+                {
+                    "_0F68211C0C465352C7A78BC1DA5B1613"
+                    {
+                    "Name" = "8:OVIMEUI.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:OVIMEUI.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_EEA62CA21C7A4315893F5E92CB2C2B99"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_225249F57A0346C9A45E510054AC3BE8"
             {
             "SourcePath" = "8:..\\..\\DataTables\\assoc.cin"
@@ -523,26 +500,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3E6FE40BD86F157309D0F79CBCCFFE7A"
-            {
-            "SourcePath" = "8:libltdl3.dll"
-            "TargetName" = "8:libltdl3.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_EEA62CA21C7A4315893F5E92CB2C2B99"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_467C006D90354AF0B5ED4C1304525090"
             {
             "SourcePath" = "8:..\\..\\Dep\\x86\\sqlite3.dll"
@@ -561,57 +518,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6BA4A2375C309585DD95509DFB9DBFD8"
-            {
-            "SourcePath" = "8:sqlite3.dll"
-            "TargetName" = "8:sqlite3.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_02DF0966384C4E0EB3DD1D0DC9A61B33"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6F193D5CD223A7A4F062706937D4F16D"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:OVIMEUI, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_6F193D5CD223A7A4F062706937D4F16D"
-                    {
-                    "Name" = "8:OVIMEUI.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:OVIMEUI.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_EEA62CA21C7A4315893F5E92CB2C2B99"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7F49DA8B468B427D853ECC7546DA4965"
@@ -725,37 +631,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D4AEF5EF1FAA514B2B2526649830C83E"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:OVIMEUI, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_D4AEF5EF1FAA514B2B2526649830C83E"
-                    {
-                    "Name" = "8:OVIMEUI.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:OVIMEUI.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_EEA62CA21C7A4315893F5E92CB2C2B99"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E962B1550DEE46A5B727D8476B624F4F"
             {
             "SourcePath" = "8:..\\..\\DataTables\\array-shortcode.cin"
@@ -774,26 +649,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EA16287A031DBAADB643297B85F80D50"
-            {
-            "SourcePath" = "8:IMM32.dll"
-            "TargetName" = "8:IMM32.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_EEA62CA21C7A4315893F5E92CB2C2B99"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F8125B08163142668CF1E50E944E1FA4"
@@ -822,6 +677,26 @@
             "TargetName" = "8:LICENSE-zh-Hant.rtf"
             "Tag" = "8:"
             "Folder" = "8:_ADFA32FE383D4A928BDCEA8AF4D899FA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FC8169BD1C8849E697591096FEA7A73C"
+            {
+            "SourcePath" = "8:..\\..\\DataTables\\ovimgeneric.db"
+            "TargetName" = "8:ovimgeneric.db"
+            "Tag" = "8:"
+            "Folder" = "8:_277784DAD045485B805AE8EAD92D86A4"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -970,7 +845,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:OpenVanilla 0.9b"
         "ProductCode" = "8:{FE83E7AA-2E2F-4DCC-8B21-6EF36CD452FA}"
-        "PackageCode" = "8:{3A25136B-544C-482E-9746-82BD56C54AF1}"
+        "PackageCode" = "8:{DBF6FCBA-688E-4A0D-B3F2-97EF8A283B03}"
         "UpgradeCode" = "8:{858CD900-B745-4EF5-A8EE-94DEA6D231EA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

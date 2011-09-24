@@ -48,6 +48,7 @@
 #include <vector>
 #include "OVWildcard.h"
 #include "OVUTF8Helper.h"
+//#include "OVUtility.h"
 
 namespace OpenVanilla {
     using namespace std;
@@ -140,6 +141,15 @@ namespace OpenVanilla {
             , m_subtimestamp(timestamp.m_subtimestamp)
         {
         }
+
+		long getTimestamp(){
+			return (long) m_timestamp;
+		}
+		long getSubTimestamp() {
+			return (long) m_subtimestamp;
+		}
+
+
         
         OVFileTimestamp& operator=(const OVFileTimestamp& timestamp)
         {
@@ -156,6 +166,8 @@ namespace OpenVanilla {
         
         bool operator!=(OVFileTimestamp& another)
         {
+			//murmur("OVFIleTimestamp::!= operator. m_timestamp = %d, m_subtimestamp = %d, another.m_timestamp = %d, another.m_subtimestamp = %d",
+			//	m_timestamp, m_subtimestamp, another.m_timestamp, another.m_subtimestamp);
             return (m_timestamp != another.m_timestamp) || (m_subtimestamp != another.m_subtimestamp);
         }
 
@@ -360,21 +372,27 @@ namespace OpenVanilla {
             return false;
 		}
                     
-        static const OVFileTimestamp TimestampForPath(const string& path)
+        static const OVFileTimestamp TimestampForPath(const string& path, bool truncateToLong = false)
         {
             OVFileTimestamp timestamp;
             #if defined(__APPLE__)
             struct stat buf;
             if (!stat(path.c_str(), &buf))
-            {            
-                timestamp = OVFileTimestamp(buf.st_mtimespec.tv_sec, buf.st_mtimespec.tv_nsec);
+            {   
+				if(truncateToLong)
+					timestamp = OVFileTimestamp((long)buf.st_mtimespec.tv_sec, buf.st_mtimespec.tv_nsec);
+				else
+					timestamp = OVFileTimestamp(buf.st_mtimespec.tv_sec, buf.st_mtimespec.tv_nsec);
             }
             #elif defined(WIN32)
             struct _stat buf;
             wstring wpath = OVUTF16::FromUTF8(path);
             if (!_wstat(wpath.c_str(), &buf))
             {
-                timestamp = OVFileTimestamp(buf.st_mtime);
+				if(truncateToLong)
+					timestamp = OVFileTimestamp(long(buf.st_mtime>>32), (long)buf.st_mtime);
+				else
+					timestamp = OVFileTimestamp(buf.st_mtime);
             }
             #else
                 #error Sorry, no idea for Linux yet.

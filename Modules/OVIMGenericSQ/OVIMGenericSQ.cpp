@@ -81,7 +81,8 @@ extern "C" int OVInitializeLibrary(OVService *s, const char *libpath) {
     
     //watch.stop();
     //murmur("Loaded modules from %s in %1.3f",userpath.c_str(), watch.getSec());
-	if (!loaded) 		loaded = cinlist->loadfromdb(); // Jeremy '11,9,22 for preloaded sqlite db.
+	if (!loaded) 		
+		loaded = cinlist->loadfromdb(); // Jeremy '11,9,22 if no .cin found in datapath, load cinlist from imdb.
 
     //watch.start(); 
     loaded += cinlist->load(userpath.c_str(), ".cin", false);
@@ -92,8 +93,8 @@ extern "C" int OVInitializeLibrary(OVService *s, const char *libpath) {
 	
 	if (!loaded)
 	{
-	        murmur ("OVIMGeneric: nothing loaded, init failed");
-		    return false;
+		murmur ("OVIMGeneric: nothing loaded, init failed");
+		return false;
 	}
     
     return true;

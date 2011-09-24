@@ -36,6 +36,9 @@
     <ClInclude Include="OVOFReverseLookupSQ.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Frameworks\OpenVanilla\Headers\OVFileHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

@@ -33,6 +33,7 @@
 
 #include "OVCINSQ.h"
 #include "OVFileHandler.h"
+#include "OVFileHelper.h"
 #include "OVWildcard.h"
 
 
@@ -41,6 +42,7 @@
 using namespace std;
 using namespace _OVCINSQ;
 using namespace OpenVanilla;
+
 
 
 OVCINSQ::OVCINSQ(const OVCINSQInfo& cininfo, SQLite3 *globaldb) : db(globaldb)
@@ -54,18 +56,20 @@ OVCINSQ::OVCINSQ(const OVCINSQInfo& cininfo, SQLite3 *globaldb) : db(globaldb)
 	SQLite3Statement *sth=db->prepare(
 		"select dwHighTimeStamp, dwLowTimeStamp from tablelist where name = '%q';", tablename.c_str()); 
 	if (sth && sth->step()==SQLITE_ROW) {
-		int timestampHi = atoi(sth->column_text(0));
-		int timestampLo = atoi(sth->column_text(1));
+		long timestampHi = atol(sth->column_text(0));
+		long  timestampLo = atol(sth->column_text(1));
 		delete sth;
 		murmur("timestamp:%d, %d", timestampHi, timestampLo);
-		if(timestampHi!=cininfo.highTimeStamp ||timestampLo!=cininfo.lowTimeStamp)
+		OVFileTimestamp  timestamp = OVFileTimestamp(timestampHi, timestampLo);
+		//if(timestampHi!=cininfo.highTimeStamp ||timestampLo!=cininfo.lowTimeStamp)
+		if( OVFileTimestamp(cininfo.timestamp) !=  timestamp)
 		{
 			murmur("Table:%s updated:  delete from '%q' where 1;",tablename.c_str());
 			db->execute("delete from '%q' where 1;",tablename.c_str());
 			murmur("update tablelist set dwHighTimeStamp='%d', dwLowTimeStamp='%d' where name ='%s';"
-				,cininfo.highTimeStamp, cininfo.lowTimeStamp, tablename.c_str());
+				,OVFileTimestamp(cininfo.timestamp).getTimestamp(), OVFileTimestamp(cininfo.timestamp).getSubTimestamp(), tablename.c_str());
 			db->execute("update tablelist set dwHighTimeStamp='%d', dwLowTimeStamp='%d' where name ='%q';"
-				,cininfo.highTimeStamp, cininfo.lowTimeStamp, tablename.c_str());
+				,OVFileTimestamp(cininfo.timestamp).getTimestamp(), OVFileTimestamp(cininfo.timestamp).getSubTimestamp(), tablename.c_str());
 			parseTable=true;
 		}
 		
@@ -78,13 +82,15 @@ OVCINSQ::OVCINSQ(const OVCINSQInfo& cininfo, SQLite3 *globaldb) : db(globaldb)
 				, cininfo.shortfilename.c_str(), cininfo.longfilename.c_str()
 				,cininfo.ename.c_str(), cininfo.cname.c_str()
 				,cininfo.tcname.c_str(), cininfo.scname.c_str()
-				,cininfo.highTimeStamp, cininfo.lowTimeStamp);
+				,OVFileTimestamp(cininfo.timestamp).getTimestamp(), OVFileTimestamp(cininfo.timestamp).getSubTimestamp());
+				//,cininfo.highTimeStamp, cininfo.lowTimeStamp);
 		db->execute("insert into tablelist values ('%q','%q','%q','%q','%q','%q','%q','%d','%d');"  // timestamp has to be inserted as %d, not %u.
 				,tablename.c_str()
 				,cininfo.shortfilename.c_str(),cininfo.longfilename.c_str()
 				,cininfo.ename.c_str(), cininfo.cname.c_str()
 				,cininfo.tcname.c_str(), cininfo.scname.c_str()
-				,cininfo.highTimeStamp, cininfo.lowTimeStamp);
+				,OVFileTimestamp(cininfo.timestamp).getTimestamp(), OVFileTimestamp(cininfo.timestamp).getSubTimestamp());
+				//,cininfo.highTimeStamp, cininfo.lowTimeStamp);
 		db->execute("create table '%q' (key, value, ord);", tablename.c_str());
 		db->execute("create index %q_index_key on '%q' (key);", tablename.c_str(), tablename.c_str());
 		db->execute("create index %q_index_value on '%q' (value);", tablename.c_str(), tablename.c_str());
