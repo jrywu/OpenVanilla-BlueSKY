@@ -488,8 +488,12 @@ int OVIMArray::initialize(OVDictionary *conf, OVService* s, const char *path)
 }
 
 int OVIMArray::updateConfig(OVDictionary *conf){
-    const char *AutoSP = "\xE7\x89\xB9\xE5\x88\xA5\xE7\xA2\xBC\xE6\x8F\x90\xE7\xA4\xBA"; // 特別碼提示
-    const char *ForceSP = "\xE5\xBF\xAB\xE6\x89\x93\xE6\xA8\xA1\xE5\xBC\x8F"; // 快打模式
+    const char *AutoSP = "spcialCode";//"\xE7\x89\xB9\xE5\x88\xA5\xE7\xA2\xBC\xE6\x8F\x90\xE7\xA4\xBA"; // 特別碼提示
+    const char *ForceSP = "quickMode"; //"\xE5\xBF\xAB\xE6\x89\x93\xE6\xA8\xA1\xE5\xBC\x8F"; // 快打模式
+	
+	#define CIN_ASSOCIATEDPHRASE	"associatedPhrase"
+	#define CIN_LEARNASSOCIATEDPHRASE	"learnAssociatedPhrase"
+	#define CIN_ORDERWORDSBYFREQ	"orderWordsByFreq"
 
     if (!conf->keyExist(AutoSP))
 		conf->setInteger(AutoSP, 1);
@@ -499,6 +503,10 @@ int OVIMArray::updateConfig(OVDictionary *conf){
 
     cfgAutoSP = conf->getInteger(AutoSP);
     cfgForceSP = conf->getInteger(ForceSP);
+	cfgAssociatedPhrase=conf->getIntegerWithDefault(CIN_ASSOCIATEDPHRASE, 1) == 0 ? false : true;
+	cfgLearnAssociatedPhrase=conf->getIntegerWithDefault(CIN_LEARNASSOCIATEDPHRASE, 1) == 0 ? false : true;
+	cfgOrderWordsByFreq=conf->getIntegerWithDefault(CIN_ORDERWORDSBYFREQ, 0) == 0 ? false : true;
+
 
     return 1;
 }

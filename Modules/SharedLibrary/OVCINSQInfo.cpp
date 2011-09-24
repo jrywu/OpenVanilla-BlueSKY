@@ -101,10 +101,10 @@ void CLSplitString(const char *s, string& k, string& v) {
 #endif
 
 
-OVCINSQList::OVCINSQList(const char *pathseparator, const char* datapath, const char* userpath){
+OVCINSQList::OVCINSQList(const char *pathseparator, const char* datapath, const char* userpath, const char* preloaddbname){
     pathsep=pathseparator;
 
-	string preloadDbpath = OVPathHelper::PathCat(datapath, string("ovimgeneric.db")); //preloaded db path Jeremy '11,9,22
+	string preloadDbpath = OVPathHelper::PathCat(datapath, string(preloaddbname)); //preloaded db path Jeremy '11,9,22
 	string dbpath = OVPathHelper::PathCat (userpath, string("imdb.db"));
 	string userdbpath = OVPathHelper::PathCat( userpath , string("userdb.db"));
 	
@@ -114,9 +114,7 @@ OVCINSQList::OVCINSQList(const char *pathseparator, const char* datapath, const 
 
 	if(preloadDbExist && !imdbExist){ // copy preloaded db as imdb in userspace if it's not exist
 		murmur("copying preloaded db as imdb in userspace...");
-		ifstream f1 (preloadDbpath,fstream::binary);
-		ofstream f2 (dbpath,fstream::trunc|fstream::binary);
-		f2<<f1.rdbuf();
+		OVPathHelper::CopyFile(preloadDbpath, dbpath);
 	}
 
 	db = new  SQLite3;  
@@ -338,7 +336,7 @@ int OVCINSQList::loadfromdb(){
 		OVCINSQInfo info;
 		SQLite3Statement *sth = db->prepare(
 			"select shortfilename, longfilename, ename, cname, tcname, scname,\
- dwHighTimeStamp, dwLowTimeStamp from tablelist where name='assoc';"); 
+			dwHighTimeStamp, dwLowTimeStamp from tablelist where name='assoc';"); 
 	
 		if (sth && sth->step()==SQLITE_ROW) {
 			

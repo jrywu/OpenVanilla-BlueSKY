@@ -69,7 +69,7 @@ extern "C" int OVInitializeLibrary(OVService *s, const char *libpath) {
  
     //string dbfile = userpath + string("imdb.db");  //Moved to OVCINSQInfo Jeremy '11,9,22
 	//string userdbfile = userpath + string("userdb.db");
-	cinlist = new OVCINSQList(pathsep, datapath.c_str(), userpath.c_str());
+	cinlist = new OVCINSQList(pathsep, datapath.c_str(), userpath.c_str(), "ovimgeneric.db");
     if (!cinlist) return false;
 
 	
@@ -183,7 +183,7 @@ const char* OVIMGeneric::localizedName(const char* locale)
 
 int OVIMGeneric::initialize(OVDictionary* global, OVService* srv, const char*)
 {
-	srv->notify("Creating table index... Please wait..."); 
+	srv->notify("Updating table..."); 
     //Watch watch;
     //watch.start();
     if (!cintab) {
@@ -284,22 +284,6 @@ int OVGenericContext::keyEvent(OVKeyCode *key, OVBuffer *buf, OVCandidate *textb
             keyseq.clear();
             cancelAutoCompose(textbar);
 			updateFreqFetchAssociatedPhrase(output,textbar);
-/*-------------------------------
-			if(assoconduty) cintab->updatePhraseUserFrequency((lastPhrase+output).c_str(), (parent->doLearnAssociatedPhrase(),true); // update user freq.
-			else	cintab->updatePhraseUserFrequency(output.c_str(), parent->doLearnAssociatedPhrase(), false); // update user freq.
-			lastPhrase = output;
-
-			if(assoconduty) assoconduty = false;
-			
-			if(parent->doAssociatedPhrase() &&
-				cintab->getAssociatedPhrases(output.c_str(), candidateStringVector)
-				) {
-			//Fetch associated phrase... 
-			candi.prepare(&candidateStringVector, "!@#$%^&*()", textbar); 
-			assoconduty = true;
-			
-			}
-*///..........................
             return 1;
 		}
 #endif  
@@ -322,28 +306,6 @@ int OVGenericContext::keyEvent(OVKeyCode *key, OVBuffer *buf, OVCandidate *textb
             cancelAutoCompose(textbar);			
 
 			updateFreqFetchAssociatedPhrase(output, textbar);
-/*/==========
-			if(assoconduty) cintab->updatePhraseUserFrequency((lastPhrase+output).c_str(), parent->doLearnAssociatedPhrase(), true); // update user freq.
-			else	cintab->updatePhraseUserFrequency(output.c_str(), parent->doLearnAssociatedPhrase(), false); // update user freq.
-			lastPhrase = output;
-
-
-
-
-			if(assoconduty) assoconduty = false;
-			
-			if(parent->doAssociatedPhrase() &&
-				cintab->getAssociatedPhrases(output.c_str(), candidateStringVector, parent->doLearnAssociatedPhrase())
-				) {
-			//Fetch associated phrase... 
-#if defined(WIN32) && !defined(WINCE)
-			candi.prepare(&candidateStringVector, "!@#$%^&*()", textbar, "1234567890", string("Shift+#\xE3\x80\x80"));
-#else
-			candi.prepare(&candidateStringVector, "!@#$%^&*()", textbar); 
-#endif
-			assoconduty = true;
-			}
-*///..........................
 			
 
             return 1;
@@ -552,27 +514,6 @@ int OVGenericContext::compose(OVBuffer *buf, OVCandidate *textbar, OVService *sr
 
         keyseq.clear();
 		updateFreqFetchAssociatedPhrase(candidateStringVector[0],textbar);
-		
-/*//---------------------------------				
-		if(assoconduty) cintab->updatePhraseUserFrequency((lastPhrase+candidateStringVector[0]).c_str(),parent->doLearnAssociatedPhrase(),true); // update user freq.
-		else	cintab->updatePhraseUserFrequency(candidateStringVector[0].c_str(), parent->doLearnAssociatedPhrase(), false); // update user freq.
-		lastPhrase = candidateStringVector[0];
-
-
-		if(parent->doAssociatedPhrase() &&
-			cintab->getAssociatedPhrases(candidateStringVector[0].c_str(), candidateStringVector, parent->doLearnAssociatedPhrase())
-		) {
-		// Fetch associated phrases.
-		
-#if defined(WIN32) && !defined(WINCE)
-			candi.prepare(&candidateStringVector, "!@#$%^&*()", textbar, "1234567890", string("Shift+#\xE3\x80\x80"));
-#else
-			candi.prepare(&candidateStringVector, "!@#$%^&*()", textbar); 
-#endif
-			assoconduty = true;
-		
-		}
-*/// .........................
         return 1;
     }
 
@@ -633,27 +574,6 @@ int OVGenericContext::candidateEvent(OVKeyCode *key, OVBuffer *buf,
         textbar->hide()->clear();
 		
 		updateFreqFetchAssociatedPhrase(output,textbar);
-/*/---------------
-		if(assoconduty) cintab->updatePhraseUserFrequency((lastPhrase+output).c_str(), parent->doLearnAssociatedPhrase(), true); // update user freq.
-		else	cintab->updatePhraseUserFrequency(output.c_str(), parent->doLearnAssociatedPhrase(),false); // update user freq.
-		lastPhrase = output;
-//----------------
-
-
-		if(parent->doAssociatedPhrase() &&
-			cintab->getAssociatedPhrases(output.c_str(), candidateStringVector, parent->doLearnAssociatedPhrase())	
-		) {
-		// Fetch associated phrases.
-		
-#if defined(WIN32) && !defined(WINCE)
-			candi.prepare(&candidateStringVector, "!@#$%^&*()", textbar, "1234567890", string("Shift+#\xE3\x80\x80"));
-#else
-			candi.prepare(&candidateStringVector, "!@#$%^&*()", textbar); 
-#endif		
-			assoconduty = true;
-		
-		}
-*///----------------------------
         return 1;
     }
 

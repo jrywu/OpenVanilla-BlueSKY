@@ -206,6 +206,14 @@ namespace OpenVanilla {
             #endif
         }
         
+		static bool CopyFile(const string& srcfilename, const string& targetfilename, bool failOnExist = false){
+			if(failOnExist && PathExists(targetfilename)) return false;
+			
+			ifstream src (srcfilename,fstream::binary);
+			ofstream target (targetfilename,fstream::trunc|fstream::binary);
+			target<<src.rdbuf();
+			return true;
+		}
         
         static const string DirectoryFromPath(const string& path)
         {

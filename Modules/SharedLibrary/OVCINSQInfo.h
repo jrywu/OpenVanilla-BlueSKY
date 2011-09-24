@@ -3,7 +3,6 @@
 
 #include <string>
 #include <vector>
-#include <fstream>
 #ifndef WIN32
 #include <OpenVanilla/OVFileHelper.h>
 #else
@@ -54,7 +53,7 @@ struct OVCINSQInfo
 class OVCINSQList //: public OVCINList
 {
 public:
-	OVCINSQList(const char *pathseparator, const char* datapath, const char* userpath);
+	OVCINSQList(const char *pathseparator, const char* datapath, const char* userpath, const char* preloaddbname = "imdb.db");
     int load(const char *loadpath, const char *extension=".cin", bool preLoad = false);
 
 	int loadfromdb();
