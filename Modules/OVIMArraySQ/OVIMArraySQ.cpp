@@ -1,4 +1,4 @@
-// OVIMArray.h: The Array Input Method
+﻿// OVIMArray.h: The Array Input Method
 //
 // Copyright (c) 2004-2008 The OpenVanilla Project (http://openvanilla.org)
 // All rights reserved.
@@ -89,10 +89,8 @@ void OVIMArrayContext::updateFreqFetchAssociatedPhrase(const string& phrase, OVC
 					candi.prepare(&candidateStringVector, parent->getAssocSelKey()
 						, textbar, "1234567890", string("Shift+#\xE3\x80\x80"));
 #else
-            string assocselkey = "!@#$%^&*()";
-            //sprintf(assocselkey, "%s", parent->getAssocSelKey());
-            murmur("fetching asscociated phrase list with selkey = %s", assocselkey.c_str());
-			candi.prepare(&candidateStringVector, assocselkey.c_str() , textbar); 
+            murmur("fetching asscociated phrase list with selkey = %s", parent->getAssocSelKey().c_str());
+			candi.prepare(&candidateStringVector, parent->getAssocSelKey().c_str() , textbar); 
 #endif
 			assoconduty = true;
 			}
@@ -494,7 +492,7 @@ int OVIMArray::initialize(OVDictionary *conf, OVService* s, const char *path)
 }
 
 int OVIMArray::updateConfig(OVDictionary *conf){
-    const char *AutoSP = "spcialCode";//"\xE7\x89\xB9\xE5\x88\xA5\xE7\xA2\xBC\xE6\x8F\x90\xE7\xA4\xBA"; // 特別碼模式
+    const char *AutoSP = "spcialCode";//"\xE7\x89\xB9\xE5\x88\xA5\xE7\xA2\xBC\xE6\x8F\x90\xE7\xA4\xBA"; // 特别码模式
     const char *ForceSP = "quickMode"; //"\xE5\xBF\xAB\xE6\x89\x93\xE6\xA8\xA1\xE5\xBC\x8F"; // 快打模式
 	
 	#define CIN_ASSOCIATEDPHRASE	"associatedPhrase"

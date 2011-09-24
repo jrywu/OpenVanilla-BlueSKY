@@ -52,7 +52,7 @@ public:
         onduty=0;
     }
     
-    virtual void prepare(vector<string>* l, const char* skey, OVCandidate *textbar);
+    virtual void prepare(vector<string>* l, char* skey, OVCandidate *textbar);
     virtual bool onDuty() { return onduty; }
     virtual bool onePage() { return (count <= perpage); }
     virtual void cancel() { onduty=0; }

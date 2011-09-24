@@ -8,7 +8,7 @@
 class ArrayCandidateList : public OVCandidateList {
 public:
 #if defined(WIN32)&&!defined(WINCE)
-	virtual void prepare(vector<string>* l, char* skey, OVCandidate *textbar, char* dkey=NULL, string c=string("") )
+	virtual void prepare(vector<string>* l, const char* skey, OVCandidate *textbar, char* dkey=NULL, string c=string("") )
 {
     onduty=true;
     

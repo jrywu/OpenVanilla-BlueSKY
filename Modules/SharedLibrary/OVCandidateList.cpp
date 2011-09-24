@@ -38,7 +38,7 @@
 
 using namespace std;
 
-void OVCandidateList::prepare(vector<string>* l, const char* skey, OVCandidate *textbar)
+void OVCandidateList::prepare(vector<string>* l, char* skey, OVCandidate *textbar)
 {
     onduty=true;
     strcpy(selkey, skey);
