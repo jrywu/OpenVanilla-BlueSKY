@@ -21,18 +21,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_08E164D6C65E4C579C454BB92ABDC87C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_0C0F80376B59408F9F11DF8DC5369D1B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_0CBAB34B5A054FB28E9AC32371F9CBF4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -51,7 +39,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_225249F57A0346C9A45E510054AC3BE8"
+        "MsmKey" = "8:_1FF972FFA597453FA6A32FF202B31DC2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -75,7 +63,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2C5B0471E89347318C086F821E0AECE6"
+        "MsmKey" = "8:_33804D572FD54ECD8544C15AC25D42E7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -153,8 +141,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4DC2F2D740F2453E993CBF80FD693508"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_51C529047D2561BCEDDB115013B56B71"
         "OwnerKey" = "8:_6F193D5CD223A7A4F062706937D4F16D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_51C529047D2561BCEDDB115013B56B71"
+        "OwnerKey" = "8:_8FA216E864B43F3E8D238E3A5E160D48"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -167,12 +167,6 @@
         {
         "MsmKey" = "8:_51C529047D2561BCEDDB115013B56B71"
         "OwnerKey" = "8:_0CBAB34B5A054FB28E9AC32371F9CBF4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_51C529047D2561BCEDDB115013B56B71"
-        "OwnerKey" = "8:_8FA216E864B43F3E8D238E3A5E160D48"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -213,7 +207,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_7CA1C2B3DDB842DEB84935D29DF45D1D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7F49DA8B468B427D853ECC7546DA4965"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8CD20E491A5C48058FCA1152A76DEDCD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8F7EE9B4FC3547F8BAB35A837FF39443"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -226,18 +238,6 @@
         "Entry"
         {
         "MsmKey" = "8:_900AF48FABE547ABA9B708D76781E0B6"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_96BF7AF33D6844C3885BABF4AD6BF677"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_99A6BB53C966486A8EFE072A98493EB4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -261,13 +261,25 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BB137DB0E09548729D105F82449DFB5B"
+        "MsmKey" = "8:_C0876348BD0E4656A83CD5E6A0121D88"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_C0876348BD0E4656A83CD5E6A0121D88"
+        "MsmKey" = "8:_C580C5F3C9E74017841CC00700D8F80D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C9EA80F820764A6C9B7A3D34E4DE70B5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C9F5D9717A8D49FB9B248FDD00361455"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -285,19 +297,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E962B1550DEE46A5B727D8476B624F4F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_EA16287A031DBAADB643297B85F80D50"
         "OwnerKey" = "8:_0CBAB34B5A054FB28E9AC32371F9CBF4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_F8125B08163142668CF1E50E944E1FA4"
+        "MsmKey" = "8:_F12BE289E663475AB7F5CED907E2B03C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -309,14 +315,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_FC8169BD1C8849E697591096FEA7A73C"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_39FC260FA32B4234967B81934056AC4B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_39FC260FA32B4234967B81934056AC4B"
+        "OwnerKey" = "8:_8FA216E864B43F3E8D238E3A5E160D48"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -347,12 +353,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_0CBAB34B5A054FB28E9AC32371F9CBF4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8FA216E864B43F3E8D238E3A5E160D48"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -515,52 +515,12 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_08E164D6C65E4C579C454BB92ABDC87C"
-            {
-            "SourcePath" = "8:..\\..\\DataTables\\array30.cin"
-            "TargetName" = "8:array30.cin"
-            "Tag" = "8:"
-            "Folder" = "8:_D7462014C1AB400CABD3851F4B70AFE2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0C0F80376B59408F9F11DF8DC5369D1B"
-            {
-            "SourcePath" = "8:..\\..\\DataTables\\array-special.cin"
-            "TargetName" = "8:array-special.cin"
-            "Tag" = "8:"
-            "Folder" = "8:_D7462014C1AB400CABD3851F4B70AFE2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_225249F57A0346C9A45E510054AC3BE8"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1FF972FFA597453FA6A32FF202B31DC2"
             {
             "SourcePath" = "8:..\\..\\DataTables\\assoc.cin"
             "TargetName" = "8:assoc.cin"
             "Tag" = "8:"
-            "Folder" = "8:_277784DAD045485B805AE8EAD92D86A4"
+            "Folder" = "8:_D7462014C1AB400CABD3851F4B70AFE2"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -575,12 +535,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2C5B0471E89347318C086F821E0AECE6"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_33804D572FD54ECD8544C15AC25D42E7"
             {
-            "SourcePath" = "8:..\\..\\DataTables\\simplex-ext.cin"
-            "TargetName" = "8:simplex-ext.cin"
+            "SourcePath" = "8:..\\..\\DataTables\\array-shortcode.cin"
+            "TargetName" = "8:array-shortcode.cin"
             "Tag" = "8:"
-            "Folder" = "8:_277784DAD045485B805AE8EAD92D86A4"
+            "Folder" = "8:_D7462014C1AB400CABD3851F4B70AFE2"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -621,6 +581,26 @@
             "TargetName" = "8:sqlite3.dll"
             "Tag" = "8:"
             "Folder" = "8:_EEA62CA21C7A4315893F5E92CB2C2B99"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4DC2F2D740F2453E993CBF80FD693508"
+            {
+            "SourcePath" = "8:..\\..\\DataTables\\ovimgeneric.db"
+            "TargetName" = "8:ovimgeneric.db"
+            "Tag" = "8:"
+            "Folder" = "8:_277784DAD045485B805AE8EAD92D86A4"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -737,12 +717,72 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7CA1C2B3DDB842DEB84935D29DF45D1D"
+            {
+            "SourcePath" = "8:..\\..\\DataTables\\assoc.cin"
+            "TargetName" = "8:assoc.cin"
+            "Tag" = "8:"
+            "Folder" = "8:_277784DAD045485B805AE8EAD92D86A4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7F49DA8B468B427D853ECC7546DA4965"
             {
             "SourcePath" = "8:ovbanner.bmp"
             "TargetName" = "8:ovbanner.bmp"
             "Tag" = "8:"
             "Folder" = "8:_ADFA32FE383D4A928BDCEA8AF4D899FA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8CD20E491A5C48058FCA1152A76DEDCD"
+            {
+            "SourcePath" = "8:..\\..\\DataTables\\array-special.cin"
+            "TargetName" = "8:array-special.cin"
+            "Tag" = "8:"
+            "Folder" = "8:_D7462014C1AB400CABD3851F4B70AFE2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8F7EE9B4FC3547F8BAB35A837FF39443"
+            {
+            "SourcePath" = "8:..\\..\\DataTables\\cj-ext.cin"
+            "TargetName" = "8:cj-ext.cin"
+            "Tag" = "8:"
+            "Folder" = "8:_277784DAD045485B805AE8EAD92D86A4"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -788,70 +828,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_96BF7AF33D6844C3885BABF4AD6BF677"
-            {
-            "SourcePath" = "8:..\\..\\DataTables\\wubizixing.cin"
-            "TargetName" = "8:wubizixing.cin"
-            "Tag" = "8:"
-            "Folder" = "8:_277784DAD045485B805AE8EAD92D86A4"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_99A6BB53C966486A8EFE072A98493EB4"
-            {
-            "SourcePath" = "8:..\\..\\DataTables\\cj-ext.cin"
-            "TargetName" = "8:cj-ext.cin"
-            "Tag" = "8:"
-            "Folder" = "8:_277784DAD045485B805AE8EAD92D86A4"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B562D96D7E8D48B0ACF476401416AF45"
             {
             "SourcePath" = "8:..\\..\\DataTables\\ovimarray.db"
             "TargetName" = "8:ovimarray.db"
-            "Tag" = "8:"
-            "Folder" = "8:_D7462014C1AB400CABD3851F4B70AFE2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BB137DB0E09548729D105F82449DFB5B"
-            {
-            "SourcePath" = "8:..\\..\\DataTables\\assoc.cin"
-            "TargetName" = "8:assoc.cin"
             "Tag" = "8:"
             "Folder" = "8:_D7462014C1AB400CABD3851F4B70AFE2"
             "Condition" = "8:"
@@ -888,12 +868,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E962B1550DEE46A5B727D8476B624F4F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C580C5F3C9E74017841CC00700D8F80D"
             {
-            "SourcePath" = "8:..\\..\\DataTables\\array-shortcode.cin"
-            "TargetName" = "8:array-shortcode.cin"
+            "SourcePath" = "8:..\\..\\DataTables\\dayi3-patched.cin"
+            "TargetName" = "8:dayi3-patched.cin"
+            "Tag" = "8:"
+            "Folder" = "8:_277784DAD045485B805AE8EAD92D86A4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C9EA80F820764A6C9B7A3D34E4DE70B5"
+            {
+            "SourcePath" = "8:..\\..\\DataTables\\array30.cin"
+            "TargetName" = "8:array30.cin"
             "Tag" = "8:"
             "Folder" = "8:_D7462014C1AB400CABD3851F4B70AFE2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C9F5D9717A8D49FB9B248FDD00361455"
+            {
+            "SourcePath" = "8:..\\..\\DataTables\\simplex-ext.cin"
+            "TargetName" = "8:simplex-ext.cin"
+            "Tag" = "8:"
+            "Folder" = "8:_277784DAD045485B805AE8EAD92D86A4"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -928,10 +948,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F8125B08163142668CF1E50E944E1FA4"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F12BE289E663475AB7F5CED907E2B03C"
             {
-            "SourcePath" = "8:..\\..\\DataTables\\dayi3-patched.cin"
-            "TargetName" = "8:dayi3-patched.cin"
+            "SourcePath" = "8:..\\..\\DataTables\\wubizixing.cin"
+            "TargetName" = "8:wubizixing.cin"
             "Tag" = "8:"
             "Folder" = "8:_277784DAD045485B805AE8EAD92D86A4"
             "Condition" = "8:"
@@ -954,26 +974,6 @@
             "TargetName" = "8:LICENSE-zh-Hant.rtf"
             "Tag" = "8:"
             "Folder" = "8:_ADFA32FE383D4A928BDCEA8AF4D899FA"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FC8169BD1C8849E697591096FEA7A73C"
-            {
-            "SourcePath" = "8:..\\..\\DataTables\\ovimgeneric.db"
-            "TargetName" = "8:ovimgeneric.db"
-            "Tag" = "8:"
-            "Folder" = "8:_277784DAD045485B805AE8EAD92D86A4"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1144,7 +1144,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:OpenVanilla 0.9b"
         "ProductCode" = "8:{FE83E7AA-2E2F-4DCC-8B21-6EF36CD452FA}"
-        "PackageCode" = "8:{4C5FBECC-ABEE-47AE-BCBF-748CE9A3AD04}"
+        "PackageCode" = "8:{CA44AE03-A0C7-4810-9C21-5682903236D8}"
         "UpgradeCode" = "8:{858CD900-B745-4EF5-A8EE-94DEA6D231EA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

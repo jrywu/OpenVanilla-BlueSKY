@@ -84,6 +84,33 @@ namespace OpenVanilla {
             stream.open(OVUTF16::FromUTF8(filename).c_str(), openMode);
             #endif
         }
+
+		static bool CopyFile(const string& srcfilename, const string& targetfilename, bool failOnExist = false){
+			if(failOnExist && FileExists(targetfilename)) return false;
+            
+            ifstream src;
+            ofstream target;
+            
+            OpenIFStream(src, srcfilename,fstream::binary);
+            OpenOFStream(target, targetfilename,fstream::trunc|fstream::binary);
+            //ifstream src (srcfilename,fstream::binary);
+			//ofstream target (targetfilename,fstream::trunc|fstream::binary);
+            
+			target<<src.rdbuf();
+			return true;
+		}
+
+		 static const bool FileExists(const string& path)
+        {
+            #ifndef WIN32
+            struct stat buf;
+            return !stat(path.c_str(), &buf);
+            #else
+            struct _stat buf;
+            wstring wpath = OVUTF16::FromUTF8(path);
+            return !_wstat(wpath.c_str(), &buf);
+            #endif
+        }
         
         // use free(), not delete[], to free the block allocated
         static pair<char*, size_t> SlurpFile(const string& filename)
@@ -205,7 +232,7 @@ namespace OpenVanilla {
                 return '\\';
             #endif
         }
-        
+        /* moved to OVFileHelper
 		static bool CopyFile(const string& srcfilename, const string& targetfilename, bool failOnExist = false){
 			if(failOnExist && PathExists(targetfilename)) return false;
             
@@ -220,7 +247,7 @@ namespace OpenVanilla {
 			target<<src.rdbuf();
 			return true;
 		}
-        
+        */
         static const string DirectoryFromPath(const string& path)
         {
             string realPath = OVPathHelper::NormalizeByExpandingTilde(path);

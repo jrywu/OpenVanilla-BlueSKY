@@ -114,7 +114,7 @@ OVCINSQList::OVCINSQList(const char *pathseparator, const char* datapath, const 
 
 	if(preloadDbExist && !imdbExist){ // copy preloaded db as imdb in userspace if it's not exist
 		murmur("copying preloaded db as imdb in userspace...");
-		OVPathHelper::CopyFile(preloadDbpath, dbpath);
+		OVFileHelper::CopyFile(preloadDbpath, dbpath);
 	}
 
 	db = new  SQLite3;  
