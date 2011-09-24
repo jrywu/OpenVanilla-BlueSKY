@@ -28,7 +28,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-//#define OV_DEBUG
+#define OV_DEBUG
 #include "ctype.h"
 #include "OVIMArraySQ.h"
 #ifndef WIN32
@@ -71,22 +71,28 @@ void OVIMArrayContext::updateDisplay(OVBuffer* buf)
     buf->update();
 }
 void OVIMArrayContext::updateFreqFetchAssociatedPhrase(const string& phrase, OVCandidate *textbar ){
+    
 
-	if(assoconduty) tabs[MAIN_TAB]->updatePhraseUserFrequency((lastPhrase + phrase).c_str(), parent->doLearnAssociatedPhrase(), true); // update user freq.
-	else	tabs[MAIN_TAB]->updatePhraseUserFrequency(phrase.c_str(), parent->doLearnAssociatedPhrase(), false); // update user freq.
+	if(assoconduty) tabs[MAIN_TAB]->updatePhraseUserFrequency(
+            (lastPhrase + phrase).c_str(), parent->doLearnAssociatedPhrase(), true); // update user freq.
+	else	
+        tabs[MAIN_TAB]->updatePhraseUserFrequency(
+            phrase.c_str(), parent->doLearnAssociatedPhrase(), false); // update user freq.
 			lastPhrase = phrase;
 
 			if(assoconduty) assoconduty = false;
 			
 			if( parent->doAssociatedPhrase() &&
-				tabs[MAIN_TAB]->getAssociatedPhrases(phrase, candidateStringVector, parent->doLearnAssociatedPhrase())
-				) {
+				tabs[MAIN_TAB]->getAssociatedPhrases(phrase, candidateStringVector, parent->doLearnAssociatedPhrase())) {
 			//Fetch associated phrase... 
 #if defined(WIN32) && !defined(WINCE)
 					candi.prepare(&candidateStringVector, parent->getAssocSelKey()
 						, textbar, "1234567890", string("Shift+#\xE3\x80\x80"));
 #else
-			candi.prepare(&candidateStringVector,  parent->getAssocSelKey(), textbar); 
+            string assocselkey = "!@#$%^&*()";
+            //sprintf(assocselkey, "%s", parent->getAssocSelKey());
+            murmur("fetching asscociated phrase list with selkey = %s", assocselkey.c_str());
+			candi.prepare(&candidateStringVector, assocselkey.c_str() , textbar); 
 #endif
 			assoconduty = true;
 			}
@@ -488,8 +494,8 @@ int OVIMArray::initialize(OVDictionary *conf, OVService* s, const char *path)
 }
 
 int OVIMArray::updateConfig(OVDictionary *conf){
-    const char *AutoSP = "spcialCode";//"\xE7\x89\xB9\xE5\x88\xA5\xE7\xA2\xBC\xE6\x8F\x90\xE7\xA4\xBA"; // ¯S§O½X´£¥Ü
-    const char *ForceSP = "quickMode"; //"\xE5\xBF\xAB\xE6\x89\x93\xE6\xA8\xA1\xE5\xBC\x8F"; // §Ö¥´¼Ò¦¡
+    const char *AutoSP = "spcialCode";//"\xE7\x89\xB9\xE5\x88\xA5\xE7\xA2\xBC\xE6\x8F\x90\xE7\xA4\xBA"; // ç‰¹åˆ¥ç¢¼æ¨¡å¼
+    const char *ForceSP = "quickMode"; //"\xE5\xBF\xAB\xE6\x89\x93\xE6\xA8\xA1\xE5\xBC\x8F"; // å¿«æ‰“æ¨¡å¼
 	
 	#define CIN_ASSOCIATEDPHRASE	"associatedPhrase"
 	#define CIN_LEARNASSOCIATEDPHRASE	"learnAssociatedPhrase"
@@ -530,8 +536,11 @@ int OVIMArray::updateConfig(OVDictionary *conf){
 		// will be something like this on OS X (TSM):
 		//     /Library/OpenVanilla/version/Modules/OVIMGeneric/
 		// and inside the bundle of OS X (IMK
+#ifndef WIN32
+        string datapath=string(libpath);
+#else
 		string datapath=string(libpath) + string(pathsep) + string("OVIMArray");
-
+#endif
 		murmur(" dataPath %s", datapath.c_str());
  
 		cinlist = new OVCINSQList(pathsep, datapath.c_str(), userpath.c_str(), "ovimarray.db");
@@ -550,7 +559,7 @@ int OVIMArray::updateConfig(OVDictionary *conf){
 			return false;
 		}
 		murmur ("OVIMArray: cin files init finished.");
-			return 1; 
+			return true; 
 	} 
 	extern "C" OVModule *OVGetModuleFromLibrary(int idx) {
 		  return (idx==0) ? new OVIMArray(*cinlist, cinlist->getdb()): NULL; 

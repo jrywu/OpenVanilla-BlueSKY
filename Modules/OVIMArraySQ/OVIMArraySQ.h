@@ -133,7 +133,7 @@ private:
 public:
 	OVIMArray(const OVCINSQList& cinlist, SQLite3 *dbo);
 	
-	virtual char* getAssocSelKey(){ return 
+	virtual const char* getAssocSelKey(){ return 
 		(assoctab->getSelKey().length()==10)?assoctab->getSelKey().c_str():"!@#$%^&*()";};
     virtual int initialize(OVDictionary *, OVService*, const char *mp);
     virtual const char* identifier() { return "OVIMArray"; }
