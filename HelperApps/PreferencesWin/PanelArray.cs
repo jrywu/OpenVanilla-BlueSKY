@@ -34,20 +34,20 @@ namespace OVPreferences
 
         protected virtual void LoadSettings()
         {
-            checkBox1.Checked=
+            checkBox1.Checked =
                 Convert.ToBoolean(Convert.ToInt32(
                    m_ovConfDomHandler.GetAttribute(
-                       m_ovConf.moduleName, "specialCode", "1")))
-                || Convert.ToBoolean(Convert.ToInt32(
-                   m_ovConfDomHandler.GetAttribute(
-                       m_ovConf.moduleName, "特別碼提示", "1")));
+                       m_ovConf.moduleName, "specialCode", "1")));
+                //|| Convert.ToBoolean(Convert.ToInt32(
+                //   m_ovConfDomHandler.GetAttribute(
+                //      m_ovConf.moduleName, "特別碼提示", "1")));
             checkBox2.Checked =
                 Convert.ToBoolean(Convert.ToInt32(
                    m_ovConfDomHandler.GetAttribute(
-                       m_ovConf.moduleName, "quickMode", "0")))
-                 || Convert.ToBoolean(Convert.ToInt32(
-                   m_ovConfDomHandler.GetAttribute(
-                       m_ovConf.moduleName, "快打模式", "1")));
+                       m_ovConf.moduleName, "quickMode", "0")));
+                 //|| Convert.ToBoolean(Convert.ToInt32(
+                 //  m_ovConfDomHandler.GetAttribute(
+                 //      m_ovConf.moduleName, "快打模式", "1")));
 
             m_doAssociatedPhrase =
                Convert.ToBoolean(Convert.ToInt32(
@@ -76,10 +76,11 @@ namespace OVPreferences
                m_ovConf.moduleName,
                "specialCode",
                checkBox1.Checked ? "1" : "0");
-            m_ovConfDomHandler.SetAttribute(
+            /*m_ovConfDomHandler.SetAttribute(
               m_ovConf.moduleName,
               "特別碼提示",
               checkBox1.Checked ? "1" : "0");
+             */
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -88,10 +89,11 @@ namespace OVPreferences
                m_ovConf.moduleName,
                "quickMode",
                checkBox2.Checked ? "1" : "0");
-            m_ovConfDomHandler.SetAttribute(
+            /*m_ovConfDomHandler.SetAttribute(
               m_ovConf.moduleName,
               "快打模式",
               checkBox1.Checked ? "1" : "0");
+             */
         }
         private void m_cbAssociatedPhrase_CheckedChanged(object sender, EventArgs e)
         {
@@ -123,5 +125,7 @@ namespace OVPreferences
                 m_doLearnAssociatedPhrase ? "1" : "0");
 
         }
+
+       
     }
 }
