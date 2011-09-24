@@ -53,102 +53,7 @@
 namespace OpenVanilla {
     using namespace std;
 
-    class OVFileHelper {
-    public:
-        static FILE* OpenStream(const string& filename, const string& mode = "rb")
-        {
-            #ifndef WIN32
-            return fopen(filename.c_str(), mode.c_str());
-            #else
-        	FILE* stream = NULL;
-        	errno_t err = _wfopen_s(&stream, OVUTF16::FromUTF8(filename).c_str(), OVUTF16::FromUTF8(mode).c_str());
-            return err ? 0 : stream;
-            #endif
-        }
-        
-        static void OpenOFStream(ofstream& stream, const string& filename, ios_base::openmode openMode)
-        {
-            #ifndef WIN32
-            stream.open(filename.c_str(), openMode);
-            #else
-            stream.open(OVUTF16::FromUTF8(filename).c_str(), openMode);
-            #endif
-        }
-
-
-        static void OpenIFStream(ifstream& stream, const string& filename, ios_base::openmode openMode)
-        {
-            #ifndef WIN32
-            stream.open(filename.c_str(), openMode);
-            #else
-            stream.open(OVUTF16::FromUTF8(filename).c_str(), openMode);
-            #endif
-        }
-
-		static bool CopyFile(const string& srcfilename, const string& targetfilename, bool failOnExist = false){
-			if(failOnExist && FileExists(targetfilename)) return false;
-            
-            ifstream src;
-            ofstream target;
-            
-            OpenIFStream(src, srcfilename,fstream::binary);
-            OpenOFStream(target, targetfilename,fstream::trunc|fstream::binary);
-            //ifstream src (srcfilename,fstream::binary);
-			//ofstream target (targetfilename,fstream::trunc|fstream::binary);
-            
-			target<<src.rdbuf();
-			return true;
-		}
-
-		 static const bool FileExists(const string& path)
-        {
-            #ifndef WIN32
-            struct stat buf;
-            return !stat(path.c_str(), &buf);
-            #else
-            struct _stat buf;
-            wstring wpath = OVUTF16::FromUTF8(path);
-            return !_wstat(wpath.c_str(), &buf);
-            #endif
-        }
-        
-        // use free(), not delete[], to free the block allocated
-        static pair<char*, size_t> SlurpFile(const string& filename)
-        {
-            FILE* stream = OpenStream(filename);
-            char* buf = 0;
-            size_t size = 0;
-            if (stream) {
-                if (!fseek(stream, 0, SEEK_END)) {
-                    long lsize = ftell(stream);
-                    if (lsize) {
-                        size = (size_t)lsize;
-                        if (!fseek(stream, 0, SEEK_SET)) {
-                            buf = (char*)calloc(1, (size_t)size);
-                            if (buf) {
-                                if (fread(buf, size, 1, stream) != 1) {
-                                    free(buf);
-                                    buf = 0;
-                                    size = 0;
-                                }
-                            }
-                            else {
-                                size = 0;
-                            }
-                        }
-                        else {
-                            size = 0;
-                        }
-                    }
-                }
-                
-                fclose(stream);
-            }
-
-            return pair<char*, size_t>(buf, size);
-        }
-    };
-    
+   
     class OVFileTimestamp {
     public:
         #if defined(__APPLE__)
@@ -232,22 +137,7 @@ namespace OpenVanilla {
                 return '\\';
             #endif
         }
-        /* moved to OVFileHelper
-		static bool CopyFile(const string& srcfilename, const string& targetfilename, bool failOnExist = false){
-			if(failOnExist && PathExists(targetfilename)) return false;
-            
-            ifstream src;
-            ofstream target;
-            
-            OVFileHelper::OpenIFStream(src, srcfilename,fstream::binary);
-            OVFileHelper::OpenOFStream(target, targetfilename,fstream::trunc|fstream::binary);
-            //ifstream src (srcfilename,fstream::binary);
-			//ofstream target (targetfilename,fstream::trunc|fstream::binary);
-            
-			target<<src.rdbuf();
-			return true;
-		}
-        */
+        
         static const string DirectoryFromPath(const string& path)
         {
             string realPath = OVPathHelper::NormalizeByExpandingTilde(path);
@@ -444,6 +334,91 @@ namespace OpenVanilla {
         static bool RemoveEverythingAtPath(const string& path);                
         static const string NormalizeByExpandingTilde(const string& path);
     };
+
+	 class OVFileHelper {
+    public:
+        static FILE* OpenStream(const string& filename, const string& mode = "rb")
+        {
+            #ifndef WIN32
+            return fopen(filename.c_str(), mode.c_str());
+            #else
+        	FILE* stream = NULL;
+        	errno_t err = _wfopen_s(&stream, OVUTF16::FromUTF8(filename).c_str(), OVUTF16::FromUTF8(mode).c_str());
+            return err ? 0 : stream;
+            #endif
+        }
+        
+        static void OpenOFStream(ofstream& stream, const string& filename, ios_base::openmode openMode)
+        {
+            #ifndef WIN32
+            stream.open(filename.c_str(), openMode);
+            #else
+            stream.open(OVUTF16::FromUTF8(filename).c_str(), openMode);
+            #endif
+        }
+
+
+        static void OpenIFStream(ifstream& stream, const string& filename, ios_base::openmode openMode)
+        {
+            #ifndef WIN32
+            stream.open(filename.c_str(), openMode);
+            #else
+            stream.open(OVUTF16::FromUTF8(filename).c_str(), openMode);
+            #endif
+        }
+
+		static bool CopyFile(const string& srcfilename, const string& targetfilename, bool failOnExist = false){
+			if(failOnExist && OVPathHelper::PathExists(targetfilename)) return false;
+            
+            ifstream src;
+            ofstream target;
+            
+            OpenIFStream(src, srcfilename,fstream::binary);
+            OpenOFStream(target, targetfilename,fstream::trunc|fstream::binary);
+            //ifstream src (srcfilename,fstream::binary);
+			//ofstream target (targetfilename,fstream::trunc|fstream::binary);
+            
+			target<<src.rdbuf();
+			return true;
+		}
+        
+        // use free(), not delete[], to free the block allocated
+        static pair<char*, size_t> SlurpFile(const string& filename)
+        {
+            FILE* stream = OpenStream(filename);
+            char* buf = 0;
+            size_t size = 0;
+            if (stream) {
+                if (!fseek(stream, 0, SEEK_END)) {
+                    long lsize = ftell(stream);
+                    if (lsize) {
+                        size = (size_t)lsize;
+                        if (!fseek(stream, 0, SEEK_SET)) {
+                            buf = (char*)calloc(1, (size_t)size);
+                            if (buf) {
+                                if (fread(buf, size, 1, stream) != 1) {
+                                    free(buf);
+                                    buf = 0;
+                                    size = 0;
+                                }
+                            }
+                            else {
+                                size = 0;
+                            }
+                        }
+                        else {
+                            size = 0;
+                        }
+                    }
+                }
+                
+                fclose(stream);
+            }
+
+            return pair<char*, size_t>(buf, size);
+        }
+    };
+    
     
     class OVDirectoryHelper {
     public:
