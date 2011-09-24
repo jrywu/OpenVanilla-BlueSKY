@@ -115,6 +115,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OVAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OVAbout.Designer.cs">
+      <DependentUpon>OVAbout.cs</DependentUpon>
+    </Compile>
     <Compile Include="advRichtextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -145,7 +151,9 @@
     <Compile Include="IMEListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="IMENotifyForm.cs" />
+    <Compile Include="IMENotifyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="IMEPictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -161,6 +169,9 @@
     <Compile Include="UtilFuncs.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="OVAbout.resx">
+      <DependentUpon>OVAbout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="IMECandidateForm.resx">
       <DependentUpon>IMECandidateForm.cs</DependentUpon>
       <SubType>Designer</SubType>
