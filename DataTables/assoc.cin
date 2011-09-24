@@ -1,5 +1,6 @@
 ﻿%gen_inp
 %ename assoc
+%selkey !@#$%^&*()
 %keyname begin
 %keyname end
 %chardef begin

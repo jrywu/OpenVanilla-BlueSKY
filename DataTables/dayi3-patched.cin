@@ -12,7 +12,7 @@
 %ename Dayi3
 %encoding utf-8
 %cname 大易（標點版）
-%selkey '[]-\67890
+%selkey '[]-\^&*()
 %endkey ='
 %keyname begin
 ,   力
