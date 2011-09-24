@@ -27,12 +27,16 @@
 		0176592C14290C570038B8EB /* simplex-ext.cin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A8C6E0B103D461200DE4A39 /* simplex-ext.cin */; };
 		0176592D14290C570038B8EB /* wubizixing.cin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A8C6E0C103D461200DE4A39 /* wubizixing.cin */; };
 		0176592E14290C890038B8EB /* OVIMGenericSQ.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 01F99FF31428F8DC001DE94A /* OVIMGenericSQ.bundle */; };
+		01D6DC21142E566200611D68 /* OVCINSQInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F9A0A21428FDC6001DE94A /* OVCINSQInfo.cpp */; };
+		01D6DC22142E566200611D68 /* OVCINSQ.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F9A09F1428FDB4001DE94A /* OVCINSQ.cpp */; };
+		01D6DC24142E568000611D68 /* OVCINSQ.h in Headers */ = {isa = PBXBuildFile; fileRef = 01F9A0A11428FDC6001DE94A /* OVCINSQ.h */; };
+		01D6DC25142E568000611D68 /* OVCINSQInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 01F9A0A31428FDC6001DE94A /* OVCINSQInfo.h */; };
+		01D6DC26142E56D500611D68 /* libOVLegacyModuleLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D44D46EC0E9DB0E30062F692 /* libOVLegacyModuleLibrary.a */; };
+		01D6DC29142E5A1300611D68 /* ovimgeneric.db in CopyFiles */ = {isa = PBXBuildFile; fileRef = 01D6DC28142E5A0A00611D68 /* ovimgeneric.db */; };
 		01E0D77614290DF600DCEEE9 /* assoc.cin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 01E0D77414290DEC00DCEEE9 /* assoc.cin */; };
 		01F9A0731428FB78001DE94A /* CIN-Defaults.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F9A0241428FB78001DE94A /* CIN-Defaults.cpp */; };
 		01F9A0971428FB78001DE94A /* OVIMGenericSQ.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F9A06B1428FB78001DE94A /* OVIMGenericSQ.cpp */; };
 		01F9A09C1428FB78001DE94A /* OVOFReverseLookupSQ.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F9A0711428FB78001DE94A /* OVOFReverseLookupSQ.cpp */; };
-		01F9A0A01428FDB4001DE94A /* OVCINSQ.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F9A09F1428FDB4001DE94A /* OVCINSQ.cpp */; };
-		01F9A0A41428FDC6001DE94A /* OVCINSQInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F9A0A21428FDC6001DE94A /* OVCINSQInfo.cpp */; };
 		01F9A0A5142907F0001DE94A /* OVFileHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A21AA590E9D0AB60078C2E9 /* OVFileHandler.cpp */; };
 		01F9A0A61429080A001DE94A /* OVCandidateList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A21AA530E9D0AB60078C2E9 /* OVCandidateList.cpp */; };
 		01F9A0A71429081C001DE94A /* OVStringToolKit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A21AA600E9D0AB60078C2E9 /* OVStringToolKit.cpp */; };
@@ -264,6 +268,7 @@
 			dstPath = OVIMGeneric;
 			dstSubfolderSpec = 7;
 			files = (
+				01D6DC29142E5A1300611D68 /* ovimgeneric.db in CopyFiles */,
 				01E0D77614290DF600DCEEE9 /* assoc.cin in CopyFiles */,
 				0176592A14290C570038B8EB /* cj-ext.cin in CopyFiles */,
 				0176592B14290C570038B8EB /* dayi3-patched.cin in CopyFiles */,
@@ -327,6 +332,8 @@
 
 /* Begin PBXFileReference section */
 		0176592314290AED0038B8EB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		01D6DC27142E5A0A00611D68 /* ovimarray.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ovimarray.db; sourceTree = "<group>"; };
+		01D6DC28142E5A0A00611D68 /* ovimgeneric.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ovimgeneric.db; sourceTree = "<group>"; };
 		01E0D77414290DEC00DCEEE9 /* assoc.cin */ = {isa = PBXFileReference; lastKnownFileType = text; path = assoc.cin; sourceTree = "<group>"; };
 		01F99FF31428F8DC001DE94A /* OVIMGenericSQ.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OVIMGenericSQ.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		01F99FF41428F8DC001DE94A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -494,6 +501,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01D6DC26142E56D500611D68 /* libOVLegacyModuleLibrary.a in Frameworks */,
 				0176592414290AED0038B8EB /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -810,6 +818,8 @@
 		6A8C6DE9103D455E00DE4A39 /* DataTables */ = {
 			isa = PBXGroup;
 			children = (
+				01D6DC27142E5A0A00611D68 /* ovimarray.db */,
+				01D6DC28142E5A0A00611D68 /* ovimgeneric.db */,
 				01E0D77414290DEC00DCEEE9 /* assoc.cin */,
 				6A8C6EBA103D46E500DE4A39 /* array-shortcode.cin */,
 				6A8C6EBB103D46E500DE4A39 /* array-special.cin */,
@@ -1039,6 +1049,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01D6DC24142E568000611D68 /* OVCINSQ.h in Headers */,
+				01D6DC25142E568000611D68 /* OVCINSQInfo.h in Headers */,
 				D44D46F10E9DB0FF0062F692 /* OVCandidateList.h in Headers */,
 				D44D46F20E9DB0FF0062F692 /* OVCIN.h in Headers */,
 				D44D46F30E9DB0FF0062F692 /* OVCINInfo.h in Headers */,
@@ -1498,8 +1510,6 @@
 				01F9A0731428FB78001DE94A /* CIN-Defaults.cpp in Sources */,
 				01F9A0971428FB78001DE94A /* OVIMGenericSQ.cpp in Sources */,
 				01F9A09C1428FB78001DE94A /* OVOFReverseLookupSQ.cpp in Sources */,
-				01F9A0A01428FDB4001DE94A /* OVCINSQ.cpp in Sources */,
-				01F9A0A41428FDC6001DE94A /* OVCINSQInfo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1644,6 +1654,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01D6DC21142E566200611D68 /* OVCINSQInfo.cpp in Sources */,
+				01D6DC22142E566200611D68 /* OVCINSQ.cpp in Sources */,
 				D44D46FA0E9DB1150062F692 /* OVCandidateList.cpp in Sources */,
 				D44D46FB0E9DB1150062F692 /* OVCIN.cpp in Sources */,
 				D44D46FC0E9DB1150062F692 /* OVCINInfo.cpp in Sources */,

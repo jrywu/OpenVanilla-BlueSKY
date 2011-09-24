@@ -208,9 +208,15 @@ namespace OpenVanilla {
         
 		static bool CopyFile(const string& srcfilename, const string& targetfilename, bool failOnExist = false){
 			if(failOnExist && PathExists(targetfilename)) return false;
-			
-			ifstream src (srcfilename,fstream::binary);
-			ofstream target (targetfilename,fstream::trunc|fstream::binary);
+            
+            ifstream src;
+            ofstream target;
+            
+            OVFileHelper::OpenIFStream(src, srcfilename,fstream::binary);
+            OVFileHelper::OpenOFStream(target, targetfilename,fstream::trunc|fstream::binary);
+            //ifstream src (srcfilename,fstream::binary);
+			//ofstream target (targetfilename,fstream::trunc|fstream::binary);
+            
 			target<<src.rdbuf();
 			return true;
 		}
