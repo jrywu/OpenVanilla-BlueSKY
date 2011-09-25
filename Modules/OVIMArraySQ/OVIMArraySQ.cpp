@@ -54,7 +54,7 @@ void OVIMArrayContext::updateDisplay(OVBuffer* buf)
     }
     buf->update();
 }
-void OVIMArrayContext::updateFreqFetchAssociatedPhrase(const string& phrase, OVCandidate *textbar ){
+void OVIMArrayContext::updateFreqFetchAssociatedPhrase(const string& phrase, OVCandidate *candibar ){
     
 
 	if(assoconduty) tabs[MAIN_TAB]->updatePhraseUserFrequency(
@@ -72,8 +72,8 @@ void OVIMArrayContext::updateFreqFetchAssociatedPhrase(const string& phrase, OVC
 		    murmur("fetching asscociated phrase list with selkey = %s", parent->getAssocSelKey());
 
 #if defined(WIN32) && !defined(WINCE)
-					candi.prepare(&candidateStringVector, parent->getAssocSelKey()
-						, textbar, "1234567890", string("Shift+#\xE3\x80\x80"));
+            candi.prepare(&candidateStringVector, parent->getAssocSelKey()
+						, candibar, "1234567890", string("Shift+#\xE3\x80\x80"));
 #else
             string currentSelKey = parent->getAssocSelKey();
 			candi.prepare(&candidateStringVector,
