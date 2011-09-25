@@ -76,18 +76,17 @@ namespace OVPreferences
             // m_clModuleList
             // 
             this.m_clModuleList.AllowDrop = true;
-            this.m_clModuleList.CheckOnClick = false;
             resources.ApplyResources(this.m_clModuleList, "m_clModuleList");
             this.m_clModuleList.FormattingEnabled = true;
             this.m_clModuleList.Name = "m_clModuleList";
-            this.m_clModuleList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.m_clModuleList_MouseUp);
-            this.m_clModuleList.DragOver += new System.Windows.Forms.DragEventHandler(this.m_clModuleList_DragOver);
-            this.m_clModuleList.SelectedIndexChanged += new System.EventHandler(this.m_clModuleList_SelectedIndexChanged);
             this.m_clModuleList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.m_clModuleList_ItemCheck);
+            this.m_clModuleList.SelectedIndexChanged += new System.EventHandler(this.m_clModuleList_SelectedIndexChanged);
             this.m_clModuleList.DragDrop += new System.Windows.Forms.DragEventHandler(this.m_clModuleList_DragDrop);
-            this.m_clModuleList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.m_clModuleList_MouseMove);
+            this.m_clModuleList.DragOver += new System.Windows.Forms.DragEventHandler(this.m_clModuleList_DragOver);
+            this.m_clModuleList.KeyUp += new System.Windows.Forms.KeyEventHandler(this.m_clModuleList_KeyUp);
             this.m_clModuleList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.m_clModuleList_MouseDown);
-            this.m_clModuleList.KeyUp += new System.Windows.Forms.KeyEventHandler(m_clModuleList_KeyUp);
+            this.m_clModuleList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.m_clModuleList_MouseMove);
+            this.m_clModuleList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.m_clModuleList_MouseUp);
             // 
             // PanelModuleList
             // 

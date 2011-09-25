@@ -29,24 +29,8 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 //#define OV_DEBUG
-#include "ctype.h"
-#include "OVIMArraySQ.h"
-#ifndef WIN32
-	#include <OpenVanilla/OVLibrary.h>
-	#include <OpenVanilla/OVUtility.h>
-#else
-	#include "OVLibrary.h"
-	#include "OVUtility.h"
 
-	//<comment author='b6s'> Uses OVOSDef.h in OVIMArray.h instead.
-	//#include <stdlib.h>
-	//#define PATH_MAX _MAX_PATH
-	//</comment>
-#endif
-#include <utility>
-#ifdef OSX_INCLUDE
-        #include <Carbon/Carbon.h>
-#endif
+#include "OVIMArraySQ.h"
 
 using namespace std;
 using namespace OV_Array;

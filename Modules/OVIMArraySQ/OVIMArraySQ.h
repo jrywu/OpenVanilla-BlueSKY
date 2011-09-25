@@ -33,22 +33,21 @@
 
 #ifndef WIN32
 	#include <OpenVanilla/OpenVanilla.h>
+	#include <OpenVanilla/OVLibrary.h>
+	#include <OpenVanilla/OVUtility.h>
 #else
 	#include "OpenVanilla.h"
-
-	//<comment author='b6s'> Uses OVOSDef.h instead.
-	//#include <string.h>
-	//#define strcasecmp stricmp
-	//</comment>
+	#include "OVLibrary.h"
+	#include "OVUtility.h"
 #endif
+#include <cctype>
 #include "OVOSDef.h"
-
 #include "ArrayKeySequence.h"
 #include "ArrayCandidateList.h"
 #include "OVCandidateList.h"
 #include "OVCINSQ.h"
 #include "OVCINSQInfo.h"
-#include <cstring>
+
 
 namespace OV_Array {
     enum STATE {
