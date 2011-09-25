@@ -48,6 +48,7 @@
 		01F9A0A5142907F0001DE94A /* OVFileHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A21AA590E9D0AB60078C2E9 /* OVFileHandler.cpp */; };
 		01F9A0A61429080A001DE94A /* OVCandidateList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A21AA530E9D0AB60078C2E9 /* OVCandidateList.cpp */; };
 		01F9A0A71429081C001DE94A /* OVStringToolKit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A21AA600E9D0AB60078C2E9 /* OVStringToolKit.cpp */; };
+		01FAD533142F9E1E00750DFA /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 01FAD532142F9E1E00750DFA /* libsqlite3.dylib */; };
 		6A0F2D4E0EAC8B3E00434743 /* OVFileHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A0F2D4C0EAC8B3E00434743 /* OVFileHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A0F2D4F0EAC8B3E00434743 /* OVStringHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A0F2D4D0EAC8B3E00434743 /* OVStringHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A21A9C40E9CFC2A0078C2E9 /* LVModuleManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6A21A9C30E9CFC2A0078C2E9 /* LVModuleManager.mm */; };
@@ -387,6 +388,7 @@
 		01F9A0A11428FDC6001DE94A /* OVCINSQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OVCINSQ.h; path = Modules/SharedLibrary/OVCINSQ.h; sourceTree = "<group>"; };
 		01F9A0A21428FDC6001DE94A /* OVCINSQInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OVCINSQInfo.cpp; path = Modules/SharedLibrary/OVCINSQInfo.cpp; sourceTree = "<group>"; };
 		01F9A0A31428FDC6001DE94A /* OVCINSQInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OVCINSQInfo.h; path = Modules/SharedLibrary/OVCINSQInfo.h; sourceTree = "<group>"; };
+		01FAD532142F9E1E00750DFA /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		6A0F2D4C0EAC8B3E00434743 /* OVFileHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVFileHelper.h; sourceTree = "<group>"; };
 		6A0F2D4D0EAC8B3E00434743 /* OVStringHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVStringHelper.h; sourceTree = "<group>"; };
 		6A21A9C20E9CFC2A0078C2E9 /* LVModuleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LVModuleManager.h; path = "Loaders/OSX-IMK/LVModuleManager.h"; sourceTree = "<group>"; };
@@ -527,6 +529,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01FAD533142F9E1E00750DFA /* libsqlite3.dylib in Frameworks */,
 				0110C2FD142E5E8F000F9D03 /* libOVLegacyModuleLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -929,6 +932,7 @@
 		6AB6CE790E9CF58D0001B127 /* Apple Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				01FAD532142F9E1E00750DFA /* libsqlite3.dylib */,
 				0176592314290AED0038B8EB /* libsqlite3.dylib */,
 				D42E38500E86A29100453DE6 /* Carbon.framework */,
 				6AB6CF570E9CF69C0001B127 /* Cocoa.framework */,
