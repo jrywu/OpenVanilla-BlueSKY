@@ -36,27 +36,52 @@
 
 - (void)setDictinary:(NSDictionary *)dictionary
 {
+    
+	BOOL optionChanged = NO;
+	
 	[super setDictinary:dictionary];
-	if (![[self dictionary] objectForKey:[NSString stringWithUTF8String:"快打模式"]]) {
-		[self setValue:[NSNumber numberWithInt:0] forKey:[NSString stringWithUTF8String:"快打模式"]];
+	NSLog(@"dictionary:%@", [[self dictionary] description]);
+    
+	if (![[self dictionary] valueForKey:@"quickMode"]) {
+		[self setValue:[NSNumber numberWithInt:0] forKey:@"quickMode"];
+         //[NSString stringWithUTF8String:"快打模式"]];
+        optionChanged = YES;
 	}
-	[_quickModeCheckBox setIntValue:[[[self dictionary] valueForKey:[NSString stringWithUTF8String:"快打模式"]] intValue]];
+	[_quickModeCheckBox setIntValue:[[[self dictionary] valueForKey:@"quickMode"] intValue]];
 
-	if (![[self dictionary] objectForKey:[NSString stringWithUTF8String:"特別碼提示"]]) {
-		[self setValue:[NSNumber numberWithInt:0] forKey:[NSString stringWithUTF8String:"特別碼提示"]];
+	if (![[self dictionary] valueForKey:@"specialCode"]) {
+		[self setValue:[NSNumber numberWithInt:0] forKey:@"specialCode"];
+        optionChanged = YES;
 	}	
-	[_specialCodeCheckBox setIntValue:[[[self dictionary] valueForKey:[NSString stringWithUTF8String:"特別碼提示"]] intValue]];
-}
+	[_specialCodeCheckBox setIntValue:[[[self dictionary] valueForKey:@"specialCode"] intValue]];
+    if (![[self dictionary] valueForKey:@"associatedPhrase"]) {
+		[self setValue:[NSNumber numberWithInt:1] forKey:@"associatedPhrase"];
+		optionChanged = YES;
+	}
+	[_associatedPhraseCheckBox setIntValue:[[[self dictionary] valueForKey:@"associatedPhrase"] intValue]];	
+    
+    if (![[self dictionary] valueForKey:@"orderWordsByFreq"]) {
+		[self setValue:[NSNumber numberWithInt:0] forKey:@"orderWordsByFreq"];
+		optionChanged = YES;
+	}
+	[_orderWordsByFreqCheckBox setIntValue:[[[self dictionary] valueForKey:@"orderWordsByFreq"] intValue]];	
+    
+    if (![[self dictionary] valueForKey:@"learnAssociatedPhrase"]) {
+		[self setValue:[NSNumber numberWithInt:1] forKey:@"learnAssociatedPhrase"];
+		optionChanged = YES;
+	}
+	[_learnAssociatedPhraseCheckBox setIntValue:[[[self dictionary] valueForKey:@"learnAssociatedPhrase"] intValue]];
+    
+    
+	if (optionChanged) {
+		[self writeSetting];
+	}
 
-- (IBAction)setQuickModeAction:(id)sender
-{
-	[self setValue:[NSNumber numberWithInt:[sender intValue]] forKey:[NSString stringWithUTF8String:"快打模式"]];
-	[self writeSetting];
-}
-- (IBAction)setSpecialCodeAction:(id)sender
-{
-	[self setValue:[NSNumber numberWithInt:[sender intValue]] forKey:[NSString stringWithUTF8String:"特別碼提示"]];
-	[self writeSetting];
+    [[self dictionary] addObserver:self forKeyPath:@"quickMode" options:NSKeyValueObservingOptionNew context:NULL];
+    [[self dictionary] addObserver:self forKeyPath:@"specialCode" options:NSKeyValueObservingOptionNew context:NULL];
+    [[self dictionary] addObserver:self forKeyPath:@"associatedPhrase" options:NSKeyValueObservingOptionNew context:NULL];
+    [[self dictionary] addObserver:self forKeyPath:@"orderWordsByFreq" options:NSKeyValueObservingOptionNew context:NULL];
+    [[self dictionary] addObserver:self forKeyPath:@"learnAssociatedPhrase" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
 

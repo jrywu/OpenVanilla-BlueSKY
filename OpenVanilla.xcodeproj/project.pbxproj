@@ -28,7 +28,6 @@
 		01035BFF142E7207002C51D1 /* array30.cin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A8C6EBC103D46E500DE4A39 /* array30.cin */; };
 		0110C2FD142E5E8F000F9D03 /* libOVLegacyModuleLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D44D46EC0E9DB0E30062F692 /* libOVLegacyModuleLibrary.a */; };
 		0110C31F142E5FA7000F9D03 /* OVIMArraySQ.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0110C2FF142E5EE8000F9D03 /* OVIMArraySQ.cpp */; };
-		0110C32A142E62BE000F9D03 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0110C329142E62BE000F9D03 /* libsqlite3.dylib */; };
 		0176592414290AED0038B8EB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0176592314290AED0038B8EB /* libsqlite3.dylib */; };
 		0176592A14290C570038B8EB /* cj-ext.cin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A8C6E09103D461200DE4A39 /* cj-ext.cin */; };
 		0176592B14290C570038B8EB /* dayi3-patched.cin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A8C6E0A103D461200DE4A39 /* dayi3-patched.cin */; };
@@ -150,7 +149,6 @@
 		D48A53B1103D4CB30072485F /* OVIMGenericController.m in Sources */ = {isa = PBXBuildFile; fileRef = D48A53B0103D4CB30072485F /* OVIMGenericController.m */; };
 		D48A53B9103D4CF20072485F /* OVIMGenericController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48A53B8103D4CF20072485F /* OVIMGenericController.xib */; };
 		D48C56C5106CC28700FD913D /* OpenVanilla.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6AB6CF420E9CF5D00001B127 /* OpenVanilla.icns */; };
-		D49BAD08106CCCB3002A202B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D49BAD06106CCCB3002A202B /* Localizable.strings */; };
 		D4F064DE106B86A9002BCF9F /* LVTooltipTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F064DD106B86A9002BCF9F /* LVTooltipTextView.m */; };
 /* End PBXBuildFile section */
 
@@ -372,9 +370,7 @@
 		0110C300142E5EE8000F9D03 /* OVIMArraySQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OVIMArraySQ.h; path = Modules/OVIMArraySQ/OVIMArraySQ.h; sourceTree = "<group>"; };
 		0110C301142E5F00000F9D03 /* ArrayCandidateList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArrayCandidateList.h; path = Modules/OVIMArraySQ/ArrayCandidateList.h; sourceTree = "<group>"; };
 		0110C302142E5F00000F9D03 /* ArrayKeySequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArrayKeySequence.h; path = Modules/OVIMArraySQ/ArrayKeySequence.h; sourceTree = "<group>"; };
-		0110C329142E62BE000F9D03 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0176592314290AED0038B8EB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		017E3C6A142E68D500FB3C06 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		01D6DC27142E5A0A00611D68 /* ovimarray.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ovimarray.db; sourceTree = "<group>"; };
 		01D6DC28142E5A0A00611D68 /* ovimgeneric.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ovimgeneric.db; sourceTree = "<group>"; };
 		01E0D77414290DEC00DCEEE9 /* assoc.cin */ = {isa = PBXFileReference; lastKnownFileType = text; path = assoc.cin; sourceTree = "<group>"; };
@@ -437,7 +433,6 @@
 		6A71FD59120ED3B20026408B /* POJ-Holo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POJ-Holo.h"; sourceTree = "<group>"; };
 		6A71FD5C120ED3CA0026408B /* poj-holo.cin */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "poj-holo.cin"; sourceTree = "<group>"; };
 		6A8449681045439E0050F09F /* OpenVanillaSmall.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = OpenVanillaSmall.icns; path = "Loaders/OSX-IMK/Images/OpenVanillaSmall.icns"; sourceTree = "<group>"; };
-		6A84497F104545350050F09F /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = "Loaders/OSX-TSM/InfoPlist.strings"; sourceTree = "<group>"; };
 		6A8C6C9C103D3D1D00DE4A39 /* LVDOInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LVDOInterface.h; path = "Loaders/OSX-IMK/LVDOInterface.h"; sourceTree = "<group>"; };
 		6A8C6CE7103D3F8D00DE4A39 /* Preferences.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Preferences.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A8C6CFE103D3FA800DE4A39 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -474,16 +469,6 @@
 		6A8C6EBA103D46E500DE4A39 /* array-shortcode.cin */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "array-shortcode.cin"; sourceTree = "<group>"; };
 		6A8C6EBB103D46E500DE4A39 /* array-special.cin */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "array-special.cin"; sourceTree = "<group>"; };
 		6A8C6EBC103D46E500DE4A39 /* array30.cin */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = array30.cin; sourceTree = "<group>"; };
-		6AAF6E190EAB772B00F4DFE0 /* OpenVanilla-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "OpenVanilla-Info.plist"; path = "Loaders/OSX-TSM/OpenVanilla-Info.plist"; sourceTree = "<group>"; };
-		6AAF6E7C0EAB77D500F4DFE0 /* OVLoaderServer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "OVLoaderServer-Info.plist"; path = "Loaders/OSX-TSM/OVLoaderServer-Info.plist"; sourceTree = "<group>"; };
-		6AAF6F390EAB789400F4DFE0 /* InputMethodKitTiger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InputMethodKitTiger.h; path = "Loaders/OSX-TSM/InputMethodKitTiger.h"; sourceTree = "<group>"; };
-		6AAF6F3A0EAB789400F4DFE0 /* InputMethodKitTiger.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = InputMethodKitTiger.mm; path = "Loaders/OSX-TSM/InputMethodKitTiger.mm"; sourceTree = "<group>"; };
-		6AAF6F3D0EAB78B600F4DFE0 /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Context.h; path = "Loaders/OSX-TSM/Context.h"; sourceTree = "<group>"; };
-		6AAF6F3E0EAB78B600F4DFE0 /* Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Context.m; path = "Loaders/OSX-TSM/Context.m"; sourceTree = "<group>"; };
-		6AAF6F5C0EAB790D00F4DFE0 /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Component.h; path = "Loaders/OSX-TSM/Component.h"; sourceTree = "<group>"; };
-		6AAF6F5E0EAB790D00F4DFE0 /* Component.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Component.m; path = "Loaders/OSX-TSM/Component.m"; sourceTree = "<group>"; };
-		6AAF6F5F0EAB790D00F4DFE0 /* Component.r */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.rez; name = Component.r; path = "Loaders/OSX-TSM/Component.r"; sourceTree = "<group>"; };
-		6AAF6F600EAB790D00F4DFE0 /* ComponentConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComponentConfig.h; path = "Loaders/OSX-TSM/ComponentConfig.h"; sourceTree = "<group>"; };
 		6AB6CE6A0E9CF46F0001B127 /* OpenVanilla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenVanilla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AB6CE6C0E9CF46F0001B127 /* OpenVanilla-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "OpenVanilla-Info.plist"; path = "Loaders/OSX-IMK/OpenVanilla-Info.plist"; sourceTree = "<group>"; };
 		6AB6CF380E9CF5B60001B127 /* LVUIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LVUIController.h; path = "Loaders/OSX-IMK/LVUIController.h"; sourceTree = "<group>"; };
@@ -528,8 +513,6 @@
 		D48A53AF103D4CB30072485F /* OVIMGenericController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVIMGenericController.h; sourceTree = "<group>"; };
 		D48A53B0103D4CB30072485F /* OVIMGenericController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OVIMGenericController.m; sourceTree = "<group>"; };
 		D48A53B6103D4CEA0072485F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/OVIMGenericController.xib; sourceTree = "<group>"; };
-		D49BAD07106CCCB3002A202B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = "Loaders/OSX-IMK/English.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D49BAD0D106CCCE3002A202B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "Loaders/OSX-IMK/zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D4CBACB3106F0FB400BC7A08 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hant"; path = "zh-Hant.lproj/OVIMSpaceChewingController.xib"; sourceTree = "<group>"; };
 		D4CBACB5106F101500BC7A08 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hant"; path = "zh-Hant.lproj/OVIMGenericController.xib"; sourceTree = "<group>"; };
 		D4CBACCA106F11F800BC7A08 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hant"; path = "zh-Hant.lproj/OVIMTibetanController.xib"; sourceTree = "<group>"; };
@@ -544,7 +527,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0110C32A142E62BE000F9D03 /* libsqlite3.dylib in Frameworks */,
 				0110C2FD142E5E8F000F9D03 /* libOVLegacyModuleLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -738,8 +720,6 @@
 		6A6A85AD0E86750E00B94B7F = {
 			isa = PBXGroup;
 			children = (
-				017E3C6A142E68D500FB3C06 /* Carbon.framework */,
-				0110C329142E62BE000F9D03 /* libsqlite3.dylib */,
 				6A8C6DE9103D455E00DE4A39 /* DataTables */,
 				6A8C6CFB103D3FA800DE4A39 /* HelperApps */,
 				6A6A86650E867E9800B94B7F /* Frameworks */,
@@ -913,34 +893,9 @@
 			path = Modules/OVIMGeneric;
 			sourceTree = "<group>";
 		};
-		6AAF6F380EAB787800F4DFE0 /* OSX-TSM */ = {
-			isa = PBXGroup;
-			children = (
-				D49BAD06106CCCB3002A202B /* Localizable.strings */,
-				6A84497F104545350050F09F /* InfoPlist.strings */,
-				6AAF6E190EAB772B00F4DFE0 /* OpenVanilla-Info.plist */,
-				6AAF6E7C0EAB77D500F4DFE0 /* OVLoaderServer-Info.plist */,
-				6ABE2AE70EAB8B05001A7E7D /* Component */,
-				6AAF6F5B0EAB78F000F4DFE0 /* IMK Emulation Layer */,
-			);
-			name = "OSX-TSM";
-			sourceTree = "<group>";
-		};
-		6AAF6F5B0EAB78F000F4DFE0 /* IMK Emulation Layer */ = {
-			isa = PBXGroup;
-			children = (
-				6AAF6F3D0EAB78B600F4DFE0 /* Context.h */,
-				6AAF6F3E0EAB78B600F4DFE0 /* Context.m */,
-				6AAF6F390EAB789400F4DFE0 /* InputMethodKitTiger.h */,
-				6AAF6F3A0EAB789400F4DFE0 /* InputMethodKitTiger.mm */,
-			);
-			name = "IMK Emulation Layer";
-			sourceTree = "<group>";
-		};
 		6AB6CE640E9CF44B0001B127 /* Loaders */ = {
 			isa = PBXGroup;
 			children = (
-				6AAF6F380EAB787800F4DFE0 /* OSX-TSM */,
 				6AB6CE650E9CF4510001B127 /* OSX-IMK */,
 			);
 			name = Loaders;
@@ -991,17 +946,6 @@
 				6AB6CF460E9CF5F00001B127 /* MainMenu.xib */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		6ABE2AE70EAB8B05001A7E7D /* Component */ = {
-			isa = PBXGroup;
-			children = (
-				6AAF6F5C0EAB790D00F4DFE0 /* Component.h */,
-				6AAF6F5E0EAB790D00F4DFE0 /* Component.m */,
-				6AAF6F5F0EAB790D00F4DFE0 /* Component.r */,
-				6AAF6F600EAB790D00F4DFE0 /* ComponentConfig.h */,
-			);
-			name = Component;
 			sourceTree = "<group>";
 		};
 		D403C3030EA3CB99006F0A89 /* OVIMTibetan */ = {
@@ -1508,7 +1452,6 @@
 				6AB6CF430E9CF5D00001B127 /* OpenVanilla.icns in Resources */,
 				6AB6CF470E9CF5F00001B127 /* MainMenu.xib in Resources */,
 				6A84496A1045439E0050F09F /* OpenVanillaSmall.icns in Resources */,
-				D49BAD08106CCCB3002A202B /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1939,15 +1882,6 @@
 				D4CBACB5106F101500BC7A08 /* zh-Hant */,
 			);
 			name = OVIMGenericController.xib;
-			sourceTree = "<group>";
-		};
-		D49BAD06106CCCB3002A202B /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D49BAD07106CCCB3002A202B /* English */,
-				D49BAD0D106CCCE3002A202B /* zh-Hant */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

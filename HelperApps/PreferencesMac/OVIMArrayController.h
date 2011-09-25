@@ -36,9 +36,10 @@
 {
 	IBOutlet NSButton *_quickModeCheckBox;
 	IBOutlet NSButton *_specialCodeCheckBox;
+    IBOutlet NSButton *_associatedPhraseCheckBox;
+    IBOutlet NSButton *_orderWordsByFreqCheckBox;
+    IBOutlet NSButton *_learnAssociatedPhraseCheckBox;
+	
 }
-
-- (IBAction)setQuickModeAction:(id)sender;
-- (IBAction)setSpecialCodeAction:(id)sender;
 
 @end

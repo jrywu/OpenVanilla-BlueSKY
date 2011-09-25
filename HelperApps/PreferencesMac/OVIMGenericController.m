@@ -75,7 +75,26 @@
 	}
 	[_warningBeepCheckBox setIntValue:[[[self dictionary] valueForKey:@"warningBeep"] intValue]];
 	
-	if (![[self dictionary] valueForKey:@"maxKeySequenceLength"]) {
+	if (![[self dictionary] valueForKey:@"associatedPhrase"]) {
+		[self setValue:[NSNumber numberWithInt:1] forKey:@"associatedPhrase"];
+		optionChanged = YES;
+	}
+	[_associatedPhraseCheckBox setIntValue:[[[self dictionary] valueForKey:@"associatedPhrase"] intValue]];	
+    
+    if (![[self dictionary] valueForKey:@"orderWordsByFreq"]) {
+		[self setValue:[NSNumber numberWithInt:0] forKey:@"orderWordsByFreq"];
+		optionChanged = YES;
+	}
+	[_orderWordsByFreqCheckBox setIntValue:[[[self dictionary] valueForKey:@"orderWordsByFreq"] intValue]];	
+    
+    if (![[self dictionary] valueForKey:@"learnAssociatedPhrase"]) {
+		[self setValue:[NSNumber numberWithInt:1] forKey:@"learnAssociatedPhrase"];
+		optionChanged = YES;
+	}
+	[_learnAssociatedPhraseCheckBox setIntValue:[[[self dictionary] valueForKey:@"learnAssociatedPhrase"] intValue]];	
+    
+    
+    if (![[self dictionary] valueForKey:@"maxKeySequenceLength"]) {
 		[self setValue:[[NSNumber numberWithInt:5] stringValue] forKey:@"maxKeySequenceLength"];
 		optionChanged = YES;
 	}
@@ -111,7 +130,10 @@
 	[[self dictionary] addObserver:self forKeyPath:@"matchZeroOrMoreChar" options:NSKeyValueObservingOptionNew context:NULL];
 	[[self dictionary] addObserver:self forKeyPath:@"maxKeySequenceLength" options:NSKeyValueObservingOptionNew context:NULL];
 	[[self dictionary] addObserver:self forKeyPath:@"shiftSelectionKey" options:NSKeyValueObservingOptionNew context:NULL];
-	[[self dictionary] addObserver:self forKeyPath:@"warningBeep" options:NSKeyValueObservingOptionNew context:NULL];
+	[[self dictionary] addObserver:self forKeyPath:@"warningBeep" options:NSKeyValueObservingOptionNew context:NULL];  
+    [[self dictionary] addObserver:self forKeyPath:@"associatedPhrase" options:NSKeyValueObservingOptionNew context:NULL];
+    [[self dictionary] addObserver:self forKeyPath:@"orderWordsByFreq" options:NSKeyValueObservingOptionNew context:NULL];
+    [[self dictionary] addObserver:self forKeyPath:@"learnAssociatedPhrase" options:NSKeyValueObservingOptionNew context:NULL];
 
 	
 }

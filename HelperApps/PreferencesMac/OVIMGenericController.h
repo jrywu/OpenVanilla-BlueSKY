@@ -39,11 +39,13 @@
 	IBOutlet NSButton *_autoComposeCheckBox;
 	IBOutlet NSButton *_hitMaxAndComposeCheckBox;
 	IBOutlet NSButton *_warningBeepCheckBox;
+    IBOutlet NSButton *_associatedPhraseCheckBox;
+    IBOutlet NSButton *_orderWordsByFreqCheckBox;
+    IBOutlet NSButton *_learnAssociatedPhraseCheckBox;
 	IBOutlet NSTextField *_maxKeySequenceLengthTextField;
 	IBOutlet NSTextField *_matchOneCharTextField;
 	IBOutlet NSTextField *_matchZeroOrMoreCharTextField;
 }
-
 - (IBAction)changeMaxKeySequenceLengthAction:(id)sender;
 
 @end

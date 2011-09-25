@@ -65,21 +65,21 @@ static NSString *modulesSettingToolbarItemIndentifier = @"Modules";
 
 - (void)toggleActivePreferenceView:(id)sender
 {
-	NSView *view;
+	//NSView *view;
 	
-//	if ([[sender itemIdentifier] isEqualToString:loaderSettingToolbarItemIndentifier])
-//		view = [m_displayController view];
-//	else if ([[sender itemIdentifier] isEqualToString:modulesSettingToolbarItemIndentifier])
-//		view = [m_moduleListController view];
-//	
-//	[self setActiveView:view animate:YES];
-//	[[self window] setTitle:MSG([sender itemIdentifier])];
+	//if ([[sender itemIdentifier] isEqualToString:loaderSettingToolbarItemIndentifier])
+		//view = [m_displayController view];
+	//else if ([[sender itemIdentifier] isEqualToString:modulesSettingToolbarItemIndentifier])
+		//view = [m_moduleListController view];
+	
+	//[self setActiveView:view animate:YES];
+	//[[self window] setTitle:MSG([sender itemIdentifier])];
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar
 {
 	return [NSArray arrayWithObjects:
-//			loaderSettingToolbarItemIndentifier,
+			loaderSettingToolbarItemIndentifier,
 			modulesSettingToolbarItemIndentifier,				
 			nil];
 }
@@ -87,7 +87,7 @@ static NSString *modulesSettingToolbarItemIndentifier = @"Modules";
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar 
 {
 	return [NSArray arrayWithObjects:
-//			loaderSettingToolbarItemIndentifier,
+			loaderSettingToolbarItemIndentifier,
 			modulesSettingToolbarItemIndentifier,
 			nil];
 }
@@ -95,7 +95,7 @@ static NSString *modulesSettingToolbarItemIndentifier = @"Modules";
 - (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar
 {
 	return [NSArray arrayWithObjects:
-//			loaderSettingToolbarItemIndentifier,
+			loaderSettingToolbarItemIndentifier,
 			modulesSettingToolbarItemIndentifier,
 			nil];
 }
@@ -104,13 +104,13 @@ static NSString *modulesSettingToolbarItemIndentifier = @"Modules";
 {
 	NSToolbarItem *item = [[[NSToolbarItem alloc] initWithItemIdentifier:identifier] autorelease];
 	if ([identifier isEqualToString:loaderSettingToolbarItemIndentifier]) {
-		[item setLabel:NSLocalizedString(loaderSettingToolbarItemIndentifier, @"")];
+		[item setLabel:NSLocalizedString(loaderSettingToolbarItemIndentifier, @"Loaders")];
 		[item setImage:[NSImage imageNamed:@"General"]];	
 		[item setTarget:self];
 		[item setAction:@selector(toggleActivePreferenceView:)];
 	}
 	else if ([identifier isEqualToString:modulesSettingToolbarItemIndentifier]) {
-		[item setLabel:NSLocalizedString(modulesSettingToolbarItemIndentifier, @"")];
+		[item setLabel:NSLocalizedString(modulesSettingToolbarItemIndentifier, @"Modules")];
 		[item setImage:[NSImage imageNamed:@"Modules"]];
 		[item setTarget:self];
 		[item setAction:@selector(toggleActivePreferenceView:)];
