@@ -151,6 +151,8 @@
 		D48A53B9103D4CF20072485F /* OVIMGenericController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48A53B8103D4CF20072485F /* OVIMGenericController.xib */; };
 		D48C56C5106CC28700FD913D /* OpenVanilla.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6AB6CF420E9CF5D00001B127 /* OpenVanilla.icns */; };
 		D4F064DE106B86A9002BCF9F /* LVTooltipTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F064DD106B86A9002BCF9F /* LVTooltipTextView.m */; };
+		D49BAD08106CCCB3002A202B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = f /* Localizable.strings */; };
+		D49BAD09106CCCB3002A202B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D49BAD06106CCCB3002A202B /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -515,6 +517,8 @@
 		D48A53AF103D4CB30072485F /* OVIMGenericController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVIMGenericController.h; sourceTree = "<group>"; };
 		D48A53B0103D4CB30072485F /* OVIMGenericController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OVIMGenericController.m; sourceTree = "<group>"; };
 		D48A53B6103D4CEA0072485F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/OVIMGenericController.xib; sourceTree = "<group>"; };
+		D49BAD07106CCCB3002A202B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = "Loaders/OSX-IMK/English.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D49BAD0D106CCCE3002A202B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "Loaders/OSX-IMK/zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D4CBACB3106F0FB400BC7A08 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hant"; path = "zh-Hant.lproj/OVIMSpaceChewingController.xib"; sourceTree = "<group>"; };
 		D4CBACB5106F101500BC7A08 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hant"; path = "zh-Hant.lproj/OVIMGenericController.xib"; sourceTree = "<group>"; };
 		D4CBACCA106F11F800BC7A08 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hant"; path = "zh-Hant.lproj/OVIMTibetanController.xib"; sourceTree = "<group>"; };
@@ -896,6 +900,7 @@
 			path = Modules/OVIMGeneric;
 			sourceTree = "<group>";
 		};
+		
 		6AB6CE640E9CF44B0001B127 /* Loaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -907,6 +912,7 @@
 		6AB6CE650E9CF4510001B127 /* OSX-IMK */ = {
 			isa = PBXGroup;
 			children = (
+				D49BAD06106CCCB3002A202B /* Localizable.strings */,
 				6A8C6C9C103D3D1D00DE4A39 /* LVDOInterface.h */,
 				6AB6CF410E9CF5BC0001B127 /* Resources */,
 				6AB6CF3B0E9CF5B60001B127 /* LVConfig.h */,
