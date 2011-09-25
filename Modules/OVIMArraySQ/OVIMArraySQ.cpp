@@ -32,6 +32,8 @@
 
 #include "OVIMArraySQ.h"
 
+
+
 using namespace std;
 using namespace OV_Array;
 
@@ -521,11 +523,8 @@ int OVIMArray::updateConfig(OVDictionary *conf){
 		// will be something like this on OS X (TSM):
 		//     /Library/OpenVanilla/version/Modules/OVIMGeneric/
 		// and inside the bundle of OS X (IMK
-#ifndef WIN32
-        string datapath=string(libpath);
-#else
 		string datapath=string(libpath) + string(pathsep) + string("OVIMArray");
-#endif
+
 		murmur(" dataPath %s", datapath.c_str());
  
 		cinlist = new OVCINSQList(pathsep, datapath.c_str(), userpath.c_str(), "ovimarray.db");
