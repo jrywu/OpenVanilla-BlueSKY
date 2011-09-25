@@ -121,13 +121,13 @@
   <data name="checkBox2.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 16</value>
   </data>
-  <data name="checkBox2.Text" xml:space="preserve">
+  <data name="m_cbQuickMode.Text" xml:space="preserve">
     <value>快打模式</value>
   </data>
   <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>261, 16</value>
   </data>
-  <data name="checkBox1.Text" xml:space="preserve">
+  <data name="m_cbSpecialCode.Text" xml:space="preserve">
     <value>特別碼提示</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
@@ -135,5 +135,14 @@
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 138</value>
+  </data>
+  <data name="m_cbAssociatedPhrase.Text" xml:space="preserve">
+    <value>使用聯想字詞</value>
+  </data>
+  <data name="m_cbLearnAssociatedPhrase.Text" xml:space="preserve">
+    <value>學習聯想字詞</value>
+  </data>
+  <data name="m_cbOrderWordsByFreq.Text" xml:space="preserve">
+    <value>根據使用頻率排列候選字</value>
   </data>
 </root>

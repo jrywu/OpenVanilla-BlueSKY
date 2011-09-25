@@ -85,12 +85,15 @@ void OVIMArrayContext::updateFreqFetchAssociatedPhrase(const string& phrase, OVC
 			if( parent->doAssociatedPhrase() &&
 				tabs[MAIN_TAB]->getAssociatedPhrases(phrase, candidateStringVector, parent->doLearnAssociatedPhrase())) {
 			//Fetch associated phrase... 
+		    murmur("fetching asscociated phrase list with selkey = %s", parent->getAssocSelKey());
+
 #if defined(WIN32) && !defined(WINCE)
 					candi.prepare(&candidateStringVector, parent->getAssocSelKey()
 						, textbar, "1234567890", string("Shift+#\xE3\x80\x80"));
 #else
-            murmur("fetching asscociated phrase list with selkey = %s", parent->getAssocSelKey().c_str());
-			candi.prepare(&candidateStringVector, parent->getAssocSelKey().c_str() , textbar); 
+            string currentSelKey = parent->getAssocSelKey();
+			candi.prepare(&candidateStringVector,
+                          const_cast<char*>(currentSelKey.c_str()), candibar);
 #endif
 			assoconduty = true;
 			}

@@ -121,16 +121,25 @@
   <data name="checkBox2.Size" type="System.Drawing.Size, System.Drawing">
     <value>98, 16</value>
   </data>
-  <data name="checkBox2.Text" xml:space="preserve">
+  <data name="m_cbQuickMode.Text" xml:space="preserve">
     <value>Quick Mode</value>
   </data>
   <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 16</value>
   </data>
-  <data name="checkBox1.Text" xml:space="preserve">
+  <data name="m_cbSpecialCode.Text" xml:space="preserve">
     <value>Special Code</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 12</value>
+  </data>
+  <data name="m_cbAssociatedPhrase.Text" xml:space="preserve">
+    <value>Sugggest next words or phrases.</value>
+  </data>
+  <data name="m_cbLearnAssociatedPhrase.Text" xml:space="preserve">
+    <value>Learn associated phrases.</value>
+  </data>
+  <data name="m_cbOrderWordsByFreq.Text" xml:space="preserve">
+    <value>Sort candidate list by word frequencies.</value>
   </data>
 </root>

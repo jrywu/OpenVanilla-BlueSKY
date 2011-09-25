@@ -122,48 +122,48 @@
     <value>92, 16</value>
   </data>
   <data name="m_cbWarningBeep.Text" xml:space="preserve">
-    <value>Warning Beep</value>
+    <value>Beep on erros.</value>
   </data>
   <data name="m_cbHitMaxAndCompose.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 16</value>
   </data>
   <data name="m_cbHitMaxAndCompose.Text" xml:space="preserve">
-    <value>Hit Max and Compose</value>
+    <value>Commit at maximum number of radicals.</value>
   </data>
   <data name="m_cbAutoCompose.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 16</value>
   </data>
   <data name="m_cbAutoCompose.Text" xml:space="preserve">
-    <value>Auto Compose</value>
+    <value>Compose at each keystroke.</value>
   </data>
   <data name="m_cbShiftSelectionKey.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 16</value>
   </data>
   <data name="m_cbShiftSelectionKey.Text" xml:space="preserve">
-    <value>Shift Selection Key</value>
+    <value>Use Space to choose the first candidate.</value>
   </data>
   <data name="m_lbMaxKeySequenceLength.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 12</value>
   </data>
   <data name="m_lbMaxKeySequenceLength.Text" xml:space="preserve">
-    <value>Maximum Keys : </value>
+    <value>Maximum radical length</value>
   </data>
   <data name="m_cbAssociatedPhrase.Text" xml:space="preserve">
-    <value>Prompt Assciated Phrase</value>
+    <value>Sugggest next words or phrases.</value>
   </data>
   <data name="m_cbOrderWordsByFreq.Text" xml:space="preserve">
-    <value>Ordere Candidates in User Frequency.</value>
+    <value>Sort candidate list by word frequencies.</value>
   </data>
   <data name="m_cbWildCard.Text" xml:space="preserve">
-    <value>Use Wildcards</value>
+    <value>Do wildcard matching.</value>
   </data>
   <data name="m_lbMatchOneChar.Text" xml:space="preserve">
-    <value>Match One Character</value>
+    <value>Match one character with</value>
   </data>
   <data name="m_lbMatchZeroOrMoreChar.Text" xml:space="preserve">
-    <value>Match Zero or More Characters</value>
+    <value>Match zero or more characters</value>
   </data>
   <data name="m_cbLearnAssociatedPhrase.Text" xml:space="preserve">
-    <value>Automatically Learn Associated Phrase</value>
+    <value>Learn associated phrases.</value>
   </data>
 </root>

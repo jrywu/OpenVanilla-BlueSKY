@@ -122,15 +122,18 @@
     <value>True</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_cbLearnAssociatedPhrase.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
   <data name="m_cbLearnAssociatedPhrase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 256</value>
+    <value>17, 265</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_cbLearnAssociatedPhrase.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbLearnAssociatedPhrase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 19</value>
+    <value>131, 21</value>
   </data>
   <data name="m_cbLearnAssociatedPhrase.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -153,17 +156,20 @@
   <data name="m_cbOrderWordsByFreq.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="m_cbOrderWordsByFreq.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
   <data name="m_cbOrderWordsByFreq.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="m_cbOrderWordsByFreq.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 230</value>
+    <value>17, 239</value>
   </data>
   <data name="m_cbOrderWordsByFreq.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbOrderWordsByFreq.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 19</value>
+    <value>157, 21</value>
   </data>
   <data name="m_cbOrderWordsByFreq.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -186,17 +192,20 @@
   <data name="m_cbAssociatedPhrase.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="m_cbAssociatedPhrase.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
   <data name="m_cbAssociatedPhrase.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="m_cbAssociatedPhrase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 206</value>
+    <value>17, 215</value>
   </data>
   <data name="m_cbAssociatedPhrase.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbAssociatedPhrase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 19</value>
+    <value>105, 21</value>
   </data>
   <data name="m_cbAssociatedPhrase.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -216,14 +225,17 @@
   <data name="&gt;&gt;m_cbAssociatedPhrase.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="m_tbselectKey.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
   <data name="m_tbselectKey.Location" type="System.Drawing.Point, System.Drawing">
-    <value>79, 174</value>
+    <value>79, 182</value>
   </data>
   <data name="m_tbselectKey.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_tbselectKey.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 22</value>
+    <value>109, 25</value>
   </data>
   <data name="m_tbselectKey.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -240,14 +252,17 @@
   <data name="&gt;&gt;m_tbselectKey.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="m_tbMatchZeroOrMoreChar.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
   <data name="m_tbMatchZeroOrMoreChar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>275, 149</value>
+    <value>275, 157</value>
   </data>
   <data name="m_tbMatchZeroOrMoreChar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_tbMatchZeroOrMoreChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 22</value>
+    <value>35, 25</value>
   </data>
   <data name="m_tbMatchZeroOrMoreChar.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -264,8 +279,11 @@
   <data name="&gt;&gt;m_tbMatchZeroOrMoreChar.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="m_tbMatchOneChar.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
   <data name="m_tbMatchOneChar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 148</value>
+    <value>140, 156</value>
   </data>
   <data name="m_tbMatchOneChar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
@@ -274,7 +292,7 @@
     <value>1</value>
   </data>
   <data name="m_tbMatchOneChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 22</value>
+    <value>35, 25</value>
   </data>
   <data name="m_tbMatchOneChar.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -291,14 +309,17 @@
   <data name="&gt;&gt;m_tbMatchOneChar.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="m_tbmaxKeySequenceLength.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
   <data name="m_tbmaxKeySequenceLength.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 105</value>
+    <value>153, 108</value>
   </data>
   <data name="m_tbmaxKeySequenceLength.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_tbmaxKeySequenceLength.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 22</value>
+    <value>35, 25</value>
   </data>
   <data name="m_tbmaxKeySequenceLength.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -318,6 +339,9 @@
   <data name="m_cbWarningBeep.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="m_cbWarningBeep.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
   <data name="m_cbWarningBeep.Location" type="System.Drawing.Point, System.Drawing">
     <value>17, 83</value>
   </data>
@@ -325,7 +349,7 @@
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbWarningBeep.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 19</value>
+    <value>118, 21</value>
   </data>
   <data name="m_cbWarningBeep.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -348,6 +372,9 @@
   <data name="m_cbHitMaxAndCompose.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="m_cbHitMaxAndCompose.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
   <data name="m_cbHitMaxAndCompose.Location" type="System.Drawing.Point, System.Drawing">
     <value>17, 59</value>
   </data>
@@ -355,7 +382,7 @@
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbHitMaxAndCompose.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 19</value>
+    <value>170, 21</value>
   </data>
   <data name="m_cbHitMaxAndCompose.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -378,6 +405,9 @@
   <data name="m_cbAutoCompose.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="m_cbAutoCompose.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
   <data name="m_cbAutoCompose.Location" type="System.Drawing.Point, System.Drawing">
     <value>17, 35</value>
   </data>
@@ -385,7 +415,7 @@
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbAutoCompose.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 19</value>
+    <value>209, 21</value>
   </data>
   <data name="m_cbAutoCompose.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -408,6 +438,9 @@
   <data name="m_cbShiftSelectionKey.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="m_cbShiftSelectionKey.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
   <data name="m_cbShiftSelectionKey.Location" type="System.Drawing.Point, System.Drawing">
     <value>17, 11</value>
   </data>
@@ -415,7 +448,7 @@
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbShiftSelectionKey.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 19</value>
+    <value>248, 21</value>
   </data>
   <data name="m_cbShiftSelectionKey.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -438,17 +471,20 @@
   <data name="m_cbWildCard.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="m_cbWildCard.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
   <data name="m_cbWildCard.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="m_cbWildCard.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 131</value>
+    <value>17, 139</value>
   </data>
   <data name="m_cbWildCard.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbWildCard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 19</value>
+    <value>105, 21</value>
   </data>
   <data name="m_cbWildCard.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -471,17 +507,20 @@
   <data name="m_lbselectKey.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="m_lbselectKey.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
   <data name="m_lbselectKey.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="m_lbselectKey.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 177</value>
+    <value>13, 185</value>
   </data>
   <data name="m_lbselectKey.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbselectKey.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 15</value>
+    <value>50, 17</value>
   </data>
   <data name="m_lbselectKey.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -504,17 +543,20 @@
   <data name="m_lbMatchZeroOrMoreChar.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="m_lbMatchZeroOrMoreChar.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
   <data name="m_lbMatchZeroOrMoreChar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="m_lbMatchZeroOrMoreChar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>179, 152</value>
+    <value>179, 160</value>
   </data>
   <data name="m_lbMatchZeroOrMoreChar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbMatchZeroOrMoreChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 15</value>
+    <value>89, 17</value>
   </data>
   <data name="m_lbMatchZeroOrMoreChar.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -537,17 +579,20 @@
   <data name="m_lbMatchOneChar.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="m_lbMatchOneChar.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
   <data name="m_lbMatchOneChar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="m_lbMatchOneChar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 154</value>
+    <value>40, 162</value>
   </data>
   <data name="m_lbMatchOneChar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbMatchOneChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 15</value>
+    <value>89, 17</value>
   </data>
   <data name="m_lbMatchOneChar.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -570,14 +615,17 @@
   <data name="m_lbMaxKeySequenceLength.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="m_lbMaxKeySequenceLength.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
   <data name="m_lbMaxKeySequenceLength.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 108</value>
+    <value>13, 111</value>
   </data>
   <data name="m_lbMaxKeySequenceLength.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbMaxKeySequenceLength.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 15</value>
+    <value>125, 17</value>
   </data>
   <data name="m_lbMaxKeySequenceLength.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>

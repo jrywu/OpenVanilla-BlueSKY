@@ -155,7 +155,7 @@
     <value>使用聯想字詞</value>
   </data>
   <data name="m_cbOrderWordsByFreq.Text" xml:space="preserve">
-    <value>以使用頻率排列候選字</value>
+    <value>根據使用頻率排列候選字</value>
   </data>
   <data name="m_cbWildCard.Text" xml:space="preserve">
     <value>使用萬用字元</value>
@@ -167,6 +167,6 @@
     <value>符合任意字元:</value>
   </data>
   <data name="m_cbLearnAssociatedPhrase.Text" xml:space="preserve">
-    <value>自動學習聯想字詞</value>
+    <value>學習聯想字詞</value>
   </data>
 </root>

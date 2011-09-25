@@ -34,14 +34,14 @@ namespace OVPreferences
 
         protected virtual void LoadSettings()
         {
-            checkBox1.Checked =
+            m_cbSpecialCode.Checked =
                 Convert.ToBoolean(Convert.ToInt32(
                    m_ovConfDomHandler.GetAttribute(
                        m_ovConf.moduleName, "specialCode", "1")));
                 //|| Convert.ToBoolean(Convert.ToInt32(
                 //   m_ovConfDomHandler.GetAttribute(
                 //      m_ovConf.moduleName, "特別碼提示", "1")));
-            checkBox2.Checked =
+            m_cbQuickMode.Checked =
                 Convert.ToBoolean(Convert.ToInt32(
                    m_ovConfDomHandler.GetAttribute(
                        m_ovConf.moduleName, "quickMode", "0")));
@@ -69,13 +69,13 @@ namespace OVPreferences
             m_cbLearnAssociatedPhrase.Checked = m_doLearnAssociatedPhrase;
 
         }
-            
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+
+        private void m_cbSpecialCode_CheckedChanged(object sender, EventArgs e)
         {
             m_ovConfDomHandler.SetAttribute(
                m_ovConf.moduleName,
                "specialCode",
-               checkBox1.Checked ? "1" : "0");
+               m_cbSpecialCode.Checked ? "1" : "0");
             /*m_ovConfDomHandler.SetAttribute(
               m_ovConf.moduleName,
               "特別碼提示",
@@ -83,12 +83,12 @@ namespace OVPreferences
              */
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        private void m_cbQuickMode_CheckedChanged(object sender, EventArgs e)
         {
             m_ovConfDomHandler.SetAttribute(
                m_ovConf.moduleName,
                "quickMode",
-               checkBox2.Checked ? "1" : "0");
+               m_cbQuickMode.Checked ? "1" : "0");
             /*m_ovConfDomHandler.SetAttribute(
               m_ovConf.moduleName,
               "快打模式",

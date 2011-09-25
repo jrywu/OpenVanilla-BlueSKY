@@ -64,11 +64,11 @@ namespace OVPreferences
             // 
             // m_cbKeyboardLayout
             // 
+            resources.ApplyResources(this.m_cbKeyboardLayout, "m_cbKeyboardLayout");
             this.m_cbKeyboardLayout.FormattingEnabled = true;
             this.m_cbKeyboardLayout.Items.AddRange(new object[] {
             resources.GetString("m_cbKeyboardLayout.Items"),
             resources.GetString("m_cbKeyboardLayout.Items1")});
-            resources.ApplyResources(this.m_cbKeyboardLayout, "m_cbKeyboardLayout");
             this.m_cbKeyboardLayout.Name = "m_cbKeyboardLayout";
             this.m_cbKeyboardLayout.SelectedIndexChanged += new System.EventHandler(this.m_cbKeyboardLayout_SelectedIndexChanged);
             // 

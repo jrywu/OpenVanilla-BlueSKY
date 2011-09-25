@@ -33,8 +33,8 @@ namespace OVPreferences
             this.m_cbLearnAssociatedPhrase = new System.Windows.Forms.CheckBox();
             this.m_cbOrderWordsByFreq = new System.Windows.Forms.CheckBox();
             this.m_cbAssociatedPhrase = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.m_cbQuickMode = new System.Windows.Forms.CheckBox();
+            this.m_cbSpecialCode = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,8 +43,8 @@ namespace OVPreferences
             this.panel1.Controls.Add(this.m_cbLearnAssociatedPhrase);
             this.panel1.Controls.Add(this.m_cbOrderWordsByFreq);
             this.panel1.Controls.Add(this.m_cbAssociatedPhrase);
-            this.panel1.Controls.Add(this.checkBox2);
-            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.m_cbQuickMode);
+            this.panel1.Controls.Add(this.m_cbSpecialCode);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
@@ -69,19 +69,19 @@ namespace OVPreferences
             this.m_cbAssociatedPhrase.UseVisualStyleBackColor = true;
             this.m_cbAssociatedPhrase.CheckedChanged += new System.EventHandler(this.m_cbAssociatedPhrase_CheckedChanged);
             // 
-            // checkBox2
+            // m_cbQuickMode
             // 
-            resources.ApplyResources(this.checkBox2, "checkBox2");
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            resources.ApplyResources(this.m_cbQuickMode, "m_cbQuickMode");
+            this.m_cbQuickMode.Name = "m_cbQuickMode";
+            this.m_cbQuickMode.UseVisualStyleBackColor = true;
+            this.m_cbQuickMode.CheckedChanged += new System.EventHandler(this.m_cbQuickMode_CheckedChanged);
             // 
-            // checkBox1
+            // m_cbSpecialCode
             // 
-            resources.ApplyResources(this.checkBox1, "checkBox1");
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            resources.ApplyResources(this.m_cbSpecialCode, "m_cbSpecialCode");
+            this.m_cbSpecialCode.Name = "m_cbSpecialCode";
+            this.m_cbSpecialCode.UseVisualStyleBackColor = true;
+            this.m_cbSpecialCode.CheckedChanged += new System.EventHandler(this.m_cbSpecialCode_CheckedChanged);
             // 
             // PanelArray
             // 
@@ -98,8 +98,8 @@ namespace OVPreferences
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox m_cbQuickMode;
+        private System.Windows.Forms.CheckBox m_cbSpecialCode;
         private System.Windows.Forms.CheckBox m_cbLearnAssociatedPhrase;
         private System.Windows.Forms.CheckBox m_cbOrderWordsByFreq;
         private System.Windows.Forms.CheckBox m_cbAssociatedPhrase;
