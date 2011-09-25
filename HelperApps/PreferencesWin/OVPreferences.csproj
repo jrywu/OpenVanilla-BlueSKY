@@ -54,6 +54,8 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -126,12 +128,6 @@
     </Compile>
     <Compile Include="PanelTibetan.Designer.cs">
       <DependentUpon>PanelTibetan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PanelTobacco.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PanelTobacco.Designer.cs">
-      <DependentUpon>PanelTobacco.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -239,18 +235,6 @@
     <EmbeddedResource Include="PanelTibetan.resx">
       <SubType>Designer</SubType>
       <DependentUpon>PanelTibetan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PanelTobacco.en-US.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>PanelTobacco.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PanelTobacco.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>PanelTobacco.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PanelTobacco.zh-TW.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>PanelTobacco.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resource.en-US.resx">
       <SubType>Designer</SubType>

@@ -24,7 +24,7 @@ namespace OVPreferences
         private int m_maxKeySequenceLength;
         private bool m_doShiftSelectionKey;
         private bool m_doWarningBeep;
-        private bool m_doWildcard;
+        //private bool m_doWildcard;
         private string m_matchOneChar = "?";
         private string m_matchZeroOrMoreChar = "*";
         private string m_selectKey;
@@ -70,10 +70,12 @@ namespace OVPreferences
                 Convert.ToBoolean(Convert.ToInt32(
                     m_ovConfDomHandler.GetAttribute(
                         m_ovConf.moduleName, "warningBeep", "0")));
+            /*
             m_doWildcard =
                 Convert.ToBoolean(Convert.ToInt32(
                     m_ovConfDomHandler.GetAttribute(
                         m_ovConf.moduleName, "wildcard", "1")));
+            */
             m_selectKey = m_ovConfDomHandler.GetAttribute(
                         m_ovConf.moduleName, "selectKey");
             if (m_selectKey==null)
@@ -109,10 +111,11 @@ namespace OVPreferences
 
             m_cbAutoCompose.Checked = m_doAutoCompose;
             m_cbHitMaxAndCompose.Checked = m_doHitMaxAndCompose;
-            m_tbmaxKeySequenceLength.Text = m_maxKeySequenceLength.ToString();
+
+            m_nuMaxRadicalLength.Value = m_maxKeySequenceLength;
             m_cbShiftSelectionKey.Checked = m_doShiftSelectionKey;
             m_cbWarningBeep.Checked = m_doWarningBeep;
-            m_cbWildCard.Checked = m_doWildcard;
+            //m_cbWildCard.Checked = m_doWildcard;
             m_cbAssociatedPhrase.Checked = m_doAssociatedPhrase;
             m_cbOrderWordsByFreq.Checked = m_doOrderWordsByFreq;
             m_cbLearnAssociatedPhrase.Checked = m_doLearnAssociatedPhrase;
@@ -159,6 +162,7 @@ namespace OVPreferences
                 "warningBeep",
                 m_doWarningBeep ? "1" : "0");
         }
+        /*
         private void m_cbWildcard_CheckedChanged(object sender, EventArgs e)
         {
             m_doWildcard = m_cbWildCard.Checked;
@@ -167,30 +171,8 @@ namespace OVPreferences
                 "wildcard",
                 m_doWildcard ? "1" : "0");
         }
-        void m_tbmaxKeySequenceLength_TextChanged(object sender, System.EventArgs e)
-        {
-            if (m_tbmaxKeySequenceLength.Text.Length == 0) return;
-            try
-            {
-                m_maxKeySequenceLength =
-                    Convert.ToInt32(m_tbmaxKeySequenceLength.Text);
-            }
-            catch
-            {
-                m_maxKeySequenceLength = 0;
-            }
-            if (m_maxKeySequenceLength == 0)
-            {
-                MessageBox.Show("Positive Integer Please!");
-                m_maxKeySequenceLength = 5;
-                return;
-            }
+        */
 
-            m_ovConfDomHandler.SetAttribute(
-                m_ovConf.moduleName,
-                "maxKeySequenceLength",
-                m_maxKeySequenceLength.ToString());
-        }
 
         void m_tbselectKey_TextChanged(object sender, System.EventArgs e)
         {
@@ -263,6 +245,18 @@ namespace OVPreferences
                 m_doLearnAssociatedPhrase ? "1" : "0");
 
         }
+
+        private void m_nuMaxRadicalLength_ValueChanged(object sender, EventArgs e)
+        {
+    
+            m_ovConfDomHandler.SetAttribute(
+                m_ovConf.moduleName,
+                "maxKeySequenceLength",
+                m_maxKeySequenceLength.ToString());
+        }
+
+        
+
 
  
        

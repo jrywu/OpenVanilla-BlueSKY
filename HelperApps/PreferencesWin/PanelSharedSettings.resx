@@ -112,28 +112,31 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lbOpacity.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lbOpacity.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft JhengHei, 8.25pt</value>
+    <value>Microsoft JhengHei, 9.75pt</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lbOpacity.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="m_lbOpacity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>292, 206</value>
+    <value>426, 256</value>
+  </data>
+  <data name="m_lbOpacity.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbOpacity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 15</value>
+    <value>56, 17</value>
   </data>
   <data name="m_lbOpacity.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -145,7 +148,7 @@
     <value>m_lbOpacity</value>
   </data>
   <data name="&gt;&gt;m_lbOpacity.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lbOpacity.Parent" xml:space="preserve">
     <value>m_pnSelf</value>
@@ -157,13 +160,16 @@
     <value>False</value>
   </data>
   <data name="m_cbCandiFont.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 32</value>
+    <value>101, 53</value>
+  </data>
+  <data name="m_cbCandiFont.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbCandiFont.MaxDropDownItems" type="System.Int32, mscorlib">
     <value>20</value>
   </data>
   <data name="m_cbCandiFont.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 26</value>
+    <value>167, 26</value>
   </data>
   <data name="m_cbCandiFont.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -184,10 +190,13 @@
     <value>NoControl</value>
   </data>
   <data name="m_cbCandiBackColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 69</value>
+    <value>9, 103</value>
+  </data>
+  <data name="m_cbCandiBackColor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbCandiBackColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 30</value>
+    <value>87, 30</value>
   </data>
   <data name="m_cbCandiBackColor.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -232,10 +241,13 @@
     <value>20</value>
   </data>
   <data name="m_cbCandiFontSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>206, 33</value>
+    <value>275, 54</value>
+  </data>
+  <data name="m_cbCandiFontSize.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbCandiFontSize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 25</value>
+    <value>39, 25</value>
   </data>
   <data name="m_cbCandiFontSize.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -247,7 +259,7 @@
     <value>m_cbCandiFontSize</value>
   </data>
   <data name="&gt;&gt;m_cbCandiFontSize.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_cbCandiFontSize.Parent" xml:space="preserve">
     <value>m_gpCandi</value>
@@ -259,10 +271,13 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbCandiBackColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 55</value>
+    <value>9, 82</value>
+  </data>
+  <data name="m_lbCandiBackColor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbCandiBackColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
+    <value>133, 23</value>
   </data>
   <data name="m_lbCandiBackColor.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -274,7 +289,7 @@
     <value>m_lbCandiBackColor</value>
   </data>
   <data name="&gt;&gt;m_lbCandiBackColor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lbCandiBackColor.Parent" xml:space="preserve">
     <value>m_gpCandi</value>
@@ -286,10 +301,13 @@
     <value>NoControl</value>
   </data>
   <data name="m_cbCandiFontColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 26</value>
+    <value>9, 48</value>
+  </data>
+  <data name="m_cbCandiFontColor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbCandiFontColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 30</value>
+    <value>87, 30</value>
   </data>
   <data name="m_cbCandiFontColor.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -310,10 +328,13 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbCandiFont.Location" type="System.Drawing.Point, System.Drawing">
-    <value>80, 14</value>
+    <value>105, 29</value>
+  </data>
+  <data name="m_lbCandiFont.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbCandiFont.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
+    <value>133, 23</value>
   </data>
   <data name="m_lbCandiFont.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -325,7 +346,7 @@
     <value>m_lbCandiFont</value>
   </data>
   <data name="&gt;&gt;m_lbCandiFont.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lbCandiFont.Parent" xml:space="preserve">
     <value>m_gpCandi</value>
@@ -337,10 +358,13 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbCandiFontColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 13</value>
+    <value>11, 27</value>
+  </data>
+  <data name="m_lbCandiFontColor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbCandiFontColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
+    <value>133, 23</value>
   </data>
   <data name="m_lbCandiFontColor.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -352,7 +376,7 @@
     <value>m_lbCandiFontColor</value>
   </data>
   <data name="&gt;&gt;m_lbCandiFontColor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lbCandiFontColor.Parent" xml:space="preserve">
     <value>m_gpCandi</value>
@@ -366,8 +390,14 @@
   <data name="m_gpCandi.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="m_gpCandi.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="m_gpCandi.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
   <data name="m_gpCandi.Size" type="System.Drawing.Size, System.Drawing">
-    <value>241, 104</value>
+    <value>321, 148</value>
   </data>
   <data name="m_gpCandi.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -379,7 +409,7 @@
     <value>m_gpCandi</value>
   </data>
   <data name="&gt;&gt;m_gpCandi.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_gpCandi.Parent" xml:space="preserve">
     <value>m_pnSelf</value>
@@ -394,10 +424,13 @@
     <value>NoControl</value>
   </data>
   <data name="m_cbEnableNotify.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 110</value>
+    <value>12, 127</value>
+  </data>
+  <data name="m_cbEnableNotify.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbEnableNotify.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 21</value>
+    <value>165, 21</value>
   </data>
   <data name="m_cbEnableNotify.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -409,7 +442,7 @@
     <value>m_cbEnableNotify</value>
   </data>
   <data name="&gt;&gt;m_cbEnableNotify.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_cbEnableNotify.Parent" xml:space="preserve">
     <value>m_gpNotify</value>
@@ -421,13 +454,16 @@
     <value>False</value>
   </data>
   <data name="m_cbFont.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 32</value>
+    <value>101, 42</value>
+  </data>
+  <data name="m_cbFont.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbFont.MaxDropDownItems" type="System.Int32, mscorlib">
     <value>20</value>
   </data>
   <data name="m_cbFont.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 26</value>
+    <value>167, 26</value>
   </data>
   <data name="m_cbFont.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -448,10 +484,13 @@
     <value>NoControl</value>
   </data>
   <data name="m_cbBackColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 69</value>
+    <value>9, 92</value>
+  </data>
+  <data name="m_cbBackColor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbBackColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 30</value>
+    <value>87, 30</value>
   </data>
   <data name="m_cbBackColor.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -496,10 +535,13 @@
     <value>20</value>
   </data>
   <data name="m_cbFontSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>205, 33</value>
+    <value>273, 43</value>
+  </data>
+  <data name="m_cbFontSize.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbFontSize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 25</value>
+    <value>39, 25</value>
   </data>
   <data name="m_cbFontSize.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -511,7 +553,7 @@
     <value>m_cbFontSize</value>
   </data>
   <data name="&gt;&gt;m_cbFontSize.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_cbFontSize.Parent" xml:space="preserve">
     <value>m_gpNotify</value>
@@ -523,10 +565,13 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbBackColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 55</value>
+    <value>9, 73</value>
+  </data>
+  <data name="m_lbBackColor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbBackColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
+    <value>133, 23</value>
   </data>
   <data name="m_lbBackColor.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -538,7 +583,7 @@
     <value>m_lbBackColor</value>
   </data>
   <data name="&gt;&gt;m_lbBackColor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lbBackColor.Parent" xml:space="preserve">
     <value>m_gpNotify</value>
@@ -550,10 +595,13 @@
     <value>NoControl</value>
   </data>
   <data name="m_cbFontColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 26</value>
+    <value>9, 37</value>
+  </data>
+  <data name="m_cbFontColor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbFontColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 30</value>
+    <value>87, 30</value>
   </data>
   <data name="m_cbFontColor.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -574,10 +622,13 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbFont.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 13</value>
+    <value>101, 19</value>
+  </data>
+  <data name="m_lbFont.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbFont.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
+    <value>133, 23</value>
   </data>
   <data name="m_lbFont.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -589,7 +640,7 @@
     <value>m_lbFont</value>
   </data>
   <data name="&gt;&gt;m_lbFont.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lbFont.Parent" xml:space="preserve">
     <value>m_gpNotify</value>
@@ -601,10 +652,13 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbFontColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 13</value>
+    <value>8, 18</value>
+  </data>
+  <data name="m_lbFontColor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbFontColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
+    <value>133, 23</value>
   </data>
   <data name="m_lbFontColor.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -616,7 +670,7 @@
     <value>m_lbFontColor</value>
   </data>
   <data name="&gt;&gt;m_lbFontColor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lbFontColor.Parent" xml:space="preserve">
     <value>m_gpNotify</value>
@@ -628,10 +682,16 @@
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_gpNotify.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 105</value>
+    <value>0, 154</value>
+  </data>
+  <data name="m_gpNotify.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="m_gpNotify.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="m_gpNotify.Size" type="System.Drawing.Size, System.Drawing">
-    <value>241, 138</value>
+    <value>321, 161</value>
   </data>
   <data name="m_gpNotify.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -643,7 +703,7 @@
     <value>m_gpNotify</value>
   </data>
   <data name="&gt;&gt;m_gpNotify.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_gpNotify.Parent" xml:space="preserve">
     <value>m_pnSelf</value>
@@ -661,7 +721,10 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbptOpacity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>366, 216</value>
+    <value>544, 256</value>
+  </data>
+  <data name="m_lbptOpacity.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbptOpacity.Size" type="System.Drawing.Size, System.Drawing">
     <value>27, 16</value>
@@ -676,7 +739,7 @@
     <value>m_lbptOpacity</value>
   </data>
   <data name="&gt;&gt;m_lbptOpacity.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lbptOpacity.Parent" xml:space="preserve">
     <value>m_pnSelf</value>
@@ -694,13 +757,16 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbCandiPreview.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 32</value>
+    <value>65, 53</value>
+  </data>
+  <data name="m_lbCandiPreview.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbCandiPreview.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+    <value>7, 5, 7, 5</value>
   </data>
   <data name="m_lbCandiPreview.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 30</value>
+    <value>88, 31</value>
   </data>
   <data name="m_lbCandiPreview.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -712,7 +778,7 @@
     <value>m_lbCandiPreview</value>
   </data>
   <data name="&gt;&gt;m_lbCandiPreview.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lbCandiPreview.Parent" xml:space="preserve">
     <value>panelPreview</value>
@@ -730,13 +796,16 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbNotifyPreview.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 121</value>
+    <value>65, 168</value>
+  </data>
+  <data name="m_lbNotifyPreview.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbNotifyPreview.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+    <value>7, 5, 7, 5</value>
   </data>
   <data name="m_lbNotifyPreview.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 30</value>
+    <value>88, 31</value>
   </data>
   <data name="m_lbNotifyPreview.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -748,7 +817,7 @@
     <value>m_lbNotifyPreview</value>
   </data>
   <data name="&gt;&gt;m_lbNotifyPreview.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lbNotifyPreview.Parent" xml:space="preserve">
     <value>panelPreview</value>
@@ -760,10 +829,13 @@
     <value>Fill</value>
   </data>
   <data name="panelPreview.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 18</value>
+    <value>4, 21</value>
+  </data>
+  <data name="panelPreview.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="panelPreview.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 183</value>
+    <value>225, 220</value>
   </data>
   <data name="panelPreview.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -772,7 +844,7 @@
     <value>panelPreview</value>
   </data>
   <data name="&gt;&gt;panelPreview.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;panelPreview.Parent" xml:space="preserve">
     <value>m_gbPreview</value>
@@ -781,13 +853,19 @@
     <value>0</value>
   </data>
   <data name="m_gbPreview.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft JhengHei, 8.25pt</value>
+    <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_gbPreview.Location" type="System.Drawing.Point, System.Drawing">
-    <value>245, 0</value>
+    <value>342, 0</value>
+  </data>
+  <data name="m_gbPreview.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="m_gbPreview.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="m_gbPreview.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 204</value>
+    <value>233, 244</value>
   </data>
   <data name="m_gbPreview.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -799,7 +877,7 @@
     <value>m_gbPreview</value>
   </data>
   <data name="&gt;&gt;m_gbPreview.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_gbPreview.Parent" xml:space="preserve">
     <value>m_pnSelf</value>
@@ -811,10 +889,13 @@
     <value>NoControl</value>
   </data>
   <data name="m_tbOpacity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>238, 214</value>
+    <value>341, 276</value>
+  </data>
+  <data name="m_tbOpacity.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="m_tbOpacity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 45</value>
+    <value>234, 45</value>
   </data>
   <data name="m_tbOpacity.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -823,7 +904,7 @@
     <value>m_tbOpacity</value>
   </data>
   <data name="&gt;&gt;m_tbOpacity.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_tbOpacity.Parent" xml:space="preserve">
     <value>m_pnSelf</value>
@@ -840,8 +921,11 @@
   <data name="m_pnSelf.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="m_pnSelf.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
   <data name="m_pnSelf.Size" type="System.Drawing.Size, System.Drawing">
-    <value>542, 303</value>
+    <value>604, 335</value>
   </data>
   <data name="m_pnSelf.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -850,7 +934,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_pnSelf.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_pnSelf.Parent" xml:space="preserve">
     <value>$this</value>
@@ -858,28 +942,31 @@
   <data name="&gt;&gt;m_pnSelf.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="m_cdMoreColors.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="m_cdMoreColors.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>8, 13</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>542, 303</value>
+    <value>604, 335</value>
   </data>
   <data name="&gt;&gt;m_cdMoreColors.Name" xml:space="preserve">
     <value>m_cdMoreColors</value>
   </data>
   <data name="&gt;&gt;m_cdMoreColors.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>PanelSharedSettings</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

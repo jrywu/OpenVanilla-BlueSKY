@@ -38,6 +38,7 @@ namespace OVPreferences
             this.m_lbCandiFont = new System.Windows.Forms.Label();
             this.m_lbCandiFontColor = new System.Windows.Forms.Label();
             this.m_gpNotify = new System.Windows.Forms.GroupBox();
+            this.m_cbEnableNotify = new System.Windows.Forms.CheckBox();
             this.m_cbFontSize = new System.Windows.Forms.ComboBox();
             this.m_lbBackColor = new System.Windows.Forms.Label();
             this.m_lbFont = new System.Windows.Forms.Label();
@@ -49,7 +50,6 @@ namespace OVPreferences
             this.m_lbNotifyPreview = new System.Windows.Forms.Label();
             this.m_tbOpacity = new System.Windows.Forms.TrackBar();
             this.m_cdMoreColors = new System.Windows.Forms.ColorDialog();
-            this.m_cbEnableNotify = new System.Windows.Forms.CheckBox();
             this.m_cbCandiFont = new OVPreferences.FontComboBox();
             this.m_cbCandiBackColor = new OVPreferences.ColorButton();
             this.m_cbCandiFontColor = new OVPreferences.ColorButton();
@@ -139,6 +139,12 @@ namespace OVPreferences
             this.m_gpNotify.Name = "m_gpNotify";
             this.m_gpNotify.TabStop = false;
             // 
+            // m_cbEnableNotify
+            // 
+            resources.ApplyResources(this.m_cbEnableNotify, "m_cbEnableNotify");
+            this.m_cbEnableNotify.Name = "m_cbEnableNotify";
+            this.m_cbEnableNotify.UseVisualStyleBackColor = true;
+            // 
             // m_cbFontSize
             // 
             this.m_cbFontSize.FormattingEnabled = true;
@@ -208,13 +214,6 @@ namespace OVPreferences
             this.m_tbOpacity.Maximum = 20;
             this.m_tbOpacity.Name = "m_tbOpacity";
             this.m_tbOpacity.Scroll += new System.EventHandler(this.m_tbOpacity_Scroll);
-            // 
-            // m_cbEnableNotify
-            // 
-            resources.ApplyResources(this.m_cbEnableNotify, "m_cbEnableNotify");
-            this.m_cbEnableNotify.Name = "m_cbEnableNotify";
-            this.m_cbEnableNotify.UseVisualStyleBackColor = true;
-            
             // 
             // m_cbCandiFont
             // 

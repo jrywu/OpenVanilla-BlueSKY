@@ -122,7 +122,7 @@
     <value>92, 16</value>
   </data>
   <data name="m_cbWarningBeep.Text" xml:space="preserve">
-    <value>Beep on erros.</value>
+    <value>Beep on errors.</value>
   </data>
   <data name="m_cbHitMaxAndCompose.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 16</value>
@@ -146,7 +146,7 @@
     <value>88, 12</value>
   </data>
   <data name="m_lbMaxKeySequenceLength.Text" xml:space="preserve">
-    <value>Maximum radical length</value>
+    <value>Maximum radical length:</value>
   </data>
   <data name="m_cbAssociatedPhrase.Text" xml:space="preserve">
     <value>Sugggest next words or phrases.</value>
@@ -155,13 +155,13 @@
     <value>Sort candidate list by word frequencies.</value>
   </data>
   <data name="m_cbWildCard.Text" xml:space="preserve">
-    <value>Do wildcard matching.</value>
+    <value>Wildcard Settings:</value>
   </data>
   <data name="m_lbMatchOneChar.Text" xml:space="preserve">
-    <value>Match one character with</value>
+    <value>Match one character with:</value>
   </data>
   <data name="m_lbMatchZeroOrMoreChar.Text" xml:space="preserve">
-    <value>Match zero or more characters</value>
+    <value>Match anything with:</value>
   </data>
   <data name="m_cbLearnAssociatedPhrase.Text" xml:space="preserve">
     <value>Learn associated phrases.</value>

@@ -30,6 +30,7 @@ namespace OVPreferences
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PanelPhonetic));
             this.m_pnSelf = new System.Windows.Forms.Panel();
+            this.m_cbSelKeys = new System.Windows.Forms.ComboBox();
             this.m_lbSelectionKeys = new System.Windows.Forms.Label();
             this.m_tbSelectionKeys = new System.Windows.Forms.TextBox();
             this.m_lbKeyboardLayout = new System.Windows.Forms.Label();
@@ -39,12 +40,23 @@ namespace OVPreferences
             // 
             // m_pnSelf
             // 
+            this.m_pnSelf.Controls.Add(this.m_cbSelKeys);
             this.m_pnSelf.Controls.Add(this.m_lbSelectionKeys);
             this.m_pnSelf.Controls.Add(this.m_tbSelectionKeys);
             this.m_pnSelf.Controls.Add(this.m_lbKeyboardLayout);
             this.m_pnSelf.Controls.Add(this.m_cbKeyboardLayout);
             resources.ApplyResources(this.m_pnSelf, "m_pnSelf");
             this.m_pnSelf.Name = "m_pnSelf";
+            // 
+            // m_cbSelKeys
+            // 
+            resources.ApplyResources(this.m_cbSelKeys, "m_cbSelKeys");
+            this.m_cbSelKeys.FormattingEnabled = true;
+            this.m_cbSelKeys.Items.AddRange(new object[] {
+            resources.GetString("m_cbSelKeys.Items"),
+            resources.GetString("m_cbSelKeys.Items1")});
+            this.m_cbSelKeys.Name = "m_cbSelKeys";
+            this.m_cbSelKeys.SelectedIndexChanged += new System.EventHandler(this.m_cbSelKeys_SelectedIndexChanged);
             // 
             // m_lbSelectionKeys
             // 
@@ -91,5 +103,6 @@ namespace OVPreferences
         private System.Windows.Forms.ComboBox m_cbKeyboardLayout;
         private System.Windows.Forms.Label m_lbSelectionKeys;
         private System.Windows.Forms.TextBox m_tbSelectionKeys;
+        private System.Windows.Forms.ComboBox m_cbSelKeys;
     }
 }

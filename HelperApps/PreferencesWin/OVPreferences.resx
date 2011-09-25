@@ -112,16 +112,16 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btSave.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_btSave.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
@@ -129,12 +129,15 @@
     <value>NoControl</value>
   </data>
   <data name="m_btSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>443, 433</value>
+    <value>455, 482</value>
+  </data>
+  <data name="m_btSave.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="m_btSave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 24</value>
+    <value>125, 24</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btSave.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
@@ -145,7 +148,7 @@
     <value>m_btSave</value>
   </data>
   <data name="&gt;&gt;m_btSave.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_btSave.Parent" xml:space="preserve">
     <value>$this</value>
@@ -157,10 +160,13 @@
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="panelModuleList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 23</value>
+    <value>1, 0</value>
+  </data>
+  <data name="panelModuleList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="panelModuleList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>202, 359</value>
+    <value>269, 429</value>
   </data>
   <data name="panelModuleList.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -169,7 +175,7 @@
     <value>panelModuleList</value>
   </data>
   <data name="&gt;&gt;panelModuleList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;panelModuleList.Parent" xml:space="preserve">
     <value>tabPageModuleSettings</value>
@@ -184,10 +190,13 @@
     <value>Arial, 8.25pt</value>
   </data>
   <data name="panelOptions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 23</value>
+    <value>279, 31</value>
+  </data>
+  <data name="panelOptions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="panelOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>318, 359</value>
+    <value>316, 398</value>
   </data>
   <data name="panelOptions.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -196,7 +205,7 @@
     <value>panelOptions</value>
   </data>
   <data name="&gt;&gt;panelOptions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;panelOptions.Parent" xml:space="preserve">
     <value>tabPageModuleSettings</value>
@@ -211,10 +220,13 @@
     <value>NoControl</value>
   </data>
   <data name="labelModuleList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+    <value>4, 3</value>
+  </data>
+  <data name="labelModuleList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="labelModuleList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 17</value>
+    <value>89, 17</value>
   </data>
   <data name="labelModuleList.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -222,11 +234,14 @@
   <data name="labelModuleList.Text" xml:space="preserve">
     <value>Modules List</value>
   </data>
+  <data name="labelModuleList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;labelModuleList.Name" xml:space="preserve">
     <value>labelModuleList</value>
   </data>
   <data name="&gt;&gt;labelModuleList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelModuleList.Parent" xml:space="preserve">
     <value>tabPageModuleSettings</value>
@@ -238,16 +253,19 @@
     <value>True</value>
   </data>
   <data name="labelOptions.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft JhengHei, 9.75pt</value>
+    <value>Microsoft JhengHei, 14.25pt</value>
   </data>
   <data name="labelOptions.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="labelOptions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>211, 3</value>
+    <value>287, 3</value>
+  </data>
+  <data name="labelOptions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="labelOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 17</value>
+    <value>85, 25</value>
   </data>
   <data name="labelOptions.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -259,7 +277,7 @@
     <value>labelOptions</value>
   </data>
   <data name="&gt;&gt;labelOptions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelOptions.Parent" xml:space="preserve">
     <value>tabPageModuleSettings</value>
@@ -283,7 +301,7 @@
     <value>panelOFModulelist</value>
   </data>
   <data name="&gt;&gt;panelOFModulelist.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;panelOFModulelist.Parent" xml:space="preserve">
     <value>tabPageOFModulelist</value>
@@ -301,7 +319,7 @@
     <value>10, 5</value>
   </data>
   <data name="labelOFModuleList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 13</value>
+    <value>99, 13</value>
   </data>
   <data name="labelOFModuleList.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -313,7 +331,7 @@
     <value>labelOFModuleList</value>
   </data>
   <data name="&gt;&gt;labelOFModuleList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelOFModuleList.Parent" xml:space="preserve">
     <value>tabPageOFModulelist</value>
@@ -328,10 +346,13 @@
     <value>Fill</value>
   </data>
   <data name="panelShareSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+    <value>4, 3</value>
+  </data>
+  <data name="panelShareSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="panelShareSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>524, 376</value>
+    <value>590, 425</value>
   </data>
   <data name="panelShareSettings.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -340,7 +361,7 @@
     <value>panelShareSettings</value>
   </data>
   <data name="&gt;&gt;panelShareSettings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;panelShareSettings.Parent" xml:space="preserve">
     <value>tabPageShareSettings</value>
@@ -351,11 +372,14 @@
   <data name="tabPageShareSettings.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 29</value>
   </data>
+  <data name="tabPageShareSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
   <data name="tabPageShareSettings.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="tabPageShareSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>530, 382</value>
+    <value>598, 431</value>
   </data>
   <data name="tabPageShareSettings.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -367,7 +391,7 @@
     <value>tabPageShareSettings</value>
   </data>
   <data name="&gt;&gt;tabPageShareSettings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPageShareSettings.Parent" xml:space="preserve">
     <value>tabControl</value>
@@ -378,11 +402,14 @@
   <data name="tabPageModuleSettings.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 29</value>
   </data>
+  <data name="tabPageModuleSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
   <data name="tabPageModuleSettings.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="tabPageModuleSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>530, 382</value>
+    <value>598, 431</value>
   </data>
   <data name="tabPageModuleSettings.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -394,7 +421,7 @@
     <value>tabPageModuleSettings</value>
   </data>
   <data name="&gt;&gt;tabPageModuleSettings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPageModuleSettings.Parent" xml:space="preserve">
     <value>tabControl</value>
@@ -406,13 +433,16 @@
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="tabControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 12</value>
+    <value>9, 12</value>
+  </data>
+  <data name="tabControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="tabControl.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
   </data>
   <data name="tabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>538, 415</value>
+    <value>606, 464</value>
   </data>
   <data name="tabControl.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -421,7 +451,7 @@
     <value>tabControl</value>
   </data>
   <data name="&gt;&gt;tabControl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabControl.Parent" xml:space="preserve">
     <value>$this</value>
@@ -445,19 +475,19 @@
     <value>tabPageOFModulelist</value>
   </data>
   <data name="&gt;&gt;tabPageOFModulelist.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>8, 13</value>
   </data>
   <data name="$this.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>549, 470</value>
+    <value>620, 518</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1865,6 +1895,9 @@
         /////////////w==
 </value>
   </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>偏好設定</value>
   </data>
@@ -1872,6 +1905,6 @@
     <value>OVPreferencesForm</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

@@ -122,19 +122,19 @@
     <value>108, 16</value>
   </data>
   <data name="m_cbWarningBeep.Text" xml:space="preserve">
-    <value>錯誤時發出嗶聲</value>
+    <value>組字錯誤時發出提示聲</value>
   </data>
   <data name="m_cbHitMaxAndCompose.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 16</value>
   </data>
   <data name="m_cbHitMaxAndCompose.Text" xml:space="preserve">
-    <value>打到最大長度便自動出字</value>
+    <value>打到組字區最大長度時立刻出字</value>
   </data>
   <data name="m_cbAutoCompose.Size" type="System.Drawing.Size, System.Drawing">
     <value>192, 16</value>
   </data>
   <data name="m_cbAutoCompose.Text" xml:space="preserve">
-    <value>一邊打字同時一邊組字出選字窗</value>
+    <value>打字時同步組字</value>
   </data>
   <data name="m_tbMaxKeySequenceLength.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 94</value>
@@ -143,7 +143,7 @@
     <value>113, 12</value>
   </data>
   <data name="m_lbMaxKeySequenceLength.Text" xml:space="preserve">
-    <value>最大組字鍵碼長度：</value>
+    <value>組字區最大長度：</value>
   </data>
   <data name="m_pnSelf.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 126</value>
@@ -152,21 +152,33 @@
     <value>258, 159</value>
   </data>
   <data name="m_cbAssociatedPhrase.Text" xml:space="preserve">
-    <value>使用聯想字詞</value>
+    <value>提示輸入字元的聯想字詞</value>
   </data>
   <data name="m_cbOrderWordsByFreq.Text" xml:space="preserve">
-    <value>根據使用頻率排列候選字</value>
+    <value>根據詞顪率排列候選字詞</value>
   </data>
   <data name="m_cbWildCard.Text" xml:space="preserve">
-    <value>使用萬用字元</value>
+    <value>萬用字元支援</value>
   </data>
   <data name="m_lbMatchOneChar.Text" xml:space="preserve">
-    <value>符合單一字元:</value>
+    <value>代替一個字根的萬用字元</value>
   </data>
   <data name="m_lbMatchZeroOrMoreChar.Text" xml:space="preserve">
-    <value>符合任意字元:</value>
+    <value>代替零個或多個字根的萬用字元</value>
   </data>
   <data name="m_cbLearnAssociatedPhrase.Text" xml:space="preserve">
     <value>學習聯想字詞</value>
+  </data>
+  <data name="m_lbBasicSettings" xml:space="preserve">
+    <value>基本設定:</value>
+  </data>
+  <data name="m_lbMaxRadialHint1" xml:space="preserve">
+    <value>這套輸入法最多可以輸入多少字根。以倉頡輸入法為例，便</value>
+  </data>
+  <data name="m_lbMaxRadialHint2" xml:space="preserve">
+    <value>應設定為5。</value>
+  </data>
+  <data name="m_lbTypingPreference" xml:space="preserve">
+    <value>打字功能:</value>
   </data>
 </root>

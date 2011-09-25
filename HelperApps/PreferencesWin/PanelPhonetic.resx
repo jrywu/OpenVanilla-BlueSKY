@@ -118,6 +118,37 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_cbSelKeys.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
+  <data name="m_cbSelKeys.Items" xml:space="preserve">
+    <value>123456789</value>
+  </data>
+  <data name="m_cbSelKeys.Items1" xml:space="preserve">
+    <value>asdfghjkl</value>
+  </data>
+  <data name="m_cbSelKeys.Location" type="System.Drawing.Point, System.Drawing">
+    <value>139, 43</value>
+  </data>
+  <data name="m_cbSelKeys.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 25</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_cbSelKeys.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;m_cbSelKeys.Name" xml:space="preserve">
+    <value>m_cbSelKeys</value>
+  </data>
+  <data name="&gt;&gt;m_cbSelKeys.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cbSelKeys.Parent" xml:space="preserve">
+    <value>m_pnSelf</value>
+  </data>
+  <data name="&gt;&gt;m_cbSelKeys.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="m_lbSelectionKeys.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
@@ -131,12 +162,11 @@
   <data name="m_lbSelectionKeys.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 21</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lbSelectionKeys.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="m_lbSelectionKeys.Text" xml:space="preserve">
-    <value>選字鍵</value>
+    <value>選字按鍵</value>
   </data>
   <data name="&gt;&gt;m_lbSelectionKeys.Name" xml:space="preserve">
     <value>m_lbSelectionKeys</value>
@@ -148,13 +178,13 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_lbSelectionKeys.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="m_tbSelectionKeys.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_tbSelectionKeys.Location" type="System.Drawing.Point, System.Drawing">
-    <value>139, 39</value>
+    <value>139, 83</value>
   </data>
   <data name="m_tbSelectionKeys.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
@@ -164,6 +194,9 @@
   </data>
   <data name="m_tbSelectionKeys.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
+  </data>
+  <data name="m_tbSelectionKeys.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;m_tbSelectionKeys.Name" xml:space="preserve">
     <value>m_tbSelectionKeys</value>
@@ -175,7 +208,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_tbSelectionKeys.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="m_lbKeyboardLayout.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft JhengHei, 9.75pt</value>
@@ -205,7 +238,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_lbKeyboardLayout.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="m_cbKeyboardLayout.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft JhengHei, 9.75pt</value>
@@ -238,7 +271,10 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_cbKeyboardLayout.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
+  </data>
+  <data name="m_pnSelf.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_pnSelf.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 3</value>
@@ -247,7 +283,7 @@
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_pnSelf.Size" type="System.Drawing.Size, System.Drawing">
-    <value>319, 75</value>
+    <value>319, 138</value>
   </data>
   <data name="m_pnSelf.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -274,7 +310,7 @@
     <value>4, 3, 4, 3</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>327, 81</value>
+    <value>327, 173</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>PanelPhonetic</value>

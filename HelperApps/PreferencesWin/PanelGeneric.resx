@@ -117,29 +117,122 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_nuMaxRadicalLength.Location" type="System.Drawing.Point, System.Drawing">
+    <value>246, 37</value>
+  </data>
+  <data name="m_nuMaxRadicalLength.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 25</value>
+  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_nuMaxRadicalLength.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;m_nuMaxRadicalLength.Name" xml:space="preserve">
+    <value>m_nuMaxRadicalLength</value>
+  </data>
+  <data name="&gt;&gt;m_nuMaxRadicalLength.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_nuMaxRadicalLength.Parent" xml:space="preserve">
+    <value>m_pnSelf</value>
+  </data>
+  <data name="&gt;&gt;m_nuMaxRadicalLength.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_lbWildcardSupport.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lbWildcardSupport.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_lbWildcardSupport.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_lbWildcardSupport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 281</value>
+  </data>
+  <data name="m_lbWildcardSupport.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="m_lbWildcardSupport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 17</value>
+  </data>
+  <data name="m_lbWildcardSupport.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="m_lbWildcardSupport.Text" xml:space="preserve">
+    <value>萬用字元支援:</value>
+  </data>
+  <data name="&gt;&gt;m_lbWildcardSupport.Name" xml:space="preserve">
+    <value>m_lbWildcardSupport</value>
+  </data>
+  <data name="&gt;&gt;m_lbWildcardSupport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lbWildcardSupport.Parent" xml:space="preserve">
+    <value>m_pnSelf</value>
+  </data>
+  <data name="&gt;&gt;m_lbWildcardSupport.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_lbTypingPreference.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lbTypingPreference.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
+  <data name="m_lbTypingPreference.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_lbTypingPreference.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 103</value>
+  </data>
+  <data name="m_lbTypingPreference.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="m_lbTypingPreference.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 17</value>
+  </data>
+  <data name="m_lbTypingPreference.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="m_lbTypingPreference.Text" xml:space="preserve">
+    <value>打字功能:</value>
+  </data>
+  <data name="&gt;&gt;m_lbTypingPreference.Name" xml:space="preserve">
+    <value>m_lbTypingPreference</value>
+  </data>
+  <data name="&gt;&gt;m_lbTypingPreference.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lbTypingPreference.Parent" xml:space="preserve">
+    <value>m_pnSelf</value>
+  </data>
+  <data name="&gt;&gt;m_lbTypingPreference.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="m_cbLearnAssociatedPhrase.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cbLearnAssociatedPhrase.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_cbLearnAssociatedPhrase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 265</value>
+    <value>17, 248</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_cbLearnAssociatedPhrase.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbLearnAssociatedPhrase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 21</value>
+    <value>105, 21</value>
   </data>
   <data name="m_cbLearnAssociatedPhrase.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
   <data name="m_cbLearnAssociatedPhrase.Text" xml:space="preserve">
-    <value>自動學習聯想字詞</value>
+    <value>學習聯想字詞</value>
   </data>
   <data name="&gt;&gt;m_cbLearnAssociatedPhrase.Name" xml:space="preserve">
     <value>m_cbLearnAssociatedPhrase</value>
@@ -151,7 +244,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_cbLearnAssociatedPhrase.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="m_cbOrderWordsByFreq.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -163,19 +256,19 @@
     <value>NoControl</value>
   </data>
   <data name="m_cbOrderWordsByFreq.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 239</value>
+    <value>17, 227</value>
   </data>
   <data name="m_cbOrderWordsByFreq.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbOrderWordsByFreq.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 21</value>
+    <value>170, 21</value>
   </data>
   <data name="m_cbOrderWordsByFreq.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
   <data name="m_cbOrderWordsByFreq.Text" xml:space="preserve">
-    <value>以使用頻率排列候選字</value>
+    <value>根據詞顪率排列候選字詞</value>
   </data>
   <data name="&gt;&gt;m_cbOrderWordsByFreq.Name" xml:space="preserve">
     <value>m_cbOrderWordsByFreq</value>
@@ -187,7 +280,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_cbOrderWordsByFreq.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="m_cbAssociatedPhrase.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -199,19 +292,19 @@
     <value>NoControl</value>
   </data>
   <data name="m_cbAssociatedPhrase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 215</value>
+    <value>17, 206</value>
   </data>
   <data name="m_cbAssociatedPhrase.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbAssociatedPhrase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 21</value>
+    <value>170, 21</value>
   </data>
   <data name="m_cbAssociatedPhrase.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
   <data name="m_cbAssociatedPhrase.Text" xml:space="preserve">
-    <value>使用聯想字詞</value>
+    <value>提示輸入字元的聯想字詞</value>
   </data>
   <data name="&gt;&gt;m_cbAssociatedPhrase.Name" xml:space="preserve">
     <value>m_cbAssociatedPhrase</value>
@@ -223,13 +316,13 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_cbAssociatedPhrase.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="m_tbselectKey.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_tbselectKey.Location" type="System.Drawing.Point, System.Drawing">
-    <value>79, 182</value>
+    <value>107, 356</value>
   </data>
   <data name="m_tbselectKey.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
@@ -239,6 +332,9 @@
   </data>
   <data name="m_tbselectKey.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
+  </data>
+  <data name="m_tbselectKey.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;m_tbselectKey.Name" xml:space="preserve">
     <value>m_tbselectKey</value>
@@ -250,13 +346,13 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_tbselectKey.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="m_tbMatchZeroOrMoreChar.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_tbMatchZeroOrMoreChar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>275, 157</value>
+    <value>272, 324</value>
   </data>
   <data name="m_tbMatchZeroOrMoreChar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
@@ -277,13 +373,13 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_tbMatchZeroOrMoreChar.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="m_tbMatchOneChar.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_tbMatchOneChar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 156</value>
+    <value>272, 296</value>
   </data>
   <data name="m_tbMatchOneChar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
@@ -307,34 +403,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_tbMatchOneChar.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="m_tbmaxKeySequenceLength.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft JhengHei, 9.75pt</value>
-  </data>
-  <data name="m_tbmaxKeySequenceLength.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 108</value>
-  </data>
-  <data name="m_tbmaxKeySequenceLength.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
-  </data>
-  <data name="m_tbmaxKeySequenceLength.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 25</value>
-  </data>
-  <data name="m_tbmaxKeySequenceLength.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;m_tbmaxKeySequenceLength.Name" xml:space="preserve">
-    <value>m_tbmaxKeySequenceLength</value>
-  </data>
-  <data name="&gt;&gt;m_tbmaxKeySequenceLength.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_tbmaxKeySequenceLength.Parent" xml:space="preserve">
-    <value>m_pnSelf</value>
-  </data>
-  <data name="&gt;&gt;m_tbmaxKeySequenceLength.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="m_cbWarningBeep.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -343,19 +412,19 @@
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_cbWarningBeep.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 83</value>
+    <value>17, 186</value>
   </data>
   <data name="m_cbWarningBeep.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbWarningBeep.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 21</value>
+    <value>157, 21</value>
   </data>
   <data name="m_cbWarningBeep.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
   <data name="m_cbWarningBeep.Text" xml:space="preserve">
-    <value>錯誤時發出嗶聲</value>
+    <value>組字錯誤時發出提示聲</value>
   </data>
   <data name="&gt;&gt;m_cbWarningBeep.Name" xml:space="preserve">
     <value>m_cbWarningBeep</value>
@@ -367,7 +436,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_cbWarningBeep.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="m_cbHitMaxAndCompose.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -376,19 +445,19 @@
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_cbHitMaxAndCompose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 59</value>
+    <value>17, 166</value>
   </data>
   <data name="m_cbHitMaxAndCompose.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbHitMaxAndCompose.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 21</value>
+    <value>209, 21</value>
   </data>
   <data name="m_cbHitMaxAndCompose.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="m_cbHitMaxAndCompose.Text" xml:space="preserve">
-    <value>打到最大長度便自動出字</value>
+    <value>打到組字區最大長度時立刻出字</value>
   </data>
   <data name="&gt;&gt;m_cbHitMaxAndCompose.Name" xml:space="preserve">
     <value>m_cbHitMaxAndCompose</value>
@@ -400,7 +469,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_cbHitMaxAndCompose.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="m_cbAutoCompose.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -409,19 +478,19 @@
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_cbAutoCompose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 35</value>
+    <value>17, 146</value>
   </data>
   <data name="m_cbAutoCompose.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbAutoCompose.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 21</value>
+    <value>118, 21</value>
   </data>
   <data name="m_cbAutoCompose.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
   <data name="m_cbAutoCompose.Text" xml:space="preserve">
-    <value>一邊打字同時一邊組字出選字窗</value>
+    <value>打字時同步組字</value>
   </data>
   <data name="&gt;&gt;m_cbAutoCompose.Name" xml:space="preserve">
     <value>m_cbAutoCompose</value>
@@ -433,7 +502,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_cbAutoCompose.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="m_cbShiftSelectionKey.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -442,7 +511,7 @@
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_cbShiftSelectionKey.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 11</value>
+    <value>17, 126</value>
   </data>
   <data name="m_cbShiftSelectionKey.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
@@ -466,43 +535,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_cbShiftSelectionKey.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="m_cbWildCard.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_cbWildCard.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft JhengHei, 9.75pt</value>
-  </data>
-  <data name="m_cbWildCard.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="m_cbWildCard.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 139</value>
-  </data>
-  <data name="m_cbWildCard.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
-  </data>
-  <data name="m_cbWildCard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 21</value>
-  </data>
-  <data name="m_cbWildCard.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="m_cbWildCard.Text" xml:space="preserve">
-    <value>使用萬用字元</value>
-  </data>
-  <data name="&gt;&gt;m_cbWildCard.Name" xml:space="preserve">
-    <value>m_cbWildCard</value>
-  </data>
-  <data name="&gt;&gt;m_cbWildCard.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_cbWildCard.Parent" xml:space="preserve">
-    <value>m_pnSelf</value>
-  </data>
-  <data name="&gt;&gt;m_cbWildCard.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="m_lbselectKey.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -514,7 +547,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbselectKey.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 185</value>
+    <value>15, 359</value>
   </data>
   <data name="m_lbselectKey.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -528,6 +561,9 @@
   <data name="m_lbselectKey.Text" xml:space="preserve">
     <value>選字鍵:</value>
   </data>
+  <data name="m_lbselectKey.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;m_lbselectKey.Name" xml:space="preserve">
     <value>m_lbselectKey</value>
   </data>
@@ -538,7 +574,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_lbselectKey.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="m_lbMatchZeroOrMoreChar.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -550,19 +586,19 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbMatchZeroOrMoreChar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>179, 160</value>
+    <value>13, 326</value>
   </data>
   <data name="m_lbMatchZeroOrMoreChar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbMatchZeroOrMoreChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 17</value>
+    <value>190, 17</value>
   </data>
   <data name="m_lbMatchZeroOrMoreChar.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="m_lbMatchZeroOrMoreChar.Text" xml:space="preserve">
-    <value>符合任意字元:</value>
+    <value>代替零個或多個字根的萬用字元</value>
   </data>
   <data name="&gt;&gt;m_lbMatchZeroOrMoreChar.Name" xml:space="preserve">
     <value>m_lbMatchZeroOrMoreChar</value>
@@ -574,7 +610,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_lbMatchZeroOrMoreChar.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="m_lbMatchOneChar.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -586,19 +622,19 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbMatchOneChar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 162</value>
+    <value>65, 302</value>
   </data>
   <data name="m_lbMatchOneChar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbMatchOneChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 17</value>
+    <value>151, 17</value>
   </data>
   <data name="m_lbMatchOneChar.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="m_lbMatchOneChar.Text" xml:space="preserve">
-    <value>符合單一字元:</value>
+    <value>代替一個字根的萬用字元</value>
   </data>
   <data name="&gt;&gt;m_lbMatchOneChar.Name" xml:space="preserve">
     <value>m_lbMatchOneChar</value>
@@ -610,7 +646,115 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_lbMatchOneChar.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
+  </data>
+  <data name="m_lbMaxRadialHint2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lbMaxRadialHint2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 8.25pt</value>
+  </data>
+  <data name="m_lbMaxRadialHint2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_lbMaxRadialHint2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 75</value>
+  </data>
+  <data name="m_lbMaxRadialHint2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="m_lbMaxRadialHint2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 15</value>
+  </data>
+  <data name="m_lbMaxRadialHint2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="m_lbMaxRadialHint2.Text" xml:space="preserve">
+    <value>應設定為5。</value>
+  </data>
+  <data name="&gt;&gt;m_lbMaxRadialHint2.Name" xml:space="preserve">
+    <value>m_lbMaxRadialHint2</value>
+  </data>
+  <data name="&gt;&gt;m_lbMaxRadialHint2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lbMaxRadialHint2.Parent" xml:space="preserve">
+    <value>m_pnSelf</value>
+  </data>
+  <data name="&gt;&gt;m_lbMaxRadialHint2.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="m_lbMaxRadialHint1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lbMaxRadialHint1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 8.25pt</value>
+  </data>
+  <data name="m_lbMaxRadialHint1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_lbMaxRadialHint1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 61</value>
+  </data>
+  <data name="m_lbMaxRadialHint1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="m_lbMaxRadialHint1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>293, 15</value>
+  </data>
+  <data name="m_lbMaxRadialHint1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="m_lbMaxRadialHint1.Text" xml:space="preserve">
+    <value>這套輸入法最多可以輸入多少字根。以倉頡輸入法為例，便</value>
+  </data>
+  <data name="&gt;&gt;m_lbMaxRadialHint1.Name" xml:space="preserve">
+    <value>m_lbMaxRadialHint1</value>
+  </data>
+  <data name="&gt;&gt;m_lbMaxRadialHint1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lbMaxRadialHint1.Parent" xml:space="preserve">
+    <value>m_pnSelf</value>
+  </data>
+  <data name="&gt;&gt;m_lbMaxRadialHint1.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="m_lbBasicSettings.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lbBasicSettings.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
+  <data name="m_lbBasicSettings.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_lbBasicSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 12</value>
+  </data>
+  <data name="m_lbBasicSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="m_lbBasicSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 17</value>
+  </data>
+  <data name="m_lbBasicSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="m_lbBasicSettings.Text" xml:space="preserve">
+    <value>基本設定:</value>
+  </data>
+  <data name="&gt;&gt;m_lbBasicSettings.Name" xml:space="preserve">
+    <value>m_lbBasicSettings</value>
+  </data>
+  <data name="&gt;&gt;m_lbBasicSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lbBasicSettings.Parent" xml:space="preserve">
+    <value>m_pnSelf</value>
+  </data>
+  <data name="&gt;&gt;m_lbBasicSettings.ZOrder" xml:space="preserve">
+    <value>18</value>
   </data>
   <data name="m_lbMaxKeySequenceLength.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -619,19 +763,19 @@
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_lbMaxKeySequenceLength.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 111</value>
+    <value>15, 39</value>
   </data>
   <data name="m_lbMaxKeySequenceLength.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbMaxKeySequenceLength.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 17</value>
+    <value>112, 17</value>
   </data>
   <data name="m_lbMaxKeySequenceLength.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="m_lbMaxKeySequenceLength.Text" xml:space="preserve">
-    <value>最大組字鍵碼長度：</value>
+    <value>組字區最大長度：</value>
   </data>
   <data name="&gt;&gt;m_lbMaxKeySequenceLength.Name" xml:space="preserve">
     <value>m_lbMaxKeySequenceLength</value>
@@ -643,13 +787,79 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_lbMaxKeySequenceLength.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>19</value>
+  </data>
+  <data name="shapeContainer1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="shapeContainer1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <metadata name="lineShape2.Bounds" type="System.Drawing.Rectangle, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>14, 296, 280, 0</value>
+  </metadata>
+  <metadata name="lineShape2.Location" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>14, 296</value>
+  </metadata>
+  <metadata name="lineShape2.Size" type="System.Drawing.Size, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>280, 0</value>
+  </metadata>
+  <data name="lineShape2.X1" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="lineShape2.X2" type="System.Int32, mscorlib">
+    <value>294</value>
+  </data>
+  <data name="lineShape2.Y1" type="System.Int32, mscorlib">
+    <value>296</value>
+  </data>
+  <data name="lineShape2.Y2" type="System.Int32, mscorlib">
+    <value>296</value>
+  </data>
+  <metadata name="lineShape1.Bounds" type="System.Drawing.Rectangle, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>14, 103, 280, 0</value>
+  </metadata>
+  <metadata name="lineShape1.Location" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>14, 103</value>
+  </metadata>
+  <metadata name="lineShape1.Size" type="System.Drawing.Size, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>280, 0</value>
+  </metadata>
+  <data name="lineShape1.X1" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="lineShape1.X2" type="System.Int32, mscorlib">
+    <value>294</value>
+  </data>
+  <data name="lineShape1.Y1" type="System.Int32, mscorlib">
+    <value>103</value>
+  </data>
+  <data name="lineShape1.Y2" type="System.Int32, mscorlib">
+    <value>103</value>
+  </data>
+  <data name="shapeContainer1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>335, 510</value>
+  </data>
+  <data name="shapeContainer1.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;shapeContainer1.Name" xml:space="preserve">
+    <value>shapeContainer1</value>
+  </data>
+  <data name="&gt;&gt;shapeContainer1.Type" xml:space="preserve">
+    <value>Microsoft.VisualBasic.PowerPacks.ShapeContainer, Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="&gt;&gt;shapeContainer1.Parent" xml:space="preserve">
+    <value>m_pnSelf</value>
+  </data>
+  <data name="&gt;&gt;shapeContainer1.ZOrder" xml:space="preserve">
+    <value>20</value>
   </data>
   <data name="m_pnSelf.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="m_pnSelf.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft JhengHei, 8.25pt</value>
+    <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_pnSelf.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -658,7 +868,7 @@
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_pnSelf.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 353</value>
+    <value>335, 510</value>
   </data>
   <data name="m_pnSelf.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -685,7 +895,19 @@
     <value>4, 3, 4, 3</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 353</value>
+    <value>335, 510</value>
+  </data>
+  <data name="&gt;&gt;lineShape2.Name" xml:space="preserve">
+    <value>lineShape2</value>
+  </data>
+  <data name="&gt;&gt;lineShape2.Type" xml:space="preserve">
+    <value>Microsoft.VisualBasic.PowerPacks.LineShape, Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="&gt;&gt;lineShape1.Name" xml:space="preserve">
+    <value>lineShape1</value>
+  </data>
+  <data name="&gt;&gt;lineShape1.Type" xml:space="preserve">
+    <value>Microsoft.VisualBasic.PowerPacks.LineShape, Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>PanelGeneric</value>

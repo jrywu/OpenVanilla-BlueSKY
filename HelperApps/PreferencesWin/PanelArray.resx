@@ -130,19 +130,19 @@
     <value>NoControl</value>
   </data>
   <data name="m_cbLearnAssociatedPhrase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 126</value>
+    <value>13, 92</value>
   </data>
   <data name="m_cbLearnAssociatedPhrase.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbLearnAssociatedPhrase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 21</value>
+    <value>105, 21</value>
   </data>
   <data name="m_cbLearnAssociatedPhrase.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
   </data>
   <data name="m_cbLearnAssociatedPhrase.Text" xml:space="preserve">
-    <value>自動學習聯想字詞</value>
+    <value>學習聯想字詞</value>
   </data>
   <data name="&gt;&gt;m_cbLearnAssociatedPhrase.Name" xml:space="preserve">
     <value>m_cbLearnAssociatedPhrase</value>
@@ -166,19 +166,19 @@
     <value>NoControl</value>
   </data>
   <data name="m_cbOrderWordsByFreq.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 102</value>
+    <value>13, 73</value>
   </data>
   <data name="m_cbOrderWordsByFreq.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbOrderWordsByFreq.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 21</value>
+    <value>170, 21</value>
   </data>
   <data name="m_cbOrderWordsByFreq.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
   </data>
   <data name="m_cbOrderWordsByFreq.Text" xml:space="preserve">
-    <value>以使用頻率排列候選字</value>
+    <value>根據詞顪率排列候選字詞</value>
   </data>
   <data name="&gt;&gt;m_cbOrderWordsByFreq.Name" xml:space="preserve">
     <value>m_cbOrderWordsByFreq</value>
@@ -202,19 +202,19 @@
     <value>NoControl</value>
   </data>
   <data name="m_cbAssociatedPhrase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 79</value>
+    <value>13, 54</value>
   </data>
   <data name="m_cbAssociatedPhrase.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="m_cbAssociatedPhrase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 21</value>
+    <value>170, 21</value>
   </data>
   <data name="m_cbAssociatedPhrase.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
   <data name="m_cbAssociatedPhrase.Text" xml:space="preserve">
-    <value>使用聯想字詞</value>
+    <value>提示輸入字元的聯想字詞</value>
   </data>
   <data name="&gt;&gt;m_cbAssociatedPhrase.Name" xml:space="preserve">
     <value>m_cbAssociatedPhrase</value>
@@ -232,7 +232,7 @@
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_cbQuickMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 52</value>
+    <value>13, 15</value>
   </data>
   <data name="m_cbQuickMode.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
@@ -262,7 +262,7 @@
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_cbSpecialCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 29</value>
+    <value>13, 34</value>
   </data>
   <data name="m_cbSpecialCode.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>

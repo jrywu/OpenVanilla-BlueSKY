@@ -44,6 +44,10 @@ namespace OVPreferences
 
             m_cbKeyboardLayout.SelectedIndex = m_keyboardLayout;
             m_tbSelectionKeys.Text = m_selectionKeys;
+            if(m_selectionKeys.Equals("asdfghjkl"))
+                m_cbSelKeys.SelectedIndex = 1;
+            else
+                m_cbSelKeys.SelectedIndex = 0;
         }
 
         private void m_cbKeyboardLayout_SelectedIndexChanged(object sender, EventArgs e)
@@ -64,5 +68,19 @@ namespace OVPreferences
                     m_ovConf.moduleName, "selectKey", m_selectionKeys);
             }
         }
+
+        private void m_cbSelKeys_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (m_cbSelKeys.SelectedIndex == 0)
+                m_selectionKeys = "123456789";
+            else if (m_cbSelKeys.SelectedIndex == 1)
+                m_selectionKeys = "asdfghjkl";
+           
+            m_ovConfDomHandler.SetAttribute(
+                    m_ovConf.moduleName, "selectKey", m_selectionKeys);
+          
+        }
+
+       
     }
 }

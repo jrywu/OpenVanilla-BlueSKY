@@ -38,9 +38,9 @@ namespace OVPreferences
             this.labelOFModuleList = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageShareSettings = new System.Windows.Forms.TabPage();
+            this.panelShareSettings = new System.Windows.Forms.Panel();
             this.tabPageModuleSettings = new System.Windows.Forms.TabPage();
             this.tabPageOFModulelist = new System.Windows.Forms.TabPage();
-            this.panelShareSettings = new System.Windows.Forms.Panel();
             this.tabControl.SuspendLayout();
             this.tabPageShareSettings.SuspendLayout();
             this.tabPageModuleSettings.SuspendLayout();
@@ -101,6 +101,11 @@ namespace OVPreferences
             this.tabPageShareSettings.Name = "tabPageShareSettings";
             this.tabPageShareSettings.UseVisualStyleBackColor = true;
             // 
+            // panelShareSettings
+            // 
+            resources.ApplyResources(this.panelShareSettings, "panelShareSettings");
+            this.panelShareSettings.Name = "panelShareSettings";
+            // 
             // tabPageModuleSettings
             // 
             this.tabPageModuleSettings.BackColor = System.Drawing.Color.Transparent;
@@ -122,11 +127,6 @@ namespace OVPreferences
             this.tabPageOFModulelist.Name = "tabPageOFModulelist";
             this.tabPageOFModulelist.UseVisualStyleBackColor = true;
             this.tabPageOFModulelist.Enter += new System.EventHandler(this.tabPageOFModulelist_Enter);
-            // 
-            // panelShareSettings
-            // 
-            resources.ApplyResources(this.panelShareSettings, "panelShareSettings");
-            this.panelShareSettings.Name = "panelShareSettings";
             // 
             // OVPreferencesForm
             // 

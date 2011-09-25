@@ -30,45 +30,89 @@ namespace OVPreferences
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PanelGeneric));
             this.m_pnSelf = new System.Windows.Forms.Panel();
+            this.m_nuMaxRadicalLength = new System.Windows.Forms.NumericUpDown();
+            this.m_lbWildcardSupport = new System.Windows.Forms.Label();
+            this.m_lbTypingPreference = new System.Windows.Forms.Label();
             this.m_cbLearnAssociatedPhrase = new System.Windows.Forms.CheckBox();
             this.m_cbOrderWordsByFreq = new System.Windows.Forms.CheckBox();
             this.m_cbAssociatedPhrase = new System.Windows.Forms.CheckBox();
             this.m_tbselectKey = new System.Windows.Forms.TextBox();
             this.m_tbMatchZeroOrMoreChar = new System.Windows.Forms.TextBox();
             this.m_tbMatchOneChar = new System.Windows.Forms.TextBox();
-            this.m_tbmaxKeySequenceLength = new System.Windows.Forms.TextBox();
             this.m_cbWarningBeep = new System.Windows.Forms.CheckBox();
             this.m_cbHitMaxAndCompose = new System.Windows.Forms.CheckBox();
             this.m_cbAutoCompose = new System.Windows.Forms.CheckBox();
             this.m_cbShiftSelectionKey = new System.Windows.Forms.CheckBox();
-            this.m_cbWildCard = new System.Windows.Forms.CheckBox();
             this.m_lbselectKey = new System.Windows.Forms.Label();
             this.m_lbMatchZeroOrMoreChar = new System.Windows.Forms.Label();
             this.m_lbMatchOneChar = new System.Windows.Forms.Label();
+            this.m_lbMaxRadialHint2 = new System.Windows.Forms.Label();
+            this.m_lbMaxRadialHint1 = new System.Windows.Forms.Label();
+            this.m_lbBasicSettings = new System.Windows.Forms.Label();
             this.m_lbMaxKeySequenceLength = new System.Windows.Forms.Label();
+            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.lineShape2 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.m_pnSelf.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_nuMaxRadicalLength)).BeginInit();
             this.SuspendLayout();
             // 
             // m_pnSelf
             // 
+            this.m_pnSelf.Controls.Add(this.m_nuMaxRadicalLength);
+            this.m_pnSelf.Controls.Add(this.m_lbWildcardSupport);
+            this.m_pnSelf.Controls.Add(this.m_lbTypingPreference);
             this.m_pnSelf.Controls.Add(this.m_cbLearnAssociatedPhrase);
             this.m_pnSelf.Controls.Add(this.m_cbOrderWordsByFreq);
             this.m_pnSelf.Controls.Add(this.m_cbAssociatedPhrase);
             this.m_pnSelf.Controls.Add(this.m_tbselectKey);
             this.m_pnSelf.Controls.Add(this.m_tbMatchZeroOrMoreChar);
             this.m_pnSelf.Controls.Add(this.m_tbMatchOneChar);
-            this.m_pnSelf.Controls.Add(this.m_tbmaxKeySequenceLength);
             this.m_pnSelf.Controls.Add(this.m_cbWarningBeep);
             this.m_pnSelf.Controls.Add(this.m_cbHitMaxAndCompose);
             this.m_pnSelf.Controls.Add(this.m_cbAutoCompose);
             this.m_pnSelf.Controls.Add(this.m_cbShiftSelectionKey);
-            this.m_pnSelf.Controls.Add(this.m_cbWildCard);
             this.m_pnSelf.Controls.Add(this.m_lbselectKey);
             this.m_pnSelf.Controls.Add(this.m_lbMatchZeroOrMoreChar);
             this.m_pnSelf.Controls.Add(this.m_lbMatchOneChar);
+            this.m_pnSelf.Controls.Add(this.m_lbMaxRadialHint2);
+            this.m_pnSelf.Controls.Add(this.m_lbMaxRadialHint1);
+            this.m_pnSelf.Controls.Add(this.m_lbBasicSettings);
             this.m_pnSelf.Controls.Add(this.m_lbMaxKeySequenceLength);
+            this.m_pnSelf.Controls.Add(this.shapeContainer1);
             resources.ApplyResources(this.m_pnSelf, "m_pnSelf");
             this.m_pnSelf.Name = "m_pnSelf";
+            // 
+            // m_nuMaxRadicalLength
+            // 
+            resources.ApplyResources(this.m_nuMaxRadicalLength, "m_nuMaxRadicalLength");
+            this.m_nuMaxRadicalLength.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this.m_nuMaxRadicalLength.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.m_nuMaxRadicalLength.Name = "m_nuMaxRadicalLength";
+            this.m_nuMaxRadicalLength.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.m_nuMaxRadicalLength.ValueChanged += new System.EventHandler(this.m_nuMaxRadicalLength_ValueChanged);
+            // 
+            // m_lbWildcardSupport
+            // 
+            resources.ApplyResources(this.m_lbWildcardSupport, "m_lbWildcardSupport");
+            this.m_lbWildcardSupport.Name = "m_lbWildcardSupport";
+            // 
+            // m_lbTypingPreference
+            // 
+            resources.ApplyResources(this.m_lbTypingPreference, "m_lbTypingPreference");
+            this.m_lbTypingPreference.Name = "m_lbTypingPreference";
             // 
             // m_cbLearnAssociatedPhrase
             // 
@@ -109,12 +153,6 @@ namespace OVPreferences
             this.m_tbMatchOneChar.Name = "m_tbMatchOneChar";
             this.m_tbMatchOneChar.TextChanged += new System.EventHandler(this.m_tbMatchOneChar_TextChanged);
             // 
-            // m_tbmaxKeySequenceLength
-            // 
-            resources.ApplyResources(this.m_tbmaxKeySequenceLength, "m_tbmaxKeySequenceLength");
-            this.m_tbmaxKeySequenceLength.Name = "m_tbmaxKeySequenceLength";
-            this.m_tbmaxKeySequenceLength.TextChanged += new System.EventHandler(this.m_tbmaxKeySequenceLength_TextChanged);
-            // 
             // m_cbWarningBeep
             // 
             resources.ApplyResources(this.m_cbWarningBeep, "m_cbWarningBeep");
@@ -143,13 +181,6 @@ namespace OVPreferences
             this.m_cbShiftSelectionKey.UseVisualStyleBackColor = true;
             this.m_cbShiftSelectionKey.CheckedChanged += new System.EventHandler(this.m_cbShiftSelectionKey_CheckedChanged);
             // 
-            // m_cbWildCard
-            // 
-            resources.ApplyResources(this.m_cbWildCard, "m_cbWildCard");
-            this.m_cbWildCard.Name = "m_cbWildCard";
-            this.m_cbWildCard.UseVisualStyleBackColor = true;
-            this.m_cbWildCard.CheckedChanged += new System.EventHandler(this.m_cbWildcard_CheckedChanged);
-            // 
             // m_lbselectKey
             // 
             resources.ApplyResources(this.m_lbselectKey, "m_lbselectKey");
@@ -165,10 +196,44 @@ namespace OVPreferences
             resources.ApplyResources(this.m_lbMatchOneChar, "m_lbMatchOneChar");
             this.m_lbMatchOneChar.Name = "m_lbMatchOneChar";
             // 
+            // m_lbMaxRadialHint2
+            // 
+            resources.ApplyResources(this.m_lbMaxRadialHint2, "m_lbMaxRadialHint2");
+            this.m_lbMaxRadialHint2.Name = "m_lbMaxRadialHint2";
+            // 
+            // m_lbMaxRadialHint1
+            // 
+            resources.ApplyResources(this.m_lbMaxRadialHint1, "m_lbMaxRadialHint1");
+            this.m_lbMaxRadialHint1.Name = "m_lbMaxRadialHint1";
+            // 
+            // m_lbBasicSettings
+            // 
+            resources.ApplyResources(this.m_lbBasicSettings, "m_lbBasicSettings");
+            this.m_lbBasicSettings.Name = "m_lbBasicSettings";
+            // 
             // m_lbMaxKeySequenceLength
             // 
             resources.ApplyResources(this.m_lbMaxKeySequenceLength, "m_lbMaxKeySequenceLength");
             this.m_lbMaxKeySequenceLength.Name = "m_lbMaxKeySequenceLength";
+            // 
+            // shapeContainer1
+            // 
+            resources.ApplyResources(this.shapeContainer1, "shapeContainer1");
+            this.shapeContainer1.Name = "shapeContainer1";
+            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.lineShape2,
+            this.lineShape1});
+            this.shapeContainer1.TabStop = false;
+            // 
+            // lineShape2
+            // 
+            this.lineShape2.Name = "lineShape2";
+            resources.ApplyResources(this.lineShape2, "lineShape2");
+            // 
+            // lineShape1
+            // 
+            this.lineShape1.Name = "lineShape1";
+            resources.ApplyResources(this.lineShape1, "lineShape1");
             // 
             // PanelGeneric
             // 
@@ -178,6 +243,7 @@ namespace OVPreferences
             this.Name = "PanelGeneric";
             this.m_pnSelf.ResumeLayout(false);
             this.m_pnSelf.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_nuMaxRadicalLength)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -193,9 +259,7 @@ namespace OVPreferences
         private System.Windows.Forms.CheckBox m_cbHitMaxAndCompose;
         private System.Windows.Forms.CheckBox m_cbAutoCompose;
         private System.Windows.Forms.CheckBox m_cbShiftSelectionKey;
-        private System.Windows.Forms.CheckBox m_cbWildCard;
         private System.Windows.Forms.Label m_lbMaxKeySequenceLength;
-        private System.Windows.Forms.TextBox m_tbmaxKeySequenceLength;
         private System.Windows.Forms.TextBox m_tbselectKey;
         private System.Windows.Forms.Label m_lbselectKey;
         private System.Windows.Forms.TextBox m_tbMatchZeroOrMoreChar;
@@ -205,6 +269,15 @@ namespace OVPreferences
         private System.Windows.Forms.CheckBox m_cbOrderWordsByFreq;
         private System.Windows.Forms.CheckBox m_cbAssociatedPhrase;
         private System.Windows.Forms.CheckBox m_cbLearnAssociatedPhrase;
+        private System.Windows.Forms.Label m_lbBasicSettings;
+        private System.Windows.Forms.Label m_lbMaxRadialHint1;
+        private System.Windows.Forms.Label m_lbTypingPreference;
+        private System.Windows.Forms.Label m_lbMaxRadialHint2;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
+        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
+        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape2;
+        private System.Windows.Forms.Label m_lbWildcardSupport;
+        private System.Windows.Forms.NumericUpDown m_nuMaxRadicalLength;
         
     }
 }

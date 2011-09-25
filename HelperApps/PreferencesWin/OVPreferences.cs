@@ -150,10 +150,6 @@ namespace OVPreferences
                 {
                     AddPanelTibetan(conf, m_ovConfDom);
                 }
-                if (conf.moduleName.StartsWith("OVIMTobacco"))
-                {
-                    AddPanelTobacco(conf, m_ovConfDom);
-                }
                 if (conf.moduleName.Equals("TLIM"))
                 {
                     AddPanelTLIM(conf, m_ovConfDom);
@@ -234,21 +230,7 @@ namespace OVPreferences
             pnTibetan.Init(conf, confDom);
             AddPanel(conf,pnTibetan, conf.moduleName);
         }
-
-        protected void AddPanelTobacco(OVConfig conf, XmlDocument confDom)
-        {
-            PanelTobacco pnTobacco = new PanelTobacco();
-            pnTobacco.Init(conf, confDom);
-            string msg = resourceMgr.GetString("OVIMTobacco", ci);//conf.moduleName, ci);
-            if(ci.Name=="zh-CN")
-                conf.zh_CNName = msg + "-" + conf.zh_TWName;
-            else if(ci.Name.StartsWith("zh"))
-                conf.zh_TWName = msg + "-" + conf.zh_TWName;
-            else 
-                conf.enName = msg + "-"+conf.enName;
-            
-            AddPanel(conf,pnTobacco, msg);
-        }
+        
 
         protected void AddPanelTLIM(OVConfig conf, XmlDocument confDom)
         {

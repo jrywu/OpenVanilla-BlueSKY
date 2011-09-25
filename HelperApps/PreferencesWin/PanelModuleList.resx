@@ -138,6 +138,9 @@
   <data name="m_clModuleList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
+  <data name="m_clModuleList.ScrollAlwaysVisible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_clModuleList.Size" type="System.Drawing.Size, System.Drawing">
     <value>284, 324</value>
   </data>
