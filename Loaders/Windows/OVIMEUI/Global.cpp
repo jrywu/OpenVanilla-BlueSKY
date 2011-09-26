@@ -15,7 +15,7 @@ UICHILD uiNotify;
 
 HWND hIMEWnd;
 
-bool isChinese = true;
+//bool isChinese = true;
 //bool isTraditional = true;
 bool isFull = false;
 

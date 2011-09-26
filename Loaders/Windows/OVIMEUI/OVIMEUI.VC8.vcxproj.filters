@@ -7,16 +7,16 @@
     <ClCompile Include="OVIMEUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NewUICand.cpp">
+    <ClCompile Include="UICandWrapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NewUIComp.cpp">
+    <ClCompile Include="UICompWrapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NewUINotify.cpp">
+    <ClCompile Include="UINotifyWrapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NewUIStatus.cpp">
+    <ClCompile Include="UIStatusWrapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

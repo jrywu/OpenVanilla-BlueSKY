@@ -26,22 +26,22 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
@@ -133,6 +133,9 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <Lib>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
@@ -174,6 +177,9 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <Lib>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
@@ -214,6 +220,9 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <Lib>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
@@ -253,6 +262,9 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <Lib>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Reference Include="System">
@@ -270,10 +282,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Global.cpp" />
-    <ClCompile Include="NewUICand.cpp" />
-    <ClCompile Include="NewUIComp.cpp" />
-    <ClCompile Include="NewUINotify.cpp" />
-    <ClCompile Include="NewUIStatus.cpp" />
+    <ClCompile Include="UICandWrapper.cpp" />
+    <ClCompile Include="UICompWrapper.cpp" />
+    <ClCompile Include="UINotifyWrapper.cpp" />
+    <ClCompile Include="UIStatusWrapper.cpp" />
     <ClCompile Include="OVIMEUI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -284,7 +296,7 @@
     <ClInclude Include="OVIMEUI.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OVManagedUI\OVUIServer.csproj">
+    <ProjectReference Include="..\OVUIServer\OVUIServer.csproj">
       <Project>{1610a612-3ec5-4fa8-8559-a7fe48802057}</Project>
     </ProjectReference>
   </ItemGroup>

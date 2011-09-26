@@ -7,7 +7,7 @@
     <ProjectGuid>{1610A612-3EC5-4FA8-8559-A7FE48802057}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ApplicationIcon>OVPreferences.ico</ApplicationIcon>
+    <ApplicationIcon>OVUIServer.ico</ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>OVUIServer</AssemblyName>
@@ -17,7 +17,7 @@
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
     <DelaySign>false</DelaySign>
     <OutputType>Library</OutputType>
-    <RootNamespace>OVManagedUI</RootNamespace>
+    <RootNamespace>OVUIServer</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <StartupObject>
     </StartupObject>
@@ -205,6 +205,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="OVPreferences.ico" />
+    <Content Include="OVUIServer.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
