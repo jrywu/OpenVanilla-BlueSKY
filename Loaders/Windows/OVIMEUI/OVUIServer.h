@@ -119,4 +119,4 @@ extern UICHILD uiNotify;
 extern int CurrentIC;
 extern bool isChinese;
 //extern bool isTraditional;
-extern bool isFull;
+extern bool isFullShape;

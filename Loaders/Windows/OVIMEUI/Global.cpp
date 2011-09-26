@@ -15,9 +15,8 @@ UICHILD uiNotify;
 
 HWND hIMEWnd;
 
-//bool isChinese = true;
-//bool isTraditional = true;
-bool isFull = false;
+bool isChinese = true;
+bool isFullShape = false;
 
 // InputContext
 int CurrentIC=0;

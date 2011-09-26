@@ -8,8 +8,8 @@ int CompX;
 int CompY;
 int CandX;
 int CandY;
-bool isChinese = true;
-bool isFullShape = false;
+//bool isChinese = true;  //moved to global of OVIMEUI
+//bool isFullShape = false; //moved to global of OVIMEUI
 DisplayServer* dsvr = new DisplayServer();
 #ifdef WINCE
 int CurrentIC=0;
