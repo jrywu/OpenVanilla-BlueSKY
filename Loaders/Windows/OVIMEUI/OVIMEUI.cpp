@@ -4,12 +4,10 @@
 
 #include <stdio.h> 
 #include "OVIMEUI.h"
-#include "DotNETHeader.h"
+#include "OVUIServer.h"
 #include <shobjidl.h>
 #include <shlobj.h>
 #include <atlbase.h>
-
-
 
 // Status window 
 void UISetkpCount(int count)
@@ -199,15 +197,7 @@ void UIShowStatusWindow()
 	
 	if (IsWindow(uiStatus.hWnd))
 	{	
-		murmur("\tShow status window. isDocked:%d", UIGetIsStatusDocked());
-		
-		if(UIGetIsStatusDocked()) 
-		{
-			murmur("\tAdd deskband...");
-			UIShowDeskBand(true);// 		bandadded=true;
-		}
-		else
-			murmur("\tStatus is not doced");
+		murmur("\tShow status window. ;");
 		
 		_ShowStatusPage(); //show		 
 	}
@@ -219,16 +209,7 @@ void UIHideStatusWindow()
 	if (IsWindow(uiStatus.hWnd))
 	{
 		murmur("\tHide status window...");
-		//ShowWindow(uiStatus.hWnd, SW_HIDE);  
-		
-		if(UIGetIsStatusDocked())
-		{
-			murmur("\tRemove deskband..."); 
-			
-			UIShowDeskBand(false);// bandadded = false;
-		}
-		
-	
+
 		_HideStatusPage();
 	}
 	
@@ -334,18 +315,6 @@ void UIChangeChiEng()
 	//UIShowStatusWindow();
 }
 
-void UIChangeSimpifiedOrTraditional(HWND hWnd)
-{	
-	//設定繁簡
-	isTraditional = !isTraditional;		
-	_SetStatusSimpifiedOrTraditional(isTraditional); 
-
-	//refresh
-	//UIShowStatusWindow();
-
-	/*以下是模組要做的事情*/
-
-}
 
 void UIChangeBoPoMoFoLayout(int index)
 {

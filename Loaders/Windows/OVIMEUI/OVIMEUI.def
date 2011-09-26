@@ -14,7 +14,7 @@ EXPORTS
 ;    DllRegisterServer   PRIVATE
 ;   DllUnregisterServer PRIVATE
 	
-	UIShowDeskBand
+;	UIShowDeskBand
 ;OVIMEUI
 ;;status
 	UICreateStatusWindow
@@ -32,7 +32,7 @@ EXPORTS
 	UIModuleRotate
 	UIChangeHalfFull
 	UIChangeChiEng
-	UIChangeSimpifiedOrTraditional
+	;UIChangeSimpifiedOrTraditional
 	UIChangeBoPoMoFoLayout
 	UISetStatusModStrCurrent
 	UISetStatusModStrMenuEach
@@ -41,7 +41,7 @@ EXPORTS
 	UICurrentInputMethod
 	UIGetIsStatusDocked
 	UISetIsStatusDocked
-	_SetStatusSimpifiedOrTraditional
+	;_SetStatusSimpifiedOrTraditional
 	_CreateStatusPage
 	_ShowStatusPage
 	_MoveStatusPage
@@ -110,17 +110,7 @@ EXPORTS
 	_SetCandiColor
 	_SetCandiFont
 	_SetCandiOpacity
-	
-;;Symbol
-	_CreateSymbolPage	
-	_CreateSymbolPageWithHandle
-	_MoveSymbolPage
-	_ShowSymbolPage
-	_HideSymbolPage	
-	_EndSymbolPage					
-	_ClearSymbolPage				
-	_SetSymbolString	
-	_ExpandSymbol
+
 
 ;;Notify 
 	UICreateNotifyWindow

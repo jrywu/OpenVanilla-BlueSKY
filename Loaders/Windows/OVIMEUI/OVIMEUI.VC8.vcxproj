@@ -274,23 +274,17 @@
     <ClCompile Include="NewUIComp.cpp" />
     <ClCompile Include="NewUINotify.cpp" />
     <ClCompile Include="NewUIStatus.cpp" />
-    <ClCompile Include="NewUISymbol.cpp" />
     <ClCompile Include="OVIMEUI.cpp" />
-    <ClCompile Include="DeskBand\ClassFactory.cpp" />
-    <ClCompile Include="DeskBand\DeskBand.cpp" />
-    <ClCompile Include="DeskBand\DllMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OVIMEUI.def" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DotNETHeader.h" />
+    <ClInclude Include="OVUIServer.h" />
     <ClInclude Include="OVIMEUI.h" />
-    <ClInclude Include="DeskBand\ClassFactory.h" />
-    <ClInclude Include="DeskBand\DeskBand.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OVManagedUI\OVManagedUI.csproj">
+    <ProjectReference Include="..\OVManagedUI\OVUIServer.csproj">
       <Project>{1610a612-3ec5-4fa8-8559-a7fe48802057}</Project>
     </ProjectReference>
   </ItemGroup>

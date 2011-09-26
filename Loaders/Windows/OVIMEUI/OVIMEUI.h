@@ -1,4 +1,4 @@
-//#pragma unmanaged
+
 #include <windows.h>
 #include <tchar.h>
 #include <commctrl.h>
@@ -11,21 +11,9 @@ typedef struct _tagUICHILD{
 } UICHILD, *LPUICHILD;
 
 extern "C" {
-// Interfaces
-// OVIMEUI.cpp
-//BOOL IMEUIRegisterClass( HINSTANCE );
-//BOOL IMEUIUnRegisterClass( HINSTANCE );
-//BOOL MyIsIMEMessage(UINT);
-//<comment author='b6s'>
-// Uses the managed UI function instead
-//void UIPushInputMethod(wchar_t*);
-//</comment>
-//int UICurrentInputMethod();  move to uistatus.cpp
 
-//void UIConstruct();
-//void UIDispose();
 
-bool UIShowDeskBand(bool t);
+//bool UIShowDeskBand(bool t);
 
 // UIStatus.cpp
 void UICreateStatusWindow(HWND, int, int, bool);

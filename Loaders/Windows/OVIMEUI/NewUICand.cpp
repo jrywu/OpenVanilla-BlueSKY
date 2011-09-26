@@ -1,29 +1,15 @@
 //#define OV_DEBUG  
 #include <vector>
-//#include <windows.h>
-//#include "PCMan.h"
+
 #include "OVIMEUI.h"
 
-
 #pragma managed
-
-//<comment author='b6s'>
-//If you want to use "#using" here instead of adding references in
-//the project property, another project property "Resolve #using referecen"
-//should also be set to "..\CSharpFormLibrary\bin\Debug"
-//#using <mscorlib.dll>
-//#using <System.dll>
-//#using <System.Windows.Forms.dll>
-//#using <CSharpFormLibrary.dll>
-//</comment>
-
 using namespace System;
 using namespace System::Diagnostics;
 using namespace System::Windows::Forms;
 using namespace System::Collections;
 using namespace std;
-//using namespace CSharpFormLibrary;
-using namespace OVManagedUI;
+using namespace OVUIServer;
 
 ref class CSharpCandiWrapper{
 private:
