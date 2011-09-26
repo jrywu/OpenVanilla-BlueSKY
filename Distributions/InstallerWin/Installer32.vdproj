@@ -88,12 +88,6 @@
         "Entry"
         {
         "MsmKey" = "8:_3748450A2D9C42C7AEE56ABE7F2D54F3"
-        "OwnerKey" = "8:_A5854C5ADC954CC68AB116617DBA59AA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3748450A2D9C42C7AEE56ABE7F2D54F3"
         "OwnerKey" = "8:_050CB8C04C0347B9B1B7989815F3B0F8"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -148,13 +142,13 @@
         "Entry"
         {
         "MsmKey" = "8:_6BA4A2375C309585DD95509DFB9DBFD8"
-        "OwnerKey" = "8:_A5854C5ADC954CC68AB116617DBA59AA"
+        "OwnerKey" = "8:_900AF48FABE547ABA9B708D76781E0B6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_6BA4A2375C309585DD95509DFB9DBFD8"
-        "OwnerKey" = "8:_900AF48FABE547ABA9B708D76781E0B6"
+        "MsmKey" = "8:_6F193D5CD223A7A4F062706937D4F16D"
+        "OwnerKey" = "8:_E36E6D2A7E3D46568315065D07E32810"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -256,13 +250,19 @@
         "Entry"
         {
         "MsmKey" = "8:_ECEA9B47386BB69461B7F9856F0E8ED6"
-        "OwnerKey" = "8:_8FA216E864B43F3E8D238E3A5E160D48"
+        "OwnerKey" = "8:_6F193D5CD223A7A4F062706937D4F16D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_ECEA9B47386BB69461B7F9856F0E8ED6"
         "OwnerKey" = "8:_E36E6D2A7E3D46568315065D07E32810"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_ECEA9B47386BB69461B7F9856F0E8ED6"
+        "OwnerKey" = "8:_8FA216E864B43F3E8D238E3A5E160D48"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -286,6 +286,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E7E80D8587BE4B00B2E2251108D48D49"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E36E6D2A7E3D46568315065D07E32810"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -298,13 +304,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_ECEA9B47386BB69461B7F9856F0E8ED6"
+        "OwnerKey" = "8:_6F193D5CD223A7A4F062706937D4F16D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E7E80D8587BE4B00B2E2251108D48D49"
+        "OwnerKey" = "8:_ECEA9B47386BB69461B7F9856F0E8ED6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -624,6 +630,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6F193D5CD223A7A4F062706937D4F16D"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:OVIMEUI, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_6F193D5CD223A7A4F062706937D4F16D"
+                    {
+                    "Name" = "8:OVIMEUI.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:OVIMEUI.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_EEA62CA21C7A4315893F5E92CB2C2B99"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7CA1C2B3DDB842DEB84935D29DF45D1D"
             {
             "SourcePath" = "8:..\\..\\DataTables\\assoc.cin"
@@ -731,7 +768,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -1899,7 +1936,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_39FC260FA32B4234967B81934056AC4B"
             {
-            "SourcePath" = "8:..\\..\\Loaders\\Windows\\OVManagedUI\\obj\\Release\\OVUIServer.dll"
+            "SourcePath" = "8:..\\..\\Loaders\\Windows\\OVUIServer\\obj\\Release\\OVUIServer.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C8329FE466FD42818F137F70A84D5751"
