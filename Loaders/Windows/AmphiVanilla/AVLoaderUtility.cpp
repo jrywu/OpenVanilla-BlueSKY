@@ -10,53 +10,59 @@
 
 #include "AVLoaderUtility.h"
 #include <string>
-#if defined(WIN32) || defined(WINCE)
-#include <windows.h>
-#endif
 using namespace std;
 
-#ifdef WINCE
-vector<HINSTANCE> *lib_vector;
-#endif
+vector<OVLibrary*> ovlib_vector;
 vector<OVModule*> *mod_vector;
 static OVService *lsrv;
 
 static OVLibrary* open_module(const char* modname){
+	murmur("enter open_module for %s", modname);
     OVLibrary* mod = new OVLibrary();
-#ifndef WINCE
+#ifndef WIN32 //WINCE
     mod->handle = lt_dlopen(modname);
 #else
 	WCHAR wbuf[MAX_PATH];
 	MultiByteToWideChar(CP_UTF8, 0, modname, (int)strlen(modname)+1, wbuf, MAX_PATH);
-	//mbstowcs(wbuf, modname, MAX_PATH);
     mod->handle = LoadLibraryW(wbuf);
+	
 #endif
     if(mod->handle == NULL){
-	murmur("dlopen %s failed\n", modname);
-	goto OPEN_FAILED;
+		murmur("dynamic library open %s failed\n", modname);
+		goto OPEN_FAILED;
     }
-#ifndef WINCE
-    mod->getModule = (TypeGetModule)lt_dlsym( mod->handle, 
-	    "OVGetModuleFromLibrary" );
-    mod->getLibVersion = (TypeGetLibVersion)lt_dlsym( mod->handle, 
-	    "OVGetLibraryVersion" );
-	mod->initLibrary = (TypeInitLibrary)lt_dlsym( mod->handle,
-	    "OVInitializeLibrary" );
-#else
+#ifdef WIN32
+	
+#endif 
+#ifdef WINCE
 	mod->getModule = (TypeGetModule)GetProcAddressW( mod->handle, 
 	    L"OVGetModuleFromLibrary" );
     mod->getLibVersion = (TypeGetLibVersion)GetProcAddressW( mod->handle, 
 		L"OVGetLibraryVersion" );
 	mod->initLibrary = (TypeInitLibrary)GetProcAddressW( mod->handle,
 	    L"OVInitializeLibrary" );
+#elif WIN32
+	mod->getModule = (TypeGetModule)GetProcAddress( mod->handle, 
+	    "OVGetModuleFromLibrary" );
+    mod->getLibVersion = (TypeGetLibVersion)GetProcAddress( mod->handle, 
+		"OVGetLibraryVersion" );
+	mod->initLibrary = (TypeInitLibrary)GetProcAddress( mod->handle,
+	    "OVInitializeLibrary" );
+#else
+	mod->getModule = (TypeGetModule)lt_dlsym( mod->handle, 
+	    "OVGetModuleFromLibrary" );
+    mod->getLibVersion = (TypeGetLibVersion)lt_dlsym( mod->handle, 
+	    "OVGetLibraryVersion" );
+	mod->initLibrary = (TypeInitLibrary)lt_dlsym( mod->handle,
+	    "OVInitializeLibrary" );
 #endif
 	if( !mod->getModule || !mod->getLibVersion || !mod->initLibrary ){
-	murmur("dlsym %s failed\n", modname);
-	goto OPEN_FAILED;
+		murmur("open dynamic library failed %s failed\n", modname);
+		goto OPEN_FAILED;
     }
     if( mod->getLibVersion() < OV_VERSION ){
-	murmur("%s %d is too old\n", modname, mod->getLibVersion());
-	goto OPEN_FAILED;
+		murmur("%s %d is too old\n", modname, mod->getLibVersion());
+		goto OPEN_FAILED;
     }
 
     return mod;
@@ -83,15 +89,15 @@ static void load_module(string path, string file)
 #endif
     
     if(mod){
-	OVModule* m;
-	mod->initLibrary(lsrv, path.c_str());
-	for(int i=0; m = mod->getModule(i); i++)
-	{	
-	    mod_vector->push_back(m);
-	    murmur("Load OVModule: %s\n", m->localizedName("zh_TW"));
+		OVModule* m;
+		mod->initLibrary(lsrv, path.c_str());
+		for(int i=0; m = mod->getModule(i); i++)
+		{	
+			mod_vector->push_back(m);
+			murmur("Load OVModule: %s\n", m->localizedName("zh_TW"));
+		}
+		ovlib_vector.push_back(mod);
 	}
-	delete mod;
-    }
 }
 typedef void (*loadfunc)(string path, string file);
 
@@ -124,7 +130,7 @@ static void scan_dir(string path, loadfunc func)
     hList = FindFirstFileW(wbuf, &FileData);
     if(hList == INVALID_HANDLE_VALUE)
     {
-	murmur("No files found\n");
+		murmur("No files found\n");
     }
     else
     {
@@ -133,7 +139,6 @@ static void scan_dir(string path, loadfunc func)
 	{
 	    if(wcsstr(FileData.cFileName, L".dll") || wcsstr(FileData.cFileName, L".DLL"))
 	    {
-			//wcstombs(buf, FileData.cFileName, MAX_PATH);
 			WideCharToMultiByte(CP_UTF8, 0, FileData.cFileName, (int)(wcslen(FileData.cFileName)+1), buf, MAX_PATH,NULL, NULL);
 			func(path, buf);
 	    }
@@ -154,7 +159,7 @@ static void scan_dir(string path, loadfunc func)
 void AVLoadEverything(string path, OVService *srv, vector<OVModule*> &vector)
 {   
     mod_vector = &vector;
-#ifndef WINCE
+#ifndef WIN32 // WINCE
     lt_dlinit();
     lt_dlsetsearchpath(path.c_str());
 #endif
@@ -164,17 +169,19 @@ void AVLoadEverything(string path, OVService *srv, vector<OVModule*> &vector)
 
 void AVUnloadLibrary(vector<OVModule*> &vec)
 {
+	murmur("AVUnloadLibrary()" );
 	
-	/* FIXME: uncomment this will cause segfault in ime. 
-	for(size_t i = 0; i < vec.size(); i++)
-		if(vec.at(i) != NULL)
-			delete vec.at(i);
-	*/
-#ifdef WINCE
-
+#ifdef WIN32 //WINCE
+	//unload all dynamic loaded DLLs.
+	for(size_t i = 0; i < ovlib_vector.size(); i++)
+		if(ovlib_vector.at(i) != NULL){
+			FreeLibrary(ovlib_vector.at(i)->handle);
+		}
 #else
 	lt_dlexit();
 #endif
+	// clear vectors;
+	ovlib_vector.clear();
 	vec.clear();
 
 }

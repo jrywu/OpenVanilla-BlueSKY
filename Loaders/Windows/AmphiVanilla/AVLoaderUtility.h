@@ -5,10 +5,12 @@
 #include "OVUtility.h"
 #include <string>
 #include <vector>
-#ifndef WINCE
+#ifndef WIN32 //WINCE
 extern "C" {
 #include "ltdl.h"
 }
+#else
+#include <Windows.h>
 #endif
 using namespace std;
 
@@ -16,7 +18,7 @@ typedef OVModule* (*TypeGetModule)(int);
 typedef int (*TypeInitLibrary)(OVService*, const char*);
 typedef unsigned int (*TypeGetLibVersion)();
 struct OVLibrary {
-#ifdef WINCE
+#ifdef WIN32 //WINCE
    HINSTANCE handle;
 #else
    lt_dlhandle handle;

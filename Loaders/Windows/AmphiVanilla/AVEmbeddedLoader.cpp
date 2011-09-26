@@ -41,10 +41,7 @@ AVEmbeddedLoader::AVEmbeddedLoader()
 	m_dict->setGlobalConfig("Directories");
 	m_cfg->setBaseDir(m_dict->getStringWithDefault("BaseDir",m_cfg->getBaseDir() ));  //Set basedir from config.xml with default from AVConfig.
 	m_cfg->setModuleDir(m_dict->getStringWithDefault("ModuleDir",m_cfg->getModuleDir()));
-	
-	
-	
-	
+		
 	m_cfg->setUserDir(m_dict->getStringWithDefault("UserDir",m_cfg->getUserDir()));
 
 	murmur("Basedir:%s\n",m_cfg->getBaseDir());

@@ -33,9 +33,6 @@
     <ClInclude Include="AVBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\dependencies\ltdl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AVCandidate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
