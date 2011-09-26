@@ -62,26 +62,12 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 			);
 		
 		dsvr->showStatus(true);	 
-		
-		
-		
-
 		break;
 		}
 	case IMN_CLOSESTATUSWINDOW:
 		{
 		murmur("IMN_CLOSESTATUSWINDOW");
-		dsvr->showStatus(false);	
-		
-		
-
-		//<comment author='b6s'>
-		// When attached app lost focus, only this message occurred,
-		// so it must also hide following windows.
-		//dsvr->showBuf(false);	
-		//dsvr->showCandi(false);								
-
-		//</comment>
+		dsvr->showStatus(false);								
 		break;
 		}
 	case IMN_OPENCANDIDATE:
@@ -246,7 +232,7 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 			}
 		case 4: // Change UI Traditional/Simplified Chinese
 			murmur("\tChange UI Traditional/Simplified Chinese");			
-			UIChangeSimpifiedOrTraditional(hWnd); 
+			//UIChangeSimpifiedOrTraditional(hWnd); 
 			break;
 		case 5: { //Change BoPoMoFo keyboard layout by ctrl +'='
 			/* close module and set new IC */	

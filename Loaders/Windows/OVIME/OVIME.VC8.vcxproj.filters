@@ -48,10 +48,6 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Frameworks\Headers\OpenVanilla.h" />
-    <ClInclude Include="..\..\..\Frameworks\Headers\OVUtility.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\OVIMEUI\OVIMEUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>

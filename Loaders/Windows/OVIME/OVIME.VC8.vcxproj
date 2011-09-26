@@ -249,8 +249,6 @@
     <ClInclude Include="ImmController.h" />
     <ClInclude Include="immdev.h" />
     <ClInclude Include="ImmModel.h" />
-    <ClInclude Include="..\..\..\Frameworks\Headers\OpenVanilla.h" />
-    <ClInclude Include="..\..\..\Frameworks\Headers\OVUtility.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Vk.h" />
   </ItemGroup>
