@@ -1,8 +1,27 @@
 //#define OV_DEBUG
 #include "OVIME.h"
 #include "OVUtility.h"
-/**********************************************************************/
-// For wince														  */
+HINSTANCE hInst;
+
+//Global variables definition.
+int CompX;
+int CompY;
+int CandX;
+int CandY;
+bool isChinese = true;
+bool isFullShape = false;
+DisplayServer* dsvr = new DisplayServer();
+#ifdef WINCE
+int CurrentIC=0;
+// For UI on windows CE.
+//const WCHAR UICLASSNAME[]=TEXT("OVIMEUI");
+//const WCHAR UICOMPCLASSNAME[]=TEXT("OVIMECOMP");
+//const WCHAR UICANDCLASSNAME[]=TEXT("OVIMECAND");
+//const WCHAR UISTATUSCLASSNAME[]=TEXT("OVIMESTATUS");
+
+#endif
+
+// For wince														 
 #ifdef WINCE
 #include "uiprivate.h"
 

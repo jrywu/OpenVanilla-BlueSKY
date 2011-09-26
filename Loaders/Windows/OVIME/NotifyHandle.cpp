@@ -2,16 +2,22 @@
 
 #include "OVIME.h" 
 
-
-
 static bool isPrivateEightExecuting = false;
 static bool inprivate2=false;
 static bool inprivate5=false;
 
 
+BOOL CALLBACK ReloadIME(HWND hwnd, LPARAM lp)
+{
+	TCHAR tmp[9];
+	GetClassName( hwnd, tmp, 8 );
 
-
-
+	
+	if( ! _tcscmp( tmp, UICLASSNAME ) ) {
+		SendMessage( hwnd, WM_IME_RELOADCONFIG, 0, 0 );
+	}
+	return TRUE;
+}
 
 LRESULT NotifyHandle(HIMC hUICurIMC,
 				  HWND hWnd,
@@ -20,12 +26,6 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 				  LPARAM lParam)
 {
 	LRESULT lRet = 0L;
-	//<comment author='b6s'>Unused codes
-	//LPINPUTCONTEXT lpIMC;  
-	//LOGFONT* lfptr; 
-	//LOGFONT lf2;
-	//</comment>
-	
 	if(!hUICurIMC) return lRet;
 
 	dsvr->setHIMC(hUICurIMC);
@@ -214,8 +214,6 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 			
 			UIChangeChiEng();  
 
-		    //通知 windows API 輸入法狀態改變
-			//HIMC imc = ImmGetContext( hWnd );
 			if( hUICurIMC )
 			{
 				isChinese=!isChinese;
@@ -269,33 +267,18 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 			}
 			break;
 			}
-		case 6: // Toggle Small/Large Candidate window. (ctrl+alt+k)	
+		case 6: // Test Notify. (ctrl+alt+k)	
 			{
 			murmur("\tToggle Small/Large Candidate window.");
 			murmur("\tTest Notify window");
 			char *str="Hide Deskband";			
 			
 			
-			dsvr->showNotify(str); //會 new 一個 NotifyWindow ->real form		
-			//UIExpandCandi();
-			UIShowDeskBand(false);
-			break;
-			}
-		case 7: // Test Notify window. (ctrl+alt+L)
-			{
-			murmur("\tTest show deskband");
-			char *str="Show Deskband";			
-			static bool t=true;
-			
-			if( UIShowDeskBand(t)) t=!t;
-			
+			dsvr->showNotify(str); 
 
-			//UICreateNotifyWindow(hWnd); //new IMENotifyWindow -> fake form
-			dsvr->showNotify(str); //會 new 一個 NotifyWindow ->real form		
-			
-			
 			break;
 			}
+		
 		case 8: //Change Modules by ctrl +'\'
 			{
 			/* close module and poll current IC */
@@ -416,49 +399,7 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 			EnumChildWindows( GetDesktopWindow(), ReloadIME, NULL);
 			break;
 			}
-		case 14: // Status docking status updated
-			{
-			murmur("Status docking status updated");
-			dsvr->showStatus(false);
-			if(dsvr->GetisStatusDocked())
-			{
-				dsvr->SetisStatusDocked(false);
-			}
-			else
-			{
-				dsvr->SetisStatusDocked(true);
-				
-			}
-			dsvr->showStatus(true);
-			
-
-		
-			POINT pt;
-			char tmp[32]; 
-			loader->setGlobalConfig("StatusBar");
-			if(dsvr->GetisStatusDocked())
-			{
-				
-				loader->setGlobalConfigKey("IsDocked","1"); 
-		
-			}
-			else
-			{
-				dsvr->getStatusPos(&pt);
-				if((pt.x!=-1)&&(pt.y!=-1)) {
-				murmur("Save current Status bar location (%i, %i), and isDocking:%i."
-					, pt.x, pt.y, dsvr->GetisStatusDocked());
-				sprintf(tmp, "%d", pt.x);
-				loader->setGlobalConfigKey("StatusPosX",tmp);
-				sprintf(tmp, "%d", pt.y);
-				loader->setGlobalConfigKey("StatusPosY",tmp);
-				}
-				loader->setGlobalConfigKey("IsDocked","0");
-			
-			}
-			
-			break;
-			}
+	
 		
 		default:
 			murmur("\tUknown IMN_PRIVATE");

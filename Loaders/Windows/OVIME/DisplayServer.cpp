@@ -34,39 +34,7 @@ AVDisplayServer *DisplayServer::getStatusPos(LPPOINT lp_pt)
 	return this;
 	 
 }
-/*
-AVDisplayServer *DisplayServer::setBufString(const char *str)
-{
-	UIHideNotifyWindow();	
-	wchar_t wstr[1024];
-	MultiByteToWideChar(CP_UTF8, 0, str, (int)strlen(str)+1, wstr, 1024);
 
-	ImmModel* model = ImmModel::open(m_hIMC);
-	wchar_t* word = GETLPCOMPSTR(model->getCompStr());
-	//wcscpy(word, wstr);
-	wcscpy(model->getMyPrivate()->PreEditStr, wstr);
-	MakeCompStr(model->getMyPrivate(), model->getCompStr(), 0);
-	UISetCompStr(model->getMyPrivate()->PreEditStr);
-	//要不要先檢查有沒有PreEditStr有沒有東西？
-
-
-	ImmModel::close(); 
-	murmur("\tCOMPOSITION GCS_COMPSTR");
-	//MyGenerateMessage(m_hIMC, WM_IME_COMPOSITION, 0, GCS_COMPSTR);
-	MyGenerateMessage( m_hIMC, WM_IME_COMPOSITION, 
-				*(WORD*)word,
-				(GCS_COMPSTR|GCS_COMPATTR
-	//			|GCS_COMPREADSTR|GCS_COMPREADATTR
-				|GCS_COMPCLAUSE|GCS_COMPREADCLAUSE
-				|GCS_CURSORPOS
-	//			|GCS_DELTASTART				 
-				));
-	//
-	
-
-	return this;
-}
-*/
 AVDisplayServer *DisplayServer::setBufString(const char *str, int caretX, int markFrom, int markTo)
 {
 	hideNotify();
@@ -74,7 +42,6 @@ AVDisplayServer *DisplayServer::setBufString(const char *str, int caretX, int ma
 	ImmController* controller = ImmController::open();
 	
 	if(!controller->getCompStartedFlag()) {
-		//controller->setCompStartedFlag(true);   
 		murmur("\tDSVR: STARTCOMPOSITION");		
 		MyGenerateMessage( m_hIMC, WM_IME_STARTCOMPOSITION,0,0);  
 	}
@@ -98,25 +65,11 @@ AVDisplayServer *DisplayServer::setBufString(const char *str, int caretX, int ma
 	murmur("\tDISPLAYSERVER::setbufString str:%s, len,%i, caretX:%i",str, wcslen(wstr), caretX);
 
 	
-	
-	//要不要先檢查有沒有PreEditStr有沒有東西？
 	UISetCompStr(model->getMyPrivate()->PreEditStr);
 	if(caretX > -1 ) UISetCompCaretPosX(caretX); 
 	else UISetCompCaretPosX((int)wcslen(wstr));
 	
-	//model->getCompStr()->dwCursorPos = caretX;
-
-	/*
 	
-	if(!controller->getCompStartedFlag()) {     
-		controller->setCompStartedFlag(true); 
-		murmur("\tDSVR: STARTCOMPOSITION");
-		murmur("\tdwCompResultStrlen:%d, dwCompStrLen:%d", model->getCompStr()->dwResultStrLen, model->getCompStr()->dwCompStrLen);
-		MyGenerateMessage( m_hIMC, WM_IME_STARTCOMPOSITION,0,0); 
-		ImmModel::close();
-		return this;
-	}
-	*/
 	ImmModel::close();
 	
 	
@@ -124,13 +77,10 @@ AVDisplayServer *DisplayServer::setBufString(const char *str, int caretX, int ma
 	MyGenerateMessage( m_hIMC, WM_IME_COMPOSITION, 
 				*(WORD*)word,
 				(GCS_COMPSTR|GCS_COMPATTR
-	//			|GCS_COMPREADSTR|GCS_COMPREADATTR
-				|GCS_COMPCLAUSE//|GCS_COMPREADCLAUSE
+				|GCS_COMPCLAUSE
 				|GCS_CURSORPOS
 				|GCS_DELTASTART				 
 				));
-	
-
 	
 	return this;
 }
@@ -151,11 +101,8 @@ AVDisplayServer *DisplayServer::sendBuf(const char *str)
 	
 	ImmModel::close();
 
-	//James:把下兩行提前，看能否解決閃爍問題  
 	showBuf(false);
-	//再hide後再清掉，避免殘像發生 
-	UIClearCompStr();//即時update C# comp string 同步資料
-	//showCandi(false);
+	UIClearCompStr();
 
 	murmur("\tCOMPOSITION GCS_RESULTSTR");
 
@@ -164,17 +111,12 @@ AVDisplayServer *DisplayServer::sendBuf(const char *str)
 		WM_IME_COMPOSITION,
 		*(WORD*)word,
 		GCS_COMPSTR|GCS_COMPATTR|
-	//	GCS_COMPREADSTR|GCS_COMPREADATTR|
-	//	GCS_COMPCLAUSE|GCS_COMPREADCLAUSE|
-	//	GCS_CURSORPOS|GCS_DELTASTART|
 		GCS_RESULTSTR|GCS_RESULTCLAUSE
-	//  GCS_RESULTREADSTR|GCS_RESULTREADCLAUSE		
 	);
 
 	ImmController* controller = ImmController::open();
 	controller->setCompStartedFlag(false);
-	//controller->close();
-	//controller = NULL;
+
 
 	murmur("\tDSRV:ENDCOMPOSITION");
 	MyGenerateMessage(m_hIMC, WM_IME_ENDCOMPOSITION, 0, 0);
@@ -189,9 +131,6 @@ AVDisplayServer *DisplayServer::setCandiString(const char *str)
 	ImmModel* model = ImmModel::open(m_hIMC);
 	wcscpy(model->getMyPrivate()->CandStr, wstr);
 	UpdateCandidate(model->getIMC(), wstr);
-//	MyGenerateMessage(hIMC,
-//			WM_IME_COMPOSITION, 0, GCS_COMPSTR);
-//	UISetCandStr(model->getMyPrivate()->CandStr);
 
 	UISetCandStr(wstr);
 
@@ -209,7 +148,6 @@ AVDisplayServer *DisplayServer::showNotify(const char *str)
 	MultiByteToWideChar(CP_UTF8, 0, str, (int)strlen(str)+1, wstr, 1024);
 	murmur("Notifypage:%s",wstr);
 	UISetNotifyStr(wstr); 
-//	RefreshUI(m_hIMC);
 	UIShowNotifyWindow();
 	
 
@@ -366,15 +304,6 @@ AVDisplayServer *DisplayServer::showCandi(bool t)
 	return this;
 }
 
-/*AVDisplayServer *DisplayServer::setCursorPos(int i) //搬到 setBufStr
-{
-	lpCompStr->dwCursorPos = i;
-	murmur("\tDisplayServer::setCursorPos-> %d",i);
-	//UISetCursorPos(lpCompStr->dwCursorPos);
-	UISetCompCaretPosX(i);
-	return this;
-}*/
-
 AVDisplayServer *DisplayServer::setMarkFrom(int i)
 {
 	UISetMarkFrom(i);
@@ -427,7 +356,6 @@ AVDisplayServer *DisplayServer::setNotifyGlobalEnabled(bool b)
 AVDisplayServer *DisplayServer::setNotifyColor(int forecolor, int backcolor)
 {
 	murmur("dsvr::setNotifyColor, %d, %d", forecolor, backcolor);
-	//UISetNotifyColor(forecolor, backcolor);
 	return this;
 }
 

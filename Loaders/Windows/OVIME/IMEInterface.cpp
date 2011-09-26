@@ -12,7 +12,6 @@
 #include <sstream>
 #include <fstream>
 
-
 using namespace std;
 
 void
@@ -103,19 +102,9 @@ ImeConfigure(HKL hKL,HWND hWnd, DWORD dwMode, LPVOID lpData)
 	{
 #ifdef WINCE
 #else
-		//TCHAR buf[MAX_PATH];
-		//GetWindowsDirectory( buf, MAX_PATH );
-		//_tcscat( buf, _T("\\OpenVanilla\\OVPreferences.exe")); 
-
-		//@warning an OV-specific path here!
-		// Is it better to use OVService to get it? 
-		
-		//AVLoader* loader=AVLoader::open();
 		AVEmbeddedLoader *em = AVEmbeddedLoader::getInstance();
 		
 		murmur("ImeConfigure. Base dir from loader:%s", em->cfg()->getBaseDir()); //loader->getBaseDirectory());
-		
-		//LPCTSTR buf = _T("C:\\OpenVanilla\\OVPreferences.exe"); 
 						
 		TCHAR dir[MAX_PATH], file[MAX_PATH];
 				
@@ -230,15 +219,9 @@ ImeProcessKey(HIMC hIMC, UINT uVKey, LPARAM lKeyData, CONST LPBYTE lpbKeyState)
 	murmur("ImeProcessKey: %u, hex%x, lKeyData:%x \n", uVKey, uVKey, lKeyData);
 	if (!hIMC) return isProcessed;
 
-	//if(!hIMCset) {
-		dsvr->setHIMC(hIMC);
-	//	hIMCset = true;
-	//}
 
-	/*DWORD conv, sentence;
-	ImmGetConversionStatus(hIMC, &conv, &sentence);
-	//Alphanumeric mode
-	if(!(conv & IME_CMODE_NATIVE)) return isProcessed;*/
+	dsvr->setHIMC(hIMC);
+	
 
 	ImmController* controller = ImmController::open();
 	int controlState =
@@ -281,11 +264,6 @@ ImeProcessKey(HIMC hIMC, UINT uVKey, LPARAM lKeyData, CONST LPBYTE lpbKeyState)
 			break;
 	}
 	
-	//<comment author='b6s'>
-	// NOT close ImmController because of counting for SHIFT pressed time.
-	//ImmController::close();
-	//</comment>
-
 	return isProcessed;
 }
 

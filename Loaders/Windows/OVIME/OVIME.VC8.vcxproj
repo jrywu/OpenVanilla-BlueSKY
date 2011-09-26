@@ -95,7 +95,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.\;..\AmphiVanilla\;..\OVIMEUI\Headers;..\..\..\Frameworks\OpenVanilla\Headers;..\..\..\Modules\SharedHeaders;..\..\..\Dep\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\AmphiVanilla\;..\OVIMEUI\;..\..\..\Frameworks\OpenVanilla\Headers;..\..\..\Modules\SharedHeaders;..\..\..\Dep\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;TIXML_USE_STL;OVIME_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <MinimalRebuild>true</MinimalRebuild>
@@ -110,7 +110,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>..\..\..\Dep\x86\debug\tinyxmlSTL.lib;imm32.lib;libltdl.lib;OVIMEUI.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\..\..\Dep\x86\debug\tinyxmlSTL.lib;imm32.lib;OVIMEUI.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>..\OVIMEUI\Debug\x86;..\AmphiVanilla\Release;..\..\..\Dep\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -129,7 +129,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.\;..\AmphiVanilla\;..\OVIMEUI\Headers;..\..\..\Frameworks\OpenVanilla\Headers;..\..\..\Modules\SharedHeaders;..\..\..\Dep\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\AmphiVanilla\;..\OVIMEUI\;..\..\..\Frameworks\OpenVanilla\Headers;..\..\..\Modules\SharedHeaders;..\..\..\Dep\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>X64;WIN32;_DEBUG;_WINDOWS;_USRDLL;TIXML_USE_STL;OVIME_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -143,7 +143,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>..\..\..\Dep\x64\debug\TinyXMLSTL.lib;libltdl-3.lib;OVIMEUI.lib;IMM32.LIB;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\..\..\Dep\x64\debug\TinyXMLSTL.lib;OVIMEUI.lib;IMM32.LIB;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>..\..\..\Dep\x64;..\OVIMEUI\Debug\x64\;..\AmphiVanilla\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -163,7 +163,7 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>.\;..\AmphiVanilla\;..\OVIMEUI\Headers;..\..\..\Frameworks\OpenVanilla\Headers;..\..\..\Modules\SharedHeaders;..\..\..\Dep\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\AmphiVanilla\;..\OVIMEUI\;..\..\..\Frameworks\OpenVanilla\Headers;..\..\..\Modules\SharedHeaders;..\..\..\Dep\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;TIXML_USE_STL;OVIME_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
@@ -173,10 +173,11 @@
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>tinyxmlSTL.lib;imm32.lib;libltdl.lib;OVIMEUI.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tinyxmlSTL.lib;imm32.lib;OVIMEUI.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>..\OVIMEUI\Release\x86;..\AmphiVanilla\Release;..\..\..\Dep\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -198,7 +199,7 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>.\;..\AmphiVanilla\;..\OVIMEUI\Headers;..\..\..\Frameworks\OpenVanilla\Headers;..\..\..\Modules\SharedHeaders;..\..\..\Dep\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\AmphiVanilla\;..\OVIMEUI\;..\..\..\Frameworks\OpenVanilla\Headers;..\..\..\Modules\SharedHeaders;..\..\..\Dep\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>X64;WIN32;NDEBUG;_WINDOWS;_USRDLL;TIXML_USE_STL;OVIME_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
@@ -211,7 +212,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>TinyXMLSTL.lib;libltdl-3.lib;OVIMEUI.lib;IMM32.LIB;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>TinyXMLSTL.lib;OVIMEUI.lib;IMM32.LIB;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>..\..\..\Dep\x64;..\OVIMEUI\Release\x64\;..\AmphiVanilla\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -228,15 +229,12 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ControlHandle.cpp" />
     <ClCompile Include="DisplayServer.cpp" />
-    <ClCompile Include="Global.cpp" />
-    <ClCompile Include="IME.cpp" />
+    <ClCompile Include="IMEInterface.cpp" />
     <ClCompile Include="ImmController.cpp" />
     <ClCompile Include="ImmModel.cpp" />
     <ClCompile Include="NotifyHandle.cpp" />
-    <ClCompile Include="OVIME.cpp" />
-    <ClCompile Include="ReloadIMECallback.cpp" />
+    <ClCompile Include="OVIMEDllMain.cpp" />
     <ClCompile Include="UIWnd.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
@@ -245,19 +243,15 @@
     <None Include="OVIME.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\OVIMEUI\OVIMEUI.h" />
     <ClInclude Include="DisplayServer.h" />
     <ClInclude Include="ExtraStructs.h" />
     <ClInclude Include="ImmController.h" />
     <ClInclude Include="immdev.h" />
     <ClInclude Include="ImmModel.h" />
-    <ClInclude Include="..\..\..\dependencies\ltdl.h" />
     <ClInclude Include="..\..\..\Frameworks\Headers\OpenVanilla.h" />
-    <ClInclude Include="..\..\..\Modules\SharedHeaders\OVCandidateList.h" />
-    <ClInclude Include="OVIME.h" />
-    <ClInclude Include="..\..\..\Frameworks\Headers\OVLibrary.h" />
     <ClInclude Include="..\..\..\Frameworks\Headers\OVUtility.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="resource1.h" />
     <ClInclude Include="Vk.h" />
   </ItemGroup>
   <ItemGroup>

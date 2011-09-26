@@ -4,6 +4,17 @@
 
 static bool insetcontext =false;
 
+
+LRESULT ControlHandle(HIMC hUICurIMC,
+				   HWND hWnd,
+				   UINT msg,
+				   WPARAM wParam,
+				   LPARAM lParam)
+{
+	return 0L;
+}
+
+
 LRESULT APIENTRY UIWndProc(HWND hWnd,
 						   UINT msg,
 						   WPARAM wParam,

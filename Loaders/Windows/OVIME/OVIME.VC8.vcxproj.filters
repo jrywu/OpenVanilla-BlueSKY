@@ -1,16 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="ControlHandle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DisplayServer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Global.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IME.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ImmController.cpp">
@@ -22,24 +13,21 @@
     <ClCompile Include="NotifyHandle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OVIME.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ReloadIMECallback.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UIWnd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="IMEInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OVIMEDllMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DisplayServer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Modules\SharedHeaders\OVCandidateList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ExtraStructs.h">
@@ -54,24 +42,19 @@
     <ClInclude Include="ImmModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\dependencies\ltdl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OVIME.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Vk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource1.h">
+    <ClInclude Include="..\..\..\Frameworks\Headers\OpenVanilla.h" />
+    <ClInclude Include="..\..\..\Frameworks\Headers\OVUtility.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Frameworks\Headers\OpenVanilla.h" />
-    <ClInclude Include="..\..\..\Frameworks\Headers\OVLibrary.h" />
-    <ClInclude Include="..\..\..\Frameworks\Headers\OVUtility.h" />
+    <ClInclude Include="..\OVIMEUI\OVIMEUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="OVIME.ico">
