@@ -12,7 +12,7 @@ using namespace System::Collections;
 using namespace std;
 using namespace OVUIServer;
 
-ref class CSharpStatusWrapper{
+ref class OVUIServerStatusWrapper{
 private:
 	static IMEStatusForm^ m_instance = nullptr;
 
@@ -28,112 +28,112 @@ public:
 HWND _CreateStatusPage() //create
 {		
 	return (HWND)(safe_cast<IntPtr^>(
-		CSharpStatusWrapper::Instance()->Handle)->ToPointer());
+		OVUIServerStatusWrapper::Instance()->Handle)->ToPointer());
 }
 
 void _SetStatusAppHWnd(HWND hwnd)
 {	
-	CSharpStatusWrapper::Instance()->SetAppHWnd(safe_cast<IntPtr>(hwnd));
+	OVUIServerStatusWrapper::Instance()->SetAppHWnd(safe_cast<IntPtr>(hwnd));
 }
 
 void _ShowStatusPage()
 {	
-	CSharpStatusWrapper::Instance()->ShowNoActive();	
+	OVUIServerStatusWrapper::Instance()->ShowNoActive();	
 }
 
 void _MoveStatusPage(int x,int y)
 {	
-	CSharpStatusWrapper::Instance()->SetLocation(x,y);	
+	OVUIServerStatusWrapper::Instance()->SetLocation(x,y);	
 }
 
 void _DockStatusPage(int x,int y)
 {	
-	CSharpStatusWrapper::Instance()->DockedLocation(x,y);	
+	OVUIServerStatusWrapper::Instance()->DockedLocation(x,y);	
 }
 
 void _SetStatusChiEng()
 {	
-	CSharpStatusWrapper::Instance()->SetChiEng();	
+	OVUIServerStatusWrapper::Instance()->SetChiEng();	
 }
 
 void _SetStatusHalfFull()
 {	
-	CSharpStatusWrapper::Instance()->SetHalfFull();	
+	OVUIServerStatusWrapper::Instance()->SetHalfFull();	
 }
 
 bool _GetItemChecked(int index)
 {	
-	return CSharpStatusWrapper::Instance()->getItemChecked(index);	
+	return OVUIServerStatusWrapper::Instance()->getItemChecked(index);	
 }
 
 bool _GetIsStatusDocked() 
 {
-	return CSharpStatusWrapper::Instance()->getIsDocked();
+	return OVUIServerStatusWrapper::Instance()->getIsDocked();
 }
 
 void _SetIsStatusDocked(bool t) 
 {
-	CSharpStatusWrapper::Instance()->setIsDocked(t);
+	OVUIServerStatusWrapper::Instance()->setIsDocked(t);
 }
 
 
 void _SetItemChecked(int index, bool c)
 {	
-	CSharpStatusWrapper::Instance()->setItemChecked(index, c);	
+	OVUIServerStatusWrapper::Instance()->setItemChecked(index, c);	
 }
 void _SetItemEnabled(int index, bool c)
 {	
-	CSharpStatusWrapper::Instance()->setItemEnabled(index, c);	
+	OVUIServerStatusWrapper::Instance()->setItemEnabled(index, c);	
 }
 
 void _SetStatusSimpifiedOrTraditional(bool isTraditional)
 {		
-	CSharpStatusWrapper::Instance()->SetSimpifiedOrTraditional(isTraditional);	
+	OVUIServerStatusWrapper::Instance()->SetSimpifiedOrTraditional(isTraditional);	
 }
 
 void _SetStatusModString(int index)
 {
-	CSharpStatusWrapper::Instance()->SetModString(index);		
+	OVUIServerStatusWrapper::Instance()->SetModString(index);		
 }
 
 void _ClearStatusMenuModString()
 {
-	CSharpStatusWrapper::Instance()->ClearMenuModString();	
+	OVUIServerStatusWrapper::Instance()->ClearMenuModString();	
 }
 
 void _SetStatusMenuModString(const wchar_t* menuModStr)
 {
-	CSharpStatusWrapper::Instance()->SetMenuModString(
+	OVUIServerStatusWrapper::Instance()->SetMenuModString(
 		gcnew String(menuModStr));	
 }
 
 void _HideStatusPage()
 {
-	CSharpStatusWrapper::Instance()->HideNoActive();	
+	OVUIServerStatusWrapper::Instance()->HideNoActive();	
 }
 
 int _GetStatusSelectedModuleIndex()
 {
-	return CSharpStatusWrapper::Instance()->GetSelectedModuleIndex();	
+	return OVUIServerStatusWrapper::Instance()->GetSelectedModuleIndex();	
 }
 
 void _RotateStatusSelectedModule()
 {
-	CSharpStatusWrapper::Instance()->RotateModule();	
+	OVUIServerStatusWrapper::Instance()->RotateModule();	
 }
 
 
 void _setStatuskpCount(int count)
 {
-	CSharpStatusWrapper::Instance()->setkpCount(count);	
+	OVUIServerStatusWrapper::Instance()->setkpCount(count);	
 }
 
 void _setStatusimCount(int count)
 {
-	CSharpStatusWrapper::Instance()->setimCount(count);	
+	OVUIServerStatusWrapper::Instance()->setimCount(count);	
 }
 
 void _setStatusofCount(int count)
 {
-	CSharpStatusWrapper::Instance()->setofCount(count);	
+	OVUIServerStatusWrapper::Instance()->setofCount(count);	
 }

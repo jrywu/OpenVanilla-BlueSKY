@@ -12,7 +12,7 @@ using namespace System::Collections;
 using namespace std;
 using namespace OVUIServer;
 
-ref class CSharpNotifyWrapper{
+ref class OVUIServerNotifyWrapper{
 private:
 	static IMENotifyForm^ m_instance = nullptr;
 
@@ -28,70 +28,70 @@ public:
 HWND _CreateNotifyPage()//create
 {
 	return (HWND)(safe_cast<IntPtr^>(
-		CSharpNotifyWrapper::Instance()->Handle)->ToPointer());
+		OVUIServerNotifyWrapper::Instance()->Handle)->ToPointer());
 }
 
 HWND _CreateNotifyPageWithHandle(HWND hwnd)//create
 {
-	CSharpNotifyWrapper::Instance()->SetHWND(safe_cast<IntPtr>(hwnd));
+	OVUIServerNotifyWrapper::Instance()->SetHWND(safe_cast<IntPtr>(hwnd));
 	return (HWND)(safe_cast<IntPtr^>(
-		CSharpNotifyWrapper::Instance()->Handle)->ToPointer());
+		OVUIServerNotifyWrapper::Instance()->Handle)->ToPointer());
 }
 
 void _SetNotifyString(const wchar_t* notifyStr)
 {
-	CSharpNotifyWrapper::Instance()->SetNotifyStr(gcnew String(notifyStr));
+	OVUIServerNotifyWrapper::Instance()->SetNotifyStr(gcnew String(notifyStr));
 }
 
 void _ShowNotifyPage()
 {
-	CSharpNotifyWrapper::Instance()->ShowNoActive();
+	OVUIServerNotifyWrapper::Instance()->ShowNoActive();
 }
 
 void _MoveNotifyPage(int x,int y)
 {
-	CSharpNotifyWrapper::Instance()->SetLocation(x, y);
+	OVUIServerNotifyWrapper::Instance()->SetLocation(x, y);
 }
 
 void _HideNotifyPage()
 {
-	CSharpNotifyWrapper::Instance()->HideNoActive();
+	OVUIServerNotifyWrapper::Instance()->HideNoActive();
 }
 
 void _ClearNotifyPage()
 {
-	CSharpNotifyWrapper::Instance()->ClearNotify();
+	OVUIServerNotifyWrapper::Instance()->ClearNotify();
 }
 
 
 void _EndNotifyPage()
 {
-	CSharpNotifyWrapper::Instance()->DisposeForm();
+	OVUIServerNotifyWrapper::Instance()->DisposeForm();
 }
 int _GetNotifyWidth()
 {
-	return CSharpNotifyWrapper::Instance()->GetWidth();
+	return OVUIServerNotifyWrapper::Instance()->GetWidth();
 }
 int _GetNotifyHeight()
 {
-	return CSharpNotifyWrapper::Instance()->GetHeight();
+	return OVUIServerNotifyWrapper::Instance()->GetHeight();
 }
 
 void _SetNotifyFont(const wchar_t * ff, int fontsize)
 {
-	CSharpNotifyWrapper::Instance()->SetFont(gcnew String(ff), fontsize);	
+	OVUIServerNotifyWrapper::Instance()->SetFont(gcnew String(ff), fontsize);	
 }
 
 void _SetNotifyColor(int forecolor, int backcolor)
 {
-	CSharpNotifyWrapper::Instance()->SetColor(forecolor, backcolor);	
+	OVUIServerNotifyWrapper::Instance()->SetColor(forecolor, backcolor);	
 }
 
 void _SetNotifyEnabled(bool b)
 {
-	CSharpNotifyWrapper::Instance()->SetNotifyEnabled(b);	
+	OVUIServerNotifyWrapper::Instance()->SetNotifyEnabled(b);	
 }
 void _SetNotifyOpacity(int o)
 {
-	CSharpNotifyWrapper::Instance()->SetOpacity(o);	
+	OVUIServerNotifyWrapper::Instance()->SetOpacity(o);	
 }

@@ -11,7 +11,7 @@ using namespace System::Collections;
 using namespace std;
 using namespace OVUIServer;
 
-ref class CSharpCandiWrapper{
+ref class OVUIServerCandiWrapper{
 private:
 	static IMECandidateForm^ m_instance = nullptr;
 
@@ -27,86 +27,86 @@ public:
 HWND _CreateCandiPage() //create without handle (x)
 {	
 	return (HWND)(safe_cast<IntPtr^>(
-		CSharpCandiWrapper::Instance()->Handle)->ToPointer());
+		OVUIServerCandiWrapper::Instance()->Handle)->ToPointer());
 }
 
 HWND _CreateCandiPageWithHandle(HWND hwnd) //create with handle (x)
 {	
-	CSharpCandiWrapper::Instance()->SetHWND(safe_cast<IntPtr>(hwnd));
+	OVUIServerCandiWrapper::Instance()->SetHWND(safe_cast<IntPtr>(hwnd));
 	return (HWND)(safe_cast<IntPtr^>(
-		CSharpCandiWrapper::Instance()->Handle)->ToPointer());
+		OVUIServerCandiWrapper::Instance()->Handle)->ToPointer());
 }
 
 void _SetCandiString(const wchar_t* candiStr)
 {		
-	CSharpCandiWrapper::Instance()
+	OVUIServerCandiWrapper::Instance()
 		->SetCandidates(gcnew String(candiStr)); 
 }
 
 void _ShowCandiPage()
 {		
-	CSharpCandiWrapper::Instance()->ShowNoActive();
+	OVUIServerCandiWrapper::Instance()->ShowNoActive();
 }
 
 void _MoveCandiPage(int x, int y, int compHeight)
 {
-	CSharpCandiWrapper::Instance()->SetLocation(x, y, compHeight);
+	OVUIServerCandiWrapper::Instance()->SetLocation(x, y, compHeight);
 }
 
 void _HideCandiPage()
 {
-	CSharpCandiWrapper::Instance()->HideNoActive();
+	OVUIServerCandiWrapper::Instance()->HideNoActive();
 }
 
 void _ClearCandiPage()
 {
-	CSharpCandiWrapper::Instance()->ClearCandidates();
+	OVUIServerCandiWrapper::Instance()->ClearCandidates();
 }
 
 void _EndCandiPage()
 {
-	CSharpCandiWrapper::Instance()->DisposeForm();
+	OVUIServerCandiWrapper::Instance()->DisposeForm();
 }
 
 void _ExpandCandi() //®i¶} Candi window
 {
-	CSharpCandiWrapper::Instance()->SwitchCandiMode();	
+	OVUIServerCandiWrapper::Instance()->SwitchCandiMode();	
 }
 
 void _SelectNextItem(int i)
 {
-	CSharpCandiWrapper::Instance()->selectNextItem(i);	
+	OVUIServerCandiWrapper::Instance()->selectNextItem(i);	
 }
 
 int _GetSelectedItemKey()
 {
-	return CSharpCandiWrapper::Instance()->getSelectedItemKey();	
+	return OVUIServerCandiWrapper::Instance()->getSelectedItemKey();	
 
 }
 
 int _GetCandWidth()
 {
-	return CSharpCandiWrapper::Instance()->GetWidth();	
+	return OVUIServerCandiWrapper::Instance()->GetWidth();	
 
 }
 
 int _GetCandHeight()
 {
-	return CSharpCandiWrapper::Instance()->GetHeight();
+	return OVUIServerCandiWrapper::Instance()->GetHeight();
 
 }
 
 void _SetCandiFont(const wchar_t * ff, int fontsize)
 {
-	CSharpCandiWrapper::Instance()->SetFont(gcnew String(ff), fontsize);	
+	OVUIServerCandiWrapper::Instance()->SetFont(gcnew String(ff), fontsize);	
 }
 
 void _SetCandiColor(int forecolor, int backcolor, int titlecolor, int titlebackcolor)
 {
-	CSharpCandiWrapper::Instance()->SetColor(forecolor, backcolor, titlecolor, titlebackcolor);	
+	OVUIServerCandiWrapper::Instance()->SetColor(forecolor, backcolor, titlecolor, titlebackcolor);	
 }
 
 void _SetCandiOpacity(int o)
 {
-	CSharpCandiWrapper::Instance()->SetOpacity(o);	
+	OVUIServerCandiWrapper::Instance()->SetOpacity(o);	
 }

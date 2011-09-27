@@ -1,4 +1,4 @@
-//#define OV_DEBUG 
+#define OV_DEBUG 
 
 #pragma unmanaged
 
@@ -41,43 +41,19 @@ void UICreateStatusWindow(HWND hUIWnd, int xPos, int yPos, bool isDocked)
 
 		murmur("\tStatusWindow created. hWnd=%x",uiStatus.hWnd);
 	
-		//設定C# Status 內 m_AppHWnd
-		//_SetStatusAppHWnd(hUIWnd);
-
-		//設定 module menu (init: current module)
 		SendMessage(hUIWnd, WM_IME_NOTIFY, IMN_PRIVATE, 9);  // set all module names.
-		//SendMessage(hUIWnd, WM_IME_NOTIFY, IMN_PRIVATE, 3);
-		//UISetStatusModStr();
-
-		//設定中英 
-		//_SetStatusChiEng();
-
-		//設定繁簡
-		//_SetStatusSimpifiedOrTraditional(isTraditional);  		
-
-		//設定 hIMEWnd (?)
 		hIMEWnd = hUIWnd; //存到 hIMEWnd 之後會拿來判斷
 		
-		//移動到螢幕右下方
-		if(isDocked)
+		if((xPos==0)||(yPos==0)) 
 		{
-			murmur("\tDocked the status window..");
-			UISetIsStatusDocked(true);  
+			murmur("\tMove the status window to default location.");
+			SystemParametersInfo(SPI_GETWORKAREA, 0, &rec, 0);
+			UIMoveStatusWindow(hUIWnd, rec.right - 200, rec.bottom - 50);
 		}
-		else 
+		else
 		{
-			UISetIsStatusDocked(false); 
-			if((xPos==0)||(yPos==0)) 
-			{
-				murmur("\tMove the status window to default location.");
-				SystemParametersInfo(SPI_GETWORKAREA, 0, &rec, 0);
-				UIMoveStatusWindow(hUIWnd, rec.right - 200, rec.bottom - 50);
-			}
-			else
-			{
-				murmur("\tMove the status window to saved location, isDocked:%d.", UIGetIsStatusDocked());
-				UIMoveStatusWindow(hUIWnd, xPos, yPos);
-			}
+			murmur("\tMove the status window to saved location, isDocked:%d.", UIGetIsStatusDocked());
+			UIMoveStatusWindow(hUIWnd, xPos, yPos);
 		}
 		
 		
@@ -85,7 +61,6 @@ void UICreateStatusWindow(HWND hUIWnd, int xPos, int yPos, bool isDocked)
 	else
 		murmur("Status window is already created.");
 	
-	//設定C# Status 內 m_AppHWnd
 		_SetStatusAppHWnd(hUIWnd);
 }
 

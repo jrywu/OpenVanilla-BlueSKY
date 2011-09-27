@@ -1,8 +1,5 @@
 #include<string>
-
-//#pragma managed
 #include<vector>
-
 
 //status
 HWND _CreateStatusPage();

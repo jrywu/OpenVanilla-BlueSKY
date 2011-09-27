@@ -12,10 +12,6 @@ typedef struct _tagUICHILD{
 
 extern "C" {
 
-
-//bool UIShowDeskBand(bool t);
-
-// UIStatus.cpp
 void UICreateStatusWindow(HWND, int, int, bool);
 void UIMoveStatusWindow(HWND, int, int);
 void UIShowStatusWindow();
