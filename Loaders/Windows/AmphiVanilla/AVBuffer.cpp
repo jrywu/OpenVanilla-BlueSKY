@@ -31,10 +31,10 @@ OVBuffer* AVBuffer::send()
 	for(of = ovof_vector->begin(); of != ovof_vector->end(); of++) {
 		if(!strcmp((*of)->identifier(), "OVOFFullWidthCharacter")){
 			murmur("Fullshape output filter");
-			if(dsvr->getisFullShapeFlag() )   
+			if(dsvr->getinFullShapeMode() )   
 				bufstr = (*of)->process(bufstr.c_str(), srv);
 		} 
-		else if (dsvr->getisChineseFlag()&& strcmp(bufstr.c_str()," ") ) {
+		else if (dsvr->getinChineseMode()&& strcmp(bufstr.c_str()," ") ) {
 			murmur("Pass filter %s", (*of)->identifier());
 			bufstr = (*of)->process(bufstr.c_str(), srv);
 		}

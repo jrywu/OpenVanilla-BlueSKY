@@ -7,8 +7,8 @@
 class AVDisplayServer : public OVBase
 {
 public:
-	virtual bool getisChineseFlag()=0;
-	virtual bool getisFullShapeFlag()=0;
+	virtual bool getinChineseMode()=0;
+	virtual bool getinFullShapeMode()=0;
 	virtual AVDisplayServer *getStatusPos(LPPOINT) {return this;}
 	virtual AVDisplayServer *setStatusPos(int, int) {return this;}
 	//virtual AVDisplayServer *setBufString(const char *str) { return this; }
