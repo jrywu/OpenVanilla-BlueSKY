@@ -27,7 +27,7 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
-//#define OV_DEBUG
+#define OV_DEBUG
 
 #include "OVOFReverseLookupSQ.h"
 #if !defined(WIN32) && !defined(WINCE)
@@ -87,7 +87,7 @@ const char *OVOFReverseLookup::process(const char *src, OVService *srv) {
     
     for (int i=0; i<u16len; i++) {
         // get each codepoint -- and do surrogate check
-        
+        murmur("u16len=%d; u16[%d]= %x", u16len, u16[i]);
         const char *u8;
         if (u16[i] >= 0xd800 && u16[i] <= 0xdbff) {
             u8=srv->UTF16ToUTF8(&(u16[i]), 2);
@@ -96,6 +96,7 @@ const char *OVOFReverseLookup::process(const char *src, OVService *srv) {
         else {
             u8=srv->UTF16ToUTF8(&(u16[i]), 1);
         }
+        murmur("u8[0]u8[1]u8[2]= %x %x %x", u8[0], u8[1], u8[2]);
         
         if (u8==NULL) {
 			/*
