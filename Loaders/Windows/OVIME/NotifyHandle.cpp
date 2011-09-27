@@ -135,26 +135,7 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 			open its composition window. An application should process
 			this message if it displays composition characters itself. */
 		murmur("IMN_SETCOMPOSITIONWINDOW");
-		dsvr->SetCompEnabled(true);
-		//dsvr->SetCandiEnabled(true);
-		/*POINT ptSrc;
-		SIZE szOffset;
-		HDC hDC;
-		TEXTMETRIC tm;
-		int localDPIY; //for device dpiY
-		ptSrc = lpIMC->cfCompForm.ptCurrentPos;
-		ClientToScreen(lpIMC->hWnd, &ptSrc);
-		hDC = GetDC(lpIMC->hWnd);
-		murmur("\thWnd->%x", lpIMC->hWnd);
-		GetTextExtentPoint(hDC, _T("A"), 1, &szOffset);
-		GetTextMetrics(hDC, &tm);
-		localDPIY = GetDeviceCaps(hDC, LOGPIXELSY);
-		ReleaseDC(lpIMC->hWnd,hDC);
-		
-		lfptr = (LOGFONT*)(&lpIMC->lfFont);
-		memcpy( &lf2, lfptr, sizeof( lf2) );					
-		CompX = ptSrc.x ;
-		CompY = ptSrc.y + abs(lf2.lfHeight)*localDPIY/tm.tmDigitizedAspectY;*/					
+		dsvr->SetCompEnabled(true);		
 		murmur("\tRefreshUI()"); 
 		RefreshUI(hUICurIMC);  
 		break;

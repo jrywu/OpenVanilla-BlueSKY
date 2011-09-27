@@ -1,8 +1,6 @@
 //#include <vector>  
 #include "OVIMEUI.h"
 
-//wchar_t* lpCandStr;
-//int numCand;
 wchar_t* lpCompStr;
 wchar_t* lpNotifyStr;
 int CompCursorPos;

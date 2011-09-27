@@ -72,14 +72,14 @@ MyGenerateMessageToTransKey(LPDWORD lpdwTransKey, UINT *uNumTranMsgs,
 BOOL APIENTRY 
 ImeInquire(LPIMEINFO lpIMEInfo, LPTSTR lpszUIClass, LPCTSTR lpszOption)
 {
+	murmur("ImeInquire.");
     lpIMEInfo->dwPrivateDataSize = sizeof(MYPRIVATE);
 
     lpIMEInfo->fdwProperty = IME_PROP_AT_CARET|IME_PROP_KBD_CHAR_FIRST |IME_PROP_UNICODE;
-                             //IME_PROP_SPECIAL_UI;
-							 //IME_PROP_UNICODE
+							
 
     lpIMEInfo->fdwConversionCaps = IME_CMODE_NOCONVERSION | IME_CMODE_FULLSHAPE |
-								IME_CMODE_NATIVE;
+									IME_CMODE_NATIVE;
 
     lpIMEInfo->fdwSentenceCaps = IME_SMODE_NONE;
     lpIMEInfo->fdwUICaps = UI_CAP_2700;
@@ -97,7 +97,7 @@ ImeInquire(LPIMEINFO lpIMEInfo, LPTSTR lpszUIClass, LPCTSTR lpszOption)
 BOOL APIENTRY 
 ImeConfigure(HKL hKL,HWND hWnd, DWORD dwMode, LPVOID lpData)
 {
-
+	murmur("ImeConfigure");
 	if( IME_CONFIG_GENERAL == dwMode )
 	{
 #ifdef WINCE
@@ -327,6 +327,7 @@ ImeSelect(HIMC hIMC, BOOL fSelect)
 BOOL APIENTRY 
 ImeSetActiveContext(HIMC hIMC,BOOL fFlag)
 {
+	murmur("ImeSetActiveContext.");
     return TRUE;
 }
 
@@ -335,7 +336,7 @@ ImeToAsciiEx (UINT uVKey, UINT uScanCode,
 			  CONST LPBYTE lpbKeyState,
 			  LPDWORD lpdwTransKey, UINT fuState, HIMC hIMC)
 {
-	//murmur("ImeToAsciiEx");
+	murmur("ImeToAsciiEx");
 	return 0;
 }
 
@@ -370,15 +371,19 @@ NotifyIME(HIMC hIMC,DWORD dwAction,DWORD dwIndex,DWORD dwValue)
 	case NI_CONTEXTUPDATED: //0x03
 		switch (dwValue)
 		{
-		case IMC_SETCOMPOSITIONWINDOW:
+		case IMC_SETCOMPOSITIONWINDOW: //0x0c
 			break;
-		case IMC_SETCONVERSIONMODE:
+		case IMC_SETCONVERSIONMODE: //0x02
 			break;
-		case IMC_SETSENTENCEMODE:
+		case IMC_SETSENTENCEMODE: //0x04
 			break;
-		case IMC_SETCANDIDATEPOS:
+		case IMC_SETOPENSTATUS:	//0x006
+			dsvr->showStatus(true);	
 			break;
-		case IMC_SETCOMPOSITIONFONT:
+		case IMC_SETCANDIDATEPOS:  //0x08
+			break;
+		case IMC_SETCOMPOSITIONFONT: //0x0a
+			MyGenerateMessage( hIMC, WM_IME_STARTCOMPOSITION,0,0); 
 			break;
 		default:
 			break;

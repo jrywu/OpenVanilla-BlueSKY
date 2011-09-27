@@ -42,7 +42,7 @@ void UICreateStatusWindow(HWND hUIWnd, int xPos, int yPos, bool isDocked)
 		murmur("\tStatusWindow created. hWnd=%x",uiStatus.hWnd);
 	
 		SendMessage(hUIWnd, WM_IME_NOTIFY, IMN_PRIVATE, 9);  // set all module names.
-		hIMEWnd = hUIWnd; //存到 hIMEWnd 之後會拿來判斷
+		hIMEWnd = hUIWnd; 
 		
 		if((xPos==0)||(yPos==0)) 
 		{

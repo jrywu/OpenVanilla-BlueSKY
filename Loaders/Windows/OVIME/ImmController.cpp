@@ -150,9 +150,9 @@ int ImmController::onKeyCtrl(HIMC hIMC, UINT uVKey)
 #else
 		case VK_OEM_5:
 #endif
-			//Change the module by Ctrl+"\":
+			//Rotae the module by Ctrl+"\":
 			//lParam == 8
-			murmur("C_\\: change module");
+			murmur("C_\\: Rotae module");
 #ifdef WINCE
 #else
 			MyGenerateMessage(hIMC, WM_IME_NOTIFY, IMN_PRIVATE, 8);
@@ -314,28 +314,19 @@ BOOL ImmController::onTypingEvent
 	BOOL isProcessed = FALSE;
 	
 	dsvr->hideNotify();  // hide notify window for any typing event.
-	//if(getKeyInfo(lKeyData).isKeyUp) return isProcessed;
-/*
-	DWORD conv, sentence; 
-	ImmGetConversionStatus(hIMC, &conv, &sentence); 
-	//Alphanumeric mode
-	if(!(conv & IME_CMODE_NATIVE)) return isProcessed;
-*/	
+	
 
 	ImmModel* model = ImmModel::open(hIMC);
-	if(!m_isCompStarted)// && wcslen(GETLPCOMPSTR(model->getCompStr())))
+	if(!m_isCompStarted)
 	{
 		murmur("IMM:STARTCOMPOSITION"); 
 		MyGenerateMessage(hIMC, WM_IME_STARTCOMPOSITION, 0, 0);
 #ifdef showCompWindow
 		MyGenerateMessage(hIMC, WM_IME_NOTIFY, IMN_PRIVATE, WM_IME_STARTCOMPOSITION);
 #endif
-		m_isCompStarted = true;//要先做!	
-		
+		m_isCompStarted = true;
 
 	}
-	//if(wcslen(GETLPCOMPSTR(model->getCompStr())))
-	//		m_isCompStarted = true;
 
 
 	ImmModel::close();
@@ -373,7 +364,7 @@ BOOL ImmController::onTypingEvent
 		k = 127;
 		break;
 	default:
-		//DebugLog("uVKey: %x, %c\n", LOWORD(uVKey), LOWORD(uVKey));
+		//murmur("uVKey: %x, %c\n", LOWORD(uVKey), LOWORD(uVKey));
 		break;
 	}
 
@@ -469,33 +460,13 @@ BOOL ImmController::onTypingEvent
 	
 	AVLoader* loader = AVLoader::open();
 	murmur("Send to loader->keyevent, currentIC,%d", UICurrentInputMethod());
-	if(loader->keyEvent(UICurrentInputMethod(), keycode)) //如果目前模組處理此key
+	if(loader->keyEvent(UICurrentInputMethod(), keycode)) 
 	{
 		isProcessed = TRUE;
-		//<comment author='b6s'>
-		// Moves this block back to DisplayServer.
-		/*
-		if(LOWORD(uVKey) != VK_RETURN) {
-			murmur("COMPOSITION GCS_COMPSTR");
-			MyGenerateMessage(hIMC, WM_IME_COMPOSITION, 0, GCS_COMPSTR);
-		}
-		else {
-			murmur("COMPOSITION GCS_RESULTSTR");
-			MyGenerateMessage(hIMC, WM_IME_COMPOSITION, 0, GCS_RESULTSTR);
-
-			m_isCompStarted = false; //要先做!
-			murmur("ENDCOMPOSITION");
-			MyGenerateMessage(hIMC,	WM_IME_ENDCOMPOSITION, 0, 0);
-			//InitCompStr(m_model->getCompStr());
-		}
-		*/
-		//</comment>
 	
 	} else {
 		
 		model = ImmModel::open(hIMC);
-		//James comment: 解決未組成字之前選字 comp window 會消失的問題(?待商榷)
-		// Force left right keys moving inside comp buffer.  Avoid problems when applications handle composition buffer (office 2007).
 		if(wcslen(GETLPCOMPSTR(model->getCompStr())) &&( LOWORD(uVKey) == VK_LEFT ||  LOWORD(uVKey) ==VK_RIGHT) )
 			isProcessed = true;
 		
@@ -504,7 +475,7 @@ BOOL ImmController::onTypingEvent
 			wcslen(GETLPCOMPSTR(model->getCompStr())) == 0)
 		{
 			murmur("IMM:ENDCOMPOSITION");
-			m_isCompStarted = false; //要先做!
+			m_isCompStarted = false;
 			MyGenerateMessage(hIMC,	WM_IME_ENDCOMPOSITION, 0, 0);
 #ifdef showCompWindow
 			MyGenerateMessage(hIMC,	WM_IME_NOTIFY, IMN_PRIVATE, WM_IME_ENDCOMPOSITION);

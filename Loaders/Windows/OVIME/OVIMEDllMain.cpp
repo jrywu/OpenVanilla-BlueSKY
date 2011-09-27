@@ -211,6 +211,7 @@ BOOL APIENTRY DllMain( HANDLE hModule,
 	{
 	case DLL_PROCESS_ATTACH:
 		{
+			murmur("dllMain, DLL_PROCESS_ATTACH");
 		hInst = (HINSTANCE)hModule;
 
 		AVLoader* loader = AVLoader::open();
@@ -240,11 +241,13 @@ BOOL APIENTRY DllMain( HANDLE hModule,
 		wc.hbrBackground	= NULL;
 		wc.hIconSm			= NULL;
 
-		//IMEUIRegisterClass( (HINSTANCE)hModule );
-
-
-		if( !RegisterClassEx( (LPWNDCLASSEX)&wc ) )
+		
+		if( !RegisterClassEx( (LPWNDCLASSEX)&wc ) ){
+			murmur("Register UIClass failed!!");
 		  return FALSE;
+		}
+
+		//SetClassLongPtr(m_hWnd , GCLP_WNDPROC, (LONG) UIWndProc);
 
 #endif
 		
@@ -252,6 +255,7 @@ BOOL APIENTRY DllMain( HANDLE hModule,
 		}
 	case DLL_PROCESS_DETACH:
 		// free UI library
+		murmur("dllMain, DLL_PROCESS_DETACH");
 		AVLoader::close();
 #ifdef WINCE
 		ImeUnregisterUIClass((HINSTANCE)hModule);

@@ -11,6 +11,7 @@ LRESULT ControlHandle(HIMC hUICurIMC,
 				   WPARAM wParam,
 				   LPARAM lParam)
 {
+	murmur("Deliever ControlHandle");
 	return 0L;
 }
 
@@ -22,13 +23,8 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 {
 
 	LRESULT lRet = 0L;
-	//LPINPUTCONTEXT	lpIMC; 
-	//LPMYPRIVATE lpMyPrivate;
 	HIMC hUICurIMC = (HIMC)GetWindowLong(hWnd, IMMGWL_IMC);
-	//
-	// Even if there is no current UI. these messages should not be pass to 
-	// DefWindowProc().
-	//
+
 	if(!hUICurIMC)
 	{        
 		switch (msg)

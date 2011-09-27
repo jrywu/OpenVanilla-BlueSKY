@@ -146,7 +146,7 @@ AVDisplayServer *DisplayServer::showNotify(const char *str)
 
 	wchar_t wstr[1024];
 	MultiByteToWideChar(CP_UTF8, 0, str, (int)strlen(str)+1, wstr, 1024);
-	murmur("Notifypage:%s",wstr);
+	murmur("showNotify:%s",wstr);
 	UISetNotifyStr(wstr); 
 	UIShowNotifyWindow();
 	

@@ -3,6 +3,8 @@ using System.EnterpriseServices.Internal;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.Text;
+using OVUIServer;
+using System.Windows.Forms;
 
 
 namespace OVUtil
@@ -17,7 +19,7 @@ namespace OVUtil
         static void Main(string[] args) 
         {
 
-            Publish p = new Publish();
+            Publish p = new Publish();  
 
             if (args.Length > 0)
             {
@@ -77,10 +79,24 @@ namespace OVUtil
                             IMEUserKey.DeleteValue(curValueName);
                             Console.WriteLine(" OVIME user preload settings removed");
                         }
-                        //else
-                        //    Console.WriteLine(" Preload keyboard : " + curValueName);
+                       
+                       
                     }
 
+                }
+                else if (args[0] == "testuiserver")
+                {
+                    OVUIServer.IMEStatusForm  imeStatus = new OVUIServer.IMEStatusForm();
+                    imeStatus.ShowNoActive();
+                        Console.WriteLine(" Testing OVUIServer, StatusBar showed. ");
+                    Console.ReadLine();
+                }
+                else if (args[0] == "getlanguage")
+                {
+                    foreach (InputLanguage lang in InputLanguage.InstalledInputLanguages)
+                    {
+                        Console.WriteLine("lang="+lang.Culture.EnglishName);
+                    }
                 }
             }
             else

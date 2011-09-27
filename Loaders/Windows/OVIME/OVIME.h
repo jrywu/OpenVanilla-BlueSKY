@@ -25,8 +25,6 @@
 extern HINSTANCE hInst;
 extern int CompX;
 extern int CompY;
-
-//James add
 extern int CandX;
 extern int CandY;
 extern bool hasCompStarted;
@@ -34,10 +32,8 @@ extern bool isCompEnabled;
 
 extern bool isChinese;
 extern bool isFullShape;
-extern bool isTraditional;
+
 extern DisplayServer *dsvr;
-//extern AVLoader *loader; 
-//extern MyOVDisplayServer dsvr;
 
 // Constant
 #define CS_OVIME (CS_VREDRAW | CS_HREDRAW | CS_DBLCLKS)
@@ -98,18 +94,5 @@ extern "C" {
 	// Reloadcallback.cpp
 	BOOL CALLBACK ReloadIME(HWND hwnd, LPARAM lp);
 
-	// OVVBPOJ
-	// Param: 1 -> Context number, 2 -> KeyCode, 3 -> Output
-	// Return: Length of returned string.
-	/*
-	int KeyEvent(int n, int c);
-	// Param: 1 -> Output
-	// Return: Number of names.
-	int ModuleName(int , char *);
-	void SetDisplayServer(AVDisplayServer*);
-	void InitLoader();
-	void ShutdownLoader();
-	void ReloadConfig();
-	*/
 }
 #endif // OVIME_h
