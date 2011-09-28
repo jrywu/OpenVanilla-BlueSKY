@@ -27,7 +27,7 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
-#define OV_DEBUG
+//#define OV_DEBUG
 
 #include "OVOFReverseLookupSQ.h"
 #if !defined(WIN32) && !defined(WINCE)
@@ -80,14 +80,26 @@ int OVOFReverseLookup::initialize(OVDictionary* global, OVService*, const char*)
 }
 
 const char *OVOFReverseLookup::process(const char *src, OVService *srv) {
-    unsigned short *u16;
+  
+	char b[5];
+		b[0]=0xf9;
+		b[1]=0xd5; 
+		b[2]=0xa4;
+		b[3]=0x40; 
+		
+		b[4]=0;
+		murmur("toutf8test :%s ", srv->toUTF8("big-5", b));
+		murmur("fromOTF8test :%s ", srv->fromUTF8("big-5", srv->toUTF8("big-5", b)));
+
+	
+	unsigned short *u16;
     int u16len=srv->UTF8ToUTF16(src, &u16);
     
     string result;
     
     for (int i=0; i<u16len; i++) {
         // get each codepoint -- and do surrogate check
-        murmur("u16len=%d; u16[%d]= %x", u16len, u16[i]);
+        murmur("u16len=%d; u16[%d]= %x", u16len, i, u16[i]);
         const char *u8;
         if (u16[i] >= 0xd800 && u16[i] <= 0xdbff) {
             u8=srv->UTF16ToUTF8(&(u16[i]), 2);
@@ -96,8 +108,10 @@ const char *OVOFReverseLookup::process(const char *src, OVService *srv) {
         else {
             u8=srv->UTF16ToUTF8(&(u16[i]), 1);
         }
-        murmur("u8[0]u8[1]u8[2]= %x %x %x", u8[0], u8[1], u8[2]);
+        murmur("u8[0]u8[1]u8[2]u8[3]= %x %x %x %x", u8[0], u8[1], u8[2], u8[3]);
+		murmur("u8[0]u8[1]u8[2]u8[3]= %c%c%c%c", u8[0], u8[1], u8[2], u8[3]);
         
+		
         if (u8==NULL) {
 			/*
             if (!strcasecmp(srv->locale(), "zh_TW")) {
@@ -108,7 +122,8 @@ const char *OVOFReverseLookup::process(const char *src, OVService *srv) {
             }
             else {
                 srv->notify("Look-up failed: Bad Unicode codepoint");
-            }*/
+            }
+			*/
             return src;
         }
         
@@ -150,5 +165,6 @@ const char *OVOFReverseLookup::process(const char *src, OVService *srv) {
 	murmur("%s",result.c_str());
     if(strlen(result.c_str())) srv->notify(result.c_str());
     return src;
+	
 }
 
