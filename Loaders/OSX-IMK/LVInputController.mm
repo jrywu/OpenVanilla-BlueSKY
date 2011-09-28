@@ -288,6 +288,7 @@ static id LVICCurrentlyActiveSender = nil;
 		NSRect lineHeightRect;
 		[sender attributesForCharacterIndex:0 lineHeightRectangle:&lineHeightRect];
 		location = lineHeightRect.origin;
+                   //[self _fixCaretPosition:lineHeightRect.origin];	
 		
 		// TO DO: Handle tooltip better
 //		[uiController showTooltipWithText:notifyMsg];		

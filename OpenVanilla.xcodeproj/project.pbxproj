@@ -2338,7 +2338,7 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_NAME = OpenVanilla;
+				PRODUCT_NAME = "OpenVanilla 0.9b";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -2363,7 +2363,7 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_NAME = OpenVanilla;
+				PRODUCT_NAME = "OpenVanilla 0.9b";
 				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
