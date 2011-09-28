@@ -592,7 +592,16 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 	
 	string currentInput = inputString;
 	while (ofi = [ofe nextObject]) {
-		LVModule *module = [_loadedModuleDictionary objectForKey:ofi];		
+		LVModule *module = [_loadedModuleDictionary objectForKey:ofi];
+        //--- init of moudles
+		NSDictionary *oldConfigDict = [[_configDictionary mutableDeepCopy] autorelease];		
+		NSMutableDictionary *configDict = [_configDictionary objectForKey:_primaryInputMethodModuleID];
+		if (!configDict) {
+			configDict = [NSMutableDictionary dictionary];
+			[_configDictionary setObject:configDict forKey:_primaryInputMethodModuleID];
+		}
+        [module lazyInitWithLoaderService:_loaderService configDictionary:configDict];
+		//-----
 		OVOutputFilter *filter = (OVOutputFilter *)[module moduleObject];
 		currentInput = filter->process(currentInput.c_str(), _loaderService);
 	}

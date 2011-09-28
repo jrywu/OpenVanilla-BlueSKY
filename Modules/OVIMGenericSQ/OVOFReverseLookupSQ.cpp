@@ -27,7 +27,7 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
-//#define OV_DEBUG
+#define OV_DEBUG
 
 #include "OVOFReverseLookupSQ.h"
 #if !defined(WIN32) && !defined(WINCE)
@@ -74,7 +74,7 @@ int OVOFReverseLookup::initialize(OVDictionary* global, OVService*, const char*)
         cintab=new OVCINSQ(cininfo, db);
      }
 	else {
-		murmur("Already initialized");
+		murmur("OVOFRevereseLookup, %s Already initialized", identifier());
 	}
     return 1;
 }
@@ -98,8 +98,7 @@ const char *OVOFReverseLookup::process(const char *src, OVService *srv) {
             u8=srv->UTF16ToUTF8(&(u16[i]), 1);
         }
         murmur("u8[0]u8[1]u8[2]u8[3]= %x %x %x %x", u8[0], u8[1], u8[2], u8[3]);
-		murmur("u8[0]u8[1]u8[2]u8[3]= %c%c%c%c", u8[0], u8[1], u8[2], u8[3]);
-        
+        murmur("u8 string: %s", u8);
 		
         if (u8==NULL) {
 			/*
@@ -121,7 +120,7 @@ const char *OVOFReverseLookup::process(const char *src, OVService *srv) {
         vector<string> lookupvector, key;
         string code;
         string seperator(", ");
-
+        murmur("about to run getCharVectorByword()");
         // look up each "candidate"
         size_t size=cintab->getCharVectorByWord(u8, lookupvector);
         for (size_t j=0; j<size; j++) {
