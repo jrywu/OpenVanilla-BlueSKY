@@ -81,17 +81,6 @@ int OVOFReverseLookup::initialize(OVDictionary* global, OVService*, const char*)
 
 const char *OVOFReverseLookup::process(const char *src, OVService *srv) {
   
-	char b[5];
-		b[0]=0xf9;
-		b[1]=0xd5; 
-		b[2]=0xa4;
-		b[3]=0x40; 
-		
-		b[4]=0;
-		murmur("toutf8test :%s ", srv->toUTF8("big-5", b));
-		murmur("fromOTF8test :%s ", srv->fromUTF8("big-5", srv->toUTF8("big-5", b)));
-
-	
 	unsigned short *u16;
     int u16len=srv->UTF8ToUTF16(src, &u16);
     

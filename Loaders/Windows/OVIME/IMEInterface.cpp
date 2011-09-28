@@ -345,7 +345,6 @@ NotifyIME(HIMC hIMC,DWORD dwAction,DWORD dwIndex,DWORD dwValue)
 {
 	murmur("NotifyIME: dwAction:%x; dwIndex:%x; dwValue:%x", dwAction, dwIndex, dwValue);
     BOOL bRet = FALSE;
-	//LPINPUTCONTEXT lpIMC;
 	
     switch(dwAction)
     {
@@ -378,12 +377,10 @@ NotifyIME(HIMC hIMC,DWORD dwAction,DWORD dwIndex,DWORD dwValue)
 		case IMC_SETSENTENCEMODE: //0x04
 			break;
 		case IMC_SETOPENSTATUS:	//0x006
-			dsvr->showStatus(true);	
 			break;
 		case IMC_SETCANDIDATEPOS:  //0x08
 			break;
 		case IMC_SETCOMPOSITIONFONT: //0x0a
-			MyGenerateMessage( hIMC, WM_IME_STARTCOMPOSITION,0,0); 
 			break;
 		default:
 			break;

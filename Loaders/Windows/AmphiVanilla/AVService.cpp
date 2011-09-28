@@ -74,7 +74,7 @@ const char *AVService::toUTF8(const char *encoding, const char *src)
 #ifdef WIN32
 	if (OVWildcard::Match(encoding, "big5*") || OVWildcard::Match(encoding, "big-5")) {
 		WCHAR wbuf[256];
-		MultiByteToWideChar(950, 0, src, (int)strlen(src)+1, wbuf, 256);
+		MultiByteToWideChar(950, 0, src, -1 , wbuf, 256);
 		_UTF8Buffer = OVUTF8::FromUTF16(wbuf);
 		return _UTF8Buffer.c_str();
 	}
