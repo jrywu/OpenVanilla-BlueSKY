@@ -143,19 +143,19 @@ namespace OpenVanilla {
                 utf8String += (unsigned char)codePoint;
             }
             else if (codePoint < 0x800) {
-                utf8String += (unsigned char)((codePoint >> 6) | 0xc0)&0xff;
-                utf8String += (unsigned char)((codePoint & 0x3f) | 0x80)&0xff;
+                utf8String += (unsigned char)((codePoint >> 6) | 0xc0);
+                utf8String += (unsigned char)((codePoint & 0x3f) | 0x80);
             }
             else if (codePoint < 0x10000) {
-                utf8String += (unsigned char)((codePoint >> 12) | 0xe0)&0xff;
-                utf8String += (unsigned char)((codePoint >> 6) & 0x3f | 0x80)&0xff;
-                utf8String += (unsigned char)((codePoint & 0x3f) | 0x80)&0xff;                
+                utf8String += (unsigned char)((codePoint >> 12) | 0xe0);
+                utf8String += (unsigned char)((codePoint >> 6) & 0x3f | 0x80);
+                utf8String += (unsigned char)((codePoint & 0x3f) | 0x80);                
             }
             else {
-                utf8String += (unsigned char)((codePoint >> 18) | 0xf0)&0xff;
-                utf8String += (unsigned char)((codePoint >> 12) | 0x80)&0xff;
-                utf8String += (unsigned char)((codePoint >> 6) & 0x3f | 0x80)&0xff;
-                utf8String += (unsigned char)((codePoint & 0x3f) | 0x80)&0xff;                
+                utf8String += (unsigned char)((codePoint >> 18) | 0xf0);
+                utf8String += (unsigned char)((codePoint >> 12) | 0x80);
+                utf8String += (unsigned char)((codePoint >> 6) & 0x3f | 0x80);
+                utf8String += (unsigned char)((codePoint & 0x3f) | 0x80);                
             }
             
             return utf8String;
