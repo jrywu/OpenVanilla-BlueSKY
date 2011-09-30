@@ -55,9 +55,7 @@ const char* AVLoader::getGlobalConfigKey(const char* key)
 }
 void AVLoader::setGlobalConfigKey(const char* key, const char* value)
 {
-	//em->dict()->setGlobalConfig("StatusPosition");
 	em->dict()->setString(key, value);
-	
 }
 
 void AVLoader::setGlobalConfig(const char* name)

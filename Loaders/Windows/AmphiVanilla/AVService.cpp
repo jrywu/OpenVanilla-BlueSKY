@@ -2,6 +2,7 @@
 #include "OVUtility.h"
 #include "AVService.h"
 #include "AVDisplayServer.h"
+#include "OVUTF8Helper.h"
 
 //<comment author='b6s'>Disable iconv temporarily.
 //#include "iconv.h"
@@ -11,6 +12,7 @@
 #include <tchar.h>
 #include <windows.h>	//< For Beep(DWORD, DWORD);
 
+using namespace OpenVanilla;
 
 AVService::AVService() {} 
 
@@ -24,24 +26,7 @@ AVService::AVService(const char* dir) : userdir(dir)
 	
 	murmur("Current user locale:%s", localname.c_str());
 	
-/*
-	wchar_t lc[12], ctry[9];
-	GetLocaleInfo(LOCALE_USER_DEFAULT, LOCALE_SISO639LANGNAME ,lc, sizeof(lc));
-	GetLocaleInfo(LOCALE_USER_DEFAULT, LOCALE_SISO3166CTRYNAME ,ctry, sizeof(ctry));
-	if(!wcscmp(lc, _T("zh") ) && ( wcscmp(ctry,_T("TW")) && wcscmp(ctry,_T("CN") )))
-	{
-		wcscpy(ctry, _T("TW"));
-	}
-
-	wcscat(lc,_T("_"));
-	wcscat(lc,ctry);
-
-	char buf[12];
-	wcstombs(buf,lc,12); 
-	murmur("Current user locale:%s", buf);
-	localname = buf;
-	*/
-
+	_UTF16ShortBuffer = (unsigned short *)malloc(32 * sizeof(unsigned short));
 }
 
 const char *AVService::userSpacePath(const char *modid)
@@ -55,7 +40,7 @@ const char *AVService::userSpacePath(const char *modid)
 const char *AVService::locale()
 {	
 	return localname.c_str();
-	//return "zh_TW";
+
 }
 
 const char *AVService::pathSeparator()
@@ -124,7 +109,11 @@ const char *AVService::fromUTF8(const char *encoding, const char *src)
 
 const char *AVService::UTF16ToUTF8(unsigned short *s, int l)
 {
-	    char *b = internal;
+
+
+	    char *b =(char *) malloc(sizeof(char) * l * 4);
+		char *result;
+		result = b;
 	    for (int i=0; i<l; i++)
 	    {
 		    if (s[i] < 0x80)
@@ -156,13 +145,17 @@ const char *AVService::UTF16ToUTF8(unsigned short *s, int l)
 	    }
 
 	    *b=0;
-	    return internal;
+	    return result;
+		//return internal;
+		
 }
 
 enum { bit7=0x80, bit6=0x40, bit5=0x20, bit4=0x10, bit3=8, bit2=4, bit1=2, bit0=1 };
 
 int AVService::UTF8ToUTF16(const char *src, unsigned short **rcvr)
 {
+
+	
 	char *s1=(char*)src;
 	int len=0;
 	char a, b, c;
@@ -192,4 +185,5 @@ int AVService::UTF8ToUTF16(const char *src, unsigned short **rcvr)
 	}
 	*rcvr = u_internal;
 	return len;
+	
 }

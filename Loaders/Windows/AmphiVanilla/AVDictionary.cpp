@@ -87,16 +87,13 @@ void AVDictionary::setPath(const char *path)
 {
 	file = path;
 	file += "config.xml";
-	//<comment author='b6s'>Old tinyxml usage;
-	//if(!doc.LoadFile(file)) {
-	//</comment>	
-	
+
 	// Use widechar for compatibility of chinese path name
 	wchar_t wbuf[MAX_PATH];
 	MultiByteToWideChar(CP_UTF8, 0, file.c_str(), (int)(file.length()+1), wbuf, 256);
 	
 	FILE* fp=_wfopen(wbuf, TEXT("rb"));
-//	if(!doc.LoadFile(file.c_str(), TIXML_ENCODING_UTF8)) {
+
 	if(!doc.LoadFile(fp, TIXML_ENCODING_UTF8)) {
 		createNewConfig(file);
 		//doc.LoadFile();

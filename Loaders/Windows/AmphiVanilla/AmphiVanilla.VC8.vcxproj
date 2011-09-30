@@ -433,7 +433,6 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Itanium'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="DummyDisplayServer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVBuffer.h" />
@@ -446,7 +445,6 @@
     <ClInclude Include="AVLoader.h" />
     <ClInclude Include="AVLoaderUtility.h" />
     <ClInclude Include="AVService.h" />
-    <ClInclude Include="DummyDisplayServer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

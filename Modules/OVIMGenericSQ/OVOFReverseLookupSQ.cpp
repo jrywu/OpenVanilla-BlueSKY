@@ -87,7 +87,7 @@ const char *OVOFReverseLookup::process(const char *src, OVService *srv) {
     
     for (int i=0; i<u16len; i++) {
         // get each codepoint -- and do surrogate check
-        murmur("u16len=%d; u16[%d]= %x", u16len, u16[i]);
+        murmur("u16len=%d; u16[%d]= %x", u16len,i, u16[i]);
         const char *u8;
         if (u16[i] >= 0xd800 && u16[i] <= 0xdbff) {
             u8=srv->UTF16ToUTF8(&(u16[i]), 2);
