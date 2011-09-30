@@ -32,14 +32,14 @@ AVLoader::AVLoader() : dsvr(0)
 	loadPrefs();
 
 	candi = new AVCandidate();
-	buf = new AVBuffer(&ovof_vector, em->srv());
+	buf = new AVBuffer(&activatedOutputFilterArray, em->srv());
 	em->srv()->setCandi(candi);
 }
 
 AVLoader::~AVLoader()
 {
-	ctx_vector.clear();
-	ovof_vector.clear();
+	activatedContextArray.clear();
+	activatedOutputFilterArray.clear();
 	murmur("Shutdown loader: clear containers");
 	em->removeInstance();
 	murmur("Shutdown loader: delete em");
@@ -55,7 +55,6 @@ const char* AVLoader::getGlobalConfigKey(const char* key)
 }
 void AVLoader::setGlobalConfigKey(const char* key, const char* value)
 {
-	//em->dict()->setGlobalConfig("StatusPosition");
 	em->dict()->setString(key, value);
 	
 }
@@ -179,11 +178,11 @@ void AVLoader::loadModules()
 	}
 	em->modlist() = tmpmod_vector; // Orz
 	//int size = em->modlist().size();
-	//ctx_vector.assign(size, static_cast<OVInputMethodContext*>(NULL));
-	//ctx_vector.assign(kpCount +1, static_cast<OVInputMethodContext*>(NULL));
+	//activatedContextArray.assign(size, static_cast<OVInputMethodContext*>(NULL));
+	//activatedContextArray.assign(kpCount +1, static_cast<OVInputMethodContext*>(NULL));
 //	startedCtxVector.assign(kpCount+imCount, false);
-	activatedIm = -1;
-	//ovof_vector.assign(ofCount, static_cast<OVOutputFilter*>(NULL));
+	primaryInputMethodIndex = -1;
+	//activatedOutputFilterArray.assign(ofCount, static_cast<OVOutputFilter*>(NULL));
 	
 	
 	//if(imCount > 0) initContext(0); //load first IM. 
@@ -195,8 +194,8 @@ void AVLoader::initContext(int n)
 
 	bool phraseToolsLoaded = false;
 
-	ctx_vector.clear();
-	ovof_vector.clear();
+	activatedContextArray.clear();
+	activatedOutputFilterArray.clear();
 	murmur("\tInitContext for module:%d, kpCount:%d, imCount:%d, ofCount:%d", n, kpCount, imCount, ofCount);
 	if(!strcmp(em->modlist()[n]->moduleType(), "OVInputMethod"))
 	{	if(kpCount){	
@@ -206,26 +205,26 @@ void AVLoader::initContext(int n)
 					em->dict()->setDict(kp->identifier());
 					kp->initialize(em->dict(), em->srv(), em->cfg()->getModuleDir());
 					murmur("\tInitContext %s", kp->localizedName(em->srv()->locale()));
-					ctx_vector.push_back(kp->newContext());  // Load the kp if it's checked in the menu
+					activatedContextArray.push_back(kp->newContext());  // Load the kp if it's checked in the menu
 					if(!strcmp((kp)->identifier(), "OVKPPhraseTools")) phraseToolsLoaded = true;
-					if(ctx_vector.size()>0&&ctx_vector[ctx_vector.size()-1])//&&!startedCtxVector[i+imCount]) 
+					if(activatedContextArray.size()>0&&activatedContextArray[activatedContextArray.size()-1])//&&!startedCtxVector[i+imCount]) 
 					{
-						ctx_vector[ctx_vector.size()-1]->start(buf, candi, em->srv());	
+						activatedContextArray[activatedContextArray.size()-1]->start(buf, candi, em->srv());	
 						//startedCtxVector[i+imCount] = true;
 						murmur("\tStarting %s",  kp->localizedName(em->srv()->locale()));
 					}
 				}
 			}
 		}
-		  // IM at the last item of ctx_vector
+		  // IM at the last item of activatedContextArray
 		OVInputMethod *im = reinterpret_cast<OVInputMethod*>(em->modlist()[n]);
 		em->dict()->setDict(im->identifier());
 		im->initialize(em->dict(), em->srv(), em->cfg()->getModuleDir());
 		murmur("\tInitContext %s", im->localizedName(em->srv()->locale()));
-		ctx_vector.push_back(im->newContext());
-		if(ctx_vector.size()>0&&ctx_vector[ctx_vector.size()-1])//&&!startedCtxVector[i+imCount]) 
+		activatedContextArray.push_back(im->newContext());
+		if(activatedContextArray.size()>0&&activatedContextArray[activatedContextArray.size()-1])//&&!startedCtxVector[i+imCount]) 
 		{
-			ctx_vector[ctx_vector.size()-1]->start(buf, candi, em->srv());	
+			activatedContextArray[activatedContextArray.size()-1]->start(buf, candi, em->srv());	
 			//startedCtxVector[i+imCount] = true;
 			murmur("\tStarting %s",  im->localizedName(em->srv()->locale()));
 		}
@@ -242,7 +241,7 @@ void AVLoader::initContext(int n)
 				    { 
 					em->dict()->setDict(of->identifier());
 					of->initialize(em->dict(), em->srv(), em->cfg()->getModuleDir());
-					ovof_vector.push_back(of);  
+					activatedOutputFilterArray.push_back(of);  
 					murmur("\tInit OF %s", of->localizedName(em->srv()->locale()));
 				}
 				
@@ -271,11 +270,11 @@ bool AVLoader::keyEvent(int n, AVKeyCode c)
 	
 	if(n > (int) imCount) return 0;
 	
-	if(n != activatedIm)  
+	if(n != primaryInputMethodIndex)  
 	{
-		initContext(n);  // Rebuild ctx_vector if acivatedIM changed.
-		activatedIm = n;
-		murmur("Staring IM module#%d", n);						
+		initContext(n);  // Rebuild activatedContextArray if acivatedIM changed.
+		primaryInputMethodIndex = n;
+		murmur("Recreate context using IM module :#%d", n);						
 		
 	}
 	else if( candi->onScreen() ){   // override up/down/enter key when candi on screen for key selection navigation.
@@ -328,14 +327,14 @@ bool AVLoader::keyEvent(int n, AVKeyCode c)
 		
 	}
 	
-	// Pass kp first, and the active IM at ctx_vector[kpcount]
-	murmur("passing kp + active IM, %d modules, IM moduleId:%d, activatedIM:%d, key:%x",  ctx_vector.size(),n, activatedIm, c.code());
+	// Pass kp first, and the active IM at activatedContextArray[kpcount]
+	murmur("passing kp + active IM, %d modules, IM moduleId:%d, primaryInputMethodIndex:%d, key:%x",  activatedContextArray.size(),n, primaryInputMethodIndex, c.code());
 	bool st;
-	for(size_t i=0; i < ctx_vector.size(); i++ ){
+	for(size_t i=0; i < activatedContextArray.size(); i++ ){
 		//murmur("passsing module#%d", i);
 		st = true;
 		try {
-			if(!ctx_vector[i]->keyEvent(&c, buf, candi, em->srv()))
+			if(!activatedContextArray[i]->keyEvent(&c, buf, candi, em->srv()))
 				st = false;
 		}
 		catch (...) 
@@ -367,60 +366,34 @@ bool AVLoader::moduleName(int i, char *str)
 void AVLoader::unloadCurrentModule()
 {
 	murmur("avloader::unloadCurrentModule()");
-	if(activatedIm > -1)
+	if(primaryInputMethodIndex > -1)
 	{
-		if(buf && !buf->isEmpty() &&activatedIm>-1)
+		if(buf && !buf->isEmpty() &&primaryInputMethodIndex>-1)
 		{
 			murmur("avloader::unloadCurrentModule, force commit before leaving");
 			AVKeyCode k;
 			k.setCode(ovkReturn);  // force commit before leaving 
-			keyEvent(activatedIm,k);
+			keyEvent(primaryInputMethodIndex,k);
 			buf->clear()->send();
 			 
 			
 		}
 		candi->clear()->hide();
-		ctx_vector[ctx_vector.size()-1]->end();
-		//startedCtxVector[activatedIm] = false;
-		activatedIm = -1;
+		activatedContextArray[activatedContextArray.size()-1]->end();
+		primaryInputMethodIndex = -1;
 	}
 }
-/*
-int AVLoader::getInputMethodCount()
-{
-	return (int) em->modlist().size();
-}
 
-int AVLoader::getOutputFilterCount()
-{
-	return (int) (ovof_vector.size()-1); // exclude Fullcharaterwidth OF module.
-}
-*/
 
 int AVLoader::getSwitchedBoPoMoFoLayoutModIndex(int currentId)
 {
-	/*
-	if(activatedIm == -1) {
-		if(hasBoPoMoFo && hasPhoneticHsu) {
-			for(size_t i = 0; i < em->modlist().size(); i++)
-				if(!strcmp(em->modlist()[i]->localizedName("en"),"PhoneticHsu") ||
-					!strcmp(em->modlist()[i]->localizedName("en"), "BoPoMoFo") ){
-					//activatedIm = i;
-					return i;
-				}
-		}
-		else return -1;
-	}
-	*/
-	 
-
+	
 	if(strcmp(em->modlist()[currentId]->localizedName("en"), "PhoneticHsu") &&
 		strcmp(em->modlist()[currentId]->localizedName("en"), "BoPoMoFo")  ) {
 		if(hasBoPoMoFo && hasPhoneticHsu) {
 			for(size_t i = 0; i < em->modlist().size(); i++)
 				if(!strcmp(em->modlist()[i]->localizedName("en"),"PhoneticHsu") ||
 					!strcmp(em->modlist()[i]->localizedName("en"), "BoPoMoFo") ){
-					//activatedIm = i;
 					return i;
 				}
 		}
@@ -434,7 +407,7 @@ int AVLoader::getSwitchedBoPoMoFoLayoutModIndex(int currentId)
 		for(size_t i = 0; i < em->modlist().size(); i++) {
 			if(!strcmp(em->modlist()[i]->localizedName("en"), "BoPoMoFo")) {
 				//unloadCurrentModule();
-				//activatedIm = i;
+				//primaryInputMethodIndex = i;
 				return i;
 			}
 		}
@@ -445,7 +418,7 @@ int AVLoader::getSwitchedBoPoMoFoLayoutModIndex(int currentId)
 		for(size_t i = 0; i < em->modlist().size(); i++) {
 			if(!strcmp(em->modlist()[i]->localizedName("en"), "PhoneticHsu")) {
 				//unloadCurrentModule();
-				//activatedIm = i;
+				//primaryInputMethodIndex = i;
 				return i;
 			}
 		}
@@ -479,7 +452,7 @@ const char* AVLoader::getBaseDirectory()
 	
 }
 
-void AVLoader::syncMenuConfig(int moduleid)
+void AVLoader::syncMenuToConfig(int moduleid)
 {
 	em->dict()->setDict(em->modlist().at(moduleid)->identifier() );
 
@@ -503,7 +476,7 @@ void AVLoader::syncMenuConfig(int moduleid)
 
 }
 
-void AVLoader::syncConfigMenu(int moduleid)
+void AVLoader::syncConfigToMenu(int moduleid)
 {
 
 #ifndef WINCE // load UI Sharesettings  

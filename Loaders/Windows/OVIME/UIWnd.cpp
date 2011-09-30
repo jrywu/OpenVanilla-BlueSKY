@@ -134,22 +134,17 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 				
 				
 				int moduleId = UIModuleChange();   // restore last selected IM from UI
-				loader->syncConfigMenu(moduleId);
+				loader->syncConfigToMenu(moduleId);
 				//loader->initContext(moduleId);	   //
 				murmur("IM module id #%d", moduleId);
 				murmur("\tRefreshUI()"); 
-				RefreshUI(hUICurIMC);   //多視窗 program 切換子視窗要重設 ic position
+				RefreshUI(hUICurIMC);   
 				murmur("\thUICurIMC==true");
 				
 				dsvr->showStatus(true);	
 				
 				murmur("Status showed");
 			
-				//if(lParam & ISC_SHOWUICOMPOSITIONWINDOW) // not sure
-				//{	
-					//dsvr->showBuf(true);
-				//}
-				//dsvr->showCandi(true); //註解掉因為切開就應該 clear cand了
 			}
 			else   // it is NULL input context. (?)
 				murmur("\thUICurIMC==false, hide all"); 
@@ -238,22 +233,16 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 					!!atoi(loader->getGlobalConfigKey("IsDocked")) );
 				 						
 				int moduleId = UIModuleChange();   // reload last selected IM from UI
-				loader->syncConfigMenu(moduleId);
+				loader->syncConfigToMenu(moduleId);
 				//loader->initContext(moduleId);	   //
 				murmur("\tRefreshUI()"); 
-				RefreshUI(hUICurIMC);   //多視窗 program 切換子視窗要重設 ic position
+				RefreshUI(hUICurIMC);  
 				murmur("\thUICurIMC==true");
 
 
 				dsvr->showStatus(true);	
 
-				
-				
-				if(lParam & ISC_SHOWUICOMPOSITIONWINDOW) // not sure
-				{	
-					//dsvr->showBuf(true);
-				}
-				//dsvr->showCandi(true); //註解掉因為切開就應該 clear cand了
+			
 			}
 			else   // it is NULL input context. (?)
 				murmur("\thUICurIMC==false, hide all"); 
