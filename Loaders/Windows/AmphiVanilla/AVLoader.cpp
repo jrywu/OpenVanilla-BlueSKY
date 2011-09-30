@@ -10,7 +10,7 @@ AVLoader* AVLoader::globalLoader = NULL;
 
 AVLoader* AVLoader::open()
 {
-	//if(globalLoader) delete globalLoader; 
+
 	if(globalLoader == NULL)
 		globalLoader = new AVLoader();
 	return globalLoader;
