@@ -30,8 +30,8 @@ public:
 	int getSwitchedBoPoMoFoLayoutModIndex(int currentId);
 	void getAllModuleNames(const char* nameList[]);
 	OVInputMethodContext* GetcurrentContext() {  
-		if(activatedIm > -1)
-		return ctx_vector[activatedIm]; 
+		if(primaryInputMethodIndex > -1)
+		return activatedContextArray[primaryInputMethodIndex]; 
 		else 
 		return NULL;
 	};
@@ -39,8 +39,8 @@ public:
 	const char* getGlobalConfigKey(const char*);
 	void setGlobalConfigKey(const char*, const char*);
 	void setGlobalConfig(const char* name);
-	void AVLoader::syncMenuConfig(int);
-	void AVLoader::syncConfigMenu(int);
+	void AVLoader::syncMenuToConfig(int);
+	void AVLoader::syncConfigToMenu(int);
 
 protected:
 	AVLoader();
@@ -54,11 +54,11 @@ protected:
 	AVCandidate *candi;
 	AVBuffer *buf;
 
-	vector<OVInputMethodContext*> ctx_vector;
-	vector<OVOutputFilter*> ovof_vector;
-	//vector<bool> startedCtxVector;	// 這是很浪費的作法 orz
+	vector<OVInputMethodContext*> activatedContextArray;
+	vector<OVOutputFilter*> activatedOutputFilterArray;
 
-	int activatedIm;
+
+	int primaryInputMethodIndex;
 
 	size_t kpCount;
 	size_t imCount;

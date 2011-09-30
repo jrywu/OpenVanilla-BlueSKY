@@ -129,13 +129,10 @@
     <value>NoControl</value>
   </data>
   <data name="m_btSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>455, 482</value>
-  </data>
-  <data name="m_btSave.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
+    <value>507, 482</value>
   </data>
   <data name="m_btSave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 24</value>
+    <value>94, 24</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btSave.TabIndex" type="System.Int32, mscorlib">
@@ -162,11 +159,8 @@
   <data name="panelModuleList.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 0</value>
   </data>
-  <data name="panelModuleList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
-  </data>
   <data name="panelModuleList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 429</value>
+    <value>202, 429</value>
   </data>
   <data name="panelModuleList.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -190,13 +184,10 @@
     <value>Arial, 8.25pt</value>
   </data>
   <data name="panelOptions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>279, 31</value>
-  </data>
-  <data name="panelOptions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
+    <value>209, 31</value>
   </data>
   <data name="panelOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 398</value>
+    <value>395, 398</value>
   </data>
   <data name="panelOptions.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -220,13 +211,10 @@
     <value>NoControl</value>
   </data>
   <data name="labelModuleList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 3</value>
-  </data>
-  <data name="labelModuleList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>3, 3</value>
   </data>
   <data name="labelModuleList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 17</value>
+    <value>85, 17</value>
   </data>
   <data name="labelModuleList.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -259,13 +247,10 @@
     <value>NoControl</value>
   </data>
   <data name="labelOptions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>287, 3</value>
-  </data>
-  <data name="labelOptions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>215, 3</value>
   </data>
   <data name="labelOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 25</value>
+    <value>82, 24</value>
   </data>
   <data name="labelOptions.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -319,7 +304,7 @@
     <value>10, 5</value>
   </data>
   <data name="labelOFModuleList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 13</value>
+    <value>80, 13</value>
   </data>
   <data name="labelOFModuleList.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -342,21 +327,6 @@
   <data name="tabControl.Appearance" type="System.Windows.Forms.TabAppearance, System.Windows.Forms">
     <value>FlatButtons</value>
   </data>
-  <data name="panelShareSettings.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="panelShareSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 3</value>
-  </data>
-  <data name="panelShareSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
-  </data>
-  <data name="panelShareSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>590, 425</value>
-  </data>
-  <data name="panelShareSettings.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
   <data name="&gt;&gt;panelShareSettings.Name" xml:space="preserve">
     <value>panelShareSettings</value>
   </data>
@@ -372,14 +342,11 @@
   <data name="tabPageShareSettings.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 29</value>
   </data>
-  <data name="tabPageShareSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
-  </data>
   <data name="tabPageShareSettings.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
+    <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPageShareSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>598, 431</value>
+    <value>604, 431</value>
   </data>
   <data name="tabPageShareSettings.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -402,14 +369,11 @@
   <data name="tabPageModuleSettings.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 29</value>
   </data>
-  <data name="tabPageModuleSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
-  </data>
   <data name="tabPageModuleSettings.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
+    <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPageModuleSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>598, 431</value>
+    <value>604, 431</value>
   </data>
   <data name="tabPageModuleSettings.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -433,16 +397,13 @@
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="tabControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 12</value>
-  </data>
-  <data name="tabControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
+    <value>7, 12</value>
   </data>
   <data name="tabControl.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
   </data>
   <data name="tabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>606, 464</value>
+    <value>612, 464</value>
   </data>
   <data name="tabControl.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -457,6 +418,30 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tabControl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panelShareSettings.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panelShareSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="panelShareSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>598, 425</value>
+  </data>
+  <data name="panelShareSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panelShareSettings.Name" xml:space="preserve">
+    <value>panelShareSettings</value>
+  </data>
+  <data name="&gt;&gt;panelShareSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelShareSettings.Parent" xml:space="preserve">
+    <value>tabPageShareSettings</value>
+  </data>
+  <data name="&gt;&gt;panelShareSettings.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="tabPageOFModulelist.Location" type="System.Drawing.Point, System.Drawing">
@@ -481,13 +466,13 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 13</value>
+    <value>6, 13</value>
   </data>
   <data name="$this.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>620, 518</value>
+    <value>631, 518</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1894,9 +1879,6 @@
         ////////////////////////////////////////////////////////////////////////////////
         /////////////w==
 </value>
-  </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>偏好設定</value>

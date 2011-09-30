@@ -1,4 +1,4 @@
-#ifndef DummyDISPLAYSERVER_H
+ifndef DummyDISPLAYSERVER_H
 #define DummyDISPLAYSERVER_H
 
 

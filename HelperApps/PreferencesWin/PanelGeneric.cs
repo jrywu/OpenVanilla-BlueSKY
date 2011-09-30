@@ -46,6 +46,7 @@ namespace OVPreferences
             m_ovConfDomHandler = new OVConfigDom(m_ovConfDOM);
 
             LoadSettings();
+            
         }
 
         protected virtual void LoadSettings()
@@ -122,8 +123,7 @@ namespace OVPreferences
             m_tbMatchOneChar.Text = m_matchOneChar.Substring(0, 1);
             m_tbMatchZeroOrMoreChar.Text = m_matchZeroOrMoreChar.Substring(0, 1);
 
-
-
+           
             
         }
 
@@ -225,6 +225,7 @@ namespace OVPreferences
 
         void m_tbMatchOneChar_TextChanged(object sender, System.EventArgs e)
         {
+           
             if (m_tbMatchOneChar.Text.Length == 0) return;
 
             m_matchOneChar = m_tbMatchOneChar.Text;

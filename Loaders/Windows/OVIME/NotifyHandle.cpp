@@ -199,7 +199,7 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 			}
 			break;
 		}
-		case 3: //Switch modules by Mouse
+		case 3: //Switch InputMethod From Menu
 			{
 			murmur("\tChange Modules by Mouse");
 			/* close module and set new IC */
@@ -207,12 +207,12 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 			loader->unloadCurrentModule();
 			int moduleId = UIModuleChange();
 			UISetStatusModStrCurrent(moduleId);
-			loader->syncConfigMenu(moduleId);
+			loader->syncConfigToMenu(moduleId);
 			//loader->initContext(moduleId);
 			break;
 			}
-		case 4: // Change UI Traditional/Simplified Chinese
-			murmur("\tChange UI Traditional/Simplified Chinese");			
+		case 4: // Change Traditional/Simplified Chinese ; Deprecated
+			//murmur("\tChange UI Traditional/Simplified Chinese");			
 			//UIChangeSimpifiedOrTraditional(hWnd); 
 			break;
 		case 5: { //Change BoPoMoFo keyboard layout by ctrl +'='
@@ -225,10 +225,8 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 				if(moduleId != UICurrentInputMethod()) {
 					loader->unloadCurrentModule();
 					UISetStatusModStrCurrent(moduleId);
-					loader->syncConfigMenu( UIModuleChange());
-					
-					
-				//loader->initContext(moduleId);	
+					loader->syncConfigToMenu( UIModuleChange());
+					//loader->initContext(moduleId);	
 				}
 				inprivate5 =false;
 			}
@@ -246,22 +244,20 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 			break;
 			}
 		
-		case 8: //Change Modules by ctrl +'\'
+		case 8: //Rotate Modules by ctrl +'\'
 			{
-			/* close module and poll current IC */
-				//<comment author='b6s'>
-				// A stupid but necessary check to prevent infinite loop. 
+			
 				if(!isPrivateEightExecuting) {
 					isPrivateEightExecuting = true;
 					loader->unloadCurrentModule();
 					int moduleId = UIModuleRotate();					
 					murmur("Ctrl+ \\; Switch IM to module:%d", moduleId);
 					UISetStatusModStrCurrent(moduleId );
-					loader->syncConfigMenu(moduleId);
+					loader->syncConfigToMenu(moduleId);
 					//loader->initContext(moduleId);
 					isPrivateEightExecuting = false; 
 				}
-				//</comment>
+
 			break;
 			}
 		case 9: //Set all module names
@@ -282,7 +278,7 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 
 			UISetStatusModStrMenuAll(modAmount, modNameList);
 			UISetStatusModStrCurrent(UICurrentInputMethod());
-			loader->syncConfigMenu(UICurrentInputMethod() );//UIModuleChange());  // update current IC.
+			loader->syncConfigToMenu(UICurrentInputMethod() );//UIModuleChange());  // update current IC.
 			
 
 			//dsvr->showStatus(true);
@@ -360,7 +356,7 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 		case 13: // KP OF checked status updated.
 			{
 			murmur("Sync KP OF checked status to config.");
-			loader->syncMenuConfig(UICurrentInputMethod());
+			loader->syncMenuToConfig(UICurrentInputMethod());
 
 			murmur("send WM_IME_RELOADCONFIG to all windows. My Hwnd:%x", hWnd);
 			EnumChildWindows( GetDesktopWindow(), ReloadIME, NULL);

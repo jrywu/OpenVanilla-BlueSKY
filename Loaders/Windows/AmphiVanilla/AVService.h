@@ -34,6 +34,7 @@ private:
 	std::string localname;
 	AVCandidate *candi;
     AVDisplayServer *dsvr;
+
 protected:
 	unsigned short *_UTF16ShortBuffer;
 	wstring _UTF16Buffer;

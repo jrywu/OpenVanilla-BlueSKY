@@ -87,8 +87,17 @@
 	[_tooltipTextView setNeedsDisplay:YES];
 	[_tooltipWindow setContentSize:[_tooltipTextView boundingRectForText].size];	
 
+    //Jeremy '11,9,28 offset tooltip when candibar is visible
+    int candiOffset = 5;
+    if ([_candidateWindow isVisible]) {
+        NSRect candiFrameRect = [_candidateWindow frame];
+        candiOffset = candiFrameRect.size.height;
+    }
+    
+
 	NSRect frameRect = [_tooltipWindow frame];
-    point.y -= (frameRect.size.height + 5.0);
+    
+    point.y -= (frameRect.size.height + candiOffset);
 	[_tooltipWindow setFrameOrigin:point];	
 	
 	if (![_tooltipWindow isVisible]) {

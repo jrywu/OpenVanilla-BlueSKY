@@ -1,5 +1,14 @@
 //#define OV_DEBUG
+
+#ifndef WIN32
+#include <OpenVanilla/OVUtility.h>
+#include <OpenVanilla/OVUTF8Helper.h>
+#include <OpenVanilla/OVWildcard.h>
+#else
+#include "OVWildcard.h"
 #include "OVUtility.h"
+#include "OVUTF8Helper.h"
+#endif
 #include "AVService.h"
 #include "AVDisplayServer.h"
 #include "OVUTF8Helper.h"
@@ -8,15 +17,18 @@
 //#include "iconv.h"
 //</comment>
 #include <cstring>
+
+#include <string>
 #include <io.h>
-#include <tchar.h>
-#include <windows.h>	//< For Beep(DWORD, DWORD);
+#include <windows.h>	
 
 using namespace OpenVanilla;
 
+
+AVService::AVService() {} 
 AVService::AVService() {} 
 
-AVService::AVService(const char* dir) : userdir(dir) 
+AVService::AVService(const char* dir) : userdir(dir),  _UTF16ShortBuffer(0)
 {
 	LCID ulcid=GetUserDefaultLCID();
 	murmur("::AVService();LCID:%x",ulcid);
@@ -63,14 +75,31 @@ void AVService::notify(const char *msg)
 	dsvr->showNotify(msg);
 }
 
-//<comment author='b6s'>Disable iconv temporarily.
+
 const char *AVService::toUTF8(const char *encoding, const char *src)
 {
-	return 0;
-}
-/*
-const char *AVService::toUTF8(const char *encoding, const char *src)
-{
+#ifdef WIN32
+	if (OVWildcard::Match(encoding, "big5*") || OVWildcard::Match(encoding, "big-5")) {
+		WCHAR wbuf[256];
+		MultiByteToWideChar(950, 0, src, -1 , wbuf, 256);
+		_UTF8Buffer = OVUTF8::FromUTF16(wbuf);
+		return _UTF8Buffer.c_str();
+	}
+	
+	return src;
+#elif _APPLE
+	if (OVWildcard::Match(encoding, "big5*") || OVWildcard::Match(encoding, "big-5")) {
+		CFStringRef convStr = CFStringCreateWithBytes(NULL, (const UInt8 *)src, (CFIndex)strlen(src), kCFStringEncodingBig5_HKSCS_1999, false);
+		if (convStr) {
+			[_conversionBuffer setString:(NSString *)convStr];
+			CFRelease(convStr);
+			return [_conversionBuffer UTF8String];
+		}
+	}
+		
+    return src;
+
+#else //UNIX variant
 	char *out = NULL;
 	size_t inbytesleft = strlen(src) + 1;
 	size_t outbytesleft = 1024;
@@ -81,18 +110,30 @@ const char *AVService::toUTF8(const char *encoding, const char *src)
 	iconv (cd, &src, &inbytesleft, &out, &outbytesleft);
 	iconv_close(cd);
 	return internal;
-}
-*/
-//</comment>
+#endif
 
-//<comment author='b6s'>Disable iconv temporarily.
-const char *AVService::fromUTF8(const char *encoding, const char *src)
-{
-	return 0;
 }
-/*
+
+
 const char *AVService::fromUTF8(const char *encoding, const char *src)
 {
+#ifdef WIN32
+	if (OVWildcard::Match(encoding, "big5*") || OVWildcard::Match(encoding, "big-5")) {
+		_UTF16Buffer = OVUTF16::FromUTF8(src);
+		char buf[256];
+		WideCharToMultiByte(950,0, _UTF16Buffer.c_str(), -1, buf,256,NULL,NULL);
+		return buf;		
+	}
+	return src;
+
+#elif _APPLE
+	if (OVWildcard::Match(encoding, "big5*") || OVWildcard::Match(encoding, "big-5")) {
+		[_conversionBuffer setString:[NSString stringWithUTF8String:src]];
+		return [_conversionBuffer cStringUsingEncoding:CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5_HKSCS_1999)];
+	}
+    return src;
+
+#else
 	char *out = NULL;
 	size_t inbytesleft = strlen(src) + 1;
 	size_t outbytesleft = 1024;
@@ -103,87 +144,43 @@ const char *AVService::fromUTF8(const char *encoding, const char *src)
 	iconv (cd, &src, &inbytesleft, &out, &outbytesleft);
 	iconv_close(cd);
 	return internal;
+#endif
 }
-*/
-//</comment>
 
-const char *AVService::UTF16ToUTF8(unsigned short *s, int l)
+
+const char *AVService::UTF16ToUTF8(unsigned short *src, int len)
 {
+	murmur("AVService::UTF16ToUTF8(), len = %d", len);
 
-
-	    char *b =(char *) malloc(sizeof(char) * l * 4);
-		char *result;
-		result = b;
-	    for (int i=0; i<l; i++)
-	    {
-		    if (s[i] < 0x80)
-		    {
-			    *b++=static_cast<char>(s[i]);
-		    }
-		    else if (s[i] < 0x800)
-		    {
-			    *b++=(0xc0 | s[i]>>6);
-			    *b++=(0x80 | s[i] & 0x3f);
-		    }
-		    else if (s[i] < 0xd800 || s[i] > 0xdbff)
-		    {
-			    *b++ = (0xe0 | s[i]>>12);
-			    *b++ = (0x80 | s[i]>>6 & 0x3f);
-			    *b++ = (0x80 | s[i] & 0x3f);
-
-		    }
-		    else
-		    {
-			    unsigned int offset= 0x10000 - (0xd800 << 10) - 0xdc00;
-			    unsigned int codepoint=(s[i] << 10) + s[i+1]+offset;
-			    i++;
-			    *b++=(0xf0 | codepoint>>18);
-			    *b++=(0x80 | codepoint>>12 & 0x3f);
-			    *b++=(0x80 | codepoint>>6 & 0x3f);
-			    *b++=(0x80 | codepoint & 0x3F);
-		    }
-	    }
-
-	    *b=0;
-	    return result;
-		//return internal;
+	wstring tmp(len, 0);
+		for (int i = 0 ; i < len ; i++) {
+			tmp[i] = src[i];
+		}
 		
+		_UTF8Buffer = OVUTF8::FromUTF16(tmp);
+		return _UTF8Buffer.c_str();
+	
 }
 
 enum { bit7=0x80, bit6=0x40, bit5=0x20, bit4=0x10, bit3=8, bit2=4, bit1=2, bit0=1 };
 
 int AVService::UTF8ToUTF16(const char *src, unsigned short **rcvr)
+		
 {
+	murmur("AVService::UTF8ToUTF16()");
 
+	_UTF16Buffer = OVUTF16::FromUTF8(src);
+		
+		_UTF16ShortBuffer = (unsigned short *)realloc(_UTF16ShortBuffer, (_UTF16Buffer.length() + 1) * sizeof(unsigned short));
+		size_t i;
+		for (i = 0 ; i < _UTF16Buffer.length() ; i++) {
+			_UTF16ShortBuffer[i] = _UTF16Buffer[i];
+		}
+		
+		_UTF16ShortBuffer[i] = 0;
+		
+		*rcvr = _UTF16ShortBuffer;
+		return _UTF16Buffer.length();
 	
-	char *s1=(char*)src;
-	int len=0;
-	char a, b, c;
-	while (*s1)
-	{
-		a=*s1++;
-		if ((a & (bit7|bit6|bit5))==(bit7|bit6)) { // 0x000080-0x0007ff
-			b=*s1++;
-
-			u_internal[len] = ((a & (bit4|bit3|bit2)) >> 2) * 0x100;
-			u_internal[len] += (((a & (bit1|bit0)) << 6) | (b & (bit5|bit4|bit3|bit2|bit1|bit0)));
-		}
-		else if ((a & (bit7|bit6|bit5|bit4))==(bit7|bit6|bit5)) // 0x000800-0x00ffff
-		{
-			b=*s1++;
-			c=*s1++;
-
-			u_internal[len] = (((a & (bit3|bit2|bit1|bit0)) << 4) | ((b & (bit5|bit4|bit3|bit2)) >> 2)) * 0x100;
-			u_internal[len] += (((b & (bit1|bit0)) << 6) | (c & (bit5|bit4|bit3|bit2|bit1|bit0)));
-		}
-		else 
-		{
-			u_internal[len] =(0);
-			u_internal[len] +=(a);
-		}
-		len++;
-	}
-	*rcvr = u_internal;
-	return len;
 	
 }

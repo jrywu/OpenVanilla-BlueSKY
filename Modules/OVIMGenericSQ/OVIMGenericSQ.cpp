@@ -39,7 +39,6 @@
 using namespace std;
 
 OVCINSQList *cinlist=NULL;
-//SQLite3 *db=NULL;
 
 extern "C" unsigned int OVGetLibraryVersion() {
     return OV_VERSION;
@@ -115,7 +114,7 @@ extern "C" OVModule *OVGetModuleFromLibrary(int x) {
 	else if ((size_t)x < 2* cinlist->count())  // Reverse lookup
 	{
 		size_t y = x - (cinlist->count()) ;
-		murmur("OVGetModuleFromLibrary:%s", cinlist->cinInfo(y).shortfilename.c_str());
+		murmur("OVGetModuleFromLibrary, reverseLookupModule %s", cinlist->cinInfo(y).shortfilename.c_str());
 		return new OVOFReverseLookup(cinlist->cinInfo(y), cinlist->getdb());
 
 	}
@@ -183,6 +182,7 @@ const char* OVIMGeneric::localizedName(const char* locale)
 
 int OVIMGeneric::initialize(OVDictionary* global, OVService* srv, const char*)
 {
+    murmur("OVIMGeneric::initialize on %s", identifier());
 	srv->notify("Updating table..."); 
     //Watch watch;
     //watch.start();
@@ -390,7 +390,6 @@ int OVGenericContext::keyEvent(OVKeyCode *key, OVBuffer *buf, OVCandidate *textb
     
     
     // shift and capslock processing
-	// <comment author='b6s'>Shift processing is disabled.</comment>
     if (isprint(key->code()) && (key->isCapslock() /*|| key->isShift()*/))
     {
         if (key->isCapslock())

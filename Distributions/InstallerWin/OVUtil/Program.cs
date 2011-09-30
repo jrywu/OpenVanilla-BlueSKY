@@ -95,7 +95,23 @@ namespace OVUtil
                 {
                     foreach (InputLanguage lang in InputLanguage.InstalledInputLanguages)
                     {
-                        Console.WriteLine("lang="+lang.Culture.EnglishName);
+                        Console.WriteLine("imename = " + lang.LayoutName);
+                    }
+                }
+                else if (args[0] == "switchOV")
+                {
+                    foreach (InputLanguage lang in InputLanguage.InstalledInputLanguages)
+                    {
+                        string imename = lang.LayoutName;
+                        Console.WriteLine("imename = " + imename);
+                        if(imename.StartsWith("OpenVanilla"))
+                        {
+                            Console.WriteLine("OV found");
+                            InputLanguage.CurrentInputLanguage = lang;
+                            Console.ReadLine();
+                            break;
+                                
+                        }
                     }
                 }
             }

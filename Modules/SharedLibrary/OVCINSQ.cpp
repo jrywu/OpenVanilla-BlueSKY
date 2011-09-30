@@ -270,8 +270,11 @@ void OVCINSQ::lowerStr(string& str){
 
 size_t OVCINSQ::getCharVectorByKey(const string& inKey, vector<string>& outStringVectorRef)
 {
-	SQLite3Statement *sth=db->prepare(
-		"select value from '%q' where key = '_key_%q';", tablename.c_str(), inKey.c_str()); 
+	string sql = "select value from '" + tablename
+			+"' where key = '_key_" + inKey	+"';"; 
+
+	SQLite3Statement *sth=db->prepare( sql.c_str());
+	//	"select value from '%q' where key = '_key_%q';", tablename.c_str(), inKey.c_str()); 
 	outStringVectorRef.clear();
 	if (sth && sth->step()==SQLITE_ROW) 
 	{
@@ -473,10 +476,19 @@ size_t OVCINSQ::getWordVectorByChar(const string& inKey,
 size_t OVCINSQ::getCharVectorByWord(const string& inWord,
                                vector<string>& outStringVectorRef)
 {
-	SQLite3Statement *sth = db->prepare(
-			"select key from '%q' where value = '%q' and ord >-1 ", tablename.c_str(), inWord.c_str()); 
+	string sql = "select key from '" + tablename
+			+"' where value = '" + inWord	+"' and ord >-1;"; 
+
+	SQLite3Statement *sth = db->prepare(sql.c_str());
+	//		"select key from '%q' where value = '%q' and ord >-1 ", tablename.c_str(), inWord.c_str()); 
 	
+<<<<<<< HEAD
 	murmur("getCharVectorByWord: select key from '%s' where value = '%s' and ord >-1 ", tablename.c_str(), inWord.c_str()); 
+=======
+
+	murmur("getCharVectorByWord: %s", sql.c_str());
+		//select key from '%s' where value = '%s' and ord >-1 ", tablename.c_str(), inWord.c_str()); 
+>>>>>>> 0171b9dec936e87abc5bc3eaaab5cb957df6a05b
 
 	outStringVectorRef.clear();
 

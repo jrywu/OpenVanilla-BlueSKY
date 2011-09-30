@@ -144,25 +144,20 @@ namespace OpenVanilla {
                 utf8String += (unsigned char)codePoint;
             }
             else if (codePoint < 0x800) {
-                utf8String += (unsigned char)((codePoint >> 6) | 0xc0)&0xff;
-                utf8String += (unsigned char)((codePoint & 0x3f) | 0x80)&0xff;
+                utf8String += (unsigned char)((codePoint >> 6) | 0xc0);
+                utf8String += (unsigned char)((codePoint & 0x3f) | 0x80);
 				murmur("pos1");
             }
             else if (codePoint < 0x10000) {
-                unsigned int s1 = ((codePoint >> 12) | 0xe0)&0xff;
-                unsigned int s2 = ((codePoint >> 6) & 0x3f | 0x80)&0xff;
-                unsigned int s3 = ((codePoint & 0x3f) | 0x80)&0xff;                
-				murmur("s1=%d, s2=%d, s3 =%d", s1,s2,s3);
-				murmur("s1=%d, c2=%d, c3 =%d", (char)s1,(char)s2,(char)s3);
-				utf8String +=(char) s1;
-				utf8String +=(char) s2;
-				utf8String +=(char) s3;
+                utf8String += (unsigned char)((codePoint >> 12) | 0xe0);
+                utf8String += (unsigned char)((codePoint >> 6) & 0x3f | 0x80);
+                utf8String += (unsigned char)((codePoint & 0x3f) | 0x80);                
             }
             else {
-                utf8String += (unsigned char)((codePoint >> 18) | 0xf0)&0xff;
-                utf8String += (unsigned char)((codePoint >> 12) | 0x80)&0xff;
-                utf8String += (unsigned char)((codePoint >> 6) & 0x3f | 0x80)&0xff;
-                utf8String += (unsigned char)((codePoint & 0x3f) | 0x80)&0xff;                
+                utf8String += (unsigned char)((codePoint >> 18) | 0xf0);
+                utf8String += (unsigned char)((codePoint >> 12) | 0x80);
+                utf8String += (unsigned char)((codePoint >> 6) & 0x3f | 0x80);
+                utf8String += (unsigned char)((codePoint & 0x3f) | 0x80);                
 				murmur("pos3");
             }
             

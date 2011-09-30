@@ -119,10 +119,14 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_nuMaxRadicalLength.Location" type="System.Drawing.Point, System.Drawing">
-    <value>246, 37</value>
+    <value>184, 37</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_nuMaxRadicalLength.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 3, 2, 3</value>
   </data>
   <data name="m_nuMaxRadicalLength.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 25</value>
+    <value>40, 25</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_nuMaxRadicalLength.TabIndex" type="System.Int32, mscorlib">
@@ -146,15 +150,11 @@
   <data name="m_lbWildcardSupport.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lbWildcardSupport.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="m_lbWildcardSupport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 281</value>
-  </data>
-  <data name="m_lbWildcardSupport.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>11, 281</value>
   </data>
   <data name="m_lbWildcardSupport.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 17</value>
@@ -187,10 +187,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbTypingPreference.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 103</value>
-  </data>
-  <data name="m_lbTypingPreference.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>10, 103</value>
   </data>
   <data name="m_lbTypingPreference.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 17</value>
@@ -220,10 +217,7 @@
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_cbLearnAssociatedPhrase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 248</value>
-  </data>
-  <data name="m_cbLearnAssociatedPhrase.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
+    <value>13, 248</value>
   </data>
   <data name="m_cbLearnAssociatedPhrase.Size" type="System.Drawing.Size, System.Drawing">
     <value>105, 21</value>
@@ -256,10 +250,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_cbOrderWordsByFreq.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 227</value>
-  </data>
-  <data name="m_cbOrderWordsByFreq.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
+    <value>13, 227</value>
   </data>
   <data name="m_cbOrderWordsByFreq.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 21</value>
@@ -292,10 +283,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_cbAssociatedPhrase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 206</value>
-  </data>
-  <data name="m_cbAssociatedPhrase.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
+    <value>13, 206</value>
   </data>
   <data name="m_cbAssociatedPhrase.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 21</value>
@@ -321,14 +309,14 @@
   <data name="m_tbselectKey.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
-  <data name="m_tbselectKey.Location" type="System.Drawing.Point, System.Drawing">
-    <value>107, 356</value>
+  <data name="m_tbselectKey.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>Hiragana</value>
   </data>
-  <data name="m_tbselectKey.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
+  <data name="m_tbselectKey.Location" type="System.Drawing.Point, System.Drawing">
+    <value>80, 356</value>
   </data>
   <data name="m_tbselectKey.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 25</value>
+    <value>83, 25</value>
   </data>
   <data name="m_tbselectKey.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -352,13 +340,10 @@
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_tbMatchZeroOrMoreChar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>272, 324</value>
-  </data>
-  <data name="m_tbMatchZeroOrMoreChar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
+    <value>204, 324</value>
   </data>
   <data name="m_tbMatchZeroOrMoreChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 25</value>
+    <value>27, 25</value>
   </data>
   <data name="m_tbMatchZeroOrMoreChar.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -378,17 +363,17 @@
   <data name="m_tbMatchOneChar.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
-  <data name="m_tbMatchOneChar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>272, 296</value>
+  <data name="m_tbMatchOneChar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>AlphaFull</value>
   </data>
-  <data name="m_tbMatchOneChar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
+  <data name="m_tbMatchOneChar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>204, 296</value>
   </data>
   <data name="m_tbMatchOneChar.MaxLength" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="m_tbMatchOneChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 25</value>
+    <value>27, 25</value>
   </data>
   <data name="m_tbMatchOneChar.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -412,10 +397,7 @@
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_cbWarningBeep.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 186</value>
-  </data>
-  <data name="m_cbWarningBeep.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
+    <value>13, 186</value>
   </data>
   <data name="m_cbWarningBeep.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 21</value>
@@ -445,10 +427,7 @@
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_cbHitMaxAndCompose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 166</value>
-  </data>
-  <data name="m_cbHitMaxAndCompose.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
+    <value>13, 166</value>
   </data>
   <data name="m_cbHitMaxAndCompose.Size" type="System.Drawing.Size, System.Drawing">
     <value>209, 21</value>
@@ -478,10 +457,7 @@
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_cbAutoCompose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 146</value>
-  </data>
-  <data name="m_cbAutoCompose.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
+    <value>13, 146</value>
   </data>
   <data name="m_cbAutoCompose.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 21</value>
@@ -511,10 +487,7 @@
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_cbShiftSelectionKey.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 126</value>
-  </data>
-  <data name="m_cbShiftSelectionKey.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
+    <value>13, 126</value>
   </data>
   <data name="m_cbShiftSelectionKey.Size" type="System.Drawing.Size, System.Drawing">
     <value>248, 21</value>
@@ -547,10 +520,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbselectKey.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 359</value>
-  </data>
-  <data name="m_lbselectKey.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>11, 359</value>
   </data>
   <data name="m_lbselectKey.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 17</value>
@@ -586,10 +556,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbMatchZeroOrMoreChar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 326</value>
-  </data>
-  <data name="m_lbMatchZeroOrMoreChar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>10, 326</value>
   </data>
   <data name="m_lbMatchZeroOrMoreChar.Size" type="System.Drawing.Size, System.Drawing">
     <value>190, 17</value>
@@ -622,10 +589,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbMatchOneChar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>65, 302</value>
-  </data>
-  <data name="m_lbMatchOneChar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>49, 302</value>
   </data>
   <data name="m_lbMatchOneChar.Size" type="System.Drawing.Size, System.Drawing">
     <value>151, 17</value>
@@ -658,13 +622,10 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbMaxRadialHint2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 75</value>
-  </data>
-  <data name="m_lbMaxRadialHint2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>11, 75</value>
   </data>
   <data name="m_lbMaxRadialHint2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 15</value>
+    <value>68, 15</value>
   </data>
   <data name="m_lbMaxRadialHint2.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -694,10 +655,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbMaxRadialHint1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 61</value>
-  </data>
-  <data name="m_lbMaxRadialHint1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>10, 61</value>
   </data>
   <data name="m_lbMaxRadialHint1.Size" type="System.Drawing.Size, System.Drawing">
     <value>293, 15</value>
@@ -730,10 +688,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_lbBasicSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 12</value>
-  </data>
-  <data name="m_lbBasicSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>11, 12</value>
   </data>
   <data name="m_lbBasicSettings.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 17</value>
@@ -763,10 +718,7 @@
     <value>Microsoft JhengHei, 9.75pt</value>
   </data>
   <data name="m_lbMaxKeySequenceLength.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 39</value>
-  </data>
-  <data name="m_lbMaxKeySequenceLength.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>11, 39</value>
   </data>
   <data name="m_lbMaxKeySequenceLength.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 17</value>
@@ -789,11 +741,74 @@
   <data name="&gt;&gt;m_lbMaxKeySequenceLength.ZOrder" xml:space="preserve">
     <value>19</value>
   </data>
+  <metadata name="lineShape2.Bounds" type="System.Drawing.Rectangle, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>14, 296, 280, 0</value>
+  </metadata>
+  <metadata name="lineShape2.Location" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>14, 296</value>
+  </metadata>
+  <metadata name="lineShape2.Size" type="System.Drawing.Size, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>280, 0</value>
+  </metadata>
+  <metadata name="lineShape1.Bounds" type="System.Drawing.Rectangle, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>14, 103, 280, 0</value>
+  </metadata>
+  <metadata name="lineShape1.Location" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>14, 103</value>
+  </metadata>
+  <metadata name="lineShape1.Size" type="System.Drawing.Size, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>280, 0</value>
+  </metadata>
   <data name="shapeContainer1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
   <data name="shapeContainer1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
+  </data>
+  <data name="shapeContainer1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>408, 510</value>
+  </data>
+  <data name="shapeContainer1.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;shapeContainer1.Name" xml:space="preserve">
+    <value>shapeContainer1</value>
+  </data>
+  <data name="&gt;&gt;shapeContainer1.Type" xml:space="preserve">
+    <value>Microsoft.VisualBasic.PowerPacks.ShapeContainer, Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="&gt;&gt;shapeContainer1.Parent" xml:space="preserve">
+    <value>m_pnSelf</value>
+  </data>
+  <data name="&gt;&gt;shapeContainer1.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="m_pnSelf.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="m_pnSelf.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft JhengHei, 9.75pt</value>
+  </data>
+  <data name="m_pnSelf.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="m_pnSelf.Size" type="System.Drawing.Size, System.Drawing">
+    <value>408, 510</value>
+  </data>
+  <data name="m_pnSelf.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;m_pnSelf.Name" xml:space="preserve">
+    <value>m_pnSelf</value>
+  </data>
+  <data name="&gt;&gt;m_pnSelf.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_pnSelf.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_pnSelf.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="lineShape2.Bounds" type="System.Drawing.Rectangle, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>14, 296, 280, 0</value>
@@ -837,65 +852,14 @@
   <data name="lineShape1.Y2" type="System.Int32, mscorlib">
     <value>103</value>
   </data>
-  <data name="shapeContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>335, 510</value>
-  </data>
-  <data name="shapeContainer1.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;shapeContainer1.Name" xml:space="preserve">
-    <value>shapeContainer1</value>
-  </data>
-  <data name="&gt;&gt;shapeContainer1.Type" xml:space="preserve">
-    <value>Microsoft.VisualBasic.PowerPacks.ShapeContainer, Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="&gt;&gt;shapeContainer1.Parent" xml:space="preserve">
-    <value>m_pnSelf</value>
-  </data>
-  <data name="&gt;&gt;shapeContainer1.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="m_pnSelf.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="m_pnSelf.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft JhengHei, 9.75pt</value>
-  </data>
-  <data name="m_pnSelf.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="m_pnSelf.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
-  </data>
-  <data name="m_pnSelf.Size" type="System.Drawing.Size, System.Drawing">
-    <value>335, 510</value>
-  </data>
-  <data name="m_pnSelf.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;m_pnSelf.Name" xml:space="preserve">
-    <value>m_pnSelf</value>
-  </data>
-  <data name="&gt;&gt;m_pnSelf.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_pnSelf.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_pnSelf.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 13</value>
-  </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
+    <value>6, 13</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>335, 510</value>
+    <value>408, 510</value>
   </data>
   <data name="&gt;&gt;lineShape2.Name" xml:space="preserve">
     <value>lineShape2</value>

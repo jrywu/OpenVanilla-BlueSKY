@@ -1,4 +1,4 @@
-#define OV_DEBUG 
+//#define OV_DEBUG 
 
 #pragma unmanaged
 
@@ -231,26 +231,12 @@ void UISetCursorPos(int i)
 #if 0
 void UISetMarkFrom(int i)
 {
-//	murmur("-----> UISetMarkFrom, status window");
 	CompSelStart = i;
 	murmur( "---> UISetMarkFrom Start %d", CompSelStart);
-/*	HDC tmpdc = GetDC(NULL);
-	TCHAR debug_info[100];
-	_stprintf(debug_info, _T("mf=%d"),  i);
-	TextOut( tmpdc, 0, 0, debug_info, lstrlen(debug_info));
-	ReleaseDC( NULL, tmpdc );
-*/
-}
+
 
 void UISetMarkTo(int i)
 {
-//	murmur("-----> UISetMarkTo, status window");
-/*	HDC tmpdc = GetDC(NULL);
-	TCHAR debug_info[100];
-	_stprintf(debug_info, _T("mt=%d"),  i);
-	TextOut( tmpdc, 40, 0, debug_info, lstrlen(debug_info));
-	ReleaseDC( NULL, tmpdc );
-*/
 	CompSelEnd = i;
 	murmur( "---> UISetMarkFrom End %d", CompSelEnd);
 }
@@ -258,14 +244,14 @@ void UISetMarkTo(int i)
 
 int UIModuleChange()
 {
-	CompCursorPos=0;  //James test
-	
+	CompCursorPos=0; 
 	CurrentIC = _GetStatusSelectedModuleIndex();
 	//UISetStatusModStrCurrent(CurrentIC);
 	_ShowStatusPage();
 
 	return CurrentIC;
 }
+
 
 int UIModuleRotate()
 {
@@ -276,18 +262,11 @@ int UIModuleRotate()
 void UIChangeHalfFull()
 {
 	_SetStatusHalfFull(); 
-	//UIShowStatusWindow();
 }
 
 void UIChangeChiEng()
 {
-		
-	//設定中英
-	//isChinese = !isChinese;
 	_SetStatusChiEng();  
-
-	//refresh
-	//UIShowStatusWindow();
 }
 
 
@@ -348,41 +327,6 @@ void UICreateCandWindow(HWND hUIWnd)
 
 int CompIndexToXPos( int i );
 
-/*
-BOOL GetCandPosFromCompWnd(LPSIZE lpsz)
-{
-	if (IsWindow(uiComp.hWnd))
-	{
-		RECT rc, screenrc;
-		POINT pt;
-
-		GetWindowRect(uiComp.hWnd, &rc);
-
-		pt.x = rc.left;
-		pt.y = rc.bottom + 2;
-
-		pt.x += CompIndexToXPos( CompCursorPos );
-		GetWindowRect(uiCand.hWnd, &rc);
-		pt.x -= 16;
-		if( pt.x < 0 )
-			pt.x = 0;
-
-		SystemParametersInfo(SPI_GETWORKAREA,
-				0,
-				&screenrc,
-				0);
-		if( (pt.x + lpsz->cx) > screenrc.right)
-			pt.x = screenrc.right - lpsz->cx - 5;//rc.left - lpsz->cx - 5;
-		if( (pt.y + lpsz->cy) > screenrc.bottom)
-			pt.y = screenrc.bottom - lpsz->cy;
-
-		uiCand.pt.x = pt.x;
-		uiCand.pt.y = pt.y;
-		return TRUE;
-	}
-	return FALSE;
-}
-*/
 void UISetCandStr(wchar_t* lpStr)
 {
 
@@ -446,7 +390,6 @@ void UIExpandCandi()
 // Composition window
 void UICreateCompWindow(HWND hUIWnd)
 {
-	//	murmur("%1.3f sec:\tC# comp window, create");
 	if (!IsWindow(uiComp.hWnd))
 	{
 		uiComp.hWnd = _CreateCompPage();
@@ -463,17 +406,11 @@ void UIMoveCompWindow(
 
 void UISetCompStr(wchar_t* lpStr)
 {
-	//_ClearCompPage();  //James:拿掉, no need
-
 	if(wcslen(lpStr))
 	{
 		lpCompStr = wcsdup(lpStr);
 		_SetCompString(lpCompStr);
 	}
-	/*else  //James:拿掉, no need
-	{
-		_ClearCompPage();		
-	}*/
 }
 void UIClearCompStr()
 {
@@ -488,7 +425,7 @@ void UISetCompCaretPosX(int xIndex)
 
 void UIShowCompWindow()
 {
-	//	murmur("%1.3f sec:\tC# comp window, show");
+
 	if (IsWindow(uiComp.hWnd))
 	{
 		_ShowCompPage();
@@ -498,7 +435,6 @@ void UIShowCompWindow()
 
 void UIHideCompWindow()
 {
-	//	murmur("%1.3f sec:\tC# comp window, hide");
 	if (IsWindow(uiComp.hWnd))
 	{
 		_HideCompPage();		
@@ -574,56 +510,16 @@ void UICreateNotifyWindow(HWND hUIWnd)
 	return;
 }
 
-/*
-BOOL GetNotifyPosFromCompWnd(LPSIZE lpsz)
-{
-	if (IsWindow(uiComp.hWnd))
-	{
-		RECT rc, screenrc;
-		POINT pt;
-
-		pt.x = uiComp.pt.x;
-		pt.y = uiComp.pt.y;
-
-		GetWindowRect(uiNotify.hWnd, &rc);
-		if( pt.x < 0 )
-			pt.x = 0;
-
-		SystemParametersInfo(SPI_GETWORKAREA,
-				0,
-				&screenrc,
-				0);
-		if( (pt.x + lpsz->cx) > screenrc.right)
-			pt.x = rc.left - lpsz->cx - 5;
-		if( (pt.y + lpsz->cy) > screenrc.bottom)
-			pt.y = screenrc.bottom - lpsz->cy;
-
-		uiNotify.pt.x = pt.x;
-		uiNotify.pt.y = pt.y;
-		return TRUE;
-	}
-	else
-	{
-		uiNotify.pt.x = uiComp.pt.x;
-		uiNotify.pt.y = uiComp.pt.y;
-	}
-	return FALSE;
-}
-*/
-
 void UIShowNotifyWindow()
 {
-	
 	_ShowNotifyPage();
 
 }
 
 void UIHideNotifyWindow()
 {
-	//if (IsWindow(uiNotify.hWnd))
-		//ShowWindow(uiNotify.hWnd, SW_HIDE);
-		_ClearNotifyPage(); 
-		_HideNotifyPage();
+	_ClearNotifyPage(); 
+	_HideNotifyPage();
 } 
 
 void UIMoveNotifyWindow(int X, int Y)
@@ -637,169 +533,4 @@ void UISetNotifyStr(wchar_t* lpStr)
 	free(lpNotifyStr);
 	lpNotifyStr = wcsdup(lpStr);
 	_SetNotifyString(lpNotifyStr);
-}
-
-
-	
-    CComPtr <IBandSite>   spBandSite=NULL;  
-	//CComPtr <IUnknown>    spBand=NULL;  
-	CComPtr <IDeskBand>    spBand=NULL;  
-
-bool UIShowDeskBand(bool t)
-{
-	CLSID CLSID_OVDeskBand ={0x6d5d9154, 0xb557, 0x4509, {0x82, 0x9e, 0x94, 0xb8, 0xbf, 0x96, 0x2e, 0x5b}};
-	static HRESULT  bandID=0;
-	bool ret=false;
-	int i =0;
-	
-	
-	murmur("hIMEWND:%x, AncestorWND:%x, TopWindow:%x, ForegroundWindow:%x, ShellWindow:%x "
-				,hIMEWnd, GetAncestor(hIMEWnd,GA_ROOTOWNER), GetTopWindow(NULL), GetForegroundWindow(), GetShellWindow());
-	
-	
-
-	//CLSID CLSIDDeskBand = {0x46b3d3ef, 0x71a, 0x4b7e, {0x8a, 0xa2, 0xe5, 0x60, 0x81, 0xd, 0xab, 0x35}};
-	
-	// only for vista
-	/*
-	ITrayDeskBand * spTrayDeskBand=0; 
-	if(SUCCEEDED(CoCreateInstance(CLSID_TrayDeskBand, NULL, CLSCTX_LOCAL_SERVER,
-									IID_ITrayDeskBand, (void**)&spTrayDeskBand)))
-	{
-		if(t) spTrayDeskBand->ShowDeskBand(CLSID_OVDeskBand);
-		else spTrayDeskBand->HideDeskBand(CLSID_OVDeskBand);
-	}
-	*/
-	CComPtr <IUnknown>    spBandService;  
-	if(!spBandSite) 
-	{
-		if(SUCCEEDED(spBandService.CoCreateInstance(CLSID_TrayBandSiteService,   NULL)))
-		{
-			//HWND aWnd = GetAncestor(hIMEWnd, GA_ROOTOWNER);
-			//if(aWnd) BringWindowToTop(aWnd); 
-			murmur("Create IBandsite interface succeed"); 
-			spBandService->QueryInterface(&spBandSite);
-		}
-		else 
-		{
-			murmur("Create IBandsite interface failed");
-			
-			spBand = NULL;
-			spBandSite = NULL;
-			//WaitForSingleObject(NULL, 3000);
-			//SendMessage(hIMEWnd, WM_IME_NOTIFY, IMN_OPENSTATUSWINDOW, 0);
-		
-		}
-	}
-	
-	
-	
-	if(spBandSite && !spBand ) 
-	{
-		if(SUCCEEDED(CoCreateInstance(CLSID_OVDeskBand,   
-				NULL,   CLSCTX_INPROC,   IID_IUnknown,   (void**)&spBand)))
-		{
-	
-	//	CComPtr<IObjectWithSite>   spSite;  
-	//    if(SUCCEEDED(spBand->QueryInterface(&spSite))   )   
-	//	{
-	//		spSite->SetSite(spBandSite);  
-	//	}
-	//	else spBand = NULL;
-		}
-		else spBand = NULL;
-		
-	}
-	
-    //if(SUCCEEDED(spBandService.CoCreateInstance(CLSID_TrayBandSiteService,   NULL))   
-	// 				  &&   SUCCEEDED(spBandService->QueryInterface(&spBandSite))   )  
-	if( spBand && spBandSite)
-    {  			
-        	if(t) 
-			{
-			if(!((int)bandID >0))
-			  {
-				bandID = spBandSite->AddBand(spBand);  
-				murmur("\tBandID:%d",bandID);
-				if( (int)bandID >0 ) 
-				{
-					murmur("Create deskband succeeded."); 
-
-					//spBand  =   NULL;  
-					//spBandSite   =   NULL;   
-					ret = true;  
-				}
-				else
-				{
-					murmur("Create deskband failed."); 
-					spBand->ShowDW(0);  
-					spBand  =   NULL; 
-					spBandSite   =   NULL;   
-					bandID =0; 
-				}
-			  }
-			else
-			{
-				murmur("\tBandID:%d",bandID);
-				murmur("Deskband created."); 
-			}
-
-
-				
-			}
-			else if((int)bandID >0)
-			{
-				
-				
-				//HWND aWnd = GetAncestor(hIMEWnd, GA_ROOTOWNER);
-				//if(aWnd) BringWindowToTop(aWnd);
-			    if(SUCCEEDED( spBandSite->RemoveBand(bandID))) 
-				{
-					murmur("\tBandID:%d",bandID);
-					murmur("Remove deskband succeeded.");  
-					
-					spBand  =   NULL; 
-					spBandSite   =   NULL;   
-					bandID =0;
-					
-					//CoUninitialize();
-					ret = true;
-				}
-				else
-				{ 
-					murmur("Remove deskband failed.");
-					//spBand->CloseDW(0); 
-					//spBand=NULL;
-					//spBandSite = NULL;   
-					//bandID =0;
-					
-					//HANDLE hEvent = CreateEvent(NULL,FALSE,FALSE,_T("OVE")); 
-					//WaitForSingleObject(hEvent, 500);
-					 
-					//SendMessage(hIMEWnd, WM_IME_NOTIFY, IMN_CLOSESTATUSWINDOW, 0);
-				}
-				
-			}
-			else
-			{
-					murmur("Deskband was not created.");
-					//spBand->CloseDW(0); 
-					spBand=NULL;
-					spBandSite = NULL;   
-				
-			}			  
-            
-                    
-         
-    }              
-	
-
-	//}
-	//while(!ret && i++<3);
-	murmur("::hIMEWND:%x, AncestorWND:%x, TopWindow:%x, ForegroundWindow:%x, ShellWindow:%x "
-				,hIMEWnd, GetAncestor(hIMEWnd,GA_ROOTOWNER), GetTopWindow(NULL), GetForegroundWindow(), GetShellWindow());
-
-    
-	return ret;
-	
 }
