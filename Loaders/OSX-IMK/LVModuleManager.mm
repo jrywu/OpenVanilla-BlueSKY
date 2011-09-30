@@ -476,6 +476,8 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 			configDict = [NSMutableDictionary dictionary];
 			[_configDictionary setObject:configDict forKey:_primaryInputMethodModuleID];
 		}
+        if([module _initialized])
+            
 		if ([module lazyInitWithLoaderService:_loaderService configDictionary:configDict]) {
 			inputMethodContext = ((OVInputMethod*)[module moduleObject])->newContext();
 			
@@ -595,12 +597,16 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 		LVModule *module = [_loadedModuleDictionary objectForKey:ofi];
         //--- init of moudles
 		NSDictionary *oldConfigDict = [[_configDictionary mutableDeepCopy] autorelease];		
-		NSMutableDictionary *configDict = [_configDictionary objectForKey:_primaryInputMethodModuleID];
+		NSMutableDictionary *configDict = [_configDictionary objectForKey:[module moduleIdentifier]];
 		if (!configDict) {
 			configDict = [NSMutableDictionary dictionary];
-			[_configDictionary setObject:configDict forKey:_primaryInputMethodModuleID];
+			[_configDictionary setObject:configDict forKey:[module moduleIdentifier]];
 		}
+        
         [module lazyInitWithLoaderService:_loaderService configDictionary:configDict];
+        if(![module isInitialized]){
+            
+        }
 		//-----
 		OVOutputFilter *filter = (OVOutputFilter *)[module moduleObject];
 		currentInput = filter->process(currentInput.c_str(), _loaderService);

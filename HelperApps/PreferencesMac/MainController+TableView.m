@@ -54,16 +54,38 @@
 - (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	[aCell setFont:[NSFont systemFontOfSize:[NSFont systemFontSizeForControlSize:NSRegularControlSize]]];
+
 }
+
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	NSString *identifier = [aTableColumn identifier];
 	OVViewController *controller = [_controllersArray objectAtIndex:rowIndex];
+    NSButtonCell *cell;
+    cell = [[NSButtonCell alloc] init];
+    [cell setButtonType:NSSwitchButton];
+    [cell setTitle: [controller localizedName]];
+    [cell setAction:@selector(buttonAction:)];
+    [cell setTarget:self];
+    [aTableColumn setDataCell:cell];
+    [cell release];
+
 	if ([identifier isEqualToString:@"localizedName"]) {
 		return [controller localizedName];
 	}
 	return nil;
 }
+- (void)tableView:(NSTableView *)tableView setObjectValue:(id)value forTableColumn:(NSTableColumn *)column row:(NSInteger)row {          
+    //[[_controllersArray objectAtIndex:row] setBooleanAttribute:[value booleanValue]];
+}
+
+-(IBAction)buttonAction:(id)sender
+{
+    NSString * strSender = sender;
+
+    NSLog(@"A button has been clicked");
+}
+
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
 {
 	NSTableView *tableview = [aNotification object];
