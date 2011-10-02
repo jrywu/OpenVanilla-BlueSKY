@@ -44,6 +44,8 @@
 	}
 	[view setFrame:[_moduleContentView bounds]];
 	[_moduleContentView addSubview:view];
+       
+   		
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
@@ -55,21 +57,6 @@
 - (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	[aCell setFont:[NSFont systemFontOfSize:[NSFont systemFontSizeForControlSize:NSRegularControlSize]]];
-    /*
-    OVViewController *controller = [_controllersArray objectAtIndex:rowIndex];
-    NSLog(@"willDisplayCell: %@, %@", [NSString stringWithFormat:@"%d", rowIndex], [controller localizedName]);
-    NSButtonCell *cell;
-    cell = [[NSButtonCell alloc] init];
-    [cell setButtonType:NSSwitchButton];
-    [cell setTitle: [controller localizedName]];
-    [cell setState:NSOnState];
-    [cell setTag:rowIndex];
-    [cell setIdentifier:[controller identifier]];
-    [cell setAction:@selector(buttonAction:)];
-    [cell setTarget:self];
-    [aTableColumn setDataCell:cell];
-    [cell release];
-     */
 }
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
@@ -113,8 +100,22 @@
 	if (index >= 0 && index < [_controllersArray count]) {
 		OVViewController *controller = [_controllersArray objectAtIndex:index];
 		NSView *view = [controller view];
+
 		[self setActiveModuleSettingView:view];
 		[_titleLabel setStringValue:[controller localizedName]];
+        
+        NSRect windowFrame = [[self window] frame];
+        // Shrink the window width to show only modulelistview when OVViewController (empty) view is applied
+        if ([ [controller controllerName] isEqualToString:@"OVViewController"]){
+            windowFrame.size.width = [_moduleListTableView frame].size.width +12;
+            
+        }else
+        {
+            windowFrame.size.width = [_moduleListTableView frame].size.width 
+            + [_moduleContentView frame].size.width ;
+        }
+        [[self window] setFrame:windowFrame display:YES animate:YES];	
+
 	}
 }
 

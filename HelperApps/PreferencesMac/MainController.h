@@ -33,6 +33,8 @@
 #import "LVDOInterface.h"
 #import "LVConfig.h"
 
+#define WINDOW_TITLE_HEIGHT 22
+
 @interface MainController : NSWindowController 
 {
 	NSMutableDictionary *_settingDictionary;

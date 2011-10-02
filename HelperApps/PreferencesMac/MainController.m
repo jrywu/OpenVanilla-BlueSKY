@@ -111,6 +111,8 @@
 	
 	NSLog(@"loaded module identifiers: %@", [_loader loadedModuleList]);
 	NSArray *moduleList = [_loader loadedModuleList];
+    NSMutableArray *_kpControllersArray = [[NSMutableArray alloc] init];;
+    NSMutableArray *_ofControllersArray = [[NSMutableArray alloc] init];;
 	NSDictionary *module = nil;
 	NSEnumerator *enumerator = [moduleList objectEnumerator];
 	while (module = [enumerator nextObject]) {
@@ -146,9 +148,44 @@
 			[genericController setDictinary:d];
 			[genericController setLocalizedName:localizedName];
 			[_controllersArray addObject:genericController];
-		}		
+		}
+        else if ([identifier hasPrefix:@"OVIM"]) {
+            OVViewController *ovController = [[[OVViewController alloc] initWithIdentifier:identifier nibName:@"OVViewController"] autorelease];	
+			[ovController setDictinary:d];
+			[ovController setLocalizedName:localizedName];
+			[_controllersArray addObject:ovController];
+        }
+        else if ([identifier hasPrefix:@"OVKP"]) {
+            OVViewController *ovController = [[[OVViewController alloc] initWithIdentifier:identifier nibName:@"OVViewController"] autorelease];	
+			[ovController setDictinary:d];
+			[ovController setLocalizedName:localizedName];
+			[_kpControllersArray addObject:ovController];
+            
+        }
+        else if ([identifier hasPrefix:@"OVOF"]) {
+            OVViewController *ovController = [[[OVViewController alloc] initWithIdentifier:identifier nibName:@"OVViewController"] autorelease];	
+			[ovController setDictinary:d];
+			[ovController setLocalizedName:localizedName];
+			[_ofControllersArray addObject:ovController];
+        }
 	}
-	
+    //Put all OVIM modules in the front, then OVKP modules
+    OVViewController* kp_controller = nil;
+    NSEnumerator *kp_enumerator = [_kpControllersArray objectEnumerator];
+	while (kp_controller = [kp_enumerator nextObject]) {
+        [_controllersArray addObject:kp_controller];
+    }
+	[_kpControllersArray release];
+    //, and then OVOF modules.
+    OVViewController* of_controller = nil;
+    NSEnumerator *of_enumerator = [_ofControllersArray objectEnumerator];
+	while (of_controller = [of_enumerator nextObject]) {
+        [_controllersArray addObject:of_controller];
+    }
+	[_ofControllersArray release];
+    
+    
+    
 	[_moduleListTableView reloadData];
 	if ([_controllersArray count]) {
 		[_moduleListTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];

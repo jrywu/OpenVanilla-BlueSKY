@@ -48,9 +48,20 @@ static NSString *modulesSettingToolbarItemIndentifier = @"Modules";
 - (void)setActiveView:(NSView *)view animate:(BOOL)flag
 {	
 	NSRect windowFrame = [[self window] frame];
-	windowFrame.size.height = [view frame].size.height + WINDOW_TITLE_HEIGHT;
+    NSToolbar *toolbar = [[self window] toolbar]; 		
+    float toolbarHeight =0.0;
+    if(toolbar && [toolbar isVisible])
+    {
+        NSRect windowFrame = 
+            [NSWindow contentRectForFrameRect:
+                [[self window] frame] styleMask:[[self window] styleMask]];
+        toolbarHeight = NSHeight(windowFrame)- NSHeight([[[self window] contentView] frame]);
+        
+    }
+    NSLog(@"toolbar height:%e", toolbarHeight);
+	windowFrame.size.height = [view frame].size.height + toolbarHeight + WINDOW_TITLE_HEIGHT;// 75;
 	windowFrame.size.width = [view frame].size.width;
-	windowFrame.origin.y = NSMaxY([[self window] frame]) - ([view frame].size.height + WINDOW_TITLE_HEIGHT);
+	//windowFrame.origin.y = NSMaxY([[self window] frame]) - ([view frame].size.height + WINDOW_TITLE_HEIGHT);
 	
 	NSView *mainView = [[self window] contentView];
 	
@@ -65,14 +76,14 @@ static NSString *modulesSettingToolbarItemIndentifier = @"Modules";
 
 - (void)toggleActivePreferenceView:(id)sender
 {
-	//NSView *view;
+	NSView *view;
 	
-	//if ([[sender itemIdentifier] isEqualToString:loaderSettingToolbarItemIndentifier])
-		//view = [m_displayController view];
-	//else if ([[sender itemIdentifier] isEqualToString:modulesSettingToolbarItemIndentifier])
-		//view = [m_moduleListController view];
+	if ([[sender itemIdentifier] isEqualToString:loaderSettingToolbarItemIndentifier])
+		view = _loaderSettingView;
+	else if ([[sender itemIdentifier] isEqualToString:modulesSettingToolbarItemIndentifier])
+		view = _moduleSettingView;
 	
-	//[self setActiveView:view animate:YES];
+	[self setActiveView:view animate:YES];
 	//[[self window] setTitle:MSG([sender itemIdentifier])];
 }
 
@@ -104,13 +115,13 @@ static NSString *modulesSettingToolbarItemIndentifier = @"Modules";
 {
 	NSToolbarItem *item = [[[NSToolbarItem alloc] initWithItemIdentifier:identifier] autorelease];
 	if ([identifier isEqualToString:loaderSettingToolbarItemIndentifier]) {
-		[item setLabel:NSLocalizedString(loaderSettingToolbarItemIndentifier, @"Loaders")];
+		[item setLabel:NSLocalizedString(loaderSettingToolbarItemIndentifier, @"Shared Settings")];
 		[item setImage:[NSImage imageNamed:@"General"]];	
 		[item setTarget:self];
 		[item setAction:@selector(toggleActivePreferenceView:)];
 	}
 	else if ([identifier isEqualToString:modulesSettingToolbarItemIndentifier]) {
-		[item setLabel:NSLocalizedString(modulesSettingToolbarItemIndentifier, @"Modules")];
+		[item setLabel:NSLocalizedString(modulesSettingToolbarItemIndentifier, @"Module Settings")];
 		[item setImage:[NSImage imageNamed:@"Modules"]];
 		[item setTarget:self];
 		[item setAction:@selector(toggleActivePreferenceView:)];

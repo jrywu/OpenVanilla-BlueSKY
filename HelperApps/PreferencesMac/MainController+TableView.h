@@ -37,3 +37,6 @@
 - (void)setActiveModuleSettingView:(NSView *)view;
 
 @end
+
+
+NSString *currentController;

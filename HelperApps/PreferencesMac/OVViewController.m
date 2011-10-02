@@ -12,6 +12,7 @@
 	[_dictionary release];
 	[_identifier release];
 	[_localizedName release];
+
 	[super dealloc];
 }
 
@@ -24,6 +25,7 @@
 		_identifier = [identifier retain];
 		_dictionary = [[NSMutableDictionary alloc] init];
 		_localizedName = nil;
+        _controllerName = nibName;
 	}
 	return self;
 }
@@ -59,6 +61,11 @@
 - (NSString *)localizedName
 {
 	return _localizedName;
+}
+
+- (NSString *)controllerName
+{
+	return _controllerName;
 }
 - (BOOL) enabled
 {

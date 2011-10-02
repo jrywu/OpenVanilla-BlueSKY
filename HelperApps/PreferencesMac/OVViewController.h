@@ -12,6 +12,7 @@
 	NSMutableDictionary *_dictionary;
 	NSString *_identifier;
 	NSString *_localizedName;
+    NSString *_controllerName;
     BOOL _enabled;
 }
 
@@ -30,5 +31,6 @@
 - (void) setEnabled:(BOOL) value;
 - (NSView *)view;
 - (void)writeSetting;
+- (NSString *)controllerName;
 
 @end

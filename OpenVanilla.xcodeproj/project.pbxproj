@@ -29,6 +29,7 @@
 		0110C2FD142E5E8F000F9D03 /* libOVLegacyModuleLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D44D46EC0E9DB0E30062F692 /* libOVLegacyModuleLibrary.a */; };
 		0110C31F142E5FA7000F9D03 /* OVIMArraySQ.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0110C2FF142E5EE8000F9D03 /* OVIMArraySQ.cpp */; };
 		0120386314334E9400650108 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0120385F14334E5F00650108 /* Localizable.strings */; };
+		01644D9014380873006F0CD2 /* OVViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01644D8F14380873006F0CD2 /* OVViewController.xib */; };
 		0176592414290AED0038B8EB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0176592314290AED0038B8EB /* libsqlite3.dylib */; };
 		0176592A14290C570038B8EB /* cj-ext.cin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A8C6E09103D461200DE4A39 /* cj-ext.cin */; };
 		0176592B14290C570038B8EB /* dayi3-patched.cin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A8C6E0A103D461200DE4A39 /* dayi3-patched.cin */; };
@@ -75,7 +76,6 @@
 		6A71FD5B120ED3B20026408B /* POJ-Holo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A71FD58120ED3B20026408B /* POJ-Holo.cpp */; };
 		6A71FD5D120ED3D60026408B /* poj-holo.cin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A71FD5C120ED3CA0026408B /* poj-holo.cin */; };
 		6A84496A1045439E0050F09F /* OpenVanillaSmall.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6A8449681045439E0050F09F /* OpenVanillaSmall.icns */; };
-		6A8C6D17103D3FA800DE4A39 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6A8C6CFD103D3FA800DE4A39 /* InfoPlist.strings */; };
 		6A8C6D18103D3FA800DE4A39 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A8C6CFF103D3FA800DE4A39 /* MainMenu.xib */; };
 		6A8C6D19103D3FA800DE4A39 /* OVIMArrayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A8C6D01103D3FA800DE4A39 /* OVIMArrayController.xib */; };
 		6A8C6D1A103D3FA800DE4A39 /* OVIMPhoneticController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A8C6D03103D3FA800DE4A39 /* OVIMPhoneticController.xib */; };
@@ -374,6 +374,7 @@
 		0110C302142E5F00000F9D03 /* ArrayKeySequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArrayKeySequence.h; path = Modules/OVIMArraySQ/ArrayKeySequence.h; sourceTree = "<group>"; };
 		0120386014334E5F00650108 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = "Loaders/OSX-IMK/English.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		0120386214334E6B00650108 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "Loaders/OSX-IMK/zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		01644D8F14380873006F0CD2 /* OVViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OVViewController.xib; sourceTree = "<group>"; };
 		0176592314290AED0038B8EB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		01D6DC27142E5A0A00611D68 /* ovimarray.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ovimarray.db; sourceTree = "<group>"; };
 		01D6DC28142E5A0A00611D68 /* ovimgeneric.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ovimgeneric.db; sourceTree = "<group>"; };
@@ -440,7 +441,6 @@
 		6A8449681045439E0050F09F /* OpenVanillaSmall.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = OpenVanillaSmall.icns; path = "Loaders/OSX-IMK/Images/OpenVanillaSmall.icns"; sourceTree = "<group>"; };
 		6A8C6C9C103D3D1D00DE4A39 /* LVDOInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LVDOInterface.h; path = "Loaders/OSX-IMK/LVDOInterface.h"; sourceTree = "<group>"; };
 		6A8C6CE7103D3F8D00DE4A39 /* Preferences.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Preferences.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A8C6CFE103D3FA800DE4A39 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6A8C6D00103D3FA800DE4A39 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		6A8C6D02103D3FA800DE4A39 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/OVIMArrayController.xib; sourceTree = "<group>"; };
 		6A8C6D04103D3FA800DE4A39 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/OVIMPhoneticController.xib; sourceTree = "<group>"; };
@@ -474,7 +474,7 @@
 		6A8C6EBA103D46E500DE4A39 /* array-shortcode.cin */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "array-shortcode.cin"; sourceTree = "<group>"; };
 		6A8C6EBB103D46E500DE4A39 /* array-special.cin */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "array-special.cin"; sourceTree = "<group>"; };
 		6A8C6EBC103D46E500DE4A39 /* array30.cin */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = array30.cin; sourceTree = "<group>"; };
-		6AB6CE6A0E9CF46F0001B127 /* OpenVanilla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenVanilla.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AB6CE6A0E9CF46F0001B127 /* OpenVanilla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = OpenVanilla.app; path = "OpenVanilla 0.9b.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AB6CE6C0E9CF46F0001B127 /* OpenVanilla-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "OpenVanilla-Info.plist"; path = "Loaders/OSX-IMK/OpenVanilla-Info.plist"; sourceTree = "<group>"; };
 		6AB6CF380E9CF5B60001B127 /* LVUIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LVUIController.h; path = "Loaders/OSX-IMK/LVUIController.h"; sourceTree = "<group>"; };
 		6AB6CF390E9CF5B60001B127 /* LVUIController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LVUIController.mm; path = "Loaders/OSX-IMK/LVUIController.mm"; sourceTree = "<group>"; };
@@ -663,6 +663,20 @@
 			name = OVIMArraySQ;
 			sourceTree = "<group>";
 		};
+		01C8678014388F2200CA0E7A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6A8C6CFF103D3FA800DE4A39 /* MainMenu.xib */,
+				6A8C6D01103D3FA800DE4A39 /* OVIMArrayController.xib */,
+				6A8C6D03103D3FA800DE4A39 /* OVIMPhoneticController.xib */,
+				6A8C6D05103D3FA800DE4A39 /* OVIMTibetanController.xib */,
+				D48A53B8103D4CF20072485F /* OVIMGenericController.xib */,
+				D45AFE6510455A3A00353563 /* OVIMSpaceChewingController.xib */,
+				01644D8F14380873006F0CD2 /* OVViewController.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		01F9A0231428FB78001DE94A /* OVIMGenericSQ */ = {
 			isa = PBXGroup;
 			children = (
@@ -836,13 +850,7 @@
 		6A8C6CFC103D3FA800DE4A39 /* PreferencesMac */ = {
 			isa = PBXGroup;
 			children = (
-				6A8C6CFD103D3FA800DE4A39 /* InfoPlist.strings */,
-				6A8C6CFF103D3FA800DE4A39 /* MainMenu.xib */,
-				6A8C6D01103D3FA800DE4A39 /* OVIMArrayController.xib */,
-				6A8C6D03103D3FA800DE4A39 /* OVIMPhoneticController.xib */,
-				6A8C6D05103D3FA800DE4A39 /* OVIMTibetanController.xib */,
-				D48A53B8103D4CF20072485F /* OVIMGenericController.xib */,
-				D45AFE6510455A3A00353563 /* OVIMSpaceChewingController.xib */,
+				01C8678014388F2200CA0E7A /* Resources */,
 				6A8C6D07103D3FA800DE4A39 /* Info.plist */,
 				6A8C6D08103D3FA800DE4A39 /* main.m */,
 				6A8C6D09103D3FA800DE4A39 /* MainController+TableView.h */,
@@ -1443,13 +1451,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A8C6D17103D3FA800DE4A39 /* InfoPlist.strings in Resources */,
 				6A8C6D18103D3FA800DE4A39 /* MainMenu.xib in Resources */,
 				6A8C6D19103D3FA800DE4A39 /* OVIMArrayController.xib in Resources */,
 				6A8C6D1A103D3FA800DE4A39 /* OVIMPhoneticController.xib in Resources */,
 				6A8C6D1B103D3FA800DE4A39 /* OVIMTibetanController.xib in Resources */,
 				D48A53B9103D4CF20072485F /* OVIMGenericController.xib in Resources */,
 				D45AFE6610455A3A00353563 /* OVIMSpaceChewingController.xib in Resources */,
+				01644D9014380873006F0CD2 /* OVViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1815,14 +1823,6 @@
 				0120386214334E6B00650108 /* zh-Hant */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		6A8C6CFD103D3FA800DE4A39 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A8C6CFE103D3FA800DE4A39 /* English */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		6A8C6CFF103D3FA800DE4A39 /* MainMenu.xib */ = {
