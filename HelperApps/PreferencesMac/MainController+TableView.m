@@ -51,39 +51,59 @@
 	return [_controllersArray count];
 }
 
+
 - (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	[aCell setFont:[NSFont systemFontOfSize:[NSFont systemFontSizeForControlSize:NSRegularControlSize]]];
-
+    /*
+    OVViewController *controller = [_controllersArray objectAtIndex:rowIndex];
+    NSLog(@"willDisplayCell: %@, %@", [NSString stringWithFormat:@"%d", rowIndex], [controller localizedName]);
+    NSButtonCell *cell;
+    cell = [[NSButtonCell alloc] init];
+    [cell setButtonType:NSSwitchButton];
+    [cell setTitle: [controller localizedName]];
+    [cell setState:NSOnState];
+    [cell setTag:rowIndex];
+    [cell setIdentifier:[controller identifier]];
+    [cell setAction:@selector(buttonAction:)];
+    [cell setTarget:self];
+    [aTableColumn setDataCell:cell];
+    [cell release];
+     */
 }
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	NSString *identifier = [aTableColumn identifier];
+    
 	OVViewController *controller = [_controllersArray objectAtIndex:rowIndex];
-    NSButtonCell *cell;
-    cell = [[NSButtonCell alloc] init];
-    [cell setButtonType:NSSwitchButton];
-    [cell setTitle: [controller localizedName]];
-    [cell setAction:@selector(buttonAction:)];
-    [cell setTarget:self];
-    [aTableColumn setDataCell:cell];
-    [cell release];
-
+    //NSLog(@"objectValueForTableColum: %@",[controller identifier]);
+    
 	if ([identifier isEqualToString:@"localizedName"]) {
 		return [controller localizedName];
-	}
+	}else if ([identifier isEqualToString:@"enabled"]) {
+        //NSLog(@"objectValueForTableColumn: %@",[controller identifier]);
+		NSButtonCell *cell;
+        cell = [[NSButtonCell alloc] init];
+        [cell setButtonType:NSSwitchButton];
+        [cell setState:[controller enabled]];
+        [cell setTag:rowIndex];
+        [cell setIdentifier:[controller identifier]];
+        [cell setTarget:self];
+        [aTableColumn setDataCell:cell];
+        return cell;
+    }
 	return nil;
 }
-- (void)tableView:(NSTableView *)tableView setObjectValue:(id)value forTableColumn:(NSTableColumn *)column row:(NSInteger)row {          
-    //[[_controllersArray objectAtIndex:row] setBooleanAttribute:[value booleanValue]];
-}
-
--(IBAction)buttonAction:(id)sender
-{
-    NSString * strSender = sender;
-
-    NSLog(@"A button has been clicked");
+- (void)tableView:(NSTableView *)tableView setObjectValue:(id)value forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {          
+    NSString *identifier = [aTableColumn identifier];
+    OVViewController *controller = [_controllersArray objectAtIndex:rowIndex];
+    if ([identifier isEqualToString:@"enabled"]) {
+        NSButtonCell *cell = (NSButtonCell *) [tableView selectedCell];
+        NSLog(@"setObjectValue: %@",[controller identifier]);
+        [controller setEnabled:![controller enabled]];
+    }
+        
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
@@ -98,4 +118,4 @@
 	}
 }
 
-@end
+@end	

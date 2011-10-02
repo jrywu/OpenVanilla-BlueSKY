@@ -12,6 +12,7 @@
 	NSMutableDictionary *_dictionary;
 	NSString *_identifier;
 	NSString *_localizedName;
+    BOOL _enabled;
 }
 
 #pragma mark Getters and setters
@@ -25,6 +26,8 @@
 - (NSString *)identifier;
 - (void)setLocalizedName:(NSString *)localizedName;
 - (NSString *)localizedName;
+- (BOOL) enabled;
+- (void) setEnabled:(BOOL) value;
 - (NSView *)view;
 - (void)writeSetting;
 

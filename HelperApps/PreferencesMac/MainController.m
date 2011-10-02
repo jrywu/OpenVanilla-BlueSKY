@@ -109,7 +109,7 @@
 	// TO DO: retain the object if run under 10.4
 	[(id)_loader setProtocolForProxy:@protocol(LVDOInterface)];
 	
-//	NSLog(@"loaded module identifiers: %@", [_loader loadedModuleList]);
+	NSLog(@"loaded module identifiers: %@", [_loader loadedModuleList]);
 	NSArray *moduleList = [_loader loadedModuleList];
 	NSDictionary *module = nil;
 	NSEnumerator *enumerator = [moduleList objectEnumerator];

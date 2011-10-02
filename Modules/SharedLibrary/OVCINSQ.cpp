@@ -482,13 +482,11 @@ size_t OVCINSQ::getCharVectorByWord(const string& inWord,
 	SQLite3Statement *sth = db->prepare(sql.c_str());
 	//		"select key from '%q' where value = '%q' and ord >-1 ", tablename.c_str(), inWord.c_str()); 
 	
-<<<<<<< HEAD
-	murmur("getCharVectorByWord: select key from '%s' where value = '%s' and ord >-1 ", tablename.c_str(), inWord.c_str()); 
-=======
+
 
 	murmur("getCharVectorByWord: %s", sql.c_str());
 		//select key from '%s' where value = '%s' and ord >-1 ", tablename.c_str(), inWord.c_str()); 
->>>>>>> 0171b9dec936e87abc5bc3eaaab5cb957df6a05b
+
 
 	outStringVectorRef.clear();
 

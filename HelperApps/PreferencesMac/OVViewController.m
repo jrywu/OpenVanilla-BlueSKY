@@ -60,6 +60,22 @@
 {
 	return _localizedName;
 }
+- (BOOL) enabled
+{
+	if (![[self dictionary] valueForKey:@"enabled"]) {
+        [self setEnabled:true];
+	} 
+    
+    _enabled = [[[self dictionary] valueForKey:@"enabled"] intValue];
+        
+    return _enabled;
+}
+- (void) setEnabled:(BOOL) value
+{
+    _enabled = value;
+    [self setValue:[NSNumber numberWithInt: _enabled] forKey:@"enabled"];
+    [self writeSetting];
+}
 
 - (NSView *)view
 {
