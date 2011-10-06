@@ -145,6 +145,7 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 
 - (BOOL)lazyInitWithLoaderService:(LVService*)service configDictionary:(NSMutableDictionary *)configDict
 {
+    
 	if (_initialized) {
 		return _usable;
 	}
@@ -163,12 +164,26 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 }
 - (BOOL)isUsable
 {
+    //NSLog(@"isUsable: _enabled:%d; _initialized:%d", _enabled, _initialized);
+    if(!_enabled){
+        return NO;
+    }
 	if (!_initialized) {
 		return YES;
 	}
 	return _usable;
 }
+- (BOOL) isEnabled
+{
+    return _enabled;
+}
+- (void) setEnabled:(BOOL)value
+{
+    _enabled = value;
+}
+
 @end
+
 
 
 @implementation LVModuleManager : NSObject
@@ -193,6 +208,7 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 }
 - (void)_writeConfigurationFile
 {
+    NSLog(@"_writeConfigurationFile");
 	NSData *data = [NSPropertyListSerialization dataFromPropertyList:_configDictionary format:NSPropertyListXMLFormat_v1_0 errorDescription:nil];
 	if (data) {
 		[data writeToFile:[self _configFilePath] atomically:YES];
@@ -204,6 +220,7 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 
 - (void)_validateAndWriteConfig
 {
+    NSLog(@"_validAndWritConfig, primary:%@", _primaryInputMethodModuleID);
 	// validate the config
 	if (![_primaryInputMethodModuleID length]) {
 		NSArray *allInputMethods = [self inputMethodTitlesAndModuleIDs];
@@ -250,8 +267,12 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 	[_activatedOutputFilterModuleIDs removeAllObjects];
 	[_activatedOutputFilterModuleIDs addObjectsFromArray:fa];
 	
-	[_configDictionary setObject:_activatedOutputFilterModuleIDs forKey:LVActivatedOutputFiltersKey];
-	[_configDictionary setObject:([_primaryInputMethodModuleID length] ? _primaryInputMethodModuleID : @"") forKey:LVPrimaryInputMethodKey];
+    //[_configDictionary setObject:_activatedOutputFilterModuleIDs forKey:LVActivatedOutputFiltersKey];
+    NSMutableDictionary *configDict = [_configDictionary objectForKey:_primaryInputMethodModuleID];
+     NSLog(@"confDict @ : %p", configDict);
+    [configDict setObject:_activatedOutputFilterModuleIDs forKey:LVActivatedOutputFiltersKey];
+    
+    [_configDictionary setObject:([_primaryInputMethodModuleID length] ? _primaryInputMethodModuleID : @"") forKey:LVPrimaryInputMethodKey];
 	[self _writeConfigurationFile];	
 }
 
@@ -283,6 +304,7 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 
 - (void)_syncConfigurationWithNotification:(BOOL)sendNotification
 {
+    NSLog(@"_synConfigurationWithNotification");
 	NSDictionary *oldConfigDict = [[_configDictionary mutableDeepCopy] autorelease];
 	
 	// get a list of all keys
@@ -300,6 +322,7 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 	}
 	
 	if (_configTimestamp == nowTimestamp) {
+        NSLog(@"return because equal timestamp");
 		return;
 	}
 	
@@ -317,11 +340,18 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 	
 	_primaryInputMethodModuleID = [[_configDictionary objectForKey:LVPrimaryInputMethodKey] retain];
 	[_activatedOutputFilterModuleIDs removeAllObjects];
-	
-	NSArray *filterIDs = [_configDictionary objectForKey:LVActivatedOutputFiltersKey];
+
+    // The activated output filters list is now saved per module.
+    NSMutableDictionary *configDict = [_configDictionary objectForKey:_primaryInputMethodModuleID];
+     NSLog(@"confDict @ : %p", configDict);
+    [configDict setObject:_activatedOutputFilterModuleIDs forKey:LVActivatedOutputFiltersKey];
+    
+	//NSArray *filterIDs = [_configDictionary objectForKey:LVActivatedOutputFiltersKey];
+    NSArray *filterIDs = [configDict objectForKey:LVActivatedOutputFiltersKey];
 	if ([filterIDs isKindOfClass:[NSArray class]]) {
 		[_activatedOutputFilterModuleIDs addObjectsFromArray:filterIDs];
 	}	
+    NSLog(@"_synconfigwithnotification: new _activatedOutputFilterModuleIDs:%@", _activatedOutputFilterModuleIDs);
 		
 	if (![oldConfigDict isEqualToDictionary:_configDictionary]) {
 		[self _notify:sendNotification];
@@ -433,6 +463,16 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 								LVModule *loadedModule = [LVModule moduleWithModuleObject:module moduleDataPath:resourceDir];
 								[_loadedModuleDictionary setObject:loadedModule forKey:[loadedModule moduleIdentifier]];
 								moduleIterator++;
+                                // Read enabled key from config and set to LVModule
+                                id enabledKey = [_loadedModuleDictionary valueForKey:@"enabled"];
+                                if(enabledKey){
+                                    NSLog(@"module: %@, isEnabled:%d", [loadedModule moduleIdentifier], [enabledKey intValue]);
+                                    [loadedModule setEnabled:[enabledKey intValue]];
+                                }else{
+                                    NSLog(@"module: %@, does not have enabled key and set to enabled.", [loadedModule moduleIdentifier]);
+                                    [loadedModule setEnabled:YES];
+                                }
+                                
 							}
 							
 							if (moduleIterator)
@@ -465,6 +505,7 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 }
 - (LVContextSandwich *)createContextSandwich
 {
+    NSLog(@"createContextSandwich with module:%@", _primaryInputMethodModuleID);
 	OVInputMethodContext* inputMethodContext = 0;
 
 	if ([_primaryInputMethodModuleID length]) {
@@ -472,12 +513,21 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 
 		NSDictionary *oldConfigDict = [[_configDictionary mutableDeepCopy] autorelease];		
 		NSMutableDictionary *configDict = [_configDictionary objectForKey:_primaryInputMethodModuleID];
-		if (!configDict) {
-			configDict = [NSMutableDictionary dictionary];
+        NSLog(@"confDict @ : %p", configDict);
+        if (!configDict) {
+			configDict = [[NSMutableDictionary dictionary] autorelease];
 			[_configDictionary setObject:configDict forKey:_primaryInputMethodModuleID];
 		}
-        if([module _initialized])
-            
+        /*
+        [_activatedOutputFilterModuleIDs removeAllObjects];
+        // The activated output filters list is now saved per module.
+        
+        NSArray *filterIDs = [configDict objectForKey:LVActivatedOutputFiltersKey];
+        if ([filterIDs isKindOfClass:[NSArray class]]) {
+            [_activatedOutputFilterModuleIDs addObjectsFromArray:filterIDs];
+        }	
+        NSLog(@"createContextSandwich: new _activatedOutputFilterModuleIDs:%@", _activatedOutputFilterModuleIDs);
+        */
 		if ([module lazyInitWithLoaderService:_loaderService configDictionary:configDict]) {
 			inputMethodContext = ((OVInputMethod*)[module moduleObject])->newContext();
 			
@@ -502,10 +552,26 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 
 - (void)setPrimaryInputMethodModuleID:(NSString *)moduleID
 {
+    NSLog(@"setPrimaryInputMethodID:%@", moduleID);
+    
+    //[self _validateAndWriteConfig];
+    
 	NSString *tmp = _primaryInputMethodModuleID;
 	_primaryInputMethodModuleID = [moduleID copy];
-	[tmp release];
-	[self _validateAndWriteConfig];
+    [tmp release];
+    
+    [_activatedOutputFilterModuleIDs removeAllObjects];
+    // The activated output filters list is now saved per module.
+    NSDictionary *configDict = [_configDictionary objectForKey:_primaryInputMethodModuleID] ;
+    NSLog(@"confDict @ : %p", configDict);
+    NSArray *filterIDs = [configDict objectForKey:LVActivatedOutputFiltersKey];
+    NSLog(@"filterIDs @ : %p", filterIDs);
+    //NSArray *filterIDs = [_configDictionary objectForKey:LVActivatedOutputFiltersKey];
+	if ([filterIDs isKindOfClass:[NSArray class]]) {
+		[_activatedOutputFilterModuleIDs addObjectsFromArray:filterIDs];
+	}	
+    NSLog(@"setPrimaryInputMethodModuleID: new _activatedOutputFilterModuleIDs:%@; @:%p", _activatedOutputFilterModuleIDs,  _activatedOutputFilterModuleIDs);
+	
 }
 - (NSString *)primaryInputMethodModuleID
 {
@@ -546,6 +612,7 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 
 - (void)toggleOutputFilterModuleID:(NSString *)outputFilterID
 {	
+    NSLog(@"toggleOutputFilterModuleID, %@", outputFilterID);
 	if ([_activatedOutputFilterModuleIDs containsObject:outputFilterID]) {
 		[_activatedOutputFilterModuleIDs removeObject:outputFilterID];
 	}
@@ -568,7 +635,7 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 		[_activatedOutputFilterModuleIDs removeAllObjects];
 		[_activatedOutputFilterModuleIDs addObjectsFromArray:fa];
 	}
-	
+	NSLog(@"updated activeatedOutputFilterModules:%@", _activatedOutputFilterModuleIDs);
 	[self _validateAndWriteConfig];
 }
 
@@ -598,18 +665,21 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
         //--- init of moudles
 		NSDictionary *oldConfigDict = [[_configDictionary mutableDeepCopy] autorelease];		
 		NSMutableDictionary *configDict = [_configDictionary objectForKey:[module moduleIdentifier]];
-		if (!configDict) {
+        NSLog(@"confDict @ : %p", configDict);
+        if (!configDict) {
 			configDict = [NSMutableDictionary dictionary];
 			[_configDictionary setObject:configDict forKey:[module moduleIdentifier]];
 		}
-        
-        [module lazyInitWithLoaderService:_loaderService configDictionary:configDict];
-        if(![module isInitialized]){
-            
+        //----
+        if([module lazyInitWithLoaderService:_loaderService configDictionary:configDict]){
+            if (![oldConfigDict isEqualTo:_configDictionary]) {
+				[self _writeConfigurationFile];
+            }
         }
 		//-----
-		OVOutputFilter *filter = (OVOutputFilter *)[module moduleObject];
-		currentInput = filter->process(currentInput.c_str(), _loaderService);
+        OVOutputFilter *filter = (OVOutputFilter *)[module moduleObject];
+        currentInput = filter->process(currentInput.c_str(), _loaderService);
+    
 	}
 	
 	return currentInput;

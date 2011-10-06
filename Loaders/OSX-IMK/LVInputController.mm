@@ -43,6 +43,7 @@ static id LVICCurrentlyActiveSender = nil;
 @implementation LVInputController
 - (id)initWithServer:(IMKServer*)server delegate:(id)delegate client:(id)inputClient
 {
+    NSLog(@"LVInputController: initWithServer");
 	if (self = [super initWithServer:server delegate:delegate client:inputClient]) {
 		_contextSandwich = [[LVModuleManager sharedManager] createContextSandwich];
 		_candidateText = new LVCandidate;
@@ -116,6 +117,7 @@ static id LVICCurrentlyActiveSender = nil;
 
 - (void)_recreateSandwich
 {
+    NSLog(@"_recreateSandwich");
 	[self _resetUI];
 	if (_contextSandwich) {
 		delete _contextSandwich;
@@ -488,9 +490,10 @@ static id LVICCurrentlyActiveSender = nil;
 }
 - (void)_switchInputMethodAction:(id)sender
 {
+    NSLog(@"switchInputMethod");
     NSMenuItem *menuItem = [sender objectForKey:@"IMKCommandMenuItem"];
-	[[LVModuleManager sharedManager] setPrimaryInputMethodModuleID:[menuItem representedObject]];
-	[self _recreateSandwich];
+    [[LVModuleManager sharedManager] setPrimaryInputMethodModuleID:[menuItem representedObject]];
+    [self _recreateSandwich];
 }
 
 - (void)_toggleOutputFilterAction:(id)sender

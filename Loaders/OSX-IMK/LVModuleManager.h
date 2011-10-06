@@ -89,6 +89,7 @@ protected:
 {
 	BOOL _initialized;
 	BOOL _usable;
+    BOOL _enabled;
 	OVModule *_module;
 	NSString *_moduleDataPath;
 }
@@ -99,6 +100,8 @@ protected:
 - (BOOL)lazyInitWithLoaderService:(LVService*)service configDictionary:(NSMutableDictionary *)configDict;
 - (BOOL)isInitialized;
 - (BOOL)isUsable;
+- (BOOL)isEnabled;
+- (void)setEnabled:(BOOL) value;
 @end
 
 @interface LVModuleManager : NSObject <LVDOInterface>
