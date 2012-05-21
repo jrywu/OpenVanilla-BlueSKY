@@ -73,7 +73,7 @@ AVDisplayServer *DisplayServer::setBufString(const char *str, int caretX, int ma
 	ImmModel::close();
 	
 	
-	murmur("\tCOMPOSITION GCS_COMPSTR"); 
+	murmur("\tsend WM_IME_COMPOSITION"); 
 	MyGenerateMessage( m_hIMC, WM_IME_COMPOSITION, 
 				*(WORD*)word,
 				(GCS_COMPSTR|GCS_COMPATTR
@@ -81,6 +81,13 @@ AVDisplayServer *DisplayServer::setBufString(const char *str, int caretX, int ma
 				|GCS_CURSORPOS
 				|GCS_DELTASTART				 
 				));
+	if(wcslen(wstr)==0){ //Composition buffer are all deleted send ENDCOMPOSITION
+ 		murmur("\tWM_IME_ENDCOMPOSITION"); 
+		MyGenerateMessage(m_hIMC, WM_IME_ENDCOMPOSITION, 0, 0);
+
+		
+	}
+
 	
 	return this;
 }

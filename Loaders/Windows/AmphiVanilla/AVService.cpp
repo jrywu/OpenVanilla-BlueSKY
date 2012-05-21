@@ -26,7 +26,7 @@ using namespace OpenVanilla;
 
 
 AVService::AVService() {} 
-AVService::AVService() {} 
+
 
 AVService::AVService(const char* dir) : userdir(dir),  _UTF16ShortBuffer(0)
 {

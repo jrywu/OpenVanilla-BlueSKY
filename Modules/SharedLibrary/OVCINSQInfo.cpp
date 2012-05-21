@@ -51,7 +51,7 @@
 	#define bzero(addr, num) memset(addr, 0, num)
 
 	#include <windows.h> //FindFirstFile
-	#define strcasecmp _stricmp
+	//#define strcasecmp _stricmp
 #endif
 
 #include "OVOSDef.h"
@@ -88,8 +88,7 @@ void CLSplitString(const char *s, string& k, string& v) {
         return 0;
     }
 #else
-    //#error This part of code won't run--needs refactoring
-
+  
     int file_select(WIN32_FIND_DATA entry)
     {
         char *selectfilter = ".cin";
