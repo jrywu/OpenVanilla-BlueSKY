@@ -43,15 +43,6 @@
     #include <unistd.h>
 #else   
     #include "OpenVanilla.h"
-    #include "OVUtility.h"
-	//<comment author='b6s'> Uses OVOSDef.h instead.
-	//#define strcasecmp stricmp
-	//</comment>
-	#include <string.h>	//memset
-	#define bzero(addr, num) memset(addr, 0, num)
-
-	#include <windows.h> //FindFirstFile
-	//#define strcasecmp _stricmp
 #endif
 
 #include "OVOSDef.h"

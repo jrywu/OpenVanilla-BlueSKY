@@ -407,3 +407,23 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 
 	return lRet;
 }
+
+
+BOOL isWindows8(){
+	OSVERSIONINFOEX osvi;
+	BOOL bOsVersionInfoEx;
+
+	ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
+
+	osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
+	bOsVersionInfoEx = GetVersionEx((OSVERSIONINFO*) &osvi);
+
+	if( ! bOsVersionInfoEx ) return false;
+
+	if ( osvi.dwMajorVersion == 6  && osvi.dwMinorVersion == 0)
+	  return true;
+	else
+	  return false;
+
+
+}

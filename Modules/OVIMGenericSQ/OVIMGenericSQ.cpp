@@ -390,7 +390,7 @@ int OVGenericContext::keyEvent(OVKeyCode *key, OVBuffer *buf, OVCandidate *textb
     
     
     // shift and capslock processing
-    if (isprint(key->code()) && (key->isCapslock() /*|| key->isShift()*/))
+    if (isprint(key->code()) && (key->isCapslock() || key->isShift()))
     {
         if (key->isCapslock())
         {
@@ -402,15 +402,20 @@ int OVGenericContext::keyEvent(OVKeyCode *key, OVBuffer *buf, OVCandidate *textb
 
             buf->append(cbuf);
         }
-        //else if (key->isShift()) buf->appendChar(key->lower());
+        else if (key->isShift()) {
+			char cbuf[2];
+			sprintf(cbuf, "%c", tolower(key->code()));
+            buf->append(cbuf);
+		}
         cancelAutoCompose(textbar);
         keyseq.clear();
         buf->update()->send();
         return 1;
     }
+	
 
-    if (isprint(key->code()) && keyseq.valid(static_cast<char>(key->code())) &&
-		/*!key->isShift() &&*/ !key->isCapslock())
+    if (isprint(key->code()) && keyseq.valid(static_cast<char>(key->code())) 
+		&& /*!key->isShift() &&*/ !key->isCapslock())
     {
     	if (keyseq.length() > 0 &&
     		// prevent to the exception of parent->maxSeqLen() == 0

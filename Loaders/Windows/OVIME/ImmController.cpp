@@ -1,4 +1,4 @@
-//#define OV_DEBUG
+#define OV_DEBUG
 //#define showCompWindow  //Uncomment this to show composition window in wince.
 #include "ImmController.h"
 #ifdef WINCE
@@ -189,6 +189,8 @@ int ImmController::onKeyCtrl(HIMC hIMC, UINT uVKey)
 			else
 				ImmSetOpenStatus(NULL, TRUE);
 #endif
+			if(isWindows8())
+				MyGenerateMessage(hIMC, WM_IME_NOTIFY, IMN_PRIVATE, 2); //Switch chi/eng in windows 8.
 
 			processState = 1;
 			break;
@@ -490,4 +492,24 @@ BOOL ImmController::onTypingEvent
 	
 
 	return isProcessed; 
+}
+bool ImmController::isWindows8(){
+	murmur("Try to get windows version.");
+	OSVERSIONINFOEX osvi;
+	BOOL bOsVersionInfoEx;
+
+	ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
+
+	osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
+	bOsVersionInfoEx = GetVersionEx((OSVERSIONINFO*) &osvi);
+
+	
+	if( ! bOsVersionInfoEx ) return false;
+	murmur("windows version: %u.%u\n", osvi.dwMajorVersion, osvi.dwMinorVersion);
+	if ( osvi.dwMajorVersion == 6  && osvi.dwMinorVersion == 2)
+	  return true;
+	else
+	  return false;
+
+
 }

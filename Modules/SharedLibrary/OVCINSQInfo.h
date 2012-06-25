@@ -8,6 +8,7 @@
 #else
 #include "OVFileHelper.h"
 #endif
+#include "OVUtility.h"
 #include "OVSQLite3.h"
 
 using namespace std;

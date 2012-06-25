@@ -35,6 +35,8 @@ public:
 	static ImmController* open();
 	static void close(void);
 
+	bool isWindows8();
+
 	void setCompStartedFlag(bool isCompStarted)
 	{ m_isCompStarted = isCompStarted; }
 	bool getCompStartedFlag()
