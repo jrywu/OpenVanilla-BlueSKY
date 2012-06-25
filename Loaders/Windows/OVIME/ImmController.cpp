@@ -1,4 +1,4 @@
-#define OV_DEBUG
+//#define OV_DEBUG
 //#define showCompWindow  //Uncomment this to show composition window in wince.
 #include "ImmController.h"
 #ifdef WINCE
