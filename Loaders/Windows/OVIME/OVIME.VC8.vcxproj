@@ -250,6 +250,7 @@
     <ClInclude Include="ImmController.h" />
     <ClInclude Include="immdev.h" />
     <ClInclude Include="ImmModel.h" />
+    <ClInclude Include="OVIME.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Vk.h" />
   </ItemGroup>
