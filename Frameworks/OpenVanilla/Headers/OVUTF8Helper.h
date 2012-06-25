@@ -32,7 +32,7 @@
 #ifndef OVUTF8Helper_h
 #define OVUTF8Helper_h
 
-#define OV_DEBUG
+
 #include <cstddef>
 #include <string>
 #include <vector>
