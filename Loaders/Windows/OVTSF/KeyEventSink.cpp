@@ -15,38 +15,43 @@
 //
 // GUID for the preserved keys.
 //
-/* 6a0bde41-6adf-11d7-a6ea-00065b84435c */
-static const GUID GUID_PRESERVEDKEY_ONOFF = { 
-    0x6a0bde41,
-    0x6adf,
-    0x11d7,
-    {0xa6, 0xea, 0x00, 0x06, 0x5b, 0x84, 0x43, 0x5c}
-  };
 
-/* 6a0bde42-6adf-11d7-a6ea-00065b84435c */
-static const GUID GUID_PRESERVEDKEY_F6 = { 
-    0x6a0bde42,
-    0x6adf,
-    0x11d7,
-    {0xa6, 0xea, 0x00, 0x06, 0x5b, 0x84, 0x43, 0x5c}
-  };
+// {30FA9233-976E-464E-9223-1815F4D4497B}
+static const GUID GUID_PRESERVEDKEY_CTRL_SPACE = 
+{ 0x30fa9233, 0x976e, 0x464e, { 0x92, 0x23, 0x18, 0x15, 0xf4, 0xd4, 0x49, 0x7b } };
+
+// {F680818B-9574-4509-B40F-E7A3CB866CB1}
+static const GUID GUID_PRESERVEDKEY_SHIFT_SPACE = 
+{ 0xf680818b, 0x9574, 0x4509, { 0xb4, 0xf, 0xe7, 0xa3, 0xcb, 0x86, 0x6c, 0xb1 } };
+
+
+// {4C88A00B-BE4A-4C43-92CB-CD225898E9E0}
+static const GUID GUID_PRESERVEDKEY_CTRL_BACKSLASH = 
+{ 0x4c88a00b, 0xbe4a, 0x4c43, { 0x92, 0xcb, 0xcd, 0x22, 0x58, 0x98, 0xe9, 0xe0 } };
+
+
+// {BB456BD8-78E8-4DE4-9DCF-A19EF8CE4F2F}
+static const GUID GUID_PRESERVEDKEY_SHIFT = 
+{ 0xbb456bd8, 0x78e8, 0x4de4, { 0x9d, 0xcf, 0xa1, 0x9e, 0xf8, 0xce, 0x4f, 0x2f } };
+
 
 
 //
 // the preserved keys declaration
 //
-// VK_KANJI is the virtual key for Kanji key, which is available in 106
-// Japanese keyboard.
-//
-static const TF_PRESERVEDKEY c_pkeyOnOff0 = { 0xC0, TF_MOD_ALT };
-static const TF_PRESERVEDKEY c_pkeyOnOff1 = { VK_KANJI, TF_MOD_IGNORE_ALL_MODIFIER };
-static const TF_PRESERVEDKEY c_pkeyF6 =   { VK_F6, TF_MOD_ON_KEYUP };
+
+static const TF_PRESERVEDKEY c_pkeyCtrlSpace = { VK_SPACE, TF_MOD_CONTROL };
+static const TF_PRESERVEDKEY c_pkeyShiftSpace = { VK_SPACE, TF_MOD_SHIFT };
+static const TF_PRESERVEDKEY c_pkeyCtrlBackSlash = { VK_OEM_5, TF_MOD_CONTROL };
+static const TF_PRESERVEDKEY c_pkeySHIFT =   { VK_SHIFT, TF_MOD_SHIFT };
 
 //
 // the description for the preserved keys
 //
-static const WCHAR c_szPKeyOnOff[] = L"OnOff";
-static const WCHAR c_szPKeyF6[]    = L"Function 6";
+static const WCHAR c_szPKeyCtrlSpace[] = L"Ctrl+Space";
+static const WCHAR c_szPKeyShiftSpace[] = L"Shift+Space";
+static const WCHAR c_szPKeyCtrlBackSlash[] = L"Ctrl+\\";
+static const WCHAR c_szPKeyShift[]    = L"Shift";
 
 //+---------------------------------------------------------------------------
 //
@@ -181,13 +186,29 @@ STDAPI CTextService::OnKeyUp(ITfContext *pContext, WPARAM wParam, LPARAM lParam,
 STDAPI CTextService::OnPreservedKey(ITfContext *pContext, REFGUID rguid, BOOL *pfEaten)
 {
 	murmur("KeyEventSink:CTextService::OnPreservedKey()");
-    if (IsEqualGUID(rguid, GUID_PRESERVEDKEY_ONOFF))
+    if (IsEqualGUID(rguid, GUID_PRESERVEDKEY_CTRL_SPACE))
     {
+		murmur("OnPreservedKey(), GUID_PRESERVEDKEY_ONOFF");
         BOOL fOpen = _IsKeyboardOpen();
         _SetKeyboardOpen(fOpen ? FALSE : TRUE);
         *pfEaten = TRUE;
     }
-    else
+	else if (IsEqualGUID(rguid, GUID_PRESERVEDKEY_SHIFT_SPACE))
+	{
+		murmur("OnPreservedKey(), GUID_PRESERVEDKEY_SHIFT_SPACE");
+	}
+	else if (IsEqualGUID(rguid, GUID_PRESERVEDKEY_CTRL_BACKSLASH))
+	{
+		murmur("OnPreservedKey(), GUID_PRESERVEDKEY_CTRL_BACKSLASH");
+	}
+    else if (IsEqualGUID(rguid, GUID_PRESERVEDKEY_SHIFT))
+	{
+		murmur("OnPreservedKey(), GUID_PRESERVEDKEY_SHIFT");
+		BOOL fOpen = _IsKeyboardOpen();
+        _SetKeyboardOpen(fOpen ? FALSE : TRUE);
+        *pfEaten = TRUE;
+	}
+	else
     {
         *pfEaten = FALSE;
     }
@@ -254,26 +275,32 @@ BOOL CTextService::_InitPreservedKey()
     if (_pThreadMgr->QueryInterface(IID_ITfKeystrokeMgr, (void **)&pKeystrokeMgr) != S_OK)
         return FALSE;
 
-  // register Alt+~ key
+  // register Ctrl+space key
     hr = pKeystrokeMgr->PreserveKey(_tfClientId, 
-                                    GUID_PRESERVEDKEY_ONOFF,
-                                    &c_pkeyOnOff0,
-                                    c_szPKeyOnOff,
-                                    wcslen(c_szPKeyOnOff));
+                                    GUID_PRESERVEDKEY_CTRL_SPACE,
+                                    &c_pkeyCtrlSpace,
+                                    c_szPKeyCtrlSpace,
+                                    wcslen(c_szPKeyCtrlSpace));
+ // register Shift+space key
+    hr = pKeystrokeMgr->PreserveKey(_tfClientId, 
+                                    GUID_PRESERVEDKEY_SHIFT_SPACE,
+                                    &c_pkeyShiftSpace,
+                                    c_szPKeyShiftSpace,
+                                    wcslen(c_szPKeyShiftSpace));
 
-  // register KANJI key
+  // register ctrl+\ key
     hr = pKeystrokeMgr->PreserveKey(_tfClientId, 
-                                    GUID_PRESERVEDKEY_ONOFF,
-                                    &c_pkeyOnOff1,
-                                    c_szPKeyOnOff,
-                                    wcslen(c_szPKeyOnOff));
+                                    GUID_PRESERVEDKEY_CTRL_BACKSLASH,
+                                    &c_pkeyCtrlBackSlash,
+                                    c_szPKeyCtrlBackSlash,
+                                    wcslen(c_szPKeyCtrlBackSlash));
 
-  // register F6 key
+  // register Shift key
     hr = pKeystrokeMgr->PreserveKey(_tfClientId, 
-                                    GUID_PRESERVEDKEY_F6,
-                                    &c_pkeyF6,
-                                    c_szPKeyF6,
-                                    wcslen(c_szPKeyF6));
+                                    GUID_PRESERVEDKEY_SHIFT,
+                                    &c_pkeySHIFT,
+                                    c_szPKeyShift,
+                                    wcslen(c_szPKeyShift));
 
     pKeystrokeMgr->Release();
 
@@ -295,9 +322,10 @@ void CTextService::_UninitPreservedKey()
     if (_pThreadMgr->QueryInterface(IID_ITfKeystrokeMgr, (void **)&pKeystrokeMgr) != S_OK)
         return;
 
-    pKeystrokeMgr->UnpreserveKey(GUID_PRESERVEDKEY_ONOFF, &c_pkeyOnOff0);
-    pKeystrokeMgr->UnpreserveKey(GUID_PRESERVEDKEY_ONOFF, &c_pkeyOnOff1);
-    pKeystrokeMgr->UnpreserveKey(GUID_PRESERVEDKEY_F6,    &c_pkeyF6);
+    pKeystrokeMgr->UnpreserveKey(GUID_PRESERVEDKEY_CTRL_SPACE, &c_pkeyCtrlSpace);
+	pKeystrokeMgr->UnpreserveKey(GUID_PRESERVEDKEY_SHIFT_SPACE, &c_pkeyShiftSpace);
+    pKeystrokeMgr->UnpreserveKey(GUID_PRESERVEDKEY_CTRL_BACKSLASH, &c_pkeyCtrlBackSlash);
+    pKeystrokeMgr->UnpreserveKey(GUID_PRESERVEDKEY_SHIFT, &c_pkeySHIFT);
 
     pKeystrokeMgr->Release();
 }
