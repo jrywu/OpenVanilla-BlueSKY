@@ -56,7 +56,7 @@ static const WCHAR c_szPKeyF6[]    = L"Function 6";
 
 BOOL CTextService::_IsKeyEaten(ITfContext *pContext, WPARAM wParam)
 {
-	murmur("KeyEventSink:CTextService::_IsKeyEaten()");
+	murmur("KeyEventSink:CTextService::_IsKeyEaten() for key = %d", wParam);
   // if the keyboard is disabled, keys are not consumed.
     if (_IsKeyboardDisabled())
         return FALSE;
@@ -117,7 +117,7 @@ STDAPI CTextService::OnSetFocus(BOOL fForeground)
 
 STDAPI CTextService::OnTestKeyDown(ITfContext *pContext, WPARAM wParam, LPARAM lParam, BOOL *pfEaten)
 {
-	murmur("KeyEventSink:CTextService::OnTestKeyDown()");
+	murmur("KeyEventSink:CTextService::OnTestKeyDown() for key = %d", wParam);
     *pfEaten = _IsKeyEaten(pContext, wParam);
     return S_OK;
 }
@@ -132,7 +132,7 @@ STDAPI CTextService::OnTestKeyDown(ITfContext *pContext, WPARAM wParam, LPARAM l
 
 STDAPI CTextService::OnKeyDown(ITfContext *pContext, WPARAM wParam, LPARAM lParam, BOOL *pfEaten)
 {
-	murmur("KeyEventSink:CTextService::OnKeyDown()");
+	murmur("KeyEventSink:CTextService::OnKeyDown() for key = %d", wParam);
     *pfEaten = _IsKeyEaten(pContext, wParam);
 
     if (*pfEaten)
@@ -151,7 +151,7 @@ STDAPI CTextService::OnKeyDown(ITfContext *pContext, WPARAM wParam, LPARAM lPara
 
 STDAPI CTextService::OnTestKeyUp(ITfContext *pContext, WPARAM wParam, LPARAM lParam, BOOL *pfEaten)
 {
-	murmur("KeyEventSink:CTextService::OnTestKeyUp()");
+	murmur("KeyEventSink:CTextService::OnTestKeyUp() for key = %d", wParam);
     *pfEaten = _IsKeyEaten(pContext, wParam);
     return S_OK;
 }
@@ -166,7 +166,7 @@ STDAPI CTextService::OnTestKeyUp(ITfContext *pContext, WPARAM wParam, LPARAM lPa
 
 STDAPI CTextService::OnKeyUp(ITfContext *pContext, WPARAM wParam, LPARAM lParam, BOOL *pfEaten)
 {
-	murmur("KeyEventSink:CTextService::OnKeyUp()");
+	murmur("KeyEventSink:CTextService::OnKeyUp() for key = %d", wParam);
     *pfEaten = _IsKeyEaten(pContext, wParam);
     return S_OK;
 }

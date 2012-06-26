@@ -21,7 +21,7 @@
 
 STDAPI CTextService::OnCompositionTerminated(TfEditCookie ecWrite, ITfComposition *pComposition)
 {
-	murmur("CTextService::OnCompositionTerminated()");
+	murmur("Composition:CTextService::OnCompositionTerminated()");
 
   // releae our cached composition
     if (_pComposition != NULL)
@@ -41,7 +41,7 @@ STDAPI CTextService::OnCompositionTerminated(TfEditCookie ecWrite, ITfCompositio
 
 BOOL CTextService::_IsComposing()
 {
-	murmur("CTextService::_IsComposing(), %d", _pComposition  != NULL);
+	murmur("Composition:CTextService::_IsComposing(), %d", _pComposition  != NULL);
     return _pComposition != NULL;
 }
 
@@ -53,7 +53,7 @@ BOOL CTextService::_IsComposing()
 
 void CTextService::_SetComposition(ITfComposition *pComposition)
 {
-	murmur("CTextService::_SetComposition()");
+	murmur("Composition:CTextService::_SetComposition()");
     _pComposition = pComposition;
 }
 
