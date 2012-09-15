@@ -14,23 +14,23 @@ mkdir "..\InstallerWin\OpenVanilla\zh-TW"
 copy "..\..\Dep\x86\libltdl3.dll" ..\InstallerWin\system32.x86\
 copy "..\..\Dep\x86\libhunspell.dll" ..\InstallerWin\system32.x86\
 copy "..\..\Dep\x86\sqlite3.dll" ..\InstallerWin\system32.x86\
-copy "..\..\Dep\x86\msvcp100.dll" ..\InstallerWin\system32.x86\
-copy "..\..\Dep\x86\msvcp100d.dll" ..\InstallerWin\system32.x86\
-copy "..\..\Dep\x86\msvcr100.dll" ..\InstallerWin\system32.x86\
-copy "..\..\Dep\x86\msvcr100d.dll" ..\InstallerWin\system32.x86\
+copy "..\..\Dep\x86\msvcp110.dll" ..\InstallerWin\system32.x86\
+copy "..\..\Dep\x86\msvcp110d.dll" ..\InstallerWin\system32.x86\
+copy "..\..\Dep\x86\msvcr110.dll" ..\InstallerWin\system32.x86\
+copy "..\..\Dep\x86\msvcr110d.dll" ..\InstallerWin\system32.x86\
 copy "..\..\Dep\x64\libltdl-3.dll" ..\InstallerWin\system32.x64\
 copy "..\..\Dep\x64\libhunspell.dll" ..\InstallerWin\system32.x64\
 copy "..\..\Dep\x64\sqlite3.dll" ..\InstallerWin\system32.x64\
-copy "..\..\Dep\x64\msvcp100.dll" ..\InstallerWin\system32.x64\
-copy "..\..\Dep\x64\msvcp100d.dll" ..\InstallerWin\system32.x64\
-copy "..\..\Dep\x64\msvcr100.dll" ..\InstallerWin\system32.x64\
-copy "..\..\Dep\x64\msvcr100d.dll" ..\InstallerWin\system32.x64\
-copy "..\..\Loaders\Win32-IME\OVManagedUI\bin\Release\OVManagedUI.dll" ..\InstallerWin\OpenVanilla\
-copy "..\..\Loaders\Win32-IME\OVManagedUI\bin\Release\OVManagedUI.dll" ..\InstallerWin\OpenVanilla\
-copy ..\..\Loaders\Win32-IME\OVIMEUI\Release\x86\OVIMEUI.dll ..\InstallerWin\system32.x86\
-copy ..\..\Loaders\Win32-IME\OVIMEUI\Release\x64\OVIMEUI.dll ..\InstallerWin\system32.x64\
-copy ..\..\Loaders\Win32-IME\OVIME\Release\x86\OVIME.ime ..\InstallerWin\system32.x86\
-copy ..\..\Loaders\Win32-IME\OVIME\Release\x64\OVIME.ime ..\InstallerWin\system32.x64\
+copy "..\..\Dep\x64\msvcp110.dll" ..\InstallerWin\system32.x64\
+copy "..\..\Dep\x64\msvcp110d.dll" ..\InstallerWin\system32.x64\
+copy "..\..\Dep\x64\msvcr110.dll" ..\InstallerWin\system32.x64\
+copy "..\..\Dep\x64\msvcr110d.dll" ..\InstallerWin\system32.x64\
+REM copy "..\..\Loaders\Windows\OVUIServer\bin\Release\OVUIServer.dll" ..\InstallerWin\OpenVanilla\
+REM copy "..\..\Loaders\Windows\OVUIServer\bin\Release\OVUIServer.dll" ..\InstallerWin\OpenVanilla\
+copy ..\..\Loaders\Windows\OVIMEUI\Release\x86\OVIMEUI.dll ..\InstallerWin\system32.x86\
+copy ..\..\Loaders\Windows\OVIMEUI\Release\x64\OVIMEUI.dll ..\InstallerWin\system32.x64\
+copy ..\..\Loaders\Windows\OVIME\Release\x86\OVIME.ime ..\InstallerWin\system32.x86\
+copy ..\..\Loaders\Windows\OVIME\Release\x64\OVIME.ime ..\InstallerWin\system32.x64\
 copy ..\InstallerWin\OVUtil\bin\Release\OVUtil.exe ..\InstallerWin\OpenVanilla\
 copy ..\..\HelperApps\PreferencesWin\bin\Release\OVPreferences.exe ..\InstallerWin\OpenVanilla\
 copy ..\..\HelperApps\PreferencesWin\bin\Release\zh-TW\* ..\InstallerWin\OpenVanilla\zh-TW

@@ -33,11 +33,13 @@ SetCompressor lzma
 ;!define MUI_WELCOMEFINISHPAGE_BITMAP_NOSTRETCH
 !define MUI_WELCOMEFINISHPAGE_BITMAP "ov-installer.bmp"
 
-; .net framework version v4.0.30319 here
+; .net framework 4.0 version v4.0.30319
 !define DOT_MAJOR "4"
 !define DOT_MINOR "0"
 !define DOT_MINOR_MINOR "30319"
-; 
+; .net framework 4.5 version v4.5.50709
+;!define DOT_MINOR "5"
+;!define DOT_MINOR_MINOR "50709"
 
 ; Language Selection Dialog Settings
 !define MUI_LANGDLL_REGISTRY_ROOT "${PRODUCT_UNINST_ROOT_KEY}"
@@ -67,12 +69,17 @@ SetCompressor lzma
 
 ; MUI end ------
 
-; .NET Framework 4.0 testing/installing
-; .NET start -----------------------------------
 
+; .NET start -----------------------------------
 !define BASE_URL http://download.microsoft.com/download
 ;.net Framework 4.0
+; .NET Framework 4.0 testing/installing
 !define URL_DOTNET_30319  "${BASE_URL}/9/5/A/95A9616B-7A37-4AF6-BC36-D6EA96C8DAAE/dotNetFx40_Full_x86_x64.exe"
+; .NET Framework 4.5 testing/installing
+!define URL_DOTNET_50709 "${BASE_URL}/b/a/4/ba4a7e71-2906-4b2d-a0e1-80cf16844f5f/dotnetfx45_full_x86_x64.exe"
+
+
+
 
 
 ; Variables
@@ -652,8 +659,8 @@ Section "Modules" SEC02
 SetOutPath $PROGRAMFILES64
   SetOVerwrite ifnewer
   File /r /x ".svn" "OpenVanilla"
-  nsExec::ExecToStack '"$PROGRAMFILES64\Openvanilla\OVUtil.exe" uninstall "$PROGRAMFILES64\Openvanilla\OVManagedUI.dll"'
-  nsExec::ExecToStack '"$PROGRAMFILES64\Openvanilla\OVUtil.exe" install "$PROGRAMFILES64\Openvanilla\OVManagedUI.dll"'
+  nsExec::ExecToStack '"$PROGRAMFILES64\Openvanilla\OVUtil.exe" uninstall "$PROGRAMFILES64\Openvanilla\OVUIServer.dll"'
+  nsExec::ExecToStack '"$PROGRAMFILES64\Openvanilla\OVUtil.exe" install "$PROGRAMFILES64\Openvanilla\OVUIServer.dll"'
 ;SetOutPath "$APPDATA\OpenVanilla\"
 ;  File /r /x ".svn" "UserData\*.*"
 ;  File "config.xml"
@@ -727,10 +734,10 @@ Section Uninstall
   ${registry::MoveKey} "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\excel-new.exe" "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\\excel.exe" $R5
   ${registry::MoveKey} "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\winword-new.exe" "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\\winword.exe" $R6
 
-  nsExec::ExecToStack '"$PROGRAMFILES64\OpenVanilla\OVUtil.exe" uninstall "$PROGRAMFILES64\Openvanilla\OVManagedUI.dll"'
+  nsExec::ExecToStack '"$PROGRAMFILES64\OpenVanilla\OVUtil.exe" uninstall "$PROGRAMFILES64\Openvanilla\OVUIServer.dll"'
 	
   ${DisableX64FSRedirection}
-  Delete "$SYSDIR\OVIMEUI.dll"
+  ;Delete "$SYSDIR\OVIMEUI.dll"
   Delete "$SYSDIR\libltdl-3.dll"
   Delete "$SYSDIR\libhunspell.dll"
   ${EnableX64FSRedirection}

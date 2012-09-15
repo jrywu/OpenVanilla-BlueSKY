@@ -1,0 +1,13 @@
+Dep/*
+Distributions/InstallerWin/*.exe
+Distributions/InstallerWin/OpenVanilla/*
+Distributions/InstallerWin/system32.x86/*
+Distributions/InstallerWin/system32.x64/*
+*sdf
+*pdb
+*log
+*/Release/*
+*/Debug/*
+*/bin/*
+*/obj/*
+*.unsuccessfulbuild
