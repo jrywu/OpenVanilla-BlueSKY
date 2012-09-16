@@ -56,6 +56,18 @@ void _SetStatusChiEng()
 	OVUIServerStatusWrapper::Instance()->SetChiEng();	
 }
 
+void _SetStatusChinese()
+{	
+	OVUIServerStatusWrapper::Instance()->SetChinese();	
+}
+
+void _SetStatusEnglish()
+{	
+	OVUIServerStatusWrapper::Instance()->SetEnglish();	
+}
+
+
+
 void _SetStatusHalfFull()
 {	
 	OVUIServerStatusWrapper::Instance()->SetHalfFull();	

@@ -33,6 +33,8 @@ extern bool isCompEnabled;
 extern bool isChinese;
 extern bool isFullShape;
 
+extern BOOL isWindows8();
+
 extern DisplayServer *dsvr;
 
 // Constant

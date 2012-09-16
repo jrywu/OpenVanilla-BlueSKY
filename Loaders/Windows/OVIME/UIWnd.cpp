@@ -5,6 +5,9 @@
 static bool insetcontext =false;
 
 
+
+
+
 LRESULT ControlHandle(HIMC hUICurIMC,
 				   HWND hWnd,
 				   UINT msg,
@@ -141,7 +144,16 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 				RefreshUI(hUICurIMC);   
 				murmur("\thUICurIMC==true");
 				
-				dsvr->showStatus(true);	
+				isChinese = !!atoi(loader->getGlobalConfigKey("isChinese"));
+				dsvr->showStatus(true);
+				if(isChinese){
+					SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, 21);
+				}else{
+					SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, 22);
+					if(isWindows8()) dsvr->showStatus(false);		//Hide status bar in engilsh mode in win8
+				}
+		
+		
 				
 				murmur("Status showed");
 			
@@ -169,7 +181,9 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 			murmur("WM_IME_SETCONTEXT: Close Status Window");
 			
 			
-			dsvr->showStatus(false);	
+			dsvr->showStatus(false);
+			loader->setGlobalConfig("StatusBar");
+			loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
 
 			//dsvr->releaseIMC();  //?
 		}
@@ -240,7 +254,16 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 				murmur("\thUICurIMC==true");
 
 
-				dsvr->showStatus(true);	
+				isChinese = !!atoi(loader->getGlobalConfigKey("isChinese"));
+				dsvr->showStatus(true);
+				if(isChinese){
+					SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, 21);
+				}else{
+					SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, 22);
+					if(isWindows8()) dsvr->showStatus(false);	  //Hide status bar in engilsh mode in win8
+				}
+		
+		
 
 			
 			}
@@ -264,6 +287,8 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 			dsvr->SetCompEnabled(false);
 			murmur("WM_IME_SELECT: Close Status Window");
 			dsvr->showStatus(false);	
+			loader->setGlobalConfig("StatusBar");
+			loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
 
 			
 
@@ -321,6 +346,8 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 		dsvr->showBuf(false);
 		dsvr->showCandi(false);
 		dsvr->hideNotify();
+
+		loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
 
 		dsvr->SetCandiEnabled(false);
 		dsvr->SetCompEnabled(false);
@@ -408,22 +435,3 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 	return lRet;
 }
 
-
-BOOL isWindows8(){
-	OSVERSIONINFOEX osvi;
-	BOOL bOsVersionInfoEx;
-
-	ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
-
-	osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
-	bOsVersionInfoEx = GetVersionEx((OSVERSIONINFO*) &osvi);
-
-	if( ! bOsVersionInfoEx ) return false;
-
-	if ( osvi.dwMajorVersion == 6  && osvi.dwMinorVersion == 0)
-	  return true;
-	else
-	  return false;
-
-
-}

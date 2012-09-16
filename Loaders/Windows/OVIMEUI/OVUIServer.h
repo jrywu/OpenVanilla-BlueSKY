@@ -8,6 +8,8 @@ void _MoveStatusPage(int, int);
 void _DockStatusPage(int x,int y);
 void _HideStatusPage();
 void _SetStatusChiEng();
+void _SetStatusChinese();
+void _SetStatusEnglish();
 void _SetStatusHalfFull();
 bool _GetItemChecked(int index);
 void _SetItemChecked(int index, bool c);

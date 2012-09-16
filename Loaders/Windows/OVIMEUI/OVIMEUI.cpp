@@ -264,9 +264,19 @@ void UIChangeHalfFull()
 	_SetStatusHalfFull(); 
 }
 
-void UIChangeChiEng()
+void UISetChiEng()
 {
 	_SetStatusChiEng();  
+}
+
+void UISetChinese()
+{
+	_SetStatusChinese();  
+}
+
+void UISetEnglish()
+{
+	_SetStatusEnglish();  
 }
 
 

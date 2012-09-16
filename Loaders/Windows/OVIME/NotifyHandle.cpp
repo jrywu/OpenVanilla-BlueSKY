@@ -4,6 +4,8 @@
 
 static bool isPrivateEightExecuting = false;
 static bool inprivate2=false;
+static bool inprivate21=false;
+static bool inprivate22=false;
 static bool inprivate5=false;
 
 
@@ -45,8 +47,15 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 			atoi(loader->getGlobalConfigKey("StatusPosY")),
 			!!atoi(loader->getGlobalConfigKey("IsDocked"))
 			);
-		
-		dsvr->showStatus(true);	
+
+		isChinese = !!atoi(loader->getGlobalConfigKey("isChinese"));
+		dsvr->showStatus(true);
+		if(isChinese){
+			SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, 21);
+		}else{
+			SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, 22);
+			if(isWindows8()) dsvr->showStatus(false);		//Hide status bar in engilsh mode in win8
+		}
 		
 
 		break;
@@ -61,13 +70,24 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 			!!atoi(loader->getGlobalConfigKey("IsDocked"))
 			);
 		
-		dsvr->showStatus(true);	 
+		isChinese = !!atoi(loader->getGlobalConfigKey("isChinese"));
+		dsvr->showStatus(true);
+		if(isChinese){
+			SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, 21);
+		}else{
+			SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, 22);
+			if(isWindows8()) dsvr->showStatus(false);	   //Hide status bar in engilsh mode in win8
+		}
+		
+		
 		break;
 		}
 	case IMN_CLOSESTATUSWINDOW:
 		{
 		murmur("IMN_CLOSESTATUSWINDOW");
-		dsvr->showStatus(false);								
+		dsvr->showStatus(false);
+		loader->setGlobalConfig("StatusBar");
+		loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
 		break;
 		}
 	case IMN_OPENCANDIDATE:
@@ -168,7 +188,7 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 			break;
 			}
 
-		case 2:  //Change UI CHI/ENG
+		case 2:  //Switch between CHI/ENG mode
 		{
 			if(!inprivate2){
 				inprivate2=true;
@@ -179,7 +199,7 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 				loader->unloadCurrentModule();
 			model->close();
 			
-			UIChangeChiEng();  
+			UISetChiEng();  
 
 			if( hUICurIMC )
 			{
@@ -194,11 +214,69 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 				}
 				ImmSetConversionStatus( hUICurIMC, conv, sentence);
 			}				
-			
+			loader->setGlobalConfig("StatusBar");
+			loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
 			inprivate2=false;
+			}
+
+			break;
+		}
+
+		case 21:  //Switch to CHinese mode
+		{
+			if(!inprivate21){
+				inprivate21=true;
+			murmur("\tSwitch to Chinese mode.");
+			
+			ImmModel* model = ImmModel::open(hUICurIMC); // force commit before changing 
+			if(wcslen(GETLPCOMPSTR(model->getCompStr())) )
+				loader->unloadCurrentModule();
+			model->close();
+			
+			UISetChinese();  
+
+			if( hUICurIMC )
+			{
+				isChinese=true;
+				DWORD conv, sentence;
+				ImmGetConversionStatus( hUICurIMC, &conv, &sentence);
+				ImmSetConversionStatus( hUICurIMC, conv | IME_CMODE_NATIVE, sentence);
+			}				
+			loader->setGlobalConfig("StatusBar");
+			loader->setGlobalConfigKey("isChinese","1"); //save chi/eng mode to global dictionary
+			inprivate21=false;
 			}
 			break;
 		}
+
+		case 22:  //Switch to English mode
+		{
+			if(!inprivate22){
+				inprivate22=true;
+			murmur("\tSwitch to English mode.");
+			
+			ImmModel* model = ImmModel::open(hUICurIMC); // force commit before changing 
+			if(wcslen(GETLPCOMPSTR(model->getCompStr())) )
+				loader->unloadCurrentModule();
+			model->close();
+			
+			UISetEnglish();  
+
+			if( hUICurIMC )
+			{
+				isChinese=false;
+				DWORD conv, sentence;
+				ImmGetConversionStatus( hUICurIMC, &conv, &sentence);
+				ImmSetConversionStatus( hUICurIMC, conv & ~IME_CMODE_NATIVE, sentence);
+			}				
+			loader->setGlobalConfig("StatusBar");
+			loader->setGlobalConfigKey("isChinese", "0"); //save chi/eng mode to global dictionary
+			inprivate22=false;
+			}
+			break;
+		}
+
+
 		case 3: //Switch InputMethod From Menu
 			{
 			murmur("\tChange Modules by Mouse");
@@ -252,7 +330,7 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 					loader->unloadCurrentModule();
 					int moduleId = UIModuleRotate();					
 					murmur("Ctrl+ \\; Switch IM to module:%d", moduleId);
-					UISetStatusModStrCurrent(moduleId );
+					UISetStatusModStrCurrent(moduleId);
 					loader->syncConfigToMenu(moduleId);
 					//loader->initContext(moduleId);
 					isPrivateEightExecuting = false; 

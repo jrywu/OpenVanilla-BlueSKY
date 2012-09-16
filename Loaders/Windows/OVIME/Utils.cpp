@@ -371,4 +371,24 @@ void RefreshUI(HIMC hUICurIMC)  //½Õ¾ãcomp cand
 
 	ImmModel::close();
 }
+
+BOOL isWindows8(){
+	OSVERSIONINFOEX osvi;
+	BOOL bOsVersionInfoEx;
+
+	ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
+
+	osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
+	bOsVersionInfoEx = GetVersionEx((OSVERSIONINFO*) &osvi);
+
+	if( ! bOsVersionInfoEx ) return false;
+
+	murmur("windows version %d.%d.  windows 8 is 6.2", osvi.dwMajorVersion, osvi.dwMinorVersion);
+	if ( osvi.dwMajorVersion == 6  && osvi.dwMinorVersion == 2)
+	  return true;
+	else
+	  return false;
+
+
+}
 #endif
