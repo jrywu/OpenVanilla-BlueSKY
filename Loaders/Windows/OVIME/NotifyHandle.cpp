@@ -37,9 +37,9 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 	switch (wParam)
 	{
 	case IMN_OPENSTATUSWINDOW:
-		{
+		//{
 		murmur("IMN_OPENSTATUSWINDOW");
-		murmur("\thwnd=%x", hWnd);		 
+		/*murmur("\thwnd=%x", hWnd);		 
 
 		loader->setGlobalConfig("StatusBar");
 		UICreateStatusWindow(hWnd, 
@@ -49,17 +49,16 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 			);
 
 		isChinese = !!atoi(loader->getGlobalConfigKey("isChinese"));
+		murmur("\tSwitching to saved  CHI/ENG  mode, isChinese: %d.", isChinese);
 		dsvr->showStatus(true);
-		if(isChinese){
-			SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, 21);
-		}else{
-			SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, 22);
-			if(isWindows8()) dsvr->showStatus(false);		//Hide status bar in engilsh mode in win8
-		}
+		SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, isChinese?21:22);
+		if(isWindows8()&&!isChinese) dsvr->showStatus(false);	//Hide status bar in engilsh mode in win8
+		
+		
 		
 
 		break;
-		}
+		}*/
 	case IMN_SETOPENSTATUS: // the same as IMN_OPENSTATUSWINDOW
 		{
 		murmur("IMN_SETOPENSTATUS");
@@ -70,14 +69,15 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 			!!atoi(loader->getGlobalConfigKey("IsDocked"))
 			);
 		
-		isChinese = !!atoi(loader->getGlobalConfigKey("isChinese"));
 		dsvr->showStatus(true);
-		if(isChinese){
-			SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, 21);
-		}else{
-			SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, 22);
-			if(isWindows8()) dsvr->showStatus(false);	   //Hide status bar in engilsh mode in win8
+		if(isWindows8()){
+			isChinese = !!atoi(loader->getGlobalConfigKey("isChinese"));
+			murmur("\tSwitching to saved  CHI/ENG  mode, isChinese: %d.", isChinese);
+			SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, isChinese?21:22);
+			if(!isChinese) dsvr->showStatus(false);	//Hide status bar in engilsh mode in win8
 		}
+		
+		
 		
 		
 		break;
@@ -192,31 +192,32 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 		{
 			if(!inprivate2){
 				inprivate2=true;
-			murmur("\tChange UI CHI/ENG.");
+				murmur("\tSwitch  CHI/ENG  mode, current isChinese: %d.", isChinese);
 			
-			ImmModel* model = ImmModel::open(hUICurIMC); // force commit before changing 
-			if(wcslen(GETLPCOMPSTR(model->getCompStr())) )
-				loader->unloadCurrentModule();
-			model->close();
+				ImmModel* model = ImmModel::open(hUICurIMC); // force commit before changing 
+				if(wcslen(GETLPCOMPSTR(model->getCompStr())) )
+					loader->unloadCurrentModule();
+				model->close();
 			
-			UISetChiEng();  
+				UISetChiEng();  
 
-			if( hUICurIMC )
-			{
-				isChinese=!isChinese;
-				DWORD conv, sentence;
-				ImmGetConversionStatus( hUICurIMC, &conv, &sentence);
-				if( isChinese ){
-					conv |= IME_CMODE_NATIVE;
-				}
-				else{
-					conv &= ~IME_CMODE_NATIVE;									
-				}
-				ImmSetConversionStatus( hUICurIMC, conv, sentence);
-			}				
-			loader->setGlobalConfig("StatusBar");
-			loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
-			inprivate2=false;
+				if( hUICurIMC )
+				{
+					isChinese=!isChinese;
+					DWORD conv, sentence;
+					ImmGetConversionStatus( hUICurIMC, &conv, &sentence);
+					if( isChinese ){
+						conv |= IME_CMODE_NATIVE;
+					}
+					else{
+						conv &= ~IME_CMODE_NATIVE;									
+					}
+					ImmSetConversionStatus( hUICurIMC, conv, sentence);
+				}				
+				murmur("\tnew isChinese: %d.", isChinese);
+				loader->setGlobalConfig("StatusBar");
+				loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
+				inprivate2=false;
 			}
 
 			break;
@@ -226,25 +227,26 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 		{
 			if(!inprivate21){
 				inprivate21=true;
-			murmur("\tSwitch to Chinese mode.");
+				murmur("\tSwitch to Chinese mode.");
 			
-			ImmModel* model = ImmModel::open(hUICurIMC); // force commit before changing 
-			if(wcslen(GETLPCOMPSTR(model->getCompStr())) )
-				loader->unloadCurrentModule();
-			model->close();
+				ImmModel* model = ImmModel::open(hUICurIMC); // force commit before changing 
+				if(wcslen(GETLPCOMPSTR(model->getCompStr())) )
+					loader->unloadCurrentModule();
+				model->close();
 			
-			UISetChinese();  
+				UISetChinese();  
 
-			if( hUICurIMC )
-			{
-				isChinese=true;
-				DWORD conv, sentence;
-				ImmGetConversionStatus( hUICurIMC, &conv, &sentence);
-				ImmSetConversionStatus( hUICurIMC, conv | IME_CMODE_NATIVE, sentence);
-			}				
-			loader->setGlobalConfig("StatusBar");
-			loader->setGlobalConfigKey("isChinese","1"); //save chi/eng mode to global dictionary
-			inprivate21=false;
+				if( hUICurIMC )
+				{
+					isChinese=true;
+					DWORD conv, sentence;
+					ImmGetConversionStatus( hUICurIMC, &conv, &sentence);
+					ImmSetConversionStatus( hUICurIMC, conv | IME_CMODE_NATIVE, sentence);
+				}				
+				//should not save the isChinese to config, cause looping here!!
+				//loader->setGlobalConfig("StatusBar");   
+				//loader->setGlobalConfigKey("isChinese", "1"); //save chi/eng mode to global dictionary
+				inprivate21=false;
 			}
 			break;
 		}
@@ -253,26 +255,27 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 		{
 			if(!inprivate22){
 				inprivate22=true;
-			murmur("\tSwitch to English mode.");
+				murmur("\tSwitch to English mode.");
 			
-			ImmModel* model = ImmModel::open(hUICurIMC); // force commit before changing 
-			if(wcslen(GETLPCOMPSTR(model->getCompStr())) )
-				loader->unloadCurrentModule();
-			model->close();
+				ImmModel* model = ImmModel::open(hUICurIMC); // force commit before changing 
+				if(wcslen(GETLPCOMPSTR(model->getCompStr())) )
+					loader->unloadCurrentModule();
+				model->close();
 			
-			UISetEnglish();  
+				UISetEnglish();  
 
-			if( hUICurIMC )
-			{
-				isChinese=false;
-				DWORD conv, sentence;
-				ImmGetConversionStatus( hUICurIMC, &conv, &sentence);
-				ImmSetConversionStatus( hUICurIMC, conv & ~IME_CMODE_NATIVE, sentence);
-			}				
-			loader->setGlobalConfig("StatusBar");
-			loader->setGlobalConfigKey("isChinese", "0"); //save chi/eng mode to global dictionary
-			inprivate22=false;
-			}
+				if( hUICurIMC )
+				{
+					isChinese=false;
+					DWORD conv, sentence;
+					ImmGetConversionStatus( hUICurIMC, &conv, &sentence);
+					ImmSetConversionStatus( hUICurIMC, conv & ~IME_CMODE_NATIVE, sentence);
+				}				
+				//should not save the isChinese to config, cause looping here!!
+				//loader->setGlobalConfig("StatusBar");   
+				//loader->setGlobalConfigKey("isChinese", "0"); //save chi/eng mode to global dictionary
+				inprivate22=false;
+				}
 			break;
 		}
 

@@ -127,8 +127,9 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 				// This is entry point if OV is set as default keyboard layout. Has to create status window here.
 				murmur("status enabled:%d", dsvr->isStatusEnabled);
 				
-				murmur("open status windows");
-
+				murmur("switched in, open status windows");
+				SendMessage(hWnd, WM_IME_NOTIFY, IMN_SETOPENSTATUS, 0); // send IMN_NOTIFY to do intitialization
+				/*
 				loader->setGlobalConfig("StatusBar");
 				UICreateStatusWindow(hWnd, 
 					atoi(loader->getGlobalConfigKey("StatusPosX")), 
@@ -145,17 +146,12 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 				murmur("\thUICurIMC==true");
 				
 				isChinese = !!atoi(loader->getGlobalConfigKey("isChinese"));
+				murmur("\tSwitching to saved  CHI/ENG  mode, isChinese: %d.", isChinese);
 				dsvr->showStatus(true);
-				if(isChinese){
-					SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, 21);
-				}else{
-					SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, 22);
-					if(isWindows8()) dsvr->showStatus(false);		//Hide status bar in engilsh mode in win8
-				}
-		
-		
-				
+				SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, isChinese?21:22);
+				if(isWindows8()&&!isChinese) dsvr->showStatus(false);	//Hide status bar in engilsh mode in win8
 				murmur("Status showed");
+				*/
 			
 			}
 			else   // it is NULL input context. (?)
@@ -184,7 +180,9 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 			dsvr->showStatus(false);
 			loader->setGlobalConfig("StatusBar");
 			loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
-
+			const char *value = loader->getGlobalConfigKey("isChinese");
+			murmur("\saved  CHI/ENG  mode, isChinese: %s.", value);
+				
 			//dsvr->releaseIMC();  //?
 		}
 		insetcontext = false;
@@ -238,7 +236,8 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 				
 				murmur("open status windows");
 				// Office 2007 does not sent openstatuswindow on creating.	
-
+				SendMessage(hWnd, WM_IME_NOTIFY, IMN_SETOPENSTATUS, 0); // send IMN_NOTIFY to do intitialization
+				/*
 				loader->setGlobalConfig("StatusBar");
 				
 				UICreateStatusWindow(hWnd, 
@@ -254,18 +253,14 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 				murmur("\thUICurIMC==true");
 
 
+				
 				isChinese = !!atoi(loader->getGlobalConfigKey("isChinese"));
+				murmur("\tSwitching to saved  CHI/ENG  mode, isChinese: %d.", isChinese);
 				dsvr->showStatus(true);
-				if(isChinese){
-					SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, 21);
-				}else{
-					SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, 22);
-					if(isWindows8()) dsvr->showStatus(false);	  //Hide status bar in engilsh mode in win8
-				}
-		
-		
-
-			
+				SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, isChinese?21:22);
+				if(isWindows8()&&!isChinese) dsvr->showStatus(false);	//Hide status bar in engilsh mode in win8
+				*/
+				
 			}
 			else   // it is NULL input context. (?)
 				murmur("\thUICurIMC==false, hide all"); 
@@ -337,7 +332,7 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 			loader->setGlobalConfigKey("IsDocked","0");
 			
 		}
-
+		loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
 
 	
 		loader->unloadCurrentModule();	
@@ -347,7 +342,7 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 		dsvr->showCandi(false);
 		dsvr->hideNotify();
 
-		loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
+		
 
 		dsvr->SetCandiEnabled(false);
 		dsvr->SetCompEnabled(false);

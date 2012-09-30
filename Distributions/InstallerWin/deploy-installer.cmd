@@ -25,18 +25,18 @@ copy "..\..\Dep\x64\msvcp110.dll" ..\InstallerWin\system32.x64\
 copy "..\..\Dep\x64\msvcp110d.dll" ..\InstallerWin\system32.x64\
 copy "..\..\Dep\x64\msvcr110.dll" ..\InstallerWin\system32.x64\
 copy "..\..\Dep\x64\msvcr110d.dll" ..\InstallerWin\system32.x64\
-REM copy "..\..\Loaders\Windows\OVUIServer\bin\Release\OVUIServer.dll" ..\InstallerWin\OpenVanilla\
-REM copy "..\..\Loaders\Windows\OVUIServer\bin\Release\OVUIServer.dll" ..\InstallerWin\OpenVanilla\
-copy ..\..\Loaders\Windows\OVIMEUI\Release\x86\OVIMEUI.dll ..\InstallerWin\system32.x86\
-copy ..\..\Loaders\Windows\OVIMEUI\Release\x64\OVIMEUI.dll ..\InstallerWin\system32.x64\
+copy "..\..\Loaders\Windows\OVUIServer\bin\Release\OVUIServer.dll" ..\InstallerWin\OpenVanilla\
+copy "..\..\Loaders\Windows\OVUIServer\bin\Release\OVUIServer.dll" ..\InstallerWin\OpenVanilla\
+rem copy ..\..\Loaders\Windows\OVIMEUI\Release\x86\OVIMEUI.dll ..\InstallerWin\system32.x86\
+rem copy ..\..\Loaders\Windows\OVIMEUI\Release\x64\OVIMEUI.dll ..\InstallerWin\system32.x64\
 copy ..\..\Loaders\Windows\OVIME\Release\x86\OVIME.ime ..\InstallerWin\system32.x86\
 copy ..\..\Loaders\Windows\OVIME\Release\x64\OVIME.ime ..\InstallerWin\system32.x64\
-copy ..\InstallerWin\OVUtil\bin\Release\OVUtil.exe ..\InstallerWin\OpenVanilla\
+copy  ..\InstallerWin\OVUtil\bin\Release\OVUtil.exe ..\InstallerWin\OpenVanilla\
 copy ..\..\HelperApps\PreferencesWin\bin\Release\OVPreferences.exe ..\InstallerWin\OpenVanilla\
 copy ..\..\HelperApps\PreferencesWin\bin\Release\zh-TW\* ..\InstallerWin\OpenVanilla\zh-TW
 copy ..\..\HelperApps\PreferencesWin\bin\Release\en-US\* ..\InstallerWin\OpenVanilla\en-US
-copy "..\..\Modules\OVIMArray\Release\x86\OVIMArray.dll" "..\InstallerWin\OpenVanilla\Modules\x86\"
-copy "..\..\Modules\OVIMArray\Release\x64\OVIMArray.dll" "..\InstallerWin\OpenVanilla\Modules\x64\"
+copy "..\..\Modules\OVIMArraySQ\Release\x86\OVIMArraySQ.dll" "..\InstallerWin\OpenVanilla\Modules\x86\"
+copy "..\..\Modules\OVIMArraySq\Release\x64\OVIMArraySQ.dll" "..\InstallerWin\OpenVanilla\Modules\x64\"
 copy "..\..\Modules\OVIMEsperanto\Release\x86\OVIMEsperanto.dll" "..\InstallerWin\OpenVanilla\Modules\x86\"
 copy "..\..\Modules\OVIMEsperanto\Release\x64\OVIMEsperanto.dll" "..\InstallerWin\OpenVanilla\Modules\x64\"
 copy "..\..\DataTables\ovimarray.db" "..\InstallerWin\OpenVanilla\Modules\OVIMArray\"

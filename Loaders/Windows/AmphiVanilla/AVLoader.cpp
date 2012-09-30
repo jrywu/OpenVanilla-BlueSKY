@@ -49,12 +49,15 @@ AVLoader::~AVLoader()
 
 const char* AVLoader::getGlobalConfigKey(const char* key)
 {
-	return em->dict()->getString(key);
+	const char *value = em->dict()->getString(key);
+	murmur("getGlobalConfigKey(), key:%s, value: %s", key, value);
+	return value;
 	 
 	
 }
 void AVLoader::setGlobalConfigKey(const char* key, const char* value)
 {
+	murmur("setGlobalConfigKey(), key:%s, value: %s", key, value);
 	em->dict()->setString(key, value);
 }
 
