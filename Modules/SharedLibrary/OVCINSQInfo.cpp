@@ -151,7 +151,12 @@ OVCINSQList::OVCINSQList(const char *pathseparator, const char* datapath, const 
         
         struct dirent **files = NULL;
         struct stat fileinfo;
-        int count=scandir(loadpath, &files, CLFileSelect, alphasort);        
+#ifdef __APPLE__
+        int count=scandir(loadpath, &files, (int (*)(const struct dirent *)) CLFileSelect, alphasort);
+#else
+        int count=scandir(loadpath, &files, CLFileSelect, alphasort);
+        
+#endif
         
         int loaded=0;
         for (int i=0; i<count; i++) {

@@ -110,8 +110,11 @@ OVCINList::OVCINList(const char *pathseparator) {
         clExtension=extension;
     
         struct dirent **files = NULL;
-        int count=scandir(loadpath, &files, CLFileSelect, alphasort);        
-
+#ifdef __APPLE__
+        int count=scandir(loadpath, &files, (int (*)(const struct dirent *)) CLFileSelect, alphasort);
+#else
+        int count=scandir(loadpath, &files, CLFileSelect, alphasort);
+#endif
         int loaded=0;
         for (int i=0; i<count; i++) {
             if (preparse(loadpath, files[i]->d_name)) loaded++;

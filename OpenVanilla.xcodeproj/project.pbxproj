@@ -474,7 +474,7 @@
 		6A8C6EBA103D46E500DE4A39 /* array-shortcode.cin */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "array-shortcode.cin"; sourceTree = "<group>"; };
 		6A8C6EBB103D46E500DE4A39 /* array-special.cin */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "array-special.cin"; sourceTree = "<group>"; };
 		6A8C6EBC103D46E500DE4A39 /* array30.cin */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = array30.cin; sourceTree = "<group>"; };
-		6AB6CE6A0E9CF46F0001B127 /* OpenVanilla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = OpenVanilla.app; path = "OpenVanilla 0.9b.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AB6CE6A0E9CF46F0001B127 /* OpenVanilla-0.9b.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OpenVanilla-0.9b.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AB6CE6C0E9CF46F0001B127 /* OpenVanilla-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "OpenVanilla-Info.plist"; path = "Loaders/OSX-IMK/OpenVanilla-Info.plist"; sourceTree = "<group>"; };
 		6AB6CF380E9CF5B60001B127 /* LVUIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LVUIController.h; path = "Loaders/OSX-IMK/LVUIController.h"; sourceTree = "<group>"; };
 		6AB6CF390E9CF5B60001B127 /* LVUIController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LVUIController.mm; path = "Loaders/OSX-IMK/LVUIController.mm"; sourceTree = "<group>"; };
@@ -753,7 +753,7 @@
 		6A6A86110E867B2E00B94B7F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6AB6CE6A0E9CF46F0001B127 /* OpenVanilla.app */,
+				6AB6CE6A0E9CF46F0001B127 /* OpenVanilla-0.9b.app */,
 				D44D46EC0E9DB0E30062F692 /* libOVLegacyModuleLibrary.a */,
 				6A6A86100E867B2E00B94B7F /* OpenVanilla.framework */,
 				D42E383B0E86A22300453DE6 /* OVIMArray.bundle */,
@@ -1245,7 +1245,7 @@
 			);
 			name = "OpenVanilla (Loader IMK)";
 			productName = OpenVanilla;
-			productReference = 6AB6CE6A0E9CF46F0001B127 /* OpenVanilla.app */;
+			productReference = 6AB6CE6A0E9CF46F0001B127 /* OpenVanilla-0.9b.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D403C3100EA3CBD0006F0A89 /* OVIMTibetan */ = {
@@ -2338,7 +2338,7 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_NAME = "OpenVanilla 0.9b";
+				PRODUCT_NAME = "OpenVanilla-0.9b";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -2363,7 +2363,7 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_NAME = "OpenVanilla 0.9b";
+				PRODUCT_NAME = "OpenVanilla-0.9b";
 				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
