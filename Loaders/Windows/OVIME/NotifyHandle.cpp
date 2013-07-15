@@ -70,12 +70,26 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 			);
 		
 		dsvr->showStatus(true);
+		
+		
 		if(isWindows8()){
-			isChinese = !!atoi(loader->getGlobalConfigKey("isChinese"));
-			murmur("\tSwitching to saved  CHI/ENG  mode, isChinese: %d.", isChinese);
+			//isChinese = !!atoi(loader->getGlobalConfigKey("isChinese"));
+			murmur("\tSwitching to saved  CHI/ENG  mode, isChinese: %d, and isFullshape: %d", isChinese, isFullShape);
 			SendMessage(hWnd, WM_IME_NOTIFY, IMN_PRIVATE, isChinese?21:22);
-			if(!isChinese) dsvr->showStatus(false);	//Hide status bar in engilsh mode in win8
+			if(!isChinese && &isFullShape){
+				dsvr->showStatus(false);	//Hide status bar in engilsh mode in win8
+				DWORD conv, sentence;
+				ImmGetConversionStatus(hUICurIMC, &conv, &sentence);
+				isFullShape = (conv & IME_CMODE_FULLSHAPE) == 0 ? false : true;
+				if(isFullShape){  // force switch to half-shape when statusbar is not shown (for windows 8).
+					murmur("\t Going to hide Statusbar! Switch back to half-shape");
+					conv &= ~IME_CMODE_FULLSHAPE;									
+					ImmSetConversionStatus( hUICurIMC, conv, sentence);
+				}
+			}
+			
 		}
+		
 		
 		
 		
@@ -87,7 +101,7 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 		murmur("IMN_CLOSESTATUSWINDOW");
 		dsvr->showStatus(false);
 		loader->setGlobalConfig("StatusBar");
-		loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
+		//loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary.no longer used.
 		break;
 		}
 	case IMN_OPENCANDIDATE:
@@ -109,9 +123,19 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 	case IMN_SETCONVERSIONMODE:
 		murmur("IMN_SETCONVERSIONMODE");
 		DWORD conv, sentence;
-		ImmGetConversionStatus( ImmGetContext(hWnd), &conv, &sentence);
+		ImmGetConversionStatus(hUICurIMC, &conv, &sentence);
 		isChinese = (conv & IME_CMODE_NATIVE) == 0 ? false : true;
 		isFullShape = (conv & IME_CMODE_FULLSHAPE) == 0 ? false : true;
+
+		if(isFullShape && !dsvr->getStatusEnabled()){  // force switch to half-shape when statusbar is not shown (for windows 8).
+			murmur("\t Statusbar not shown!! Switch back to half-shape");
+			conv &= ~IME_CMODE_FULLSHAPE;									
+			ImmSetConversionStatus( hUICurIMC, conv, sentence);
+		}
+
+		if( isFullShape ) UISetFull();
+		else	UISetHalf();
+		//ImmSetConversionStatus( hUICurIMC, conv, sentence);
 		//murmur("\t");
 		murmur("\tIsChinese:%i; IsFullShape:%i", isChinese, isFullShape);
 		break;  
@@ -181,9 +205,7 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 		case 1: //Change UI Half/Full from key: shift+space
 			{
 			murmur("\tChange UI Half/Full.");
-			
-
-			UIChangeHalfFull(); 
+			//UIChangeHalfFull();   //move to IMN_SETCONVERSIONMODE
 			 
 			break;
 			}
@@ -192,8 +214,7 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 		{
 			if(!inprivate2){
 				inprivate2=true;
-				murmur("\tSwitch  CHI/ENG  mode, current isChinese: %d.", isChinese);
-			
+				murmur("\tSwitch  CHI/ENG  mode, current isChinese: %d, and isFullshape: %d", isChinese, isFullShape);
 				ImmModel* model = ImmModel::open(hUICurIMC); // force commit before changing 
 				if(wcslen(GETLPCOMPSTR(model->getCompStr())) )
 					loader->unloadCurrentModule();
@@ -204,26 +225,29 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 				if( hUICurIMC )
 				{
 					isChinese=!isChinese;
+
 					DWORD conv, sentence;
 					ImmGetConversionStatus( hUICurIMC, &conv, &sentence);
 					if( isChinese ){
 						conv |= IME_CMODE_NATIVE;
 					}
 					else{
-						conv &= ~IME_CMODE_NATIVE;									
+						conv &= ~IME_CMODE_NATIVE;	
 					}
 					ImmSetConversionStatus( hUICurIMC, conv, sentence);
 				}				
 				murmur("\tnew isChinese: %d.", isChinese);
-				loader->setGlobalConfig("StatusBar");
-				loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
+				//loader->setGlobalConfig("StatusBar");
+				//loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
+				if(isChinese&&!dsvr->getStatusEnabled()) dsvr->showStatus(true);
+
 				inprivate2=false;
 			}
 
 			break;
 		}
 
-		case 21:  //Switch to CHinese mode
+		case 21:  //Switch to Chinese mode
 		{
 			if(!inprivate21){
 				inprivate21=true;
@@ -246,6 +270,7 @@ LRESULT NotifyHandle(HIMC hUICurIMC,
 				//should not save the isChinese to config, cause looping here!!
 				//loader->setGlobalConfig("StatusBar");   
 				//loader->setGlobalConfigKey("isChinese", "1"); //save chi/eng mode to global dictionary
+				if(isChinese&&!dsvr->getStatusEnabled()) dsvr->showStatus(true);
 				inprivate21=false;
 			}
 			break;

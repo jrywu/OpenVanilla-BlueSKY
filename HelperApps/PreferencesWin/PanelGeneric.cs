@@ -256,6 +256,11 @@ namespace OVPreferences
                 m_maxKeySequenceLength.ToString());
         }
 
+        private void m_pnSelf_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         
 
 

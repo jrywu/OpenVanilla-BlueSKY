@@ -50,15 +50,16 @@ namespace OVPreferences
             this.m_lbMaxRadialHint1 = new System.Windows.Forms.Label();
             this.m_lbBasicSettings = new System.Windows.Forms.Label();
             this.m_lbMaxKeySequenceLength = new System.Windows.Forms.Label();
-            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.lineShape2 = new Microsoft.VisualBasic.PowerPacks.LineShape();
-            this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.sep1 = new System.Windows.Forms.Label();
+            this.sep2 = new System.Windows.Forms.Label();
             this.m_pnSelf.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_nuMaxRadicalLength)).BeginInit();
             this.SuspendLayout();
             // 
             // m_pnSelf
             // 
+            this.m_pnSelf.Controls.Add(this.sep2);
+            this.m_pnSelf.Controls.Add(this.sep1);
             this.m_pnSelf.Controls.Add(this.m_nuMaxRadicalLength);
             this.m_pnSelf.Controls.Add(this.m_lbWildcardSupport);
             this.m_pnSelf.Controls.Add(this.m_lbTypingPreference);
@@ -79,7 +80,6 @@ namespace OVPreferences
             this.m_pnSelf.Controls.Add(this.m_lbMaxRadialHint1);
             this.m_pnSelf.Controls.Add(this.m_lbBasicSettings);
             this.m_pnSelf.Controls.Add(this.m_lbMaxKeySequenceLength);
-            this.m_pnSelf.Controls.Add(this.shapeContainer1);
             resources.ApplyResources(this.m_pnSelf, "m_pnSelf");
             this.m_pnSelf.Name = "m_pnSelf";
             // 
@@ -216,24 +216,17 @@ namespace OVPreferences
             resources.ApplyResources(this.m_lbMaxKeySequenceLength, "m_lbMaxKeySequenceLength");
             this.m_lbMaxKeySequenceLength.Name = "m_lbMaxKeySequenceLength";
             // 
-            // shapeContainer1
+            // sep1
             // 
-            resources.ApplyResources(this.shapeContainer1, "shapeContainer1");
-            this.shapeContainer1.Name = "shapeContainer1";
-            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.lineShape2,
-            this.lineShape1});
-            this.shapeContainer1.TabStop = false;
+            this.sep1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            resources.ApplyResources(this.sep1, "sep1");
+            this.sep1.Name = "sep1";
             // 
-            // lineShape2
+            // sep2
             // 
-            this.lineShape2.Name = "lineShape2";
-            resources.ApplyResources(this.lineShape2, "lineShape2");
-            // 
-            // lineShape1
-            // 
-            this.lineShape1.Name = "lineShape1";
-            resources.ApplyResources(this.lineShape1, "lineShape1");
+            this.sep2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            resources.ApplyResources(this.sep2, "sep2");
+            this.sep2.Name = "sep2";
             // 
             // PanelGeneric
             // 
@@ -273,11 +266,10 @@ namespace OVPreferences
         private System.Windows.Forms.Label m_lbMaxRadialHint1;
         private System.Windows.Forms.Label m_lbTypingPreference;
         private System.Windows.Forms.Label m_lbMaxRadialHint2;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
-        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
-        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape2;
         private System.Windows.Forms.Label m_lbWildcardSupport;
         private System.Windows.Forms.NumericUpDown m_nuMaxRadicalLength;
+        private System.Windows.Forms.Label sep2;
+        private System.Windows.Forms.Label sep1;
         
     }
 }

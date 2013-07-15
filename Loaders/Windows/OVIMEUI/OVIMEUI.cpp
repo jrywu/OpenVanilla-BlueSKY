@@ -264,6 +264,17 @@ void UIChangeHalfFull()
 	_SetStatusHalfFull(); 
 }
 
+void UISetHalf()
+{
+	_SetStatusHalf(); 
+}
+
+void UISetFull()
+{
+	_SetStatusFull(); 
+}
+
+
 void UISetChiEng()
 {
 	_SetStatusChiEng();  

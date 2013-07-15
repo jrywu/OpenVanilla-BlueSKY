@@ -384,7 +384,7 @@ BOOL isWindows8(){
 	if( ! bOsVersionInfoEx ) return false;
 
 	murmur("windows version %d.%d.  windows 8 is 6.2", osvi.dwMajorVersion, osvi.dwMinorVersion);
-	if ( osvi.dwMajorVersion == 6  && osvi.dwMinorVersion == 2)
+	if ( osvi.dwMajorVersion == 6  && osvi.dwMinorVersion >= 2)
 	  return true;
 	else
 	  return false;

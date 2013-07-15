@@ -27,7 +27,7 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 
 	LRESULT lRet = 0L;
 	HIMC hUICurIMC = (HIMC)GetWindowLong(hWnd, IMMGWL_IMC);
-
+	murmur("UIWndProc(), hUICurIME = %x", hUICurIMC);
 	if(!hUICurIMC)
 	{        
 		switch (msg)
@@ -40,6 +40,7 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 		case WM_IME_COMPOSITIONFULL:
 		case WM_IME_SELECT:
  		case WM_IME_CHAR: 
+		case WM_IME_SETCONTEXT:
 			return 0L;
 		default:
 			break;
@@ -73,7 +74,6 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 
 		CompX = CompY = -1;
 		//UICreateStatusWindow(hWnd);
-		
 		UICreateCompWindow(hWnd);
 		UICreateCandWindow(hWnd);
 		UICreateNotifyWindow(hWnd);
@@ -117,7 +117,7 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 
 		if (wParam) //switch in
 		{		
-			murmur("\tsetcontext to hwnd:%x",hWnd);		 	
+			murmur("\t set context to hwnd:%x",hWnd);		 	
 			if (hUICurIMC)  //hUICurIMC==0 ªí¥Ü¥X¿ù(?)
 			{
 
@@ -128,8 +128,9 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 				murmur("status enabled:%d", dsvr->isStatusEnabled);
 				
 				murmur("switched in, open status windows");
-				SendMessage(hWnd, WM_IME_NOTIFY, IMN_SETOPENSTATUS, 0); // send IMN_NOTIFY to do intitialization
-				/*
+				
+				//SendMessage(hWnd, WM_IME_NOTIFY, IMN_SETOPENSTATUS, 0); // send IMN_NOTIFY to do intitialization
+				/* 
 				loader->setGlobalConfig("StatusBar");
 				UICreateStatusWindow(hWnd, 
 					atoi(loader->getGlobalConfigKey("StatusPosX")), 
@@ -179,9 +180,9 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 			
 			dsvr->showStatus(false);
 			loader->setGlobalConfig("StatusBar");
-			loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
-			const char *value = loader->getGlobalConfigKey("isChinese");
-			murmur("\saved  CHI/ENG  mode, isChinese: %s.", value);
+			//loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
+			//const char *value = loader->getGlobalConfigKey("isChinese");
+			//murmur("\saved  CHI/ENG  mode, isChinese: %s.", value);
 				
 			//dsvr->releaseIMC();  //?
 		}
@@ -236,7 +237,7 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 				
 				murmur("open status windows");
 				// Office 2007 does not sent openstatuswindow on creating.	
-				SendMessage(hWnd, WM_IME_NOTIFY, IMN_SETOPENSTATUS, 0); // send IMN_NOTIFY to do intitialization
+				//SendMessage(hWnd, WM_IME_NOTIFY, IMN_SETOPENSTATUS, 0); // send IMN_NOTIFY to do intitialization
 				/*
 				loader->setGlobalConfig("StatusBar");
 				
@@ -283,7 +284,7 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 			murmur("WM_IME_SELECT: Close Status Window");
 			dsvr->showStatus(false);	
 			loader->setGlobalConfig("StatusBar");
-			loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
+			//loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
 
 			
 
@@ -332,7 +333,7 @@ LRESULT APIENTRY UIWndProc(HWND hWnd,
 			loader->setGlobalConfigKey("IsDocked","0");
 			
 		}
-		loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
+		//loader->setGlobalConfigKey("isChinese", isChinese?"1":"0"); //save chi/eng mode to global dictionary
 
 	
 		loader->unloadCurrentModule();	

@@ -11,6 +11,8 @@ void _SetStatusChiEng();
 void _SetStatusChinese();
 void _SetStatusEnglish();
 void _SetStatusHalfFull();
+void _SetStatusHalf();
+void _SetStatusFull();
 bool _GetItemChecked(int index);
 void _SetItemChecked(int index, bool c);
 void _SetItemEnabled(int index, bool c);

@@ -201,12 +201,20 @@ AVDisplayServer *DisplayServer::SetCompStarted(bool t)
 
 AVDisplayServer *DisplayServer::SetStatusEnabled(bool t)
 {
-	if(t)
+	if(t){
 		murmur("\t*DisplayServer::SetStatusEnabled=true");
-	else
+		isStatusEnabled=true;
+	}else{
 		murmur("\t*DisplayServer::SetStatusEnabled=false");
+		if(isWindows8()){  //force hide notify and candi in windows 8
+			isStatusEnabled=false;
+			showCandi(false);	
+			hideNotify();
+		}
+
+	}
 	
-	isStatusEnabled=t;
+	//isStatusEnabled=t;
 	return this;
 }
 
@@ -235,12 +243,13 @@ AVDisplayServer *DisplayServer::SetCandiEnabled(bool t)
 AVDisplayServer *DisplayServer::showStatus(bool t)
 {	
 	murmur("dsvr: show status window: %d", t);
-	if(dsvr->isStatusEnabled && !t) 
+	//if(dsvr->isStatusEnabled && !t) 
+	if(!t) 
 	{
 		UIHideStatusWindow();
 		dsvr->SetStatusEnabled(false);
 	}
-	if(!dsvr->isStatusEnabled && t)
+	else//if(!dsvr->isStatusEnabled && t)
 	{
 		UIShowStatusWindow();
 		dsvr->SetStatusEnabled(true);

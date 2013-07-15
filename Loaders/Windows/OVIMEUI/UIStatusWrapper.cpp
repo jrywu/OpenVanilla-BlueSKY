@@ -73,6 +73,16 @@ void _SetStatusHalfFull()
 	OVUIServerStatusWrapper::Instance()->SetHalfFull();	
 }
 
+void _SetStatusHalf()
+{	
+	OVUIServerStatusWrapper::Instance()->SetHalf();	
+}
+void _SetStatusFull()
+{	
+	OVUIServerStatusWrapper::Instance()->SetFull();	
+}
+
+
 bool _GetItemChecked(int index)
 {	
 	return OVUIServerStatusWrapper::Instance()->getItemChecked(index);	

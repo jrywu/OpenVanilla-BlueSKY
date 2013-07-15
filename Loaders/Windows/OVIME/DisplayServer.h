@@ -25,6 +25,7 @@ public:
 	virtual AVDisplayServer * getStatusPos(LPPOINT);
 	bool getinChineseMode() {return isChinese;}
 	bool getinFullShapeMode() {return isFullShape;}
+	bool getStatusEnabled() {return isStatusEnabled;}
 
 	//virtual AVDisplayServer *setBufString(const char *str);
 	virtual AVDisplayServer *setBufString(const char *str,int caretX=0, int markFrom=-1, int markTo=-1); 

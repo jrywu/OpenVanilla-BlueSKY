@@ -62,7 +62,7 @@ int ImmController::onKeyShiftOnly(HIMC hIMC, LPARAM lKeyData)
 		MyGenerateMessage(hIMC, WM_IME_NOTIFY, IMN_SETCONVERSIONMODE, 0);
 */
 #else
-		MyGenerateMessage(hIMC, WM_IME_NOTIFY, IMN_PRIVATE, 2);
+		MyGenerateMessage(hIMC, WM_IME_NOTIFY, IMN_PRIVATE, 2); //Switch between CHI/ENG mode
 #endif
 		shiftState = 2;
 		m_shiftPressedTime = 0;
@@ -93,7 +93,8 @@ int ImmController::onKeyShift(HIMC hIMC, UINT uVKey, LPARAM lKeyData)
 		ImmSetConversionStatus(hIMC, conv, sentence);
 		MyGenerateMessage(hIMC, WM_IME_NOTIFY, IMN_SETCONVERSIONMODE, 0);
 #else
-		MyGenerateMessage(hIMC, WM_IME_NOTIFY, IMN_PRIVATE, 1);
+		
+		//MyGenerateMessage(hIMC, WM_IME_NOTIFY, IMN_PRIVATE, 1); do statusbar update in IMN_SETCONVERSIONMODE. No more needed here.
 #endif
 		m_shiftPressedTime = 0;
 		
@@ -189,8 +190,15 @@ int ImmController::onKeyCtrl(HIMC hIMC, UINT uVKey)
 			else
 				ImmSetOpenStatus(NULL, TRUE);
 #endif
-			if(isWindows8())
-				MyGenerateMessage(hIMC, WM_IME_NOTIFY, IMN_PRIVATE, 2); //Switch chi/eng in windows 8.
+			if(isWindows8()){
+				if(dsvr->getStatusEnabled()){
+					murmur("C_Space: switch to english mode");
+					MyGenerateMessage(hIMC, WM_IME_NOTIFY, IMN_PRIVATE, 22); //force switching into English mode
+				}else{
+					murmur("C_Space: switch to chinese mode");
+					MyGenerateMessage(hIMC, WM_IME_NOTIFY, IMN_PRIVATE, 21); //force switching into chinese mode
+				}
+			}
 
 			processState = 1;
 			break;
@@ -506,7 +514,7 @@ bool ImmController::isWindows8(){
 	
 	if( ! bOsVersionInfoEx ) return false;
 	murmur("windows version: %u.%u\n", osvi.dwMajorVersion, osvi.dwMinorVersion);
-	if ( osvi.dwMajorVersion == 6  && osvi.dwMinorVersion == 2)
+	if ( osvi.dwMajorVersion == 6  && osvi.dwMinorVersion >= 2)
 	  return true;
 	else
 	  return false;

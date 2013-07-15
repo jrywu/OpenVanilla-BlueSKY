@@ -270,6 +270,7 @@ ImeProcessKey(HIMC hIMC, UINT uVKey, LPARAM lKeyData, CONST LPBYTE lpbKeyState)
 BOOL APIENTRY 
 ImeSelect(HIMC hIMC, BOOL fSelect)
 {
+	murmur("ImeSelect.");
     LPINPUTCONTEXT lpIMC;
 
     if (!hIMC)

@@ -117,18 +117,63 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="sep2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="sep2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 272</value>
+  </data>
+  <data name="sep2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>350, 2</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="sep2.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;sep2.Name" xml:space="preserve">
+    <value>sep2</value>
+  </data>
+  <data name="&gt;&gt;sep2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sep2.Parent" xml:space="preserve">
+    <value>m_pnSelf</value>
+  </data>
+  <data name="&gt;&gt;sep2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="sep1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 95</value>
+  </data>
+  <data name="sep1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>350, 2</value>
+  </data>
+  <data name="sep1.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;sep1.Name" xml:space="preserve">
+    <value>sep1</value>
+  </data>
+  <data name="&gt;&gt;sep1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sep1.Parent" xml:space="preserve">
+    <value>m_pnSelf</value>
+  </data>
+  <data name="&gt;&gt;sep1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="m_nuMaxRadicalLength.Location" type="System.Drawing.Point, System.Drawing">
     <value>184, 37</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_nuMaxRadicalLength.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 3, 2, 3</value>
   </data>
   <data name="m_nuMaxRadicalLength.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 25</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_nuMaxRadicalLength.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
   </data>
@@ -142,7 +187,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_nuMaxRadicalLength.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="m_lbWildcardSupport.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -175,7 +220,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_lbWildcardSupport.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="m_lbTypingPreference.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -208,7 +253,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_lbTypingPreference.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="m_cbLearnAssociatedPhrase.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -238,7 +283,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_cbLearnAssociatedPhrase.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="m_cbOrderWordsByFreq.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -271,7 +316,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_cbOrderWordsByFreq.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="m_cbAssociatedPhrase.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -304,7 +349,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_cbAssociatedPhrase.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="m_tbselectKey.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft JhengHei, 9.75pt</value>
@@ -334,7 +379,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_tbselectKey.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="m_tbMatchZeroOrMoreChar.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft JhengHei, 9.75pt</value>
@@ -358,7 +403,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_tbMatchZeroOrMoreChar.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="m_tbMatchOneChar.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft JhengHei, 9.75pt</value>
@@ -388,7 +433,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_tbMatchOneChar.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="m_cbWarningBeep.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -418,7 +463,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_cbWarningBeep.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="m_cbHitMaxAndCompose.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -448,7 +493,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_cbHitMaxAndCompose.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="m_cbAutoCompose.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -478,7 +523,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_cbAutoCompose.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="m_cbShiftSelectionKey.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -508,7 +553,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_cbShiftSelectionKey.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="m_lbselectKey.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -544,7 +589,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_lbselectKey.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="m_lbMatchZeroOrMoreChar.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -577,7 +622,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_lbMatchZeroOrMoreChar.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>16</value>
   </data>
   <data name="m_lbMatchOneChar.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -610,7 +655,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_lbMatchOneChar.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>17</value>
   </data>
   <data name="m_lbMaxRadialHint2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -643,7 +688,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_lbMaxRadialHint2.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>18</value>
   </data>
   <data name="m_lbMaxRadialHint1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -676,7 +721,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_lbMaxRadialHint1.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>19</value>
   </data>
   <data name="m_lbBasicSettings.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -709,7 +754,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_lbBasicSettings.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>20</value>
   </data>
   <data name="m_lbMaxKeySequenceLength.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -739,49 +784,7 @@
     <value>m_pnSelf</value>
   </data>
   <data name="&gt;&gt;m_lbMaxKeySequenceLength.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <metadata name="lineShape2.Bounds" type="System.Drawing.Rectangle, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>14, 296, 280, 0</value>
-  </metadata>
-  <metadata name="lineShape2.Location" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>14, 296</value>
-  </metadata>
-  <metadata name="lineShape2.Size" type="System.Drawing.Size, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>280, 0</value>
-  </metadata>
-  <metadata name="lineShape1.Bounds" type="System.Drawing.Rectangle, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>14, 103, 280, 0</value>
-  </metadata>
-  <metadata name="lineShape1.Location" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>14, 103</value>
-  </metadata>
-  <metadata name="lineShape1.Size" type="System.Drawing.Size, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>280, 0</value>
-  </metadata>
-  <data name="shapeContainer1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="shapeContainer1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="shapeContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>408, 510</value>
-  </data>
-  <data name="shapeContainer1.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;shapeContainer1.Name" xml:space="preserve">
-    <value>shapeContainer1</value>
-  </data>
-  <data name="&gt;&gt;shapeContainer1.Type" xml:space="preserve">
-    <value>Microsoft.VisualBasic.PowerPacks.ShapeContainer, Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="&gt;&gt;shapeContainer1.Parent" xml:space="preserve">
-    <value>m_pnSelf</value>
-  </data>
-  <data name="&gt;&gt;shapeContainer1.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
   </data>
   <data name="m_pnSelf.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -810,48 +813,6 @@
   <data name="&gt;&gt;m_pnSelf.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="lineShape2.Bounds" type="System.Drawing.Rectangle, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>14, 296, 280, 0</value>
-  </metadata>
-  <metadata name="lineShape2.Location" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>14, 296</value>
-  </metadata>
-  <metadata name="lineShape2.Size" type="System.Drawing.Size, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>280, 0</value>
-  </metadata>
-  <data name="lineShape2.X1" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="lineShape2.X2" type="System.Int32, mscorlib">
-    <value>294</value>
-  </data>
-  <data name="lineShape2.Y1" type="System.Int32, mscorlib">
-    <value>296</value>
-  </data>
-  <data name="lineShape2.Y2" type="System.Int32, mscorlib">
-    <value>296</value>
-  </data>
-  <metadata name="lineShape1.Bounds" type="System.Drawing.Rectangle, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>14, 103, 280, 0</value>
-  </metadata>
-  <metadata name="lineShape1.Location" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>14, 103</value>
-  </metadata>
-  <metadata name="lineShape1.Size" type="System.Drawing.Size, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>280, 0</value>
-  </metadata>
-  <data name="lineShape1.X1" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="lineShape1.X2" type="System.Int32, mscorlib">
-    <value>294</value>
-  </data>
-  <data name="lineShape1.Y1" type="System.Int32, mscorlib">
-    <value>103</value>
-  </data>
-  <data name="lineShape1.Y2" type="System.Int32, mscorlib">
-    <value>103</value>
-  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -860,18 +821,6 @@
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
     <value>408, 510</value>
-  </data>
-  <data name="&gt;&gt;lineShape2.Name" xml:space="preserve">
-    <value>lineShape2</value>
-  </data>
-  <data name="&gt;&gt;lineShape2.Type" xml:space="preserve">
-    <value>Microsoft.VisualBasic.PowerPacks.LineShape, Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="&gt;&gt;lineShape1.Name" xml:space="preserve">
-    <value>lineShape1</value>
-  </data>
-  <data name="&gt;&gt;lineShape1.Type" xml:space="preserve">
-    <value>Microsoft.VisualBasic.PowerPacks.LineShape, Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>PanelGeneric</value>

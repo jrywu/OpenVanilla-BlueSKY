@@ -20,6 +20,8 @@ int UIGetStatusPos(LPPOINT lp_pt);
 int UIModuleChange();
 int UIModuleRotate();
 void UIChangeHalfFull();
+void UISetHalf();
+void UISetFull();
 void UISetChiEng();
 void UISetChinese();
 void UISetEnglish();
