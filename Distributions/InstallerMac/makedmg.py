@@ -48,7 +48,7 @@ def build_release():
 	os.system(build_command)
 	
 def copy_release_to_tmp():
-	source_filename = "OpenVanilla.app"
+	source_filename = "OpenVanilla-0.9b.app"
 	source_path = "../../build/Release"
 	source = os.path.abspath(os.path.join(current_folder, source_path, source_filename))
 	target = os.path.abspath(os.path.join(current_folder, "tmp"))
@@ -70,16 +70,16 @@ def clean_DS_store():
 	os.system(command)
 
 def build_package():
-	package_maker = "/Developer/Applications/Utilities/PackageMaker.app/Contents/MacOS/PackageMaker"
+	package_maker = "/Applications/Utilities/PackageMaker.app/Contents/MacOS/PackageMaker"
 	arg = " --no-relocate -v -d ./OpenVanilla.pmdoc --version " + version + " --out " + pkg
 	print package_maker + arg
 	os.system(package_maker + arg)
 
 
 def make_dmg():
-	size = 6 * 1024 * 2;
+	size = 12 * 1024 * 2;
 	command = "/usr/bin/hdiutil"
-	arg = [command, "create",  "-sectors", str(size), "-volname", disk, "-attach", "-fs", "HFS+", "OpenVanilla.dmg"]
+	arg = [command, "create",  "-sectors", str(size), "-volname", disk, "-attach", "-fs", "HFS+", "OpenVanilla-0.9b.dmg"]
 	
 	result = subprocess.Popen(arg, stdout=subprocess.PIPE).communicate()
 	lines = result[0].split("\n")
@@ -96,7 +96,7 @@ def make_dmg():
 	os.system("sleep 1")
 	
 	os.system("hdiutil detach " + device )
-	command = "hdiutil convert OpenVanilla.dmg -format UDZO -imagekey zlib-level=9 -o " + disk + ".dmg"
+	command = "hdiutil convert OpenVanilla-0.9b.dmg -format UDZO -imagekey zlib-level=9 -o " + "OpenVanilla0.9b.dmg"
 	os.system(command)
 
 def main():
@@ -113,7 +113,7 @@ def main():
 	print "Building DMG..."
 	make_dmg()
 	os.system("sudo rm -rf " + pkg)
-	os.system("sudo rm -rf OpenVanilla.dmg")
+	os.system("sudo rm -rf OpenVanilla-0.9b.dmg")
 	print "Done.."
 	pass
 
