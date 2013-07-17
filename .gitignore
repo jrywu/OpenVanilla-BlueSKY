@@ -1,10 +1,17 @@
 Dep/*
 Distributions/InstallerWin/*.exe
 Distributions/InstallerWin/OpenVanilla/*
+Distributions/InstallerWin/OVUtil/bin/*
+Distributions/InstallerWin/OVUtil/obj/*
 Distributions/InstallerWin/system32.x86/*
 Distributions/InstallerWin/system32.x64/*
+HelperApps/PreferencesWin/bin/*
+HelperApps/PreferencesWin/obj/*
+Loaders/Windows/OVTSF/Dictionary
 *.lastbuildstate
 *.sdf
+*.v11.suo
+*.user
 *.pdb
 *.opensdf
 *.obj
@@ -20,6 +27,7 @@ Distributions/InstallerWin/system32.x64/*
 *.metagen
 *.res
 *.resources
+*.idb
 Loaders/Windows/OVUIServer/obj/*
 Loaders/Windows/OVUIServer/bin/*
 */Release/*
