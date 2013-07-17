@@ -55,8 +55,7 @@ namespace OVUIServer
         {
             
             InitializeComponent();
-            //baseSize = this.lbNotifys.Location.Y+100;
-            //this.Opacity = 1;
+          
             this.SetStyle(
                 ControlStyles.UserPaint |
                 ControlStyles.AllPaintingInWmPaint |
@@ -158,15 +157,8 @@ namespace OVUIServer
         #region public methods
 
         public void SetNotifyStr(string inputs)
-        {/*
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += (obj, e) => doSetNotifyStr(inputs);
-            worker.RunWorkerAsync();
-
-        }
-        private void doSetNotifyStr(string inputs)
-        {*/
-            this.Invoke((MethodInvoker)delegate { m_lbtext.Text = this.m_lbtext.Text + inputs; });
+        {
+            this.Invoke((MethodInvoker)delegate { this.m_lbtext.Text = this.m_lbtext.Text + inputs; });
             this.Invoke((MethodInvoker)delegate { Height = this.m_lbtext.Height; });
             this.Invoke((MethodInvoker)delegate { Width = this.m_lbtext.Width + 6; });
             this.Refresh();
@@ -189,7 +181,7 @@ namespace OVUIServer
         }
         public void SetFont(string ff, int fontsize)
         {
-            m_lbtext.Font = new Font(ff, fontsize);
+            m_lbtext.Invoke((MethodInvoker)delegate { Font = new Font(ff, fontsize); });
         }
 
         public void SetNotifyEnabled(bool b)
@@ -198,25 +190,12 @@ namespace OVUIServer
         }
 
         public void SetLocation(int x, int y)
-        {/*
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += (obj, e) => doSetLocation(x,y);
-            worker.RunWorkerAsync();
-        }
-        private void doSetLocation(int x, int y)
-        {*/   // temp. fix for overlapping with candi window because of offsetx
+        {
             this.Invoke((MethodInvoker)delegate { Location = new Point(x - (int)m_lbtext.Font.Size * 2, y); });
         }
 
         public void SetOpacity(int o)
-        {/*
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += (obj, e) => doSetOpacity(o);
-            worker.RunWorkerAsync();
-        }
-        private void doSetOpacity(int o)
-        {*/
-    
+        {
             this.Opacity = o / 100f;
         }
 
@@ -227,7 +206,7 @@ namespace OVUIServer
 
         public void ClearNotify()
         {
-            this.m_lbtext.Text = "";
+            this.Invoke((MethodInvoker)delegate { this.m_lbtext.Text = ""; });
             
         }
 
@@ -235,7 +214,31 @@ namespace OVUIServer
         {
             m_hwnd = hwnd;
         }
+        public int GetWidth()
+        {
+            return this.Width;
+        }
 
+        public int GetHeight()
+        {
+            return this.Height;
+        }
+
+        public void ShowNoActive()
+        {
+            if (!this.Visible && notifyEnabled)
+            {
+                System.Diagnostics.Debug.WriteLine("Show Notify Page:" + this.Location.ToString());
+                UtilFuncs.SetVisibleNoActivate(this, true); // true to show. 
+                this.Refresh();
+            }
+        }
+
+        public void HideNoActive()
+        {
+            if (this.Visible)
+                UtilFuncs.SetVisibleNoActivate(this, false); // false to hide.  
+        }
         #endregion
 
         #region a protected override method for WS_POPUP
@@ -257,31 +260,7 @@ namespace OVUIServer
         #endregion
 
 
-        public int GetWidth()
-        {
-            return this.Width;
-        }
-
-        public int GetHeight()
-        {
-            return this.Height;
-        }
-
-        public void ShowNoActive()
-        {
-            if (!this.Visible && notifyEnabled)
-            {
-                System.Diagnostics.Debug.WriteLine("Show Notify Page:"+this.Location.ToString());
-                UtilFuncs.SetVisibleNoActivate(this, true); // true to show. 
-                this.Refresh();
-            }
-        }
-
-        public void HideNoActive()
-        {
-            if (this.Visible)
-                UtilFuncs.SetVisibleNoActivate(this, false); // false to hide.  
-        }
+       
 
         private void IMENotifyForm_Click(object sender, System.EventArgs e)
         {

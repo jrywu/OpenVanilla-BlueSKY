@@ -40,13 +40,9 @@ namespace OVUIServer
 		public static void SetVisibleNoActivate(Form form, bool visible) 
 		{
             
-            if (visible)
-                ShowWindowTopMost(form.Handle);
-            form.Visible = visible;
-            /*else
-            {
-                HideWindowTopMost(form.Handle);                
-            }*/
+            if (visible)   ShowWindowTopMost(form.Handle);
+            form.Invoke((MethodInvoker)delegate { form.Visible = true; }); 
+           
 		} 
 
 		public const ulong HWND_BROADCAST = 0xFFFF;
