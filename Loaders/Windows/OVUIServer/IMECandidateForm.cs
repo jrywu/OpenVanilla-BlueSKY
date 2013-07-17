@@ -304,7 +304,7 @@ namespace OVUIServer
 
         public void SetColor(int forecolor, int backcolor, int titlecolor, int titlebackcolor)
         {
-            /*
+            
             m_textColor = Color.FromArgb(titlecolor);
             m_backColor = Color.FromArgb(titlebackcolor);
             m_topColor = Color.FromArgb(
@@ -320,13 +320,13 @@ namespace OVUIServer
             l_backColor = Color.FromArgb(backcolor);
             l_textColor = Color.FromArgb(forecolor);
             System.Diagnostics.Debug.WriteLine("Candicolors" + m_textColor.ToArgb().ToString());
-             */
+            
         }
         public void SetFont(string ff, int fontsize)
         {
             System.Diagnostics.Debug.Write("SetCandiFont facename:" + ff);
-            lbCandidates.Font = new Font(ff, fontsize);
-            m_lbTitle.Font = new Font(ff, fontsize);
+            lbCandidates.Invoke((MethodInvoker)delegate { Font = new Font(ff, fontsize); });
+            m_lbTitle.Invoke((MethodInvoker)delegate { Font = new Font(ff, fontsize); });
             
         }
 
@@ -454,8 +454,8 @@ namespace OVUIServer
         {
             
                 m_compHeight = compHeight;
-                  
-                this.Location = new Point(x-offset_X, y + m_compHeight * 3 / 2);            
+
+                this.Invoke((MethodInvoker)delegate { Location = new Point(x - offset_X, y + m_compHeight * 3 / 2); });            
 
         }
 
@@ -526,7 +526,7 @@ namespace OVUIServer
         public void ClearCandidates()
         {
 
-            this.lbCandidates.Items.Clear();
+            this.Invoke((MethodInvoker)delegate { lbCandidates.Items.Clear(); });
            
         }
 

@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Diagnostics;
 using System.Drawing;
 using System.Collections;
@@ -157,26 +158,18 @@ namespace OVUIServer
         #region public methods
 
         public void SetNotifyStr(string inputs)
-        {
-            //if (this.Text.CompareTo("")==0)
-            //    this.Text = inputs;
-            //else
-            this.m_lbtext.Text = this.m_lbtext.Text + inputs;
-            this.Height = this.m_lbtext.Height;// +4;
-            this.Width = this.m_lbtext.Width+6;// +4;
-            //this.Padding = new System.Windows.Forms.Padding( 5,3,
-                //this.m_lbtext.Width *1/10, this.m_lbtext.Height * 1 / 10,    0, 0);
-            
-            
-                this.Refresh();
-            /*
-            NotifyWindow nw;
-            nw = new NotifyWindow("OpenVanilla Notify", inputs);
-            nw.TitleClicked += new System.EventHandler(titleClick);
-            nw.TextClicked += new System.EventHandler(textClick);
-            nw.SetDimensions(200, 120);
-            nw.Notify();
-             */
+        {/*
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += (obj, e) => doSetNotifyStr(inputs);
+            worker.RunWorkerAsync();
+
+        }
+        private void doSetNotifyStr(string inputs)
+        {*/
+            this.Invoke((MethodInvoker)delegate { m_lbtext.Text = this.m_lbtext.Text + inputs; });
+            this.Invoke((MethodInvoker)delegate { Height = this.m_lbtext.Height; });
+            this.Invoke((MethodInvoker)delegate { Width = this.m_lbtext.Width + 6; });
+            this.Refresh();
             
         }
         public void SetColor(int forecolor, int backcolor)
@@ -205,12 +198,25 @@ namespace OVUIServer
         }
 
         public void SetLocation(int x, int y)
-        {   // temp. fix for overlapping with candi window because of offsetx
-            this.Location = new Point(x - (int)m_lbtext.Font.Size*2 , y);
+        {/*
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += (obj, e) => doSetLocation(x,y);
+            worker.RunWorkerAsync();
+        }
+        private void doSetLocation(int x, int y)
+        {*/   // temp. fix for overlapping with candi window because of offsetx
+            this.Invoke((MethodInvoker)delegate { Location = new Point(x - (int)m_lbtext.Font.Size * 2, y); });
         }
 
         public void SetOpacity(int o)
-        {
+        {/*
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += (obj, e) => doSetOpacity(o);
+            worker.RunWorkerAsync();
+        }
+        private void doSetOpacity(int o)
+        {*/
+    
             this.Opacity = o / 100f;
         }
 

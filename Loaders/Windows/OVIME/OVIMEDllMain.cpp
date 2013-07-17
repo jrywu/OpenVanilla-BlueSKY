@@ -10,6 +10,7 @@ int CandX;
 int CandY;
 //bool isChinese = true;  //moved to global of OVIMEUI
 //bool isFullShape = false; //moved to global of OVIMEUI
+
 DisplayServer* dsvr = new DisplayServer();
 #ifdef WINCE
 int CurrentIC=0;
@@ -212,6 +213,7 @@ BOOL APIENTRY DllMain( HANDLE hModule,
 	case DLL_PROCESS_ATTACH:
 		{
 			murmur("dllMain, DLL_PROCESS_ATTACH");
+		
 		hInst = (HINSTANCE)hModule;
 
 		AVLoader* loader = AVLoader::open();

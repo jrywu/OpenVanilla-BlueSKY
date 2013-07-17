@@ -221,13 +221,14 @@ Function .onInit
   KeepGo2:
   ReadRegStr $0 ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion"
   StrCmp $0 "" StartInstall 0
-	  MessageBox MB_OKCANCEL|MB_ICONQUESTION "偵測到舊版 $0，必須先移除才能安裝新版。是否要現在進行？" IDOK +2
+;	  MessageBox MB_OKCANCEL|MB_ICONQUESTION "偵測到舊版 $0，必須先移除才能安裝新版。是否要現在進行？" IDOK +2
+	  MessageBox MB_OK  "偵測到舊版 $0，必須先移除才能安裝新版。"
 	  Abort
-          Call uninstOld          
-          IfFileExists "$SYSDIR\OVIME.ime"  0 RemoveFinished     ;代表反安裝失敗 
-          Abort
-    RemoveFinished:     
-    		MessageBox MB_ICONINFORMATION|MB_OK "舊版已移除。"
+          ;Call uninstOld          
+          ;IfFileExists "$SYSDIR\OVIME.ime"  0 RemoveFinished     ;代表反安裝失敗 
+          ;Abort
+    ;RemoveFinished:     
+    		;MessageBox MB_ICONINFORMATION|MB_OK "舊版已移除。"
     StartInstall:     
 ;  !insertmacro MUI_LANGDLL_DISPLAY
 
@@ -668,12 +669,13 @@ Section -AdditionalIcons
 SectionEnd
 
 Section -Post
-  Call dotNet2AppachKeyIns
   WriteUninstaller "$PROGRAMFILES64\OpenVanilla\uninst.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$PROGRAMFILES64\OpenVanilla\uninst.exe"
+  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "${PRODUCT_NAME}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
+  Call dotNet2AppachKeyIns
   System::Call 'imm32::ImmInstallIME(t "$SYSDIR\OVIME.ime", t "$(^Name)")'
   ${registry::Open} "${IME_ROOT_KEY}\${IME_KEY}" "/N='OVIME.ime' /G=1 /T=REG_SZ" $0
   ${registry::Find} $0 $1 $2 $3 $4
@@ -709,6 +711,13 @@ Section Uninstall
 
   lbNeedReboot:
   MessageBox MB_ICONSTOP|MB_YESNO "偵測到有程式正在使用輸入法，請重新開機以繼續移除舊版。是否要立即重新開機？" IDNO lbNoReboot
+  ReadRegStr $0 ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Key"
+  DeleteRegKey ${IME_ROOT_KEY} "${IME_KEY}\$0"
+  
+  ${registry::Open} "${IME_CURRENT_USER}\" " /V=1 /S=1 /N='$0' /G=1 /T=REG_SZ" $9
+  ${registry::Find} $9 $1 $2 $3 $4  
+  DeleteRegValue "${IME_CURRENT_USER}" "${IME_KEY_USER}" "$2"
+  ${registry::Close} "$9"
   Reboot
 
   lbNoReboot:
