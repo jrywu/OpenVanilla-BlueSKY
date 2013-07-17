@@ -1,15 +1,13 @@
-//////////////////////////////////////////////////////////////////////
 //
-// Derived from Microsoft TSF sample by Jeremy '12,6,25
 //
-//  EnumDisplayAttributeInfo.cpp
+// Derived from Microsoft Sample IME by Jeremy '13,7,17
 //
-//          ITfEnumDisplayAttributeInfo implementation.
 //
-//////////////////////////////////////////////////////////////////////
 
+
+#include "Private.h"
 #include "globals.h"
-#include "TextService.h"
+#include "OVTSF.h"
 #include "DisplayAttributeInfo.h"
 #include "EnumDisplayAttributeInfo.h"
 
@@ -23,8 +21,8 @@ CEnumDisplayAttributeInfo::CEnumDisplayAttributeInfo()
 {
     DllAddRef();
 
-    _iIndex = 0;
-    _cRef = 1;
+    _index = 0;
+    _refCount = 1;
 }
 
 //+---------------------------------------------------------------------------
@@ -44,12 +42,12 @@ CEnumDisplayAttributeInfo::~CEnumDisplayAttributeInfo()
 //
 //----------------------------------------------------------------------------
 
-STDAPI CEnumDisplayAttributeInfo::QueryInterface(REFIID riid, void **ppvObj)
+STDAPI CEnumDisplayAttributeInfo::QueryInterface(REFIID riid, _Outptr_ void **ppvObj)
 {
-    if (ppvObj == NULL)
+    if (ppvObj == nullptr)
         return E_INVALIDARG;
 
-    *ppvObj = NULL;
+    *ppvObj = nullptr;
 
     if (IsEqualIID(riid, IID_IUnknown) ||
         IsEqualIID(riid, IID_IEnumTfDisplayAttributeInfo))
@@ -75,7 +73,7 @@ STDAPI CEnumDisplayAttributeInfo::QueryInterface(REFIID riid, void **ppvObj)
 
 STDAPI_(ULONG) CEnumDisplayAttributeInfo::AddRef()
 {
-    return ++_cRef;
+    return ++_refCount;
 }
 
 //+---------------------------------------------------------------------------
@@ -86,11 +84,11 @@ STDAPI_(ULONG) CEnumDisplayAttributeInfo::AddRef()
 
 STDAPI_(ULONG) CEnumDisplayAttributeInfo::Release()
 {
-    LONG cr = --_cRef;
+    LONG cr = --_refCount;
 
-    assert(_cRef >= 0);
+    assert(_refCount >= 0);
 
-    if (_cRef == 0)
+    if (_refCount == 0)
     {
         delete this;
     }
@@ -100,25 +98,30 @@ STDAPI_(ULONG) CEnumDisplayAttributeInfo::Release()
 
 //+---------------------------------------------------------------------------
 //
-// Clone
+// IEnumTfDisplayAttributeInfo::Clone
 //
 // Returns a copy of the object.
 //----------------------------------------------------------------------------
 
-STDAPI CEnumDisplayAttributeInfo::Clone(IEnumTfDisplayAttributeInfo **ppEnum)
+STDAPI CEnumDisplayAttributeInfo::Clone(_Out_ IEnumTfDisplayAttributeInfo **ppEnum)
 {
-    CEnumDisplayAttributeInfo *pClone;
+    CEnumDisplayAttributeInfo* pClone = nullptr;
 
-    if (ppEnum == NULL)
+    if (ppEnum == nullptr)
+    {
         return E_INVALIDARG;
+    }
 
-    *ppEnum = NULL;
+    *ppEnum = nullptr;
 
-    if ((pClone = new CEnumDisplayAttributeInfo) == NULL)
+    pClone = new (std::nothrow) CEnumDisplayAttributeInfo();
+    if ((pClone) == nullptr)
+    {
         return E_OUTOFMEMORY;
+    }
 
-  // the clone should match this object's state
-    pClone->_iIndex = _iIndex;
+    // the clone should match this object's state
+    pClone->_index = _index;
 
     *ppEnum = pClone;
 
@@ -127,81 +130,97 @@ STDAPI CEnumDisplayAttributeInfo::Clone(IEnumTfDisplayAttributeInfo **ppEnum)
 
 //+---------------------------------------------------------------------------
 //
-// Next
+// IEnumTfDisplayAttributeInfo::Next
 //
 // Returns an array of display attribute info objects supported by this service.
 //----------------------------------------------------------------------------
 
-STDAPI CEnumDisplayAttributeInfo::Next(ULONG ulCount, ITfDisplayAttributeInfo **rgInfo, ULONG *pcFetched)
-{
-    ITfDisplayAttributeInfo *pDisplayAttributeInfo;
-    ULONG cFetched;
+const int MAX_DISPLAY_ATTRIBUTE_INFO = 2;
 
-    cFetched = 0;
+STDAPI CEnumDisplayAttributeInfo::Next(ULONG ulCount, __RPC__out_ecount_part(ulCount, *pcFetched) ITfDisplayAttributeInfo **rgInfo, __RPC__out ULONG *pcFetched)
+{
+    ULONG fetched;
+
+    fetched = 0;
 
     if (ulCount == 0)
-        return S_OK;
-
-    while (cFetched < ulCount)
     {
-        if (_iIndex > 1)
-            break;
+        return S_OK;
+    }
+    if (rgInfo == nullptr)
+    {
+        return E_INVALIDARG;
+    }
+    *rgInfo = nullptr;
 
-        if (_iIndex == 0)
-        {
-            if ((pDisplayAttributeInfo = new CDisplayAttributeInfoInput()) == NULL)
+    while (fetched < ulCount)
+    {
+        ITfDisplayAttributeInfo* pDisplayAttributeInfo = nullptr;
+
+        if (_index == 0)
+        {   
+            pDisplayAttributeInfo = new (std::nothrow) CDisplayAttributeInfoInput();
+            if ((pDisplayAttributeInfo) == nullptr)
+            {
                 return E_OUTOFMEMORY;
+            }
         }
-        else if (_iIndex == 1)
+        else if (_index == 1)
         {
-            if ((pDisplayAttributeInfo = new CDisplayAttributeInfoConverted()) == NULL)
+            pDisplayAttributeInfo = new (std::nothrow) CDisplayAttributeInfoConverted();
+            if ((pDisplayAttributeInfo) == nullptr)
+            {
                 return E_OUTOFMEMORY;
- 
+            }
+
         }
-        
+        else
+        {
+            break;
+        }
 
         *rgInfo = pDisplayAttributeInfo;
-        cFetched++;
-        _iIndex++;
+        rgInfo++;
+        fetched++;
+        _index++;
     }
 
-    if (pcFetched != NULL)
+    if (pcFetched != nullptr)
     {
-      // technically this is only legal if ulCount == 1, but this sample doesn't check
-        *pcFetched = cFetched;
+        // technically this is only legal if ulCount == 1, but we won't check
+        *pcFetched = fetched;
     }
 
-    return (cFetched == ulCount) ? S_OK : S_FALSE;
+    return (fetched == ulCount) ? S_OK : S_FALSE;
 }
 
 //+---------------------------------------------------------------------------
 //
-// Reset
+// IEnumTfDisplayAttributeInfo::Reset
 //
 // Resets the enumeration.
 //----------------------------------------------------------------------------
 
 STDAPI CEnumDisplayAttributeInfo::Reset()
 {
-    _iIndex = 0;
+    _index = 0;
     return S_OK;
 }
 
 //+---------------------------------------------------------------------------
 //
-// Skip
+// IEnumTfDisplayAttributeInfo::Skip
 //
 // Skips past objects in the enumeration.
 //----------------------------------------------------------------------------
 
 STDAPI CEnumDisplayAttributeInfo::Skip(ULONG ulCount)
 {
-  // there is only a single item to enum
-  // so it can be skipped and avoid any overflow errors
-    if (ulCount > 0 && _iIndex == 0)
+    if ((ulCount + _index) > MAX_DISPLAY_ATTRIBUTE_INFO || (ulCount + _index) < ulCount)
     {
-        _iIndex++;
+        _index = MAX_DISPLAY_ATTRIBUTE_INFO;
+        return S_FALSE;
     }
+    _index += ulCount;
     return S_OK;
 }
-

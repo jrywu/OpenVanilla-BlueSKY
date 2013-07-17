@@ -1,83 +1,125 @@
-//////////////////////////////////////////////////////////////////////
 //
-// Derived from Microsoft TSF sample by Jeremy '12,6,25
 //
-//  ThreadMgrEventSink.cpp
+// Derived from Microsoft Sample IME by Jeremy '13,7,17
 //
-//          ITfThreadMgrEventSink implementation.
 //
-//////////////////////////////////////////////////////////////////////
 
+
+#include "Private.h"
 #include "Globals.h"
-#include "TextService.h"
+#include "OVTSF.h"
+#include "CandidateListUIPresenter.h"
 
 //+---------------------------------------------------------------------------
 //
-// OnInitDocumentMgr
+// ITfThreadMgrEventSink::OnInitDocumentMgr
 //
 // Sink called by the framework just before the first context is pushed onto
 // a document.
 //----------------------------------------------------------------------------
 
-STDAPI CTextService::OnInitDocumentMgr(ITfDocumentMgr *pDocMgr)
+STDAPI COVTSF::OnInitDocumentMgr(_In_ ITfDocumentMgr *pDocMgr)
 {
-    return S_OK;
+    pDocMgr;
+    return E_NOTIMPL;
 }
 
 //+---------------------------------------------------------------------------
 //
-// OnUninitDocumentMgr
+// ITfThreadMgrEventSink::OnUninitDocumentMgr
 //
 // Sink called by the framework just after the last context is popped off a
 // document.
 //----------------------------------------------------------------------------
 
-STDAPI CTextService::OnUninitDocumentMgr(ITfDocumentMgr *pDocMgr)
+STDAPI COVTSF::OnUninitDocumentMgr(_In_ ITfDocumentMgr *pDocMgr)
 {
-    return S_OK;
+    pDocMgr;
+    return E_NOTIMPL;
 }
 
 //+---------------------------------------------------------------------------
 //
-// OnSetFocus
+// ITfThreadMgrEventSink::OnSetFocus
 //
 // Sink called by the framework when focus changes from one document to
 // another.  Either document may be NULL, meaning previously there was no
 // focus document, or now no document holds the input focus.
 //----------------------------------------------------------------------------
 
-STDAPI CTextService::OnSetFocus(ITfDocumentMgr *pDocMgrFocus, ITfDocumentMgr *pDocMgrPrevFocus)
+STDAPI COVTSF::OnSetFocus(_In_ ITfDocumentMgr *pDocMgrFocus, _In_ ITfDocumentMgr *pDocMgrPrevFocus)
 {
-  //
-  // Whenever focus is changed, initialize the TextEditSink.
-  //
+    pDocMgrPrevFocus;
+
     _InitTextEditSink(pDocMgrFocus);
+
+    _UpdateLanguageBarOnSetFocus(pDocMgrFocus);
+
+    //
+    // We have to hide/unhide candidate list depending on whether they are 
+    // associated with pDocMgrFocus.
+    //
+    if (_pCandidateListUIPresenter)
+    {
+        ITfDocumentMgr* pCandidateListDocumentMgr = nullptr;
+        ITfContext* pTfContext = _pCandidateListUIPresenter->_GetContextDocument();
+        if ((nullptr != pTfContext) && SUCCEEDED(pTfContext->GetDocumentMgr(&pCandidateListDocumentMgr)))
+        {
+            if (pCandidateListDocumentMgr != pDocMgrFocus)
+            {
+                _pCandidateListUIPresenter->OnKillThreadFocus();
+            }
+            else 
+            {
+                _pCandidateListUIPresenter->OnSetThreadFocus();
+            }
+
+            pCandidateListDocumentMgr->Release();
+        }
+    }
+
+    if (_pDocMgrLastFocused)
+    {
+        _pDocMgrLastFocused->Release();
+		_pDocMgrLastFocused = nullptr;
+    }
+
+    _pDocMgrLastFocused = pDocMgrFocus;
+
+    if (_pDocMgrLastFocused)
+    {
+        _pDocMgrLastFocused->AddRef();
+    }
 
     return S_OK;
 }
 
 //+---------------------------------------------------------------------------
 //
-// OnPushContext
+// ITfThreadMgrEventSink::OnPushContext
 //
 // Sink called by the framework when a context is pushed.
 //----------------------------------------------------------------------------
 
-STDAPI CTextService::OnPushContext(ITfContext *pContext)
+STDAPI COVTSF::OnPushContext(_In_ ITfContext *pContext)
 {
-    return S_OK;
+    pContext;
+
+    return E_NOTIMPL;
 }
 
 //+---------------------------------------------------------------------------
 //
-// OnPopContext
+// ITfThreadMgrEventSink::OnPopContext
 //
 // Sink called by the framework when a context is popped.
 //----------------------------------------------------------------------------
 
-STDAPI CTextService::OnPopContext(ITfContext *pContext)
+STDAPI COVTSF::OnPopContext(_In_ ITfContext *pContext)
 {
-    return S_OK;
+    pContext;
+
+    return E_NOTIMPL;
 }
 
 //+---------------------------------------------------------------------------
@@ -87,28 +129,27 @@ STDAPI CTextService::OnPopContext(ITfContext *pContext)
 // Advise our sink.
 //----------------------------------------------------------------------------
 
-BOOL CTextService::_InitThreadMgrEventSink()
+BOOL COVTSF::_InitThreadMgrEventSink()
 {
-    ITfSource *pSource;
-    BOOL fRet;
+    ITfSource* pSource = nullptr;
+    BOOL ret = FALSE;
 
-    if (_pThreadMgr->QueryInterface(IID_ITfSource, (void **)&pSource) != S_OK)
-        return FALSE;
-
-    fRet = FALSE;
-
-    if (pSource->AdviseSink(IID_ITfThreadMgrEventSink, (ITfThreadMgrEventSink *)this, &_dwThreadMgrEventSinkCookie) != S_OK)
+    if (FAILED(_pThreadMgr->QueryInterface(IID_ITfSource, (void **)&pSource)))
     {
-      // don't try to Unadvise _dwThreadMgrEventSinkCookie later
-        _dwThreadMgrEventSinkCookie = TF_INVALID_COOKIE;
+        return ret;
+    }
+
+    if (FAILED(pSource->AdviseSink(IID_ITfThreadMgrEventSink, (ITfThreadMgrEventSink *)this, &_threadMgrEventSinkCookie)))
+    {
+        _threadMgrEventSinkCookie = TF_INVALID_COOKIE;
         goto Exit;
     }
 
-    fRet = TRUE;
+    ret = TRUE;
 
 Exit:
     pSource->Release();
-    return fRet;
+    return ret;
 }
 
 //+---------------------------------------------------------------------------
@@ -118,18 +159,20 @@ Exit:
 // Unadvise our sink.
 //----------------------------------------------------------------------------
 
-void CTextService::_UninitThreadMgrEventSink()
+void COVTSF::_UninitThreadMgrEventSink()
 {
-    ITfSource *pSource;
+    ITfSource* pSource = nullptr;
 
-    if (_dwThreadMgrEventSinkCookie == TF_INVALID_COOKIE)
-        return; // never Advised
-
-    if (_pThreadMgr->QueryInterface(IID_ITfSource, (void **)&pSource) == S_OK)
+    if (_threadMgrEventSinkCookie == TF_INVALID_COOKIE)
     {
-        pSource->UnadviseSink(_dwThreadMgrEventSinkCookie);
+        return; 
+    }
+
+    if (SUCCEEDED(_pThreadMgr->QueryInterface(IID_ITfSource, (void **)&pSource)))
+    {
+        pSource->UnadviseSink(_threadMgrEventSinkCookie);
         pSource->Release();
     }
 
-    _dwThreadMgrEventSinkCookie = TF_INVALID_COOKIE;
+    _threadMgrEventSinkCookie = TF_INVALID_COOKIE;
 }

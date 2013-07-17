@@ -1,80 +1,68 @@
-//////////////////////////////////////////////////////////////////////
 //
-// Derived from Microsoft TSF sample by Jeremy '12,6,25
 //
-//  TextEditSink.cpp
+// Derived from Microsoft Sample IME by Jeremy '13,7,17
 //
-//          ITfTextEditSink implementation.
 //
-//////////////////////////////////////////////////////////////////////
-#define OV_DEBUG
-#include "globals.h"
-#include "TextService.h"
-#include "OVUtility.h"
 
-BOOL IsRangeCovered(TfEditCookie ec, ITfRange *pRangeTest, ITfRange *pRangeCover);
+
+#include "Private.h"
+#include "globals.h"
+#include "OVTSF.h"
 
 //+---------------------------------------------------------------------------
 //
-// OnEndEdit
+// ITfTextEditSink::OnEndEdit
 //
 // Called by the system whenever anyone releases a write-access document lock.
 //----------------------------------------------------------------------------
 
-STDAPI CTextService::OnEndEdit(ITfContext *pContext, TfEditCookie ecReadOnly, ITfEditRecord *pEditRecord)
+STDAPI COVTSF::OnEndEdit(__RPC__in_opt ITfContext *pContext, TfEditCookie ecReadOnly, __RPC__in_opt ITfEditRecord *pEditRecord)
 {
-	murmur("TextEditSink:CTextService::OnEndEdit()");
-    BOOL fSelectionChanged;
-    IEnumTfRanges *pEnumTextChanges;
-    ITfRange *pRange;
+    BOOL isSelectionChanged;
 
-  //
-  // did the selection change?
-  // The selection change includes the movement of caret as well. 
-  // The caret position is represent as the empty selection range when
-  // there is no selection.
-  //
-    if (pEditRecord->GetSelectionStatus(&fSelectionChanged) == S_OK &&
-        fSelectionChanged)
+    //
+    // did the selection change?
+    // The selection change includes the movement of caret as well. 
+    // The caret position is represent as the empty selection range when
+    // there is no selection.
+    //
+    if (pEditRecord == nullptr)
     {
-      // If the selection is moved to out side of the current composition,
-      // terminate the composition. This TextService supports only one
-      // composition in one context object.
+        return E_INVALIDARG;
+    }
+    if (SUCCEEDED(pEditRecord->GetSelectionStatus(&isSelectionChanged)) &&
+        isSelectionChanged)
+    {
+        // If the selection is moved to out side of the current composition,
+        // we terminate the composition. This TextService supports only one
+        // composition in one context object.
         if (_IsComposing())
         {
             TF_SELECTION tfSelection;
-            ULONG cFetched;
+            ULONG fetched = 0;
 
-            if (pContext->GetSelection(ecReadOnly, TF_DEFAULT_SELECTION, 1, &tfSelection, &cFetched) == S_OK && cFetched == 1)
+            if (pContext == nullptr)
             {
-                ITfRange *pRangeComposition;
-              // is the insertion point covered by a composition?
-                if (_pComposition->GetRange(&pRangeComposition) == S_OK)
-                {
-                    if (!IsRangeCovered(ecReadOnly, tfSelection.range, pRangeComposition))
-                    {
-                       _EndComposition(pContext);
-                    }
-
-                    pRangeComposition->Release();
-                }
+                return E_INVALIDARG;
             }
+            if (FAILED(pContext->GetSelection(ecReadOnly, TF_DEFAULT_SELECTION, 1, &tfSelection, &fetched)) || fetched != 1)
+            {
+                return S_FALSE;
+            }
+
+            ITfRange* pRangeComposition = nullptr;
+            if (SUCCEEDED(_pComposition->GetRange(&pRangeComposition)))
+            {
+                if (!_IsRangeCovered(ecReadOnly, tfSelection.range, pRangeComposition))
+                {
+                    _EndComposition(pContext);
+                }
+
+                pRangeComposition->Release();
+            }
+
+            tfSelection.range->Release();
         }
-    }
-
-  // text modification?
-    if (pEditRecord->GetTextAndPropertyUpdates(TF_GTP_INCL_TEXT, NULL, 0, &pEnumTextChanges) == S_OK)
-    {
-        if (pEnumTextChanges->Next(1, &pRange, NULL) == S_OK)
-        {
-          //
-          // pRange is the updated range.
-          //
-
-            pRange->Release();
-        }
-
-        pEnumTextChanges->Release();
     }
 
     return S_OK;
@@ -88,58 +76,59 @@ STDAPI CTextService::OnEndEdit(ITfContext *pContext, TfEditCookie ecReadOnly, IT
 // Always release any previous sink.
 //----------------------------------------------------------------------------
 
-BOOL CTextService::_InitTextEditSink(ITfDocumentMgr *pDocMgr)
+BOOL COVTSF::_InitTextEditSink(_In_ ITfDocumentMgr *pDocMgr)
 {
-	murmur("TextEditSink:CTextService::_InitTextEditSink()");
-    ITfSource *pSource;
-    BOOL fRet;
+    ITfSource* pSource = nullptr;
+    BOOL ret = TRUE;
 
-  // clear out any previous sink first
-
-    if (_dwTextEditSinkCookie != TF_INVALID_COOKIE)
+    // clear out any previous sink first
+    if (_textEditSinkCookie != TF_INVALID_COOKIE)
     {
-        if (_pTextEditSinkContext->QueryInterface(IID_ITfSource, (void **)&pSource) == S_OK)
+        if (SUCCEEDED(_pTextEditSinkContext->QueryInterface(IID_ITfSource, (void **)&pSource)))
         {
-            pSource->UnadviseSink(_dwTextEditSinkCookie);
+            pSource->UnadviseSink(_textEditSinkCookie);
             pSource->Release();
         }
 
         _pTextEditSinkContext->Release();
-        _pTextEditSinkContext = NULL;
-        _dwTextEditSinkCookie = TF_INVALID_COOKIE;
+        _pTextEditSinkContext = nullptr;
+        _textEditSinkCookie = TF_INVALID_COOKIE;
     }
 
-    if (pDocMgr == NULL)
-        return TRUE; // caller just wanted to clear the previous sink
-
-  // setup a new sink advised to the topmost context of the document
-
-    if (pDocMgr->GetTop(&_pTextEditSinkContext) != S_OK)
-        return FALSE;
-
-    if (_pTextEditSinkContext == NULL)
-        return TRUE; // empty document, no sink possible
-
-    fRet = FALSE;
-
-    if (_pTextEditSinkContext->QueryInterface(IID_ITfSource, (void **)&pSource) == S_OK)
+    if (pDocMgr == nullptr)
     {
-        if (pSource->AdviseSink(IID_ITfTextEditSink, (ITfTextEditSink *)this, &_dwTextEditSinkCookie) == S_OK)
+        return TRUE; // caller just wanted to clear the previous sink
+    }
+
+    if (FAILED(pDocMgr->GetTop(&_pTextEditSinkContext)))
+    {
+        return FALSE;
+    }
+
+    if (_pTextEditSinkContext == nullptr)
+    {
+        return TRUE; // empty document, no sink possible
+    }
+
+    ret = FALSE;
+    if (SUCCEEDED(_pTextEditSinkContext->QueryInterface(IID_ITfSource, (void **)&pSource)))
+    {
+        if (SUCCEEDED(pSource->AdviseSink(IID_ITfTextEditSink, (ITfTextEditSink *)this, &_textEditSinkCookie)))
         {
-            fRet = TRUE;
+            ret = TRUE;
         }
         else
         {
-            _dwTextEditSinkCookie = TF_INVALID_COOKIE;
+            _textEditSinkCookie = TF_INVALID_COOKIE;
         }
         pSource->Release();
     }
 
-    if (fRet == FALSE)
+    if (ret == FALSE)
     {
         _pTextEditSinkContext->Release();
-        _pTextEditSinkContext = NULL;
+        _pTextEditSinkContext = nullptr;
     }
 
-    return fRet;
+    return ret;
 }

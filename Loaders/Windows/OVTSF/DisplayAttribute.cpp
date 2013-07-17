@@ -1,15 +1,13 @@
-//////////////////////////////////////////////////////////////////////
 //
-// Derived from Microsoft TSF sample by Jeremy '12,6,25
 //
-//  DisplayAttribure.cpp
+// Derived from Microsoft Sample IME by Jeremy '13,7,17
 //
-//          apply the display attribute to the composition range.
 //
-//////////////////////////////////////////////////////////////////////
 
+
+#include "Private.h"
 #include "globals.h"
-#include "TextService.h"
+#include "OVTSF.h"
 
 //+---------------------------------------------------------------------------
 //
@@ -17,19 +15,21 @@
 //
 //----------------------------------------------------------------------------
 
-void CTextService::_ClearCompositionDisplayAttributes(TfEditCookie ec, ITfContext *pContext)
+void COVTSF::_ClearCompositionDisplayAttributes(TfEditCookie ec, _In_ ITfContext *pContext)
 {
-    ITfRange *pRangeComposition;
-    ITfProperty *pDisplayAttributeProperty;
+    ITfRange* pRangeComposition = nullptr;
+    ITfProperty* pDisplayAttributeProperty = nullptr;
 
-  // get the compositon range.
-    if (_pComposition->GetRange(&pRangeComposition) != S_OK)
-        return;
-
-  // get our the display attribute property
-    if (pContext->GetProperty(GUID_PROP_ATTRIBUTE, &pDisplayAttributeProperty) == S_OK)
+    // get the compositon range.
+    if (FAILED(_pComposition->GetRange(&pRangeComposition)))
     {
-      // clear the value over the range
+        return;
+    }
+
+    // get our the display attribute property
+    if (SUCCEEDED(pContext->GetProperty(GUID_PROP_ATTRIBUTE, &pDisplayAttributeProperty)))
+    {
+        // clear the value over the range
         pDisplayAttributeProperty->Clear(ec, pRangeComposition);
 
         pDisplayAttributeProperty->Release();
@@ -44,25 +44,28 @@ void CTextService::_ClearCompositionDisplayAttributes(TfEditCookie ec, ITfContex
 //
 //----------------------------------------------------------------------------
 
-BOOL CTextService::_SetCompositionDisplayAttributes(TfEditCookie ec, ITfContext *pContext, TfGuidAtom gaDisplayAttribute)
+BOOL COVTSF::_SetCompositionDisplayAttributes(TfEditCookie ec, _In_ ITfContext *pContext, TfGuidAtom gaDisplayAttribute)
 {
-    ITfRange *pRangeComposition;
-    ITfProperty *pDisplayAttributeProperty;
-    HRESULT hr;
+    ITfRange* pRangeComposition = nullptr;
+    ITfProperty* pDisplayAttributeProperty = nullptr;
+    HRESULT hr = S_OK;
 
-  // the composition requires a range and the context it lives in
-    if (_pComposition->GetRange(&pRangeComposition) != S_OK)
+    // we need a range and the context it lives in
+    hr = _pComposition->GetRange(&pRangeComposition);
+    if (FAILED(hr))
+    {
         return FALSE;
+    }
 
     hr = E_FAIL;
 
-  // get our the display attribute property
-    if (pContext->GetProperty(GUID_PROP_ATTRIBUTE, &pDisplayAttributeProperty) == S_OK)
+    // get our the display attribute property
+    if (SUCCEEDED(pContext->GetProperty(GUID_PROP_ATTRIBUTE, &pDisplayAttributeProperty)))
     {
         VARIANT var;
-      // set the value over the range
-      // the application will use this guid atom to lookup the acutal rendering information
-        var.vt = VT_I4; // set a TfGuidAtom
+        // set the value over the range
+        // the application will use this guid atom to lookup the acutal rendering information
+        var.vt = VT_I4; // we're going to set a TfGuidAtom
         var.lVal = gaDisplayAttribute; 
 
         hr = pDisplayAttributeProperty->SetValue(ec, pRangeComposition, &var);
@@ -78,31 +81,35 @@ BOOL CTextService::_SetCompositionDisplayAttributes(TfEditCookie ec, ITfContext 
 //
 // _InitDisplayAttributeGuidAtom
 //
-// Because it's memory intesive to map our display attribute GUID to a TSF
-// TfGuidAtom, do it once when Activate is called.
+// Because it's expensive to map our display attribute GUID to a TSF
+// TfGuidAtom, we do it once when Activate is called.
 //----------------------------------------------------------------------------
 
-BOOL CTextService::_InitDisplayAttributeGuidAtom()
+BOOL COVTSF::_InitDisplayAttributeGuidAtom()
 {
-    ITfCategoryMgr *pCategoryMgr;
-    HRESULT hr;
+    ITfCategoryMgr* pCategoryMgr = nullptr;
+    HRESULT hr = CoCreateInstance(CLSID_TF_CategoryMgr, nullptr, CLSCTX_INPROC_SERVER, IID_ITfCategoryMgr, (void**)&pCategoryMgr);
 
-    if (CoCreateInstance(CLSID_TF_CategoryMgr,
-                         NULL, 
-                         CLSCTX_INPROC_SERVER, 
-                         IID_ITfCategoryMgr, 
-                         (void**)&pCategoryMgr) != S_OK)
+    if (FAILED(hr))
     {
         return FALSE;
     }
 
-  // register the display attribute for input text.
-    hr = pCategoryMgr->RegisterGUID(c_guidDisplayAttributeInput, &_gaDisplayAttributeInput);
+    // register the display attribute for input text.
+    hr = pCategoryMgr->RegisterGUID(Global::OVTSFGuidDisplayAttributeInput, &_gaDisplayAttributeInput);
+	if (FAILED(hr))
+    {
+        goto Exit;
+    }
+    // register the display attribute for the converted text.
+    hr = pCategoryMgr->RegisterGUID(Global::OVTSFGuidDisplayAttributeConverted, &_gaDisplayAttributeConverted);
+	if (FAILED(hr))
+    {
+        goto Exit;
+    }
 
-  // register the display attribute for the converted text.
-    hr = pCategoryMgr->RegisterGUID(c_guidDisplayAttributeConverted, &_gaDisplayAttributeConverted);
-
+Exit:
     pCategoryMgr->Release();
-        
+
     return (hr == S_OK);
 }

@@ -1,35 +1,38 @@
-//////////////////////////////////////////////////////////////////////
 //
-// Derived from Microsoft TSF sample by Jeremy '12,6,25
 //
-//  DisplayAttribureProvider.cpp
+// Derived from Microsoft Sample IME by Jeremy '13,7,17
 //
-//          ITfDisplayAttributeProvider implementation.
 //
-//////////////////////////////////////////////////////////////////////
 
+
+#include "Private.h"
 #include "globals.h"
-#include "TextService.h"
+#include "OVTSF.h"
 #include "DisplayAttributeInfo.h"
 #include "EnumDisplayAttributeInfo.h"
 
 //+---------------------------------------------------------------------------
 //
-// EnumDisplayAttributeInfo
+// ITfDisplayAttributeProvider::EnumDisplayAttributeInfo
 //
 //----------------------------------------------------------------------------
 
-STDAPI CTextService::EnumDisplayAttributeInfo(IEnumTfDisplayAttributeInfo **ppEnum)
+STDAPI COVTSF::EnumDisplayAttributeInfo(__RPC__deref_out_opt IEnumTfDisplayAttributeInfo **ppEnum)
 {
-    CEnumDisplayAttributeInfo *pAttributeEnum;
+    CEnumDisplayAttributeInfo* pAttributeEnum = nullptr;
 
-    if (ppEnum == NULL)
+    if (ppEnum == nullptr)
+    {
         return E_INVALIDARG;
+    }
 
-    *ppEnum = NULL;
+    *ppEnum = nullptr;
 
-    if ((pAttributeEnum = new CEnumDisplayAttributeInfo) == NULL)
+    pAttributeEnum = new (std::nothrow) CEnumDisplayAttributeInfo();
+    if (pAttributeEnum == nullptr)
+    {
         return E_OUTOFMEMORY;
+    }
 
     *ppEnum = pAttributeEnum;
 
@@ -38,27 +41,35 @@ STDAPI CTextService::EnumDisplayAttributeInfo(IEnumTfDisplayAttributeInfo **ppEn
 
 //+---------------------------------------------------------------------------
 //
-// GetDisplayAttributeInfo
+// ITfDisplayAttributeProvider::GetDisplayAttributeInfo
 //
 //----------------------------------------------------------------------------
 
-STDAPI CTextService::GetDisplayAttributeInfo(REFGUID guidInfo, ITfDisplayAttributeInfo **ppInfo)
+STDAPI COVTSF::GetDisplayAttributeInfo(__RPC__in REFGUID guidInfo, __RPC__deref_out_opt ITfDisplayAttributeInfo **ppInfo)
 {
-    if (ppInfo == NULL)
+    if (ppInfo == nullptr)
+    {
         return E_INVALIDARG;
-
-    *ppInfo = NULL;
-
-  // Which display attribute GUID?
-    if (IsEqualGUID(guidInfo, c_guidDisplayAttributeInput))
-    {
-        if ((*ppInfo = new CDisplayAttributeInfoInput()) == NULL)
-            return E_OUTOFMEMORY;
     }
-    else if (IsEqualGUID(guidInfo, c_guidDisplayAttributeConverted))
+
+    *ppInfo = nullptr;
+
+    // Which display attribute GUID?
+    if (IsEqualGUID(guidInfo, Global::OVTSFGuidDisplayAttributeInput))
     {
-        if ((*ppInfo = new CDisplayAttributeInfoConverted()) == NULL)
+        *ppInfo = new (std::nothrow) CDisplayAttributeInfoInput();
+        if ((*ppInfo) == nullptr)
+        {
             return E_OUTOFMEMORY;
+        }
+    }
+    else if (IsEqualGUID(guidInfo, Global::OVTSFGuidDisplayAttributeConverted))
+    {
+        *ppInfo = new (std::nothrow) CDisplayAttributeInfoConverted();
+        if ((*ppInfo) == nullptr)
+        {
+            return E_OUTOFMEMORY;
+        }
     }
     else
     {

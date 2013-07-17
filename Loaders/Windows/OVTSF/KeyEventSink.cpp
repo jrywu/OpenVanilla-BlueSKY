@@ -1,57 +1,61 @@
-//////////////////////////////////////////////////////////////////////
 //
-// Derived from Microsoft TSF sample by Jeremy '12,6,25
 //
-//  KeyEventSink.cpp
+// Derived from Microsoft Sample IME by Jeremy '13,7,17
 //
-//          ITfKeyEventSink implementation.
 //
-//////////////////////////////////////////////////////////////////////
-#define OV_DEBUG
+
+
+#include "Private.h"
 #include "Globals.h"
-#include "TextService.h"
-#include "CandidateList.h"
-#include "OVUtility.h"
-//
-// GUID for the preserved keys.
-//
+#include "OVTSF.h"
+#include "CandidateListUIPresenter.h"
+#include "CompositionProcessorEngine.h"
+#include "KeyHandlerEditSession.h"
+#include "Compartment.h"
 
-// {30FA9233-976E-464E-9223-1815F4D4497B}
-static const GUID GUID_PRESERVEDKEY_CTRL_SPACE = 
-{ 0x30fa9233, 0x976e, 0x464e, { 0x92, 0x23, 0x18, 0x15, 0xf4, 0xd4, 0x49, 0x7b } };
+// 0xF003, 0xF004 are the keys that the touch keyboard sends for next/previous
+#define THIRDPARTY_NEXTPAGE  static_cast<WORD>(0xF003)
+#define THIRDPARTY_PREVPAGE  static_cast<WORD>(0xF004)
 
-// {F680818B-9574-4509-B40F-E7A3CB866CB1}
-static const GUID GUID_PRESERVEDKEY_SHIFT_SPACE = 
-{ 0xf680818b, 0x9574, 0x4509, { 0xb4, 0xf, 0xe7, 0xa3, 0xcb, 0x86, 0x6c, 0xb1 } };
-
-
-// {4C88A00B-BE4A-4C43-92CB-CD225898E9E0}
-static const GUID GUID_PRESERVEDKEY_CTRL_BACKSLASH = 
-{ 0x4c88a00b, 0xbe4a, 0x4c43, { 0x92, 0xcb, 0xcd, 0x22, 0x58, 0x98, 0xe9, 0xe0 } };
-
-
-// {BB456BD8-78E8-4DE4-9DCF-A19EF8CE4F2F}
-static const GUID GUID_PRESERVEDKEY_SHIFT = 
-{ 0xbb456bd8, 0x78e8, 0x4de4, { 0x9d, 0xcf, 0xa1, 0x9e, 0xf8, 0xce, 0x4f, 0x2f } };
-
-
-
-//
-// the preserved keys declaration
-//
-
-static const TF_PRESERVEDKEY c_pkeyCtrlSpace = { VK_SPACE, TF_MOD_CONTROL };
-static const TF_PRESERVEDKEY c_pkeyShiftSpace = { VK_SPACE, TF_MOD_SHIFT };
-static const TF_PRESERVEDKEY c_pkeyCtrlBackSlash = { VK_OEM_5, TF_MOD_CONTROL };
-static const TF_PRESERVEDKEY c_pkeySHIFT =   { VK_SHIFT, TF_MOD_SHIFT };
-
-//
-// the description for the preserved keys
-//
-static const WCHAR c_szPKeyCtrlSpace[] = L"Ctrl+Space";
-static const WCHAR c_szPKeyShiftSpace[] = L"Shift+Space";
-static const WCHAR c_szPKeyCtrlBackSlash[] = L"Ctrl+\\";
-static const WCHAR c_szPKeyShift[]    = L"Shift";
+// Because the code mostly works with VKeys, here map a WCHAR back to a VKKey for certain
+// vkeys that the IME handles specially
+__inline UINT VKeyFromVKPacketAndWchar(UINT vk, WCHAR wch)
+{
+    UINT vkRet = vk;
+	if ((wch == L';') || (wch == L'\'') || (wch == L',') || (wch == L'.')|| (wch == L'/'))
+    {
+        vkRet = static_cast<UINT>(wch);
+    }else 
+	if (LOWORD(vk) == VK_PACKET)
+    {
+        if (wch == L' ')
+        {
+            vkRet = VK_SPACE;
+        }
+        else if ((wch >= L'0') && (wch <= L'9'))
+        {
+            vkRet = static_cast<UINT>(wch);
+        }
+        else if ((wch >= L'a') && (wch <= L'z'))
+        {
+            vkRet = (UINT)(L'A') + ((UINT)(L'z') - static_cast<UINT>(wch));
+        }
+        else if ((wch >= L'A') && (wch <= L'Z'))
+        {
+            vkRet = static_cast<UINT>(wch);
+        }
+		
+        else if (wch == THIRDPARTY_NEXTPAGE)
+        {
+            vkRet = VK_NEXT;
+        }
+        else if (wch == THIRDPARTY_PREVPAGE)
+        {
+            vkRet = VK_PRIOR;
+        }
+    }
+    return vkRet;
+}
 
 //+---------------------------------------------------------------------------
 //
@@ -59,159 +63,354 @@ static const WCHAR c_szPKeyShift[]    = L"Shift";
 //
 //----------------------------------------------------------------------------
 
-BOOL CTextService::_IsKeyEaten(ITfContext *pContext, WPARAM wParam)
+BOOL COVTSF::_IsKeyEaten(_In_ ITfContext *pContext, UINT codeIn, _Out_ UINT *pCodeOut, _Out_writes_(1) WCHAR *pwch, _Out_opt_ _KEYSTROKE_STATE *pKeyState)
 {
-	murmur("KeyEventSink:CTextService::_IsKeyEaten() for key = %d", wParam);
-  // if the keyboard is disabled, keys are not consumed.
+    pContext;
+
+    *pCodeOut = codeIn;
+
+    BOOL isOpen = FALSE;
+    CCompartment CompartmentKeyboardOpen(_pThreadMgr, _tfClientId, GUID_COMPARTMENT_KEYBOARD_OPENCLOSE);
+    CompartmentKeyboardOpen._GetCompartmentBOOL(isOpen);
+
+    BOOL isDoubleSingleByte = FALSE;
+    CCompartment CompartmentDoubleSingleByte(_pThreadMgr, _tfClientId, Global::OVTSFGuidCompartmentDoubleSingleByte);
+    CompartmentDoubleSingleByte._GetCompartmentBOOL(isDoubleSingleByte);
+
+    BOOL isPunctuation = FALSE;
+    CCompartment CompartmentPunctuation(_pThreadMgr, _tfClientId, Global::OVTSFGuidCompartmentPunctuation);
+    CompartmentPunctuation._GetCompartmentBOOL(isPunctuation);
+
+    if (pKeyState)
+    {
+        pKeyState->Category = CATEGORY_NONE;
+        pKeyState->Function = FUNCTION_NONE;
+    }
+    if (pwch)
+    {
+        *pwch = L'\0';
+    }
+
+    // if the keyboard is disabled, we don't eat keys.
     if (_IsKeyboardDisabled())
-        return FALSE;
-
-  // if the keyboard is closed, keys are not consumed.
-    if (!_IsKeyboardOpen())
-        return FALSE;
-
-  //
-  // The text service key handler does not do anything while the candidate
-  // window is shown.
-  // The candidate list handles the keys through ITfContextKeyEventSink.
-  //
-    if (_pCandidateList &&
-        _pCandidateList->_IsContextCandidateWindow(pContext))
     {
         return FALSE;
     }
 
-  // eat only keys that CKeyHandlerEditSession can hadles.
-    switch (wParam)
+    //
+    // Map virtual key to character code
+    //
+    BOOL isTouchKeyboardSpecialKeys = FALSE;
+    WCHAR wch = ConvertVKey(codeIn);
+    *pCodeOut = VKeyFromVKPacketAndWchar(codeIn, wch);
+    if ((wch == THIRDPARTY_NEXTPAGE) || (wch == THIRDPARTY_PREVPAGE))
     {
-        case VK_LEFT:
-        case VK_RIGHT:
-        case VK_RETURN:
-        case VK_SPACE:
-            if (_IsComposing())
-                return TRUE;
-            return FALSE;
+        // We always eat the above softkeyboard special keys
+        isTouchKeyboardSpecialKeys = TRUE;
+        if (pwch)
+        {
+            *pwch = wch;
+        }
     }
 
-    if (wParam >= 'A' && wParam <= 'Z')
-        return TRUE;
+    // if the keyboard is closed, we don't eat keys, with the exception of the touch keyboard specials keys
+    if (!isOpen && !isDoubleSingleByte && !isPunctuation)
+    {
+        return isTouchKeyboardSpecialKeys;
+    }
 
-    return FALSE;
+    if (pwch)
+    {
+        *pwch = wch;
+    }
+
+    //
+    // Get composition engine
+    //
+    CCompositionProcessorEngine *pCompositionProcessorEngine;
+    pCompositionProcessorEngine = _pCompositionProcessorEngine;
+
+    if (isOpen)
+    {
+        //
+        // The candidate or phrase list handles the keys through ITfKeyEventSink.
+        //
+        // eat only keys that CKeyHandlerEditSession can handles.
+        //
+        if (pCompositionProcessorEngine->IsVirtualKeyNeed(*pCodeOut, pwch, _IsComposing(), _candidateMode, _isCandidateWithWildcard, pKeyState))
+        {
+            return TRUE;
+        }
+    }
+
+    //
+    // Punctuation
+    //
+    if (pCompositionProcessorEngine->IsPunctuation(wch))
+    {
+        if ((_candidateMode == CANDIDATE_NONE) && isPunctuation)
+        {
+            if (pKeyState)
+            {
+                pKeyState->Category = CATEGORY_COMPOSING;
+                pKeyState->Function = FUNCTION_INPUT;// FUNCTION_PUNCTUATION;
+            }
+            return TRUE;
+        }
+    }
+
+    //
+    // Double/Single byte
+    //
+    if (isDoubleSingleByte && pCompositionProcessorEngine->IsDoubleSingleByte(wch))
+    {
+        if (_candidateMode == CANDIDATE_NONE)
+        {
+            if (pKeyState)
+            {
+                pKeyState->Category = CATEGORY_COMPOSING;
+                pKeyState->Function = FUNCTION_DOUBLE_SINGLE_BYTE;
+            }
+            return TRUE;
+        }
+    }
+
+    return isTouchKeyboardSpecialKeys;
 }
-
 
 //+---------------------------------------------------------------------------
 //
-// OnSetFocus
+// ConvertVKey
+//
+//----------------------------------------------------------------------------
+
+WCHAR COVTSF::ConvertVKey(UINT code)
+{
+    //
+    // Map virtual key to scan code
+    //
+    UINT scanCode = 0;
+    scanCode = MapVirtualKey(code, 0);
+
+    //
+    // Keyboard state
+    //
+    BYTE abKbdState[256] = {'\0'};
+    if (!GetKeyboardState(abKbdState))
+    {
+        return 0;
+    }
+
+    //
+    // Map virtual key to character code
+    //
+    WCHAR wch = '\0';
+    if (ToUnicode(code, scanCode, abKbdState, &wch, 1, 0) == 1)
+    {
+        return wch;
+    }
+
+    return 0;
+}
+
+//+---------------------------------------------------------------------------
+//
+// _IsKeyboardDisabled
+//
+//----------------------------------------------------------------------------
+
+BOOL COVTSF::_IsKeyboardDisabled()
+{
+    ITfDocumentMgr* pDocMgrFocus = nullptr;
+    ITfContext* pContext = nullptr;
+    BOOL isDisabled = FALSE;
+
+    if ((_pThreadMgr->GetFocus(&pDocMgrFocus) != S_OK) ||
+        (pDocMgrFocus == nullptr))
+    {
+        // if there is no focus document manager object, the keyboard 
+        // is disabled.
+        isDisabled = TRUE;
+    }
+    else if ((pDocMgrFocus->GetTop(&pContext) != S_OK) ||
+        (pContext == nullptr))
+    {
+        // if there is no context object, the keyboard is disabled.
+        isDisabled = TRUE;
+    }
+    else
+    {
+        CCompartment CompartmentKeyboardDisabled(_pThreadMgr, _tfClientId, GUID_COMPARTMENT_KEYBOARD_DISABLED);
+        CompartmentKeyboardDisabled._GetCompartmentBOOL(isDisabled);
+
+        CCompartment CompartmentEmptyContext(_pThreadMgr, _tfClientId, GUID_COMPARTMENT_EMPTYCONTEXT);
+        CompartmentEmptyContext._GetCompartmentBOOL(isDisabled);
+    }
+
+    if (pContext)
+    {
+        pContext->Release();
+    }
+
+    if (pDocMgrFocus)
+    {
+        pDocMgrFocus->Release();
+    }
+
+    return isDisabled;
+}
+
+//+---------------------------------------------------------------------------
+//
+// ITfKeyEventSink::OnSetFocus
 //
 // Called by the system whenever this service gets the keystroke device focus.
 //----------------------------------------------------------------------------
 
-STDAPI CTextService::OnSetFocus(BOOL fForeground)
+STDAPI COVTSF::OnSetFocus(BOOL fForeground)
 {
-	murmur("KeyEventSink:CTextService::OnSetFocus()");
+	fForeground;
+
     return S_OK;
 }
 
 //+---------------------------------------------------------------------------
 //
-// OnTestKeyDown
+// ITfKeyEventSink::OnTestKeyDown
 //
 // Called by the system to query this service wants a potential keystroke.
 //----------------------------------------------------------------------------
 
-STDAPI CTextService::OnTestKeyDown(ITfContext *pContext, WPARAM wParam, LPARAM lParam, BOOL *pfEaten)
+STDAPI COVTSF::OnTestKeyDown(ITfContext *pContext, WPARAM wParam, LPARAM lParam, BOOL *pIsEaten)
 {
-	murmur("KeyEventSink:CTextService::OnTestKeyDown() for key = %d", wParam);
-    *pfEaten = _IsKeyEaten(pContext, wParam);
-    return S_OK;
-}
+    Global::UpdateModifiers(wParam, lParam);
 
-//+---------------------------------------------------------------------------
-//
-// OnKeyDown
-//
-// Called by the system to offer this service a keystroke.  If *pfEaten == TRUE
-// on exit, the application will not handle the keystroke.
-//----------------------------------------------------------------------------
+    _KEYSTROKE_STATE KeystrokeState;
+    WCHAR wch = '\0';
+    UINT code = 0;
+    *pIsEaten = _IsKeyEaten(pContext, (UINT)wParam, &code, &wch, &KeystrokeState);
 
-STDAPI CTextService::OnKeyDown(ITfContext *pContext, WPARAM wParam, LPARAM lParam, BOOL *pfEaten)
-{
-	murmur("KeyEventSink:CTextService::OnKeyDown() for key = %d", wParam);
-    *pfEaten = _IsKeyEaten(pContext, wParam);
-
-    if (*pfEaten)
+    if (KeystrokeState.Category == CATEGORY_INVOKE_COMPOSITION_EDIT_SESSION)
     {
-        _InvokeKeyHandler(pContext, wParam, lParam);
+        //
+        // Invoke key handler edit session
+        //
+        KeystrokeState.Category = CATEGORY_COMPOSING;
+        _InvokeKeyHandler(pContext, code, wch, (DWORD)lParam, KeystrokeState);
     }
+
     return S_OK;
 }
 
 //+---------------------------------------------------------------------------
 //
-// OnTestKeyUp
+// ITfKeyEventSink::OnKeyDown
+//
+// Called by the system to offer this service a keystroke.  If *pIsEaten == TRUE
+// on exit, the application will not handle the keystroke.
+//----------------------------------------------------------------------------
+
+STDAPI COVTSF::OnKeyDown(ITfContext *pContext, WPARAM wParam, LPARAM lParam, BOOL *pIsEaten)
+{
+    Global::UpdateModifiers(wParam, lParam);
+
+    _KEYSTROKE_STATE KeystrokeState;
+    WCHAR wch = '\0';
+    UINT code = 0;
+
+    *pIsEaten = _IsKeyEaten(pContext, (UINT)wParam, &code, &wch, &KeystrokeState);
+
+    if (*pIsEaten)
+    {
+        bool needInvokeKeyHandler = true;
+        //
+        // Invoke key handler edit session
+        //
+        if (code == VK_ESCAPE)
+        {
+            KeystrokeState.Category = CATEGORY_COMPOSING;
+        }
+
+        // Always eat THIRDPARTY_NEXTPAGE and THIRDPARTY_PREVPAGE keys, but don't always process them.
+        if ((wch == THIRDPARTY_NEXTPAGE) || (wch == THIRDPARTY_PREVPAGE))
+        {
+            needInvokeKeyHandler = !((KeystrokeState.Category == CATEGORY_NONE) && (KeystrokeState.Function == FUNCTION_NONE));
+        }
+
+        if (needInvokeKeyHandler)
+        {
+            _InvokeKeyHandler(pContext, code, wch, (DWORD)lParam, KeystrokeState);
+        }
+    }
+    else if (KeystrokeState.Category == CATEGORY_INVOKE_COMPOSITION_EDIT_SESSION)
+    {
+        // Invoke key handler edit session
+        KeystrokeState.Category = CATEGORY_COMPOSING;
+        _InvokeKeyHandler(pContext, code, wch, (DWORD)lParam, KeystrokeState);
+    }
+
+    return S_OK;
+}
+
+//+---------------------------------------------------------------------------
+//
+// ITfKeyEventSink::OnTestKeyUp
 //
 // Called by the system to query this service wants a potential keystroke.
 //----------------------------------------------------------------------------
 
-STDAPI CTextService::OnTestKeyUp(ITfContext *pContext, WPARAM wParam, LPARAM lParam, BOOL *pfEaten)
+STDAPI COVTSF::OnTestKeyUp(ITfContext *pContext, WPARAM wParam, LPARAM lParam, BOOL *pIsEaten)
 {
-	murmur("KeyEventSink:CTextService::OnTestKeyUp() for key = %d", wParam);
-    *pfEaten = _IsKeyEaten(pContext, wParam);
+    if (pIsEaten == nullptr)
+    {
+        return E_INVALIDARG;
+    }
+
+    Global::UpdateModifiers(wParam, lParam);
+
+    WCHAR wch = '\0';
+    UINT code = 0;
+
+    *pIsEaten = _IsKeyEaten(pContext, (UINT)wParam, &code, &wch, NULL);
+
     return S_OK;
 }
 
 //+---------------------------------------------------------------------------
 //
-// OnKeyUp
+// ITfKeyEventSink::OnKeyUp
 //
-// Called by the system to offer this service a keystroke.  If *pfEaten == TRUE
+// Called by the system to offer this service a keystroke.  If *pIsEaten == TRUE
 // on exit, the application will not handle the keystroke.
 //----------------------------------------------------------------------------
 
-STDAPI CTextService::OnKeyUp(ITfContext *pContext, WPARAM wParam, LPARAM lParam, BOOL *pfEaten)
+STDAPI COVTSF::OnKeyUp(ITfContext *pContext, WPARAM wParam, LPARAM lParam, BOOL *pIsEaten)
 {
-	murmur("KeyEventSink:CTextService::OnKeyUp() for key = %d", wParam);
-    *pfEaten = _IsKeyEaten(pContext, wParam);
+    Global::UpdateModifiers(wParam, lParam);
+
+    WCHAR wch = '\0';
+    UINT code = 0;
+
+    *pIsEaten = _IsKeyEaten(pContext, (UINT)wParam, &code, &wch, NULL);
+
     return S_OK;
 }
 
 //+---------------------------------------------------------------------------
 //
-// OnPreservedKey
+// ITfKeyEventSink::OnPreservedKey
 //
 // Called when a hotkey (registered by us, or by the system) is typed.
 //----------------------------------------------------------------------------
 
-STDAPI CTextService::OnPreservedKey(ITfContext *pContext, REFGUID rguid, BOOL *pfEaten)
+STDAPI COVTSF::OnPreservedKey(ITfContext *pContext, REFGUID rguid, BOOL *pIsEaten)
 {
-	murmur("KeyEventSink:CTextService::OnPreservedKey()");
-    if (IsEqualGUID(rguid, GUID_PRESERVEDKEY_CTRL_SPACE))
-    {
-		murmur("OnPreservedKey(), GUID_PRESERVEDKEY_ONOFF");
-        BOOL fOpen = _IsKeyboardOpen();
-        _SetKeyboardOpen(fOpen ? FALSE : TRUE);
-        *pfEaten = TRUE;
-    }
-	else if (IsEqualGUID(rguid, GUID_PRESERVEDKEY_SHIFT_SPACE))
-	{
-		murmur("OnPreservedKey(), GUID_PRESERVEDKEY_SHIFT_SPACE");
-	}
-	else if (IsEqualGUID(rguid, GUID_PRESERVEDKEY_CTRL_BACKSLASH))
-	{
-		murmur("OnPreservedKey(), GUID_PRESERVEDKEY_CTRL_BACKSLASH");
-	}
-    else if (IsEqualGUID(rguid, GUID_PRESERVEDKEY_SHIFT))
-	{
-		murmur("OnPreservedKey(), GUID_PRESERVEDKEY_SHIFT");
-		BOOL fOpen = _IsKeyboardOpen();
-        _SetKeyboardOpen(fOpen ? FALSE : TRUE);
-        *pfEaten = TRUE;
-	}
-	else
-    {
-        *pfEaten = FALSE;
-    }
+	pContext;
+
+    CCompositionProcessorEngine *pCompositionProcessorEngine;
+    pCompositionProcessorEngine = _pCompositionProcessorEngine;
+
+    pCompositionProcessorEngine->OnPreservedKey(rguid, pIsEaten, _GetThreadMgr(), _GetClientId());
 
     return S_OK;
 }
@@ -223,14 +422,15 @@ STDAPI CTextService::OnPreservedKey(ITfContext *pContext, REFGUID rguid, BOOL *p
 // Advise a keystroke sink.
 //----------------------------------------------------------------------------
 
-BOOL CTextService::_InitKeyEventSink()
+BOOL COVTSF::_InitKeyEventSink()
 {
-	murmur("KeyEventSink:CTextService::_InitKeyEventSink()");
-    ITfKeystrokeMgr *pKeystrokeMgr;
-    HRESULT hr;
+    ITfKeystrokeMgr* pKeystrokeMgr = nullptr;
+    HRESULT hr = S_OK;
 
-    if (_pThreadMgr->QueryInterface(IID_ITfKeystrokeMgr, (void **)&pKeystrokeMgr) != S_OK)
+    if (FAILED(_pThreadMgr->QueryInterface(IID_ITfKeystrokeMgr, (void **)&pKeystrokeMgr)))
+    {
         return FALSE;
+    }
 
     hr = pKeystrokeMgr->AdviseKeyEventSink(_tfClientId, (ITfKeyEventSink *)this, TRUE);
 
@@ -243,90 +443,19 @@ BOOL CTextService::_InitKeyEventSink()
 //
 // _UninitKeyEventSink
 //
-// Unadvise a keystroke sink.  Assumes a sink has been advised already.
+// Unadvise a keystroke sink.  Assumes we have advised one already.
 //----------------------------------------------------------------------------
 
-void CTextService::_UninitKeyEventSink()
+void COVTSF::_UninitKeyEventSink()
 {
-	murmur("KeyEventSink:CTextService::_UninitKeyEventSink()");
-    ITfKeystrokeMgr *pKeystrokeMgr;
+    ITfKeystrokeMgr* pKeystrokeMgr = nullptr;
 
-    if (_pThreadMgr->QueryInterface(IID_ITfKeystrokeMgr, (void **)&pKeystrokeMgr) != S_OK)
+    if (FAILED(_pThreadMgr->QueryInterface(IID_ITfKeystrokeMgr, (void **)&pKeystrokeMgr)))
+    {
         return;
+    }
 
     pKeystrokeMgr->UnadviseKeyEventSink(_tfClientId);
 
     pKeystrokeMgr->Release();
 }
-
-//+---------------------------------------------------------------------------
-//
-// _InitPreservedKey
-//
-// Register a hot key.
-//----------------------------------------------------------------------------
-
-BOOL CTextService::_InitPreservedKey()
-{
-	murmur("KeyEventSink:CTextService::_InitPreservedKey()");
-    ITfKeystrokeMgr *pKeystrokeMgr;
-    HRESULT hr;
-
-    if (_pThreadMgr->QueryInterface(IID_ITfKeystrokeMgr, (void **)&pKeystrokeMgr) != S_OK)
-        return FALSE;
-
-  // register Ctrl+space key
-    hr = pKeystrokeMgr->PreserveKey(_tfClientId, 
-                                    GUID_PRESERVEDKEY_CTRL_SPACE,
-                                    &c_pkeyCtrlSpace,
-                                    c_szPKeyCtrlSpace,
-                                    wcslen(c_szPKeyCtrlSpace));
- // register Shift+space key
-    hr = pKeystrokeMgr->PreserveKey(_tfClientId, 
-                                    GUID_PRESERVEDKEY_SHIFT_SPACE,
-                                    &c_pkeyShiftSpace,
-                                    c_szPKeyShiftSpace,
-                                    wcslen(c_szPKeyShiftSpace));
-
-  // register ctrl+\ key
-    hr = pKeystrokeMgr->PreserveKey(_tfClientId, 
-                                    GUID_PRESERVEDKEY_CTRL_BACKSLASH,
-                                    &c_pkeyCtrlBackSlash,
-                                    c_szPKeyCtrlBackSlash,
-                                    wcslen(c_szPKeyCtrlBackSlash));
-
-  // register Shift key
-    hr = pKeystrokeMgr->PreserveKey(_tfClientId, 
-                                    GUID_PRESERVEDKEY_SHIFT,
-                                    &c_pkeySHIFT,
-                                    c_szPKeyShift,
-                                    wcslen(c_szPKeyShift));
-
-    pKeystrokeMgr->Release();
-
-    return (hr == S_OK);
-}
-
-//+---------------------------------------------------------------------------
-//
-// _UninitPreservedKey
-//
-// Uninit a hot key.
-//----------------------------------------------------------------------------
-
-void CTextService::_UninitPreservedKey()
-{
-	murmur("KeyEventSink:CTextService::_UninitPreservedKey()");
-    ITfKeystrokeMgr *pKeystrokeMgr;
-
-    if (_pThreadMgr->QueryInterface(IID_ITfKeystrokeMgr, (void **)&pKeystrokeMgr) != S_OK)
-        return;
-
-    pKeystrokeMgr->UnpreserveKey(GUID_PRESERVEDKEY_CTRL_SPACE, &c_pkeyCtrlSpace);
-	pKeystrokeMgr->UnpreserveKey(GUID_PRESERVEDKEY_SHIFT_SPACE, &c_pkeyShiftSpace);
-    pKeystrokeMgr->UnpreserveKey(GUID_PRESERVEDKEY_CTRL_BACKSLASH, &c_pkeyCtrlBackSlash);
-    pKeystrokeMgr->UnpreserveKey(GUID_PRESERVEDKEY_SHIFT, &c_pkeySHIFT);
-
-    pKeystrokeMgr->Release();
-}
-

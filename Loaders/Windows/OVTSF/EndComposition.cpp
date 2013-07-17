@@ -1,18 +1,22 @@
-//////////////////////////////////////////////////////////////////////
 //
-// Derived from Microsoft TSF sample by Jeremy '12,6,25
 //
-//  EndComposition.cpp
+// Derived from Microsoft Sample IME by Jeremy '13,7,17
 //
-//          terminate the compositon object
 //
-//////////////////////////////////////////////////////////////////////
 
+
+#include "Private.h"
 #include "Globals.h"
 #include "EditSession.h"
-#include "TextService.h"
+#include "OVTSF.h"
 
-//+---------------------------------------------------------------------------
+//////////////////////////////////////////////////////////////////////
+//
+//    ITfEditSession
+//        CEditSessionBase
+// CEndCompositionEditSession class
+//
+//////////////////////////////////////////////////////////////////////+---------------------------------------------------------------------------
 //
 // CEndCompositionEditSession
 //
@@ -21,37 +25,52 @@
 class CEndCompositionEditSession : public CEditSessionBase
 {
 public:
-    CEndCompositionEditSession(CTextService *pTextService, ITfContext *pContext) : CEditSessionBase(pTextService, pContext)
+    CEndCompositionEditSession(_In_ COVTSF *pTextService, _In_ ITfContext *pContext) : CEditSessionBase(pTextService, pContext)
     {
     }
 
-  // ITfEditSession
+    // ITfEditSession
     STDMETHODIMP DoEditSession(TfEditCookie ec)
     {
-        _pTextService->_TerminateComposition(ec, _pContext);
+        _pTextService->_TerminateComposition(ec, _pContext, TRUE);
         return S_OK;
     }
 
 };
 
-//+---------------------------------------------------------------------------
+//////////////////////////////////////////////////////////////////////
+//
+// COVTSF class
+//
+//////////////////////////////////////////////////////////////////////+---------------------------------------------------------------------------
 //
 // _TerminateComposition
 //
 //----------------------------------------------------------------------------
 
-void CTextService::_TerminateComposition(TfEditCookie ec, ITfContext *pContext)
+void COVTSF::_TerminateComposition(TfEditCookie ec, _In_ ITfContext *pContext, BOOL isCalledFromDeactivate)
 {
-    if (_pComposition != NULL)
+	isCalledFromDeactivate;
+
+    if (_pComposition != nullptr)
     {
-      //
-      // remove the display attribute from the composition range.
-      //
+        // remove the display attribute from the composition range.
         _ClearCompositionDisplayAttributes(ec, pContext);
 
-        _pComposition->EndComposition(ec);
+        if (FAILED(_pComposition->EndComposition(ec)))
+        {
+            // if we fail to EndComposition, then we need to close the reverse reading window.
+            _DeleteCandidateList(TRUE, pContext);
+        }
+
         _pComposition->Release();
-        _pComposition = NULL;
+        _pComposition = nullptr;
+
+        if (_pContext)
+        {
+            _pContext->Release();
+            _pContext = nullptr;
+        }
     }
 }
 
@@ -61,12 +80,12 @@ void CTextService::_TerminateComposition(TfEditCookie ec, ITfContext *pContext)
 //
 //----------------------------------------------------------------------------
 
-void CTextService::_EndComposition(ITfContext *pContext)
+void COVTSF::_EndComposition(_In_opt_ ITfContext *pContext)
 {
-    CEndCompositionEditSession *pEditSession;
-    HRESULT hr;
+    CEndCompositionEditSession *pEditSession = new (std::nothrow) CEndCompositionEditSession(this, pContext);
+    HRESULT hr = S_OK;
 
-    if (pEditSession = new CEndCompositionEditSession(this, pContext))
+    if (nullptr != pEditSession)
     {
         pContext->RequestEditSession(_tfClientId, pEditSession, TF_ES_ASYNCDONTCARE | TF_ES_READWRITE, &hr);
         pEditSession->Release();

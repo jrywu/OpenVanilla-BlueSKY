@@ -1,17 +1,12 @@
-//////////////////////////////////////////////////////////////////////
 //
-// Derived from Microsoft TSF sample by Jeremy '12,6,25
 //
-//  DisplayAttribureInfo.h
+// Derived from Microsoft Sample IME by Jeremy '13,7,17
 //
-//          CDisplayAttributeInfo class
-//          CDisplayAttributeInfoInput class
-//          CDisplayAttributeInfoConverted class
 //
-//////////////////////////////////////////////////////////////////////
 
-#ifndef DISPLAYATTRIBUTEINFO_H
-#define DISPLAYATTRIBUTEINFO_H
+
+
+#pragma once
 
 //+---------------------------------------------------------------------------
 //
@@ -25,26 +20,26 @@ public:
     CDisplayAttributeInfo();
     ~CDisplayAttributeInfo();
 
-  // IUnknown
-    STDMETHODIMP QueryInterface(REFIID riid, void **ppvObj);
+    // IUnknown
+    STDMETHODIMP QueryInterface(REFIID riid, _Outptr_ void **ppvObj);
     STDMETHODIMP_(ULONG) AddRef(void);
     STDMETHODIMP_(ULONG) Release(void);
 
-  // ITfDisplayAttributeInfo
-    STDMETHODIMP GetGUID(GUID *pguid);
-    STDMETHODIMP GetDescription(BSTR *pbstrDesc);
-    STDMETHODIMP GetAttributeInfo(TF_DISPLAYATTRIBUTE *ptfDisplayAttr);
-    STDMETHODIMP SetAttributeInfo(const TF_DISPLAYATTRIBUTE *ptfDisplayAttr);
+    // ITfDisplayAttributeInfo
+    STDMETHODIMP GetGUID(_Out_ GUID *pguid);
+    STDMETHODIMP GetDescription(_Out_ BSTR *pbstrDesc);
+    STDMETHODIMP GetAttributeInfo(_Out_ TF_DISPLAYATTRIBUTE *pTSFDisplayAttr);
+    STDMETHODIMP SetAttributeInfo(_In_ const TF_DISPLAYATTRIBUTE *ptfDisplayAttr);
     STDMETHODIMP Reset();
 
 protected:
-    const GUID *_pguid;
-    const TF_DISPLAYATTRIBUTE *_pDisplayAttribute;
-    const WCHAR *_pszDescription;
-    const TCHAR *_pszValueName;
+    const GUID* _pguid;
+    const TF_DISPLAYATTRIBUTE* _pDisplayAttribute;
+    const WCHAR* _pDescription;
+    const WCHAR* _pValueName;
 
 private:
-    LONG _cRef; // COM ref count
+    LONG _refCount; // COM ref count
 };
 
 //+---------------------------------------------------------------------------
@@ -58,15 +53,15 @@ class CDisplayAttributeInfoInput : public CDisplayAttributeInfo
 public:
     CDisplayAttributeInfoInput()
     {
-        _pguid = &c_guidDisplayAttributeInput;
+        _pguid = &Global::OVTSFGuidDisplayAttributeInput;
         _pDisplayAttribute = &_s_DisplayAttribute;
-        _pszDescription = _s_szDescription;
-        _pszValueName = _s_szValueName;
+        _pDescription = _s_szDescription;
+        _pValueName = _s_szValueName;
     }
 
     static const TF_DISPLAYATTRIBUTE _s_DisplayAttribute;
     static const WCHAR _s_szDescription[];
-    static const TCHAR _s_szValueName[];
+    static const WCHAR _s_szValueName[];
 };
 
 //+---------------------------------------------------------------------------
@@ -80,15 +75,13 @@ class CDisplayAttributeInfoConverted : public CDisplayAttributeInfo
 public:
     CDisplayAttributeInfoConverted()
     {
-        _pguid = &c_guidDisplayAttributeConverted;
+        _pguid = &Global::OVTSFGuidDisplayAttributeConverted;
         _pDisplayAttribute = &_s_DisplayAttribute;
-        _pszDescription = _s_szDescription;
-        _pszValueName = _s_szValueName;
+        _pDescription = _s_szDescription;
+        _pValueName = _s_szValueName;
     }
 
     static const TF_DISPLAYATTRIBUTE _s_DisplayAttribute;
     static const WCHAR _s_szDescription[];
-    static const TCHAR _s_szValueName[];
+    static const WCHAR _s_szValueName[];
 };
-
-#endif DISPLAYATTRIBUTEINFO_H

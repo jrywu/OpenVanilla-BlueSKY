@@ -1,15 +1,13 @@
-//////////////////////////////////////////////////////////////////////
 //
-// Derived from Microsoft TSF sample by Jeremy '12,6,25
 //
-//  Server.cpp
+// Derived from Microsoft Sample IME by Jeremy '13,7,17
 //
-//          COM server exports.
 //
-//////////////////////////////////////////////////////////////////////
 
+
+#include "Private.h"
 #include "Globals.h"
-#include "TextService.h"
+#include "OVTSF.h"
 
 // from Register.cpp
 BOOL RegisterProfiles();
@@ -22,7 +20,7 @@ void UnregisterServer();
 void FreeGlobalObjects(void);
 
 class CClassFactory;
-static CClassFactory *g_ObjectInfo[1] = { NULL };
+static CClassFactory* classFactoryObjects[1] = { nullptr };
 
 //+---------------------------------------------------------------------------
 //
@@ -32,7 +30,7 @@ static CClassFactory *g_ObjectInfo[1] = { NULL };
 
 void DllAddRef(void)
 {
-    InterlockedIncrement(&g_cRefDll);
+    InterlockedIncrement(&Global::dllRefCount);
 }
 
 //+---------------------------------------------------------------------------
@@ -43,18 +41,17 @@ void DllAddRef(void)
 
 void DllRelease(void)
 {
-    if (InterlockedDecrement(&g_cRefDll) < 0) // g_cRefDll == -1 with zero refs
+    if (InterlockedDecrement(&Global::dllRefCount) < 0)
     {
-        EnterCriticalSection(&g_cs);
+        EnterCriticalSection(&Global::CS);
 
-      // need to check ref again after grabbing mutex
-        if (g_ObjectInfo[0] != NULL)
+        if (nullptr != classFactoryObjects[0])
         {
             FreeGlobalObjects();
         }
-        assert(g_cRefDll == -1);
+        assert(Global::dllRefCount == -1);
 
-        LeaveCriticalSection(&g_cs);
+        LeaveCriticalSection(&Global::CS);
     }
 }
 
@@ -67,16 +64,16 @@ void DllRelease(void)
 class CClassFactory : public IClassFactory
 {
 public:
-  // IUnknown methods
-    STDMETHODIMP QueryInterface(REFIID riid, void **ppvObj);
+    // IUnknown methods
+    STDMETHODIMP QueryInterface(REFIID riid, _Outptr_ void **ppvObj);
     STDMETHODIMP_(ULONG) AddRef(void);
     STDMETHODIMP_(ULONG) Release(void);
 
-  // IClassFactory methods
-    STDMETHODIMP CreateInstance(IUnknown *pUnkOuter, REFIID riid, void **ppvObj);
+    // IClassFactory methods
+    STDMETHODIMP CreateInstance(_In_opt_ IUnknown *pUnkOuter, _In_ REFIID riid, _COM_Outptr_ void **ppvObj);
     STDMETHODIMP LockServer(BOOL fLock);
 
-  // Constructor
+    // Constructor
     CClassFactory(REFCLSID rclsid, HRESULT (*pfnCreateInstance)(IUnknown *pUnkOuter, REFIID riid, void **ppvObj))
         : _rclsid(rclsid)
     {
@@ -85,7 +82,9 @@ public:
 
 public:
     REFCLSID _rclsid;
-    HRESULT (*_pfnCreateInstance)(IUnknown *pUnkOuter, REFIID riid, void **ppvObj);
+    HRESULT (*_pfnCreateInstance)(IUnknown *pUnkOuter, REFIID riid, _COM_Outptr_ void **ppvObj);
+private:
+	CClassFactory& operator=(const CClassFactory& rhn) {rhn;};
 };
 
 //+---------------------------------------------------------------------------
@@ -94,7 +93,7 @@ public:
 //
 //----------------------------------------------------------------------------
 
-STDAPI CClassFactory::QueryInterface(REFIID riid, void **ppvObj)
+STDAPI CClassFactory::QueryInterface(REFIID riid, _Outptr_ void **ppvObj)
 {
     if (IsEqualIID(riid, IID_IClassFactory) || IsEqualIID(riid, IID_IUnknown))
     {
@@ -102,7 +101,8 @@ STDAPI CClassFactory::QueryInterface(REFIID riid, void **ppvObj)
         DllAddRef();
         return NOERROR;
     }
-    *ppvObj = NULL;
+    *ppvObj = nullptr;
+
     return E_NOINTERFACE;
 }
 
@@ -115,7 +115,7 @@ STDAPI CClassFactory::QueryInterface(REFIID riid, void **ppvObj)
 STDAPI_(ULONG) CClassFactory::AddRef()
 {
     DllAddRef();
-    return g_cRefDll+1; // -1 w/ no refs
+    return (Global::dllRefCount + 1);
 }
 
 //+---------------------------------------------------------------------------
@@ -127,7 +127,7 @@ STDAPI_(ULONG) CClassFactory::AddRef()
 STDAPI_(ULONG) CClassFactory::Release()
 {
     DllRelease();
-    return g_cRefDll+1; // -1 w/ no refs
+    return (Global::dllRefCount + 1);
 }
 
 //+---------------------------------------------------------------------------
@@ -136,7 +136,7 @@ STDAPI_(ULONG) CClassFactory::Release()
 //
 //----------------------------------------------------------------------------
 
-STDAPI CClassFactory::CreateInstance(IUnknown *pUnkOuter, REFIID riid, void **ppvObj)
+STDAPI CClassFactory::CreateInstance(_In_opt_ IUnknown *pUnkOuter, _In_ REFIID riid, _COM_Outptr_ void **ppvObj)
 {
     return _pfnCreateInstance(pUnkOuter, riid, ppvObj);
 }
@@ -169,12 +169,7 @@ STDAPI CClassFactory::LockServer(BOOL fLock)
 
 void BuildGlobalObjects(void)
 {
-  // Build CClassFactory Objects
-
-    g_ObjectInfo[0] = new CClassFactory(c_clsidTextService, CTextService::CreateInstance);
-
-  // You can add more object info here.
-  // Don't forget to increase number of item for g_ObjectInfo[],
+    classFactoryObjects[0] = new (std::nothrow) CClassFactory(Global::OVTSFCLSID, COVTSF::CreateInstance);
 }
 
 //+---------------------------------------------------------------------------
@@ -185,15 +180,16 @@ void BuildGlobalObjects(void)
 
 void FreeGlobalObjects(void)
 {
-  // Free CClassFactory Objects
-    for (int i = 0; i < ARRAYSIZE(g_ObjectInfo); i++)
+    for (int i = 0; i < ARRAYSIZE(classFactoryObjects); i++)
     {
-        if (NULL != g_ObjectInfo[i])
+        if (nullptr != classFactoryObjects[i])
         {
-            delete g_ObjectInfo[i];
-            g_ObjectInfo[i] = NULL;
+            delete classFactoryObjects[i];
+            classFactoryObjects[i] = nullptr;
         }
     }
+
+    DeleteObject(Global::defaultlFontHandle);
 }
 
 //+---------------------------------------------------------------------------
@@ -201,38 +197,41 @@ void FreeGlobalObjects(void)
 //  DllGetClassObject
 //
 //----------------------------------------------------------------------------
-
-STDAPI DllGetClassObject(REFCLSID rclsid, REFIID riid, void **ppvObj)
+_Check_return_
+STDAPI  DllGetClassObject(
+	_In_ REFCLSID rclsid, 
+	_In_ REFIID riid, 
+	_Outptr_ void** ppv)
 {
-    if (g_ObjectInfo[0] == NULL)
+    if (classFactoryObjects[0] == nullptr)
     {
-        EnterCriticalSection(&g_cs);
+        EnterCriticalSection(&Global::CS);
 
-          // need to check ref again after grabbing mutex
-            if (g_ObjectInfo[0] == NULL)
-            {
-                BuildGlobalObjects();
-            }
+        // need to check ref again after grabbing mutex
+        if (classFactoryObjects[0] == nullptr)
+        {
+            BuildGlobalObjects();
+        }
 
-        LeaveCriticalSection(&g_cs);
+        LeaveCriticalSection(&Global::CS);
     }
 
     if (IsEqualIID(riid, IID_IClassFactory) ||
         IsEqualIID(riid, IID_IUnknown))
     {
-        for (int i = 0; i < ARRAYSIZE(g_ObjectInfo); i++)
+        for (int i = 0; i < ARRAYSIZE(classFactoryObjects); i++)
         {
-            if (NULL != g_ObjectInfo[i] &&
-                IsEqualGUID(rclsid, g_ObjectInfo[i]->_rclsid))
+            if (nullptr != classFactoryObjects[i] &&
+                IsEqualGUID(rclsid, classFactoryObjects[i]->_rclsid))
             {
-                *ppvObj = (void *)g_ObjectInfo[i];
-                DllAddRef();  // class factory holds DLL ref count
+                *ppv = (void *)classFactoryObjects[i];
+                DllAddRef();    // class factory holds DLL ref count
                 return NOERROR;
             }
         }
     }
 
-    *ppvObj = NULL;
+    *ppv = nullptr;
 
     return CLASS_E_CLASSNOTAVAILABLE;
 }
@@ -245,8 +244,10 @@ STDAPI DllGetClassObject(REFCLSID rclsid, REFIID riid, void **ppvObj)
 
 STDAPI DllCanUnloadNow(void)
 {
-    if (g_cRefDll >= 0) // -1 with no refs
+    if (Global::dllRefCount >= 0)
+    {
         return S_FALSE;
+    }
 
     return S_OK;
 }
@@ -274,15 +275,11 @@ STDAPI DllUnregisterServer(void)
 
 STDAPI DllRegisterServer(void)
 {
-  // register this service's profile with the tsf
-    if (!RegisterServer() ||
-        !RegisterProfiles() ||
-        !RegisterCategories())
+    if ((!RegisterServer()) || (!RegisterProfiles()) || (!RegisterCategories()))
     {
-        DllUnregisterServer(); // cleanup any loose ends
+        DllUnregisterServer();
         return E_FAIL;
     }
-
     return S_OK;
 }
 

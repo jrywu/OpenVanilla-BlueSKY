@@ -1,66 +1,162 @@
-//////////////////////////////////////////////////////////////////////
 //
-// Derived from Microsoft TSF sample by Jeremy '12,6,25
 //
-//  Globals.h
+// Derived from Microsoft Sample IME by Jeremy '13,7,17
 //
-//          Global variable declarations.
 //
-//////////////////////////////////////////////////////////////////////
 
-#ifndef GLOBALS_H
-#define GLOBALS_H
 
-#include <windows.h>
-#include <ole2.h>
-#include <olectl.h>
-#include <assert.h>
-#include "msctf.h"
+#pragma once
+
+#include "private.h"
+#include "define.h"
+#include "OVTSFBaseStructure.h"
 
 void DllAddRef();
 void DllRelease();
 
-#define ARRAYSIZE(a) (sizeof(a)/sizeof(a[0]))
 
-#define TEXTSERVICE_LANGID	MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL)
+namespace Global {
+//---------------------------------------------------------------------
+// inline
+//---------------------------------------------------------------------
 
-#define TEXTSERVICE_DESC    L"Open Vanilla 0.9b"
-#define TEXTSERVICE_DESC_A   "Open Vanilla 0.9b"
-#define TEXTSERVICE_MODEL   TEXT("Apartment")
-
-#define TEXTSERVICE_ICON_INDEX  0
-#define LANGBAR_ITEM_DESC   L"Current Input Method"
-
-//+---------------------------------------------------------------------------
-//
-// SafeStringCopy
-//
-// Copies a string from one buffer to another.  wcsncpy does not always
-// null-terminate the destination buffer; this function does.
-//----------------------------------------------------------------------------
-
-inline void SafeStringCopy(WCHAR *pchDst, ULONG cchMax, const WCHAR *pchSrc)
+inline void SafeRelease(_In_ IUnknown *punk)
 {
-    if (cchMax > 0)
+    if (punk != nullptr)
     {
-        wcsncpy(pchDst, pchSrc, cchMax);
-        pchDst[cchMax-1] = '\0';
+        punk->Release();
     }
 }
 
-extern HINSTANCE g_hInst;
+inline void QuickVariantInit(_Inout_ VARIANT *pvar)
+{
+    pvar->vt = VT_EMPTY;
+}
 
-extern LONG g_cRefDll;
+inline void QuickVariantClear(_Inout_ VARIANT *pvar)
+{
+    switch (pvar->vt) 
+    {
+    // some ovbious VTs that don't need to call VariantClear.
+    case VT_EMPTY:
+    case VT_NULL:
+    case VT_I2:
+    case VT_I4:
+    case VT_R4:
+    case VT_R8:
+    case VT_CY:
+    case VT_DATE:
+    case VT_I1:
+    case VT_UI1:
+    case VT_UI2:
+    case VT_UI4:
+    case VT_I8:
+    case VT_UI8:
+    case VT_INT:
+    case VT_UINT:
+    case VT_BOOL:
+        break;
 
-extern CRITICAL_SECTION g_cs;
+        // Call release for VT_UNKNOWN.
+    case VT_UNKNOWN:
+        SafeRelease(pvar->punkVal);
+        break;
 
-extern const CLSID c_clsidTextService;
+    default:
+        // we call OleAut32 for other VTs.
+        VariantClear(pvar);
+        break;
+    }
+    pvar->vt = VT_EMPTY;
+}
 
-extern const GUID c_guidProfile;
+//+---------------------------------------------------------------------------
+//
+// IsTooSimilar
+//
+//  Return TRUE if the colors cr1 and cr2 are so similar that they
+//  are hard to distinguish. Used for deciding to use reverse video
+//  selection instead of system selection colors.
+//
+//----------------------------------------------------------------------------
 
-extern const GUID c_guidLangBarItemButton;
+inline BOOL IsTooSimilar(COLORREF cr1, COLORREF cr2)
+{
+    if ((cr1 | cr2) & 0xFF000000)        // One color and/or the other isn't RGB, so algorithm doesn't apply
+    {
+        return FALSE;
+    }
 
-extern const GUID c_guidDisplayAttributeInput;
-extern const GUID c_guidDisplayAttributeConverted;
+    LONG DeltaR = abs(GetRValue(cr1) - GetRValue(cr2));
+    LONG DeltaG = abs(GetGValue(cr1) - GetGValue(cr2));
+    LONG DeltaB = abs(GetBValue(cr1) - GetBValue(cr2));
 
-#endif // GLOBALS_H
+    return DeltaR + DeltaG + DeltaB < 80;
+}
+
+//---------------------------------------------------------------------
+// extern
+//---------------------------------------------------------------------
+extern HINSTANCE dllInstanceHandle;
+
+extern ATOM AtomCandidateWindow;
+extern ATOM AtomShadowWindow;
+extern ATOM AtomScrollBarWindow;
+
+BOOL RegisterWindowClass();
+
+extern LONG dllRefCount;
+
+extern CRITICAL_SECTION CS;
+extern HFONT defaultlFontHandle;  // Global font object we use everywhere
+
+extern const CLSID OVTSFCLSID;
+extern const CLSID OVTSFGuidProfile;
+extern const CLSID OVTSFGuidImeModePreserveKey;
+extern const CLSID OVTSFGuidDoubleSingleBytePreserveKey;
+extern const CLSID OVTSFGuidPunctuationPreserveKey;
+
+LRESULT CALLBACK ThreadKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam);
+BOOL CheckModifiers(UINT uModCurrent, UINT uMod);
+BOOL UpdateModifiers(WPARAM wParam, LPARAM lParam);
+
+extern USHORT ModifiersValue;
+extern BOOL IsShiftKeyDownOnly;
+extern BOOL IsControlKeyDownOnly;
+extern BOOL IsAltKeyDownOnly;
+
+extern const GUID OVTSFGuidCompartmentDoubleSingleByte;
+extern const GUID OVTSFGuidCompartmentPunctuation;
+
+extern const WCHAR FullWidthCharTable[];
+extern const struct _PUNCTUATION PunctuationTable[14];
+
+extern const GUID OVTSFGuidLangBarIMEMode;
+extern const GUID OVTSFGuidLangBarDoubleSingleByte;
+extern const GUID OVTSFGuidLangBarPunctuation;
+
+extern const GUID OVTSFGuidDisplayAttributeInput;
+extern const GUID OVTSFGuidDisplayAttributeConverted;
+
+extern const GUID OVTSFGuidCandUIElement;
+
+extern const WCHAR UnicodeByteOrderMark;
+extern const WCHAR KeywordDelimiter;
+extern const WCHAR StringDelimiter;
+
+extern const WCHAR ImeModeDescription[];
+extern const int ImeModeOnIcoIndex;
+extern const int ImeModeOffIcoIndex;
+
+extern const WCHAR DoubleSingleByteDescription[];
+extern const int DoubleSingleByteOnIcoIndex;
+extern const int DoubleSingleByteOffIcoIndex;
+
+extern const WCHAR PunctuationDescription[];
+extern const int PunctuationOnIcoIndex;
+extern const int PunctuationOffIcoIndex;
+
+extern const WCHAR LangbarImeModeDescription[];
+extern const WCHAR LangbarDoubleSingleByteDescription[];
+extern const WCHAR LangbarPunctuationDescription[];
+}

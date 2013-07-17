@@ -1,17 +1,15 @@
-//////////////////////////////////////////////////////////////////////
 //
-// Derived from Microsoft TSF sample by Jeremy '12,6,25
 //
-//  StartComposition.cpp
+// Derived from Microsoft Sample IME by Jeremy '13,7,17
 //
-//          the rountins to start a new composition object.
 //
-//////////////////////////////////////////////////////////////////////
-#define OV_DEBUG
+
+
+#include "Private.h"
 #include "Globals.h"
 #include "EditSession.h"
-#include "TextService.h"
-#include "OVUtility.h"
+#include "OVTSF.h"
+
 //+---------------------------------------------------------------------------
 //
 // CStartCompositinoEditSession
@@ -21,99 +19,113 @@
 class CStartCompositionEditSession : public CEditSessionBase
 {
 public:
-    CStartCompositionEditSession(CTextService *pTextService, ITfContext *pContext) : CEditSessionBase(pTextService, pContext)
+    CStartCompositionEditSession(_In_ COVTSF *pTextService, _In_ ITfContext *pContext) : CEditSessionBase(pTextService, pContext)
     {
     }
 
-  // ITfEditSession
+    // ITfEditSession
     STDMETHODIMP DoEditSession(TfEditCookie ec);
 };
 
 //+---------------------------------------------------------------------------
 //
-// DoEditSession
+// ITfEditSession::DoEditSession
 //
 //----------------------------------------------------------------------------
 
 STDAPI CStartCompositionEditSession::DoEditSession(TfEditCookie ec)
 {
-	murmur("StartComposition:CStartCompositionEditSession::DoEditSession()");
-    ITfInsertAtSelection *pInsertAtSelection = NULL;
-    ITfRange *pRangeInsert = NULL;
-    ITfContextComposition *pContextComposition = NULL;
-    ITfComposition *pComposition = NULL;
-    HRESULT hr = E_FAIL;
+    ITfInsertAtSelection* pInsertAtSelection = nullptr;
+    ITfRange* pRangeInsert = nullptr;
+    ITfContextComposition* pContextComposition = nullptr;
+    ITfComposition* pComposition = nullptr;
 
-  // A special interface is required to insert text at the selection
-    if (_pContext->QueryInterface(IID_ITfInsertAtSelection, (void **)&pInsertAtSelection) != S_OK)
+    if (FAILED(_pContext->QueryInterface(IID_ITfInsertAtSelection, (void **)&pInsertAtSelection)))
     {
         goto Exit;
     }
 
-  // insert the text
-    if (pInsertAtSelection->InsertTextAtSelection(ec, TF_IAS_QUERYONLY, NULL, 0, &pRangeInsert) != S_OK)
+    if (FAILED(pInsertAtSelection->InsertTextAtSelection(ec, TF_IAS_QUERYONLY, NULL, 0, &pRangeInsert)))
     {
         goto Exit;
     }
 
-  // get an interface on the context to deal with compositions
-    if (_pContext->QueryInterface(IID_ITfContextComposition, (void **)&pContextComposition) != S_OK)
+    if (FAILED(_pContext->QueryInterface(IID_ITfContextComposition, (void **)&pContextComposition)))
     {
         goto Exit;
     }
 
-  // start the new composition
-    if ((pContextComposition->StartComposition(ec, pRangeInsert, _pTextService, &pComposition) == S_OK) && (pComposition != NULL))
+    if (SUCCEEDED(pContextComposition->StartComposition(ec, pRangeInsert, _pTextService, &pComposition)) && (nullptr != pComposition))
     {
-      // Store the pointer of this new composition object in the instance 
-      // of the CTextService class. So this instance of the CTextService 
-      // class can know now it is in the composition stage.
         _pTextService->_SetComposition(pComposition);
 
-      // 
-      //  set selection to the adjusted range
-      // 
+        // set selection to the adjusted range
         TF_SELECTION tfSelection;
         tfSelection.range = pRangeInsert;
         tfSelection.style.ase = TF_AE_NONE;
         tfSelection.style.fInterimChar = FALSE;
+
         _pContext->SetSelection(ec, 1, &tfSelection);
+        _pTextService->_SaveCompositionContext(_pContext);
     }
 
 Exit:
-    if (pContextComposition != NULL)
+    if (nullptr != pContextComposition)
+    {
         pContextComposition->Release();
+    }
 
-    if (pRangeInsert != NULL)
+    if (nullptr != pRangeInsert)
+    {
         pRangeInsert->Release();
+    }
 
-    if (pInsertAtSelection != NULL)
+    if (nullptr != pInsertAtSelection)
+    {
         pInsertAtSelection->Release();
+    }
 
     return S_OK;
 }
 
-//+---------------------------------------------------------------------------
+//////////////////////////////////////////////////////////////////////
+//
+// COVTSF class
+//
+//////////////////////////////////////////////////////////////////////+---------------------------------------------------------------------------
 //
 // _StartComposition
 //
-// this starts the new composition at the selection of the current 
+// this starts the new (std::nothrow) composition at the selection of the current 
 // focus context.
 //----------------------------------------------------------------------------
 
-void CTextService::_StartComposition(ITfContext *pContext)
+void COVTSF::_StartComposition(_In_ ITfContext *pContext)
 {
-	murmur("StartComposition:CTextService::_StartComposition()");
-    CStartCompositionEditSession *pStartCompositionEditSession;
+    CStartCompositionEditSession* pStartCompositionEditSession = new (std::nothrow) CStartCompositionEditSession(this, pContext);
 
-    if (pStartCompositionEditSession = new CStartCompositionEditSession(this, pContext))
+    if (nullptr != pStartCompositionEditSession)
     {
-        HRESULT hr;
-      // A synchronus document write lock is requred.
-      // the CStartCompositionEditSession will do all the work when the
-      // CStartCompositionEditSession::DoEditSession method is called by the context
+        HRESULT hr = S_OK;
         pContext->RequestEditSession(_tfClientId, pStartCompositionEditSession, TF_ES_SYNC | TF_ES_READWRITE, &hr);
 
         pStartCompositionEditSession->Release();
     }
 }
+
+//+---------------------------------------------------------------------------
+//
+// _SaveCompositionContext
+//
+// this saves the context _pComposition belongs to; we need this to clear
+// text attribute in case composition has not been terminated on 
+// deactivation
+//----------------------------------------------------------------------------
+
+void COVTSF::_SaveCompositionContext(_In_ ITfContext *pContext)
+{
+    assert(_pContext == nullptr);
+
+    pContext->AddRef();
+    _pContext = pContext;
+} 

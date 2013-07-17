@@ -1,15 +1,12 @@
-//////////////////////////////////////////////////////////////////////
 //
-// Derived from Microsoft TSF sample by Jeremy '12,6,25
 //
-//  DllMain.cpp
+// Derived from Microsoft Sample IME by Jeremy '13,7,17
 //
-//          DllMain module entry point.
 //
-//////////////////////////////////////////////////////////////////////
 
+
+#include "Private.h"
 #include "Globals.h"
-#include "CandidateWindow.h"
 
 //+---------------------------------------------------------------------------
 //
@@ -19,28 +16,38 @@
 
 BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID pvReserved)
 {
+	pvReserved;
+
     switch (dwReason)
     {
-        case DLL_PROCESS_ATTACH:
+    case DLL_PROCESS_ATTACH:
 
-            g_hInst = hInstance;
+        Global::dllInstanceHandle = hInstance;
 
-            if (!InitializeCriticalSectionAndSpinCount(&g_cs, 0))
-                return FALSE;
+        if (!InitializeCriticalSectionAndSpinCount(&Global::CS, 0))
+        {
+            return FALSE;
+        }
 
-          // register candidate window class.
-            CCandidateWindow::_InitWindowClass();
+        if (!Global::RegisterWindowClass()) {
+            return FALSE;
+        }
 
-            break;
+        break;
 
-        case DLL_PROCESS_DETACH:
+    case DLL_PROCESS_DETACH:
 
-          // unregister candidate window class.
-            CCandidateWindow::_UninitWindowClass();
+        DeleteCriticalSection(&Global::CS);
 
-            DeleteCriticalSection(&g_cs);
+        break;
 
-            break;
+    case DLL_THREAD_ATTACH:
+
+        break;
+
+    case DLL_THREAD_DETACH:
+
+        break;
     }
 
     return TRUE;

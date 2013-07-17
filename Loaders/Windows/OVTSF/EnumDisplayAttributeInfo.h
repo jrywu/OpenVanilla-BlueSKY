@@ -1,15 +1,11 @@
-//////////////////////////////////////////////////////////////////////
 //
-// Derived from Microsoft TSF sample by Jeremy '12,6,25
 //
-//  EnumDisplayAttribureInfo.h
+// Derived from Microsoft Sample IME by Jeremy '13,7,17
 //
-//          ITfEnumDisplayAttributeInfo implementation.
 //
-//////////////////////////////////////////////////////////////////////
 
-#ifndef ENUMDISPLAYATTRIBUTEINFO_H
-#define ENUMDISPLAYATTRIBUTEINFO_H
+
+#pragma once
 
 //+---------------------------------------------------------------------------
 //
@@ -23,20 +19,18 @@ public:
     CEnumDisplayAttributeInfo();
     ~CEnumDisplayAttributeInfo();
 
-  // IUnknown
-    STDMETHODIMP QueryInterface(REFIID riid, void **ppvObj);
+    // IUnknown
+    STDMETHODIMP QueryInterface(REFIID riid, _Outptr_ void **ppvObj);
     STDMETHODIMP_(ULONG) AddRef(void);
     STDMETHODIMP_(ULONG) Release(void);
 
-  // IEnumTfDisplayAttributeInfo
-    STDMETHODIMP Clone(IEnumTfDisplayAttributeInfo **ppEnum);
-    STDMETHODIMP Next(ULONG ulCount, ITfDisplayAttributeInfo **rgInfo, ULONG *pcFetched);
+    // IEnumTfDisplayAttributeInfo
+    STDMETHODIMP Clone(_Out_ IEnumTfDisplayAttributeInfo **ppEnum);
+    STDMETHODIMP Next(ULONG ulCount, __RPC__out_ecount_part(ulCount, *pcFetched) ITfDisplayAttributeInfo **rgInfo, __RPC__out ULONG *pcFetched);
     STDMETHODIMP Reset();
     STDMETHODIMP Skip(ULONG ulCount);
 
 private:
-    LONG _iIndex; // next display attribute to enum
-    LONG _cRef; // COM ref count
+    LONG _index;    // next display attribute to enum
+    LONG _refCount; // COM ref count
 };
-
-#endif ENUMDISPLAYATTRIBUTEINFO_H
