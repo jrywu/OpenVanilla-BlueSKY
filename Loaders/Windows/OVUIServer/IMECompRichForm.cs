@@ -265,13 +265,13 @@ namespace OVUIServer
             Buf = "";
             //m_compSelStart = 0;
             //m_compSelEnd = 0;
-            this.Width = m_formInitWidth;
+            this.Invoke((MethodInvoker)delegate { Width = m_formInitWidth; });
 		}
 
         public void SetLocation(int x, int y)
         {
             m_locationY = y;
-            this.Location = new Point(x, m_locationY);
+            this.Invoke((MethodInvoker)delegate { Location = new Point(x, m_locationY); });
         }
 
         public void SetFont(int fontHeight, string fontName)
@@ -307,7 +307,7 @@ namespace OVUIServer
             System.Diagnostics.Debug.WriteLine("X=" + x.ToString());
             System.Diagnostics.Debug.WriteLine("labelX=" + label1.Left.ToString());*/
 
-            this.m_caretIndex = x;            
+            this.Invoke((MethodInvoker)delegate { m_caretIndex = x; });
 
             /*Point pt2 = 
                 this.richTextBox1.GetPositionFromCharIndex(
