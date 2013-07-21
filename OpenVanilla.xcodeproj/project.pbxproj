@@ -34,7 +34,6 @@
 		0176592A14290C570038B8EB /* cj-ext.cin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A8C6E09103D461200DE4A39 /* cj-ext.cin */; };
 		0176592B14290C570038B8EB /* dayi3-patched.cin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A8C6E0A103D461200DE4A39 /* dayi3-patched.cin */; };
 		0176592C14290C570038B8EB /* simplex-ext.cin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A8C6E0B103D461200DE4A39 /* simplex-ext.cin */; };
-		0176592D14290C570038B8EB /* wubizixing.cin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A8C6E0C103D461200DE4A39 /* wubizixing.cin */; };
 		0176592E14290C890038B8EB /* OVIMGenericSQ.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 01F99FF31428F8DC001DE94A /* OVIMGenericSQ.bundle */; };
 		017E3C71142E69B000FB3C06 /* OVIMArraySQ.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0110C2F0142E5E7B000F9D03 /* OVIMArraySQ.bundle */; };
 		01D6DC21142E566200611D68 /* OVCINSQInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F9A0A21428FDC6001DE94A /* OVCINSQInfo.cpp */; };
@@ -111,11 +110,9 @@
 		6AB6CF580E9CF69C0001B127 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB6CF570E9CF69C0001B127 /* Cocoa.framework */; };
 		6AB6CF5A0E9CF69C0001B127 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB6CF590E9CF69C0001B127 /* InputMethodKit.framework */; };
 		D403C32C0EA3CC83006F0A89 /* OVIMTibetan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D403C32B0EA3CC83006F0A89 /* OVIMTibetan.cpp */; };
-		D403C3480EA3CCD2006F0A89 /* OVIMTibetan.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = D403C3110EA3CBD0006F0A89 /* OVIMTibetan.bundle */; };
 		D403C4720EA3D159006F0A89 /* OVIMUnicode.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = D403C4570EA3D10A006F0A89 /* OVIMUnicode.bundle */; };
 		D403C4AE0EA3D1B7006F0A89 /* OVIMUnicode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D403C4AD0EA3D1B7006F0A89 /* OVIMUnicode.cpp */; };
 		D403C4DC0EA3D349006F0A89 /* OVIMEsperanto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D403C4DB0EA3D349006F0A89 /* OVIMEsperanto.cpp */; };
-		D403C52C0EA3D3BF006F0A89 /* OVIMEsperanto.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = D403C4C60EA3D2E4006F0A89 /* OVIMEsperanto.bundle */; };
 		D403C58B0EA3D4B8006F0A89 /* OVOFFullWidthCharacter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D403C58A0EA3D4B8006F0A89 /* OVOFFullWidthCharacter.cpp */; };
 		D403C58F0EA3D549006F0A89 /* OVOFFullWidthCharacter.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = D403C5760EA3D49E006F0A89 /* OVOFFullWidthCharacter.bundle */; };
 		D403C6100EA3D62B006F0A89 /* OVOFHanConvert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D403C60D0EA3D62B006F0A89 /* OVOFHanConvert.cpp */; };
@@ -145,7 +142,6 @@
 		D44D46FE0E9DB1150062F692 /* OVPhoneticLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A21AA5D0E9D0AB60078C2E9 /* OVPhoneticLib.cpp */; };
 		D44D46FF0E9DB1150062F692 /* OVStringToolKit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A21AA600E9D0AB60078C2E9 /* OVStringToolKit.cpp */; };
 		D44D471F0E9DB2E80062F692 /* libOVLegacyModuleLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D44D46EC0E9DB0E30062F692 /* libOVLegacyModuleLibrary.a */; };
-		D44D47F30E9DB4290062F692 /* libOVLegacyModuleLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D44D46EC0E9DB0E30062F692 /* libOVLegacyModuleLibrary.a */; };
 		D45AFE4A1045594100353563 /* OVIMSpaceChewingController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45AFE491045594100353563 /* OVIMSpaceChewingController.m */; };
 		D45AFE6610455A3A00353563 /* OVIMSpaceChewingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45AFE6510455A3A00353563 /* OVIMSpaceChewingController.xib */; };
 		D48A53B1103D4CB30072485F /* OVIMGenericController.m in Sources */ = {isa = PBXBuildFile; fileRef = D48A53B0103D4CB30072485F /* OVIMGenericController.m */; };
@@ -309,7 +305,6 @@
 				0176592A14290C570038B8EB /* cj-ext.cin in CopyFiles */,
 				0176592B14290C570038B8EB /* dayi3-patched.cin in CopyFiles */,
 				0176592C14290C570038B8EB /* simplex-ext.cin in CopyFiles */,
-				0176592D14290C570038B8EB /* wubizixing.cin in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,9 +316,7 @@
 			files = (
 				017E3C71142E69B000FB3C06 /* OVIMArraySQ.bundle in CopyFiles */,
 				0176592E14290C890038B8EB /* OVIMGenericSQ.bundle in CopyFiles */,
-				D403C52C0EA3D3BF006F0A89 /* OVIMEsperanto.bundle in CopyFiles */,
 				6A21AB970E9D22930078C2E9 /* OVIMPhonetic.bundle in CopyFiles */,
-				D403C3480EA3CCD2006F0A89 /* OVIMTibetan.bundle in CopyFiles */,
 				D403C4720EA3D159006F0A89 /* OVIMUnicode.bundle in CopyFiles */,
 				D403C6240EA3D645006F0A89 /* OVOFHanConvert.bundle in CopyFiles */,
 				D403C58F0EA3D549006F0A89 /* OVOFFullWidthCharacter.bundle in CopyFiles */,
@@ -630,7 +623,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D44D47F30E9DB4290062F692 /* libOVLegacyModuleLibrary.a in Frameworks */,
 				D42E38510E86A29100453DE6 /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

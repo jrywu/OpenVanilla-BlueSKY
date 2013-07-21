@@ -54,7 +54,7 @@
 	_settingDictionary = [[NSMutableDictionary alloc] init];
 	_controllersArray = [[NSMutableArray alloc] init];
 	
-	[self initToolbar];
+	//[self initToolbar];
 	[[self window] setLevel:NSFloatingWindowLevel];
 	[[self window] center];
 	[self loadPlist];
