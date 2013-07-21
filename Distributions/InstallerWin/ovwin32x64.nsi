@@ -108,41 +108,6 @@ LangString ERROR_DOTNET_INVALID_PATH ${LANG_TradChinese} "$(DESC_SHORTDOTNET) 安
   並未在以下路徑:$\n"
 LangString ERROR_DOTNET_FATAL ${LANG_TradChinese} "嚴重錯誤訊息發生在安裝 \
   $(DESC_SHORTDOTNET) 過程當中"
-;LangString FAILED_DOTNET_INSTALL ${LANG_TradChinese} " $(PRODUCT_NAME) 將會繼續安裝 \
-;  $\n 然而，部分功能必須等到 $(DESC_SHORTDOTNET)安裝完畢，才會正常運作
-LangString FAILED_DOTNET_INSTALL ${LANG_TradChinese} "輸入法安裝終止，$\n必須等到 $(DESC_SHORTDOTNET)安裝完畢，才能正常進行安裝"
-;LangString DESC_REMAINING ${LANG_ENGLISH} " (%d %s%s remaining)"
-;LangString DESC_PROGRESS ${LANG_ENGLISH} "%d.%01dkB/s" ;"%dkB (%d%%) of %dkB @ %d.%01dkB/s"
-;LangString DESC_PLURAL ${LANG_ENGLISH} "s"
-;LangString DESC_HOUR ${LANG_ENGLISH} "hour"
-;LangString DESC_MINUTE ${LANG_ENGLISH} "minute"
-;LangString DESC_SECOND ${LANG_ENGLISH} "second"
-;LangString DESC_CONNECTING ${LANG_ENGLISH} "Connecting..."
-;LangString DESC_DOWNLOADING ${LANG_ENGLISH} "Downloading %s"
-;LangString DESC_SHORTDOTNET ${LANG_ENGLISH} "Microsoft .Net Framework 2.0"
-;LangString DESC_LONGDOTNET ${LANG_ENGLISH} "Microsoft .Net Framework 2.0"
-;LangString DESC_DOTNET_DECISION ${LANG_ENGLISH} "$(DESC_SHORTDOTNET) is required.$\nIt is strongly \
-;  advised that you install$\n$(DESC_SHORTDOTNET) before continuing.$\nIf you choose to continue, \
-;  you will need to connect$\nto the internet before proceeding.$\nWould you like to continue with \
-;  the installation?"
-;LangString SEC_DOTNET ${LANG_ENGLISH} "$(DESC_SHORTDOTNET) "
-;LangString DESC_INSTALLING ${LANG_ENGLISH} "Installing"
-;LangString DESC_DOWNLOADING1 ${LANG_ENGLISH} "Downloading"
-;LangString DESC_DOWNLOADFAILED ${LANG_ENGLISH} "Download Failed:"
-;LangString ERROR_DOTNET_DUPLICATE_INSTANCE ${LANG_ENGLISH} "The $(DESC_SHORTDOTNET) Installer is \
-;  already running."
-;LangString ERROR_NOT_ADMINISTRATOR ${LANG_ENGLISH} "$(DESC_000022)"
-;LangString ERROR_INVALID_PLATFORM ${LANG_ENGLISH} "$(DESC_000023)"
-;LangString ERROR_NOT_ADMINISTRATOR ${LANG_ENGLISH} "Sorry, you are not the administrator."
-;LangString ERROR_INVALID_PLATFORM ${LANG_ENGLISH} "This product is not working on this platform."
-;LangString DESC_DOTNET_TIMEOUT ${LANG_ENGLISH} "The installation of the $(DESC_SHORTDOTNET) \
-;  has timed out."
-;LangString ERROR_DOTNET_INVALID_PATH ${LANG_ENGLISH} "The $(DESC_SHORTDOTNET) Installation$\n\
-;  was not found in the following location:$\n"
-;LangString ERROR_DOTNET_FATAL ${LANG_ENGLISH} "A fatal error occurred during the installation$\n\
-;  of the $(DESC_SHORTDOTNET)."
-;LangString FAILED_DOTNET_INSTALL ${LANG_ENGLISH} "The installation of $(PRODUCT_NAME) will$\n\
-;  continue. However, it may not function properly$\nuntil $(DESC_SHORTDOTNET)$\nis installed."
 
 ; .NET end --------------------------------------------
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
@@ -199,26 +164,6 @@ Function .onInit
         MessageBox MB_OK "此安裝檔為64bit版本, 請重新下載32bit版本"
         Abort
   ${EndIf}
-  Call CheckMSIVer
-  Pop $R5 # = "NeedMSI"
-  StrCmp $R5 "NeedMSI" NeedWIN31 KeepGo1
-  
-  NeedWIN31:
-     Push "www.microsoft.com/downloads/details.aspx?displaylang=zh-tw&FamilyID=889482fc-5f56-4a38-b838-de776fd4138c"
-     Call openLinkNewWindow
-     Abort  
-  
-  KeepGo1:
-  Call CheckOffice2003Otk
-  Pop $R6 # = "Office2003Otk"
-  StrCmp $R6 "Office2003Otk" Need2003Otk KeepGo2
-  
-  Need2003Otk:
-  Push "http://www.microsoft.com/downloads/details.aspx?displaylang=zh-tw&FamilyID=1B0BFB35-C252-43CC-8A2A-6A64D6AC4670"
-  Call openLinkNewWindow
-  Abort
-  
-  KeepGo2:
   ReadRegStr $0 ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion"
   StrCmp $0 "" StartInstall 0
 ;	  MessageBox MB_OKCANCEL|MB_ICONQUESTION "偵測到舊版 $0，必須先移除才能安裝新版。是否要現在進行？" IDOK +2
@@ -229,6 +174,7 @@ Function .onInit
           ;Abort
     ;RemoveFinished:     
     		;MessageBox MB_ICONINFORMATION|MB_OK "舊版已移除。"
+    ;call checkVCRedist
     StartInstall:     
 ;  !insertmacro MUI_LANGDLL_DISPLAY
 
@@ -428,39 +374,7 @@ Function VersionCompare
 	Exch $0
 FunctionEnd  
 
-Function CheckMSIVer 
-GetDLLVersion "$SYSDIR\msi.dll" $R0 $R1
-IntOp $R2 $R0 / 0x00010000 ; $R2 now contains major version
-${VersionCompare} $R2 "3" $1
-; ## testing MessageBox MB_OK "$1" IDOK +1
-${If} $1 == 2 ; VersionCompare the msi installer version, if smaller
-MessageBox MB_OK|MB_ICONINFORMATION "需要 Windows Installer 3.1 (v2)，請至官方網站下載。" IDOK +1
-;Call openLinkNewWindow
-;Abort
-Push "NeedMSI"
-${ENDIF}
-FunctionEnd
 
-Function CheckOffice2003Otk
-;${registry::Open} "HKLM\${CURRENTVERSION_UNINSTALL}" "\NI=microsoft office" $9
-;${registry::Find} $9 $1 $2 $3 $4
-;MessageBox MB_ICONINFORMATION|MB_OK "show 9:$9 1:$1 2:$2 3:$3 " IDOK +1
-
-ClearErrors
-GetDLLVersion "$PROGRAMFILES\Microsoft Office\OFFICE11\ADDINS\Otkloadr.dll" $R0 $R1
-IfErrors notOffice2003 0
-IntOp $R2 $R0 / 0x00010000 ; $R2 now contains major version
-IntOp $R3 $R0 & 0x0000FFFF ; $R3 now contains minor version
-IntOp $R4 $R1 / 0x00010000 ; $R4 now contains release
-IntOp $R5 $R1 & 0x0000FFFF ; $R5 now contains build
-StrCpy $0 "$R2.$R3.$R4.$R5" ; $0 now contains string like "1.2.0.192"
-${VersionCompare} $0 "7.10.5077.0" $1
-${If} $1 == 2   ;if $0 is smaller
-Push "Office2003Otk"
-MessageBox MB_OK|MB_ICONINFORMATION "$(^Name)需要 Office 2003 使用者進行 patch，請至官方網站下載。"IDOK +1
-${ENDIF}
-notOffice2003:
-FunctionEnd
 
 Function openLinkNewWindow
   Pop $0
@@ -635,6 +549,31 @@ Section $(SEC_DOTNET) SECDOTNET
 ;    ContinueInst:      
 ;SectionEnd          
 
+Function checkVCRedist
+  Push $R0
+  ClearErrors
+  ;{3D6AD258-61EA-35F5-812C-B7A02152996E} for x86 VC 2012 Upate3
+  ;{2EDC2FA3-1F34-34E5-9085-588C9EFD1CC6} for x64 VC 2012 Upate3
+  ReadRegDword $R0 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{2EDC2FA3-1F34-34E5-9085-588C9EFD1CC6}" "Version"
+  ;ReadRegDword $R0 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{3D6AD258-61EA-35F5-812C-B7A02152996E}" "Version"
+  IfErrors 0 VSRedistInstalled
+  MessageBox MB_ICONQUESTION|MB_YESNO "需要 MS VC++ 2012 Redistributable，您要繼續這項安裝嗎?" IDNO VSRedistInstalledAbort
+  SetOutPath $INSTDIR
+  File "VCRedist\vcredist_x64.exe"
+  ExecWait '"$INSTDIR\vcredist_x64.exe" /q' # silent install
+  Delete "$INSTDIR\vcredist_x64.exe"
+  Goto VSRedistInstalled
+VSRedistInstalledAbort:
+  Quit
+VSRedistInstalled:
+  Exch $R0
+FunctionEnd
+
+
+Section  "CheckVCRedist" VCR
+	call checkVCRedist
+SectionEnd
+
 Section "MainSection" SEC01
   SetOutPath "$SYSDIR"
   SetOverwrite ifnewer
@@ -736,7 +675,7 @@ Section Uninstall
   ${registry::MoveKey} "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\excel-new.exe" "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\\excel.exe" $R5
   ${registry::MoveKey} "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\winword-new.exe" "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\\winword.exe" $R6
 
-  nsExec::ExecToStack '"$PROGRAMFILES64\OpenVanilla\OVUtil.exe" uninstall "$PROGRAMFILES64\Openvanilla\OVManagedUI.dll"'
+  nsExec::ExecToStack '"$PROGRAMFILES64\OpenVanilla\OVUtil.exe" uninstall "$PROGRAMFILES64\Openvanilla\OVUIServer.dll"'
 	
   ${DisableX64FSRedirection}
   Delete "$SYSDIR\OVIMEUI.dll"

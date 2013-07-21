@@ -1,9 +1,10 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
@@ -59,11 +60,11 @@ namespace OVPreferences
             
             
             //Runtime Culture
-            //The main thread¡¦s UICulture must be set to the appropriate value prior to 
+            //The main threadâ€™s UICulture must be set to the appropriate value prior to 
             //initializing form and control properties with a ResourceManager instance. 
-            //Typically you¡¦ll see this handled in the main form¡¦s constructor.
-            //However, it is better initialize the thread¡¦s UICulture and Culture 
-            //when the thread is first created, and decouple it from a specific form¡¦s code.
+            //Typically youâ€™ll see this handled in the main formâ€™s constructor.
+            //However, it is better initialize the threadâ€™s UICulture and Culture 
+            //when the thread is first created, and decouple it from a specific formâ€™s code.
             //System.Threading.Thread.CurrentThread.CurrentUICulture = 
             //    new System.Globalization.CultureInfo(Properties.Settings.Default.UICulture);
 
@@ -327,6 +328,10 @@ namespace OVPreferences
         private void LoadData()
         {
             //MessageBox.Show("Loads XML config here");
+            if(!File.Exists(m_ovConfPath)){
+                File.Copy( System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + Path.DirectorySeparatorChar + "config.xml"
+                    ,m_ovConfPath);  // copy empty config.xml to user folder if it's not exist to avoid crash
+            }
             m_ovConfDom.Load(m_ovConfPath);
             OVConfig ovConfSet = new OVConfig();
             using (XmlReader ovConfReader = XmlReader.Create(m_ovConfPath))

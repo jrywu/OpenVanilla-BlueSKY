@@ -41,7 +41,7 @@ namespace OVUIServer
 		{
             
             if (visible)   ShowWindowTopMost(form.Handle);
-            form.Invoke((MethodInvoker)delegate { form.Visible = true; }); 
+            form.Invoke((MethodInvoker)delegate { form.Visible = visible; }); 
            
 		} 
 
