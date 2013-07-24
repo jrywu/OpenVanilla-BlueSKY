@@ -191,12 +191,6 @@ Function .onInit
 ;DOTNET end ----------------------------------------------    
 FunctionEnd
 
-Function dotNet2AppachKeyIns
-${registry::MoveKey} "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\excel.exe" "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\\excel-new.exe" $R5
-${registry::MoveKey} "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\winword.exe" "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\\winword-new.exe" $R6
-;MessageBox MB_OK "dotNet2AppachKey: $R5" IDOK +1
-;MessageBox MB_OK "dotNet2AppachKey: $R6" IDOK +1
-FunctionEnd
 
 ; 
 ; Call IsDotNetInstalledAdv
@@ -461,8 +455,8 @@ Section $(SEC_DOTNET) SECDOTNET
       ; else it will return the return code from the executed process.
       StrCmp "$DOTNET_RETURN_CODE" "" lbl_NoError
       StrCmp "$DOTNET_RETURN_CODE" "0" lbl_NoError
-      StrCmp "$DOTNET_RETURN_CODE" "3010" lbl_NoError ;indicate success with a reboot required
-      StrCmp "$DOTNET_RETURN_CODE" "8192" lbl_NoError ;reboot is required
+      StrCmp "$DOTNET_RETURN_CODE" "3010" lbl_reboot ;indicate success with a reboot required
+      StrCmp "$DOTNET_RETURN_CODE" "8192" lbl_reboot ;reboot is required
       StrCmp "$DOTNET_RETURN_CODE" "error" lbl_Error
       StrCmp "$DOTNET_RETURN_CODE" "timeout" lbl_TimeOut
       ; It's a .Net Error
@@ -528,6 +522,11 @@ Section $(SEC_DOTNET) SECDOTNET
     DetailPrint "$(ERROR_DOTNET_FATAL)[$DOTNET_RETURN_CODE]"
     GoTo lbl_Done
  
+     lbl_reboot:
+    DetailPrint "  請重開機後繼續安裝"
+    reboot
+    Quit
+    
     lbl_Done:
     DetailPrint "$(FAILED_DOTNET_INSTALL)"
     Abort
@@ -547,7 +546,6 @@ Function checkVCRedist
   SetOutPath $INSTDIR
   File "VCRedist\vcredist_x86.exe"
   ExecWait '"$INSTDIR\vcredist_x86.exe" /q' # silent install
-  Delete "$INSTDIR\vcredist_x86.exe"
   Goto VSRedistInstalled
 VSRedistInstalledAbort:
   Quit
@@ -587,10 +585,10 @@ SetOutPath $PROGRAMFILES
   File /r /x ".svn" /x "x64" "OpenVanilla"
   nsExec::ExecToStack '"$PROGRAMFILES\Openvanilla\OVUtil.exe" uninstall "$PROGRAMFILES\Openvanilla\OVUIServer.dll"'
   nsExec::ExecToStack '"$PROGRAMFILES\Openvanilla\OVUtil.exe" install "$PROGRAMFILES\Openvanilla\OVUIServer.dll"'
-;SetOutPath "$APPDATA\OpenVanilla\"
+  Delete "$INSTDIR\vcredist_x86.exe"
 ;  File /r /x ".svn" "UserData\*.*"
 ;  File "config.xml"
-;  File "orz.txt"
+
 SectionEnd
 
 Section -AdditionalIcons
@@ -607,7 +605,6 @@ Section -Post
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
-  Call dotNet2AppachKeyIns
   System::Call 'imm32::ImmInstallIME(t "$SYSDIR\OVIME.ime", t "$(^Name)")'
   ${registry::Open} "${IME_ROOT_KEY}\${IME_KEY}" "/N='OVIME.ime' /G=1 /T=REG_SZ" $0
   ${registry::Find} $0 $1 $2 $3 $4
@@ -662,8 +659,6 @@ Section Uninstall
   DeleteRegValue "${IME_CURRENT_USER}" "${IME_KEY_USER}" "$2"
   ${registry::Close} "$9"
 
-  ${registry::MoveKey} "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\excel-new.exe" "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\\excel.exe" $R5
-  ${registry::MoveKey} "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\winword-new.exe" "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\\winword.exe" $R6
 
   nsExec::ExecToStack '"$PROGRAMFILES\OpenVanilla\OVUtil.exe" uninstall "$PROGRAMFILES\Openvanilla\OVUIServer.dll"'
 
