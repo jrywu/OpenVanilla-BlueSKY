@@ -112,7 +112,7 @@ def main():
 
 	print "Building DMG..."
 	make_dmg()
-	os.system("sudo rm -rf " + pkg)
+	#os.system("sudo rm -rf " + pkg)
 	os.system("sudo rm -rf OpenVanilla-0.9b.dmg")
 	print "Done.."
 	pass

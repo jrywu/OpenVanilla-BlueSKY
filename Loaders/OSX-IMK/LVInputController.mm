@@ -16,7 +16,7 @@
 // 3. Neither the name of OpenVanilla nor the names of its contributors
 //    may be used to endorse or promote products derived from this software
 //    without specific prior written permission.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -567,7 +567,9 @@ static id LVICCurrentlyActiveSender = nil;
 	NSEnumerator *arrayEnum = [namesAndIDs objectEnumerator];
 	NSArray *nameIDPair;
 	while (nameIDPair = [arrayEnum nextObject]) {
-		[menu addItem:[self _createInputMethodMenuItemWithIndentifer:[nameIDPair objectAtIndex:1] localizedName:[nameIDPair objectAtIndex:0]]];
+        if ([[[LVModuleManager sharedManager] moduleForIdentifier:[nameIDPair objectAtIndex:1]] isUsable]) {
+            [menu addItem:[self _createInputMethodMenuItemWithIndentifer:[nameIDPair objectAtIndex:1] localizedName:[nameIDPair objectAtIndex:0]]];
+        }
 	}
 
 	[menu addItem:[NSMenuItem separatorItem]];

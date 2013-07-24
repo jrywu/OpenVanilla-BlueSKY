@@ -280,7 +280,7 @@ protected:
 
 class LVDictionary : public OVDictionary {
 public:
-    LVDictionary(NSDictionary *dictionary)
+    LVDictionary(NSMutableDictionary *dictionary)
     {
         m_dictionary = [dictionary retain];
     }
