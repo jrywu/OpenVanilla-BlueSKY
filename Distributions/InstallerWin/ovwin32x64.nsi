@@ -116,41 +116,16 @@ InstallDir "$PROGRAMFILES64\OpenVanilla"
 ShowInstDetails show
 ShowUnInstDetails show
 
+/*
 Function uninstOld
-   ClearErrors
-   IfFileExists "$SYSDIR\OVIME.ime" 0 ContinueUnist
-      /*
-      Delete "$SYSDIR\OVIME.ime"
-      IfErrors 0 ContinueUnist
-         MessageBox MB_ICONSTOP|MB_OK "舊版移除失敗，請確定您有管理員權限。"
-         Abort
-      ContinueUnist:
-      	 MessageBox MB_ICONINFORMATION|MB_OK "Delete OVIME.ime ok."
-      */
-      ContinueUnist:
-      SetOverwrite on
-      SetOutPath "$TEMP\~nsu.tmp"
-      ClearErrors
-      IfFileExists "$PROGRAMFILES64\OpenVanilla\unist.exe" NewPathUninst OldPathUninst
-      NewPathUninst:
-        CopyFiles /SILENT "$PROGRAMFILES64\Openvanilla\uninst.exe" "$TEMP\~nsu.tmp\AU_.exe"
-        ExecWait '"$TEMP\~nsu.tmp\Au_.exe" /S _?= $PROGRAMFILES\OpenVanilla' $0
-        Goto AfterUninst
-      OldPathUninst:
-        CopyFiles /SILENT "$WINDIR\OpenVanilla\uninst.exe" "$TEMP\~nsu.tmp\AU_.exe"
-        ExecWait '"$TEMP\~nsu.tmp\Au_.exe" /S _?=$WINDIR\OpenVanilla' $0
-      AfterUninst:
-      Delete "$TEMP\~nsu.tmp\Au_.exe"
-      RMDir "$TEMP\~nsu.tmp"
-      ClearErrors
-
-      ;Ensure the old IME is deleted
-      /*
-      Delete "$SYSDIR\OVIME.ime"
-      IfErrors 0 +2
-         Call onInstError
-      */
+  ExecWait '"$INSTDIR\uninst.exe" /S _?=$INSTDIR'
+  ClearErrors
+  ;Ensure the old IME is deleted
+  ;IfFileExists "$SYSDIR\ovime.ime" 0 ContinueUnist
+  ;Call onInstError
+  ;ContinueUnist:      
 FunctionEnd 
+*/
 
 Function onInstError
    MessageBox MB_ICONSTOP|MB_OK "安裝失敗，請確定您有管理員權限。"
@@ -166,15 +141,19 @@ Function .onInit
   ${EndIf}
   ReadRegStr $0 ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion"
   StrCmp $0 "" StartInstall 0
-;	  MessageBox MB_OKCANCEL|MB_ICONQUESTION "偵測到舊版 $0，必須先移除才能安裝新版。是否要現在進行？" IDOK +2
-	  MessageBox MB_OK  "偵測到舊版 $0，必須先移除才能安裝新版。"
-	  Abort
-          ;Call uninstOld          
-          ;IfFileExists "$SYSDIR\OVIME.ime"  0 RemoveFinished     ;代表反安裝失敗 
-          ;Abort
-    ;RemoveFinished:     
-    		;MessageBox MB_ICONINFORMATION|MB_OK "舊版已移除。"
-    ;call checkVCRedist
+;  	  MessageBox MB_OK  "偵測到舊版 $0，必須先移除才能安裝新版。"
+    MessageBox MB_OKCANCEL|MB_ICONQUESTION "偵測到舊版 $0，必須先移除才能安裝新版。是否要現在進行？" IDOK +2
+    	Abort
+   ExecWait '"$INSTDIR\uninst.exe" /S _?=$INSTDIR'
+    ${DisableX64FSRedirection}
+   IfFileExists "$SYSDIR\OVIME.ime"  0 CheckX64     ;代表反安裝失敗 
+   	Abort
+  CheckX64:
+  ${EnableX64FSRedirection}
+   IfFileExists "$SYSDIR\OVIME.ime"  0 RemoveFinished     ;代表反安裝失敗 
+        Abort
+    RemoveFinished:     
+    		MessageBox MB_ICONINFORMATION|MB_OK "舊版已移除。"
     StartInstall:     
 ;  !insertmacro MUI_LANGDLL_DISPLAY
 
@@ -375,7 +354,7 @@ Function VersionCompare
 FunctionEnd  
 
 
-
+/*
 Function openLinkNewWindow
   Pop $0
   Push $3 
@@ -409,7 +388,7 @@ Function openLinkNewWindow
   Pop $2
   Pop $3
 FunctionEnd
-
+*/
 Section $(SEC_DOTNET) SECDOTNET
     SectionIn RO
     IfSilent lbl_IsSilent
@@ -526,12 +505,14 @@ Section $(SEC_DOTNET) SECDOTNET
  
     lbl_FatalError:
     DetailPrint "$(ERROR_DOTNET_FATAL)[$DOTNET_RETURN_CODE]"
-    GoTo lbl_Done
+    ;GoTo lbl_Done
         
     lbl_reboot:
     DetailPrint "  請重開機後繼續安裝"
+    MessageBox MB_ICONQUESTION|MB_YESNO "需要開機後繼續安裝，您要繼續這項安裝嗎?" IDNO lbrebootAbort
     reboot
-    Quit
+ lbrebootAbort:
+    Abort
 
     lbl_Done:
     DetailPrint "$(FAILED_DOTNET_INSTALL)"
@@ -545,14 +526,6 @@ Section $(SEC_DOTNET) SECDOTNET
   !insertmacro MUI_DESCRIPTION_TEXT ${SECDOTNET} $(DESC_LONGDOTNET)
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
-;Section "CheckVersion" CV1
-;  ReadRegStr $0 ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion"
-;  StrCmp $0 "" ContinueInst 0
-;          MessageBox MB_OKCANCEL|MB_ICONQUESTION "偵測到舊版 $0，必須先移除才能安裝新版。是否要現在進行？" IDOK +2
-;	  Abort
-;          Call uninstOld
-;    ContinueInst:      
-;SectionEnd          
 
 Function checkVCRedist
   Push $R0
@@ -648,16 +621,21 @@ Function un.onInit
 FunctionEnd
 
 Section Uninstall
+/*
   ReadRegStr $0 ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Key"
   System::Call "user32::UnloadKeyboardLayout(l r0) i .r1 ?e"
   ${If} $1 == 0
+   MessageBox MB_OK "偵測到有程式正在使用輸入法，請重新開機以繼續移除舊版。是否要立即重新開機？" IDOK
     Call :lbNeedReboot
   ${EndIf}
-
+*/
   ClearErrors
   ${DisableX64FSRedirection}
+   IfFileExists "$SYSDIR\OVIME.ime"  0 +3 
   Delete "$SYSDIR\OVIME.ime"
+  IfErrors lbNeedReboot +1
   ${EnableX64FSRedirection}
+   IfFileExists "$SYSDIR\OVIME.ime"  0  lbContinueUninstall  
   Delete "$SYSDIR\OVIME.ime"
   IfErrors lbNeedReboot lbContinueUninstall
 
