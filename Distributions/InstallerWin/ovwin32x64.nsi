@@ -33,12 +33,6 @@ SetCompressor lzma
 ;!define MUI_WELCOMEFINISHPAGE_BITMAP_NOSTRETCH
 !define MUI_WELCOMEFINISHPAGE_BITMAP "ov-installer.bmp"
 
-; .net framework version v4.0.30319 here
-!define DOT_MAJOR "4"
-!define DOT_MINOR "0"
-!define DOT_MINOR_MINOR "30319"
-; 
-
 ; Language Selection Dialog Settings
 !define MUI_LANGDLL_REGISTRY_ROOT "${PRODUCT_UNINST_ROOT_KEY}"
 !define MUI_LANGDLL_REGISTRY_KEY "${PRODUCT_UNINST_KEY}"
@@ -70,10 +64,17 @@ SetCompressor lzma
 ; .NET Framework 4.0 testing/installing
 ; .NET start -----------------------------------
 
+
+; .net framework version v4.0.30319 here
+!define DOT_MAJOR "4"
+!define DOT_MINOR "0"
+!define DOT_MINOR_MINOR "30319"
+
 !define BASE_URL http://download.microsoft.com/download
 ;.net Framework 4.0
 !define URL_DOTNET_30319  "${BASE_URL}/9/5/A/95A9616B-7A37-4AF6-BC36-D6EA96C8DAAE/dotNetFx40_Full_x86_x64.exe"
-
+!define URL_VC_REDISTX64_2012U3  "${BASE_URL}/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU3/vcredist_x64.exe"
+!define URL_VC_REDISTX86_2012U3  "${BASE_URL}/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU3/vcredist_x86.exe"
 
 ; Variables
 ;Var "LANGUAGE_DLL_TITLE"
@@ -81,6 +82,8 @@ SetCompressor lzma
 Var "URL_DOTNET"
 Var "OSLANGUAGE"
 Var "DOTNET_RETURN_CODE"
+Var "URL_VCX86"
+Var "URL_VCX64"
 
 ; Language Strings
 LangString DESC_REMAINING ${LANG_TradChinese} " ( 剩餘 %d %s%s )"
@@ -108,29 +111,21 @@ LangString ERROR_DOTNET_INVALID_PATH ${LANG_TradChinese} "$(DESC_SHORTDOTNET) 安
   並未在以下路徑:$\n"
 LangString ERROR_DOTNET_FATAL ${LANG_TradChinese} "嚴重錯誤訊息發生在安裝 \
   $(DESC_SHORTDOTNET) 過程當中"
+LangString FAILED_DOTNET_INSTALL  ${LANG_TradChinese} "$(DESC_SHORTDOTNET) 安裝失敗"
+; VC redistributble....
+LangString DESC_VCX86 ${LANG_TradChinese} "Visual C++ 2012 Redistritable Update 3 x86"
+LangString DESC_VCX64 ${LANG_TradChinese} "Visual C++ 2012 Redistritable Update 3 x64"
+LangString DESC_VCX86_DECISION ${LANG_TradChinese} "安裝此輸入法之前，必須先安裝 $(DESC_VCX86)，若你想繼續安裝 \
+  ，您的電腦必須連接網路。$\n您要繼續這項安裝嗎？"
+LangString DESC_VCX64_DECISION ${LANG_TradChinese} "安裝此輸入法之前，必須先安裝 $(DESC_VCX64)，若你想繼續安裝 \
+  ，您的電腦必須連接網路。$\n您要繼續這項安裝嗎？"
 
 ; .NET end --------------------------------------------
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "OpenVanilla-Windows-0.9b.x64.exe"
+OutFile "OpenVanilla-Windows-0.9b-x64.exe"
 InstallDir "$PROGRAMFILES64\OpenVanilla"
 ShowInstDetails show
 ShowUnInstDetails show
-
-/*
-Function uninstOld
-  ExecWait '"$INSTDIR\uninst.exe" /S _?=$INSTDIR'
-  ClearErrors
-  ;Ensure the old IME is deleted
-  ;IfFileExists "$SYSDIR\ovime.ime" 0 ContinueUnist
-  ;Call onInstError
-  ;ContinueUnist:      
-FunctionEnd 
-*/
-
-Function onInstError
-   MessageBox MB_ICONSTOP|MB_OK "安裝失敗，請確定您有管理員權限。"
-   Abort
-FunctionEnd
 
 Function .onInit
  ${If} ${RunningX64}
@@ -157,8 +152,9 @@ Function .onInit
     StartInstall:     
 ;  !insertmacro MUI_LANGDLL_DISPLAY
 
+  StrCpy $URL_VCX86 "${URL_VC_REDISTX86_2012U3}"
+  StrCpy $URL_VCX64 "${URL_VC_REDISTX64_2012U3}"
 ;DOTNET start --------------------------------------------
-  
   StrCpy $URL_DOTNET "${URL_DOTNET_30319}"
   StrCpy $OSLANGUAGE "30319"
   InitPluginsDir
@@ -166,15 +162,6 @@ Function .onInit
 ;DOTNET end ----------------------------------------------    
 
 FunctionEnd
-
-;Function dotNet2AppachKeyIns
-;${registry::MoveKey} "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\excel.exe" "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\\excel-new.exe" $R5;
-;${registry::MoveKey} "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\winword.exe" "HKLM\SOFTWARE\Microsoft\.NETFramework\Policy\AppPatch\v2.0.50727.00000\\winword-new.exe" $R6
-;MessageBox MB_OK "dotNet2AppachKey: $R5" IDOK +1
-;MessageBox MB_OK "dotNet2AppachKey: $R6" IDOK +1
-;FunctionEnd
-
-
 
 ; Call IsDotNetInstalledAdv
 ; This function will abort the installation if the required version 
@@ -267,129 +254,7 @@ Function IsDotNetInstalledAdv
      Exch $0
  FunctionEnd
 
-;VersionNumberCompare
-Function VersionCompare
-	!define VersionCompare `!insertmacro VersionCompareCall`
- 
-	!macro VersionCompareCall _VER1 _VER2 _RESULT
-		Push `${_VER1}`
-		Push `${_VER2}`
-		Call VersionCompare
-		Pop ${_RESULT}
-	!macroend
- 
-	Exch $1
-	Exch
-	Exch $0
-	Exch
-	Push $2
-	Push $3
-	Push $4
-	Push $5
-	Push $6
-	Push $7
- 
-	begin:
-	StrCpy $2 -1
-	IntOp $2 $2 + 1
-	StrCpy $3 $0 1 $2
-	StrCmp $3 '' +2
-	StrCmp $3 '.' 0 -3
-	StrCpy $4 $0 $2
-	IntOp $2 $2 + 1
-	StrCpy $0 $0 '' $2
- 
-	StrCpy $2 -1
-	IntOp $2 $2 + 1
-	StrCpy $3 $1 1 $2
-	StrCmp $3 '' +2
-	StrCmp $3 '.' 0 -3
-	StrCpy $5 $1 $2
-	IntOp $2 $2 + 1
-	StrCpy $1 $1 '' $2
- 
-	StrCmp $4$5 '' equal
- 
-	StrCpy $6 -1
-	IntOp $6 $6 + 1
-	StrCpy $3 $4 1 $6
-	StrCmp $3 '0' -2
-	StrCmp $3 '' 0 +2
-	StrCpy $4 0
- 
-	StrCpy $7 -1
-	IntOp $7 $7 + 1
-	StrCpy $3 $5 1 $7
-	StrCmp $3 '0' -2
-	StrCmp $3 '' 0 +2
-	StrCpy $5 0
- 
-	StrCmp $4 0 0 +2
-	StrCmp $5 0 begin newer2
-	StrCmp $5 0 newer1
-	IntCmp $6 $7 0 newer1 newer2
- 
-	StrCpy $4 '1$4'
-	StrCpy $5 '1$5'
-	IntCmp $4 $5 begin newer2 newer1
- 
-	equal:
-	StrCpy $0 0
-	goto end
-	newer1:
-	StrCpy $0 1
-	goto end
-	newer2:
-	StrCpy $0 2
- 
-	end:
-	Pop $7
-	Pop $6
-	Pop $5
-	Pop $4
-	Pop $3
-	Pop $2
-	Pop $1
-	Exch $0
-FunctionEnd  
-
-
-/*
-Function openLinkNewWindow
-  Pop $0
-  Push $3 
-  Push $2
-  Push $1
-  Push $0
-  ReadRegStr $0 HKCR "http\shell\open\command" ""
-# Get browser path
-;    DetailPrint $0
-  StrCpy $2 '"'
-  StrCpy $1 $0 1
-  StrCmp $1 $2 +2 # if path is not enclosed in " look for space as final char
-    StrCpy $2 ' '
-  StrCpy $3 1
-  loop:
-    StrCpy $1 $0 1 $3
-;    DetailPrint $1
-    StrCmp $1 $2 found
-    StrCmp $1 "" found
-    IntOp $3 $3 + 1
-    Goto loop
- 
-  found:
-    StrCpy $1 $0 $3
-    StrCmp $2 " " +2
-      StrCpy $1 '$1"'
-
-  Pop $0
-  Exec '$1 $0'
-  Pop $1
-  Pop $2
-  Pop $3
-FunctionEnd
-*/
-Section $(SEC_DOTNET) SECDOTNET
+ Section $(SEC_DOTNET) SECDOTNET
     SectionIn RO
     IfSilent lbl_IsSilent
       
@@ -522,12 +387,11 @@ Section $(SEC_DOTNET) SECDOTNET
     lbl_IsSilent: 
   SectionEnd
 
-!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-  !insertmacro MUI_DESCRIPTION_TEXT ${SECDOTNET} $(DESC_LONGDOTNET)
-!insertmacro MUI_FUNCTION_DESCRIPTION_END
+;!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+;!insertmacro MUI_DESCRIPTION_TEXT ${SECDOTNET} $(DESC_LONGDOTNET)
+;!insertmacro MUI_FUNCTION_DESCRIPTION_END
 
-
-Function checkVCRedist
+Section  "CheckVCRedist" VCR
   Push $R0
   ;{3D6AD258-61EA-35F5-812C-B7A02152996E} for x86 VC 2012 Upate3
   ;{2EDC2FA3-1F34-34E5-9085-588C9EFD1CC6} for x64 VC 2012 Upate3
@@ -535,28 +399,53 @@ Function checkVCRedist
   ClearErrors
   ReadRegDword $R0 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{2EDC2FA3-1F34-34E5-9085-588C9EFD1CC6}" "Version"
   IfErrors 0 VCx64RedistInstalled
-  MessageBox MB_ICONQUESTION|MB_YESNO "需要 MS VC++ 2012 x64 Redistributable，您要繼續這項安裝嗎?" IDNO VCRedistInstalledAbort
-  SetOutPath $INSTDIR
-  File "VCRedist\vcredist_x64.exe"
-  ExecWait '"$INSTDIR\vcredist_x64.exe" /q' # silent install
+  AddSize 14000
+  MessageBox MB_ICONEXCLAMATION|MB_YESNO|MB_DEFBUTTON2 "$(DESC_VCX64_DECISION)" /SD IDNO IDYES +1 IDNO VCRedistInstalledAbort
+  nsisdl::download /TRANSLATE "$(DESC_DOWNLOADING)" "$(DESC_CONNECTING)" \
+       "$(DESC_SECOND)" "$(DESC_MINUTE)" "$(DESC_HOUR)" "$(DESC_PLURAL)" \
+       "$(DESC_PROGRESS)" "$(DESC_REMAINING)" \
+       /TIMEOUT=30000 "$URL_VCX64" "$PLUGINSDIR\vcredist_x64.exe"
+    Pop $0
+    StrCmp "$0" "success" lbl_continue64
+    DetailPrint "$(DESC_DOWNLOADFAILED) $0"
+    Abort
+ 
+    lbl_continue64:
+      DetailPrint "$(DESC_INSTALLING) $(DESC_VCX64)..."
+      nsExec::ExecToStack "$PLUGINSDIR\vcredist_x64.exe /q"
+      ;pop $DOTNET_RETURN_CODE
+  
+  ;SetOutPath $INSTDIR
+  ;File "VCRedist\vcredist_x64.exe"
+  ;ExecWait '"$INSTDIR\vcredist_x64.exe" /q' # silent install
 VCx64RedistInstalled:
  SetRegView 32
  ClearErrors
   ReadRegDword $R0 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{3D6AD258-61EA-35F5-812C-B7A02152996E}" "Version"
   IfErrors 0 VCRedistInstalled
-  MessageBox MB_ICONQUESTION|MB_YESNO "需要 MS VC++ 2012 x86 Redistributable，您要繼續這項安裝嗎?" IDNO VCRedistInstalledAbort
-  File "VCRedist\vcredist_x86.exe"
-  ExecWait '"$INSTDIR\vcredist_x86.exe" /q' # silent install
+  ;MessageBox MB_ICONQUESTION|MB_YESNO "需要 MS VC++ 2012 x86 Redistributable，您要繼續這項安裝嗎?" IDNO VCRedistInstalledAbort
+  MessageBox MB_ICONEXCLAMATION|MB_YESNO|MB_DEFBUTTON2 "$(DESC_VCX86_DECISION)" /SD IDNO IDYES +1 IDNO VCRedistInstalledAbort
+  nsisdl::download /TRANSLATE "$(DESC_DOWNLOADING)" "$(DESC_CONNECTING)" \
+       "$(DESC_SECOND)" "$(DESC_MINUTE)" "$(DESC_HOUR)" "$(DESC_PLURAL)" \
+       "$(DESC_PROGRESS)" "$(DESC_REMAINING)" \
+       /TIMEOUT=30000 "$URL_VCX86" "$PLUGINSDIR\vcredist_x86.exe"
+    Pop $0
+    StrCmp "$0" "success" lbl_continue
+    DetailPrint "$(DESC_DOWNLOADFAILED) $0"
+    Abort
+ 
+    lbl_continue:
+      DetailPrint "$(DESC_INSTALLING) $(DESC_VCX86)..."
+      nsExec::ExecToStack "$PLUGINSDIR\vcredist_x86.exe /q"
+      ;pop $DOTNET_RETURN_CODE
+  
+  ;File "VCRedist\vcredist_x86.exe"
+ ; ExecWait '"$INSTDIR\vcredist_x86.exe" /q' # silent install
   Goto VCRedistInstalled
 VCRedistInstalledAbort:
   Quit
 VCRedistInstalled:
   Exch $R0
-FunctionEnd
-
-
-Section  "CheckVCRedist" VCR
-	call checkVCRedist
 SectionEnd
 
 Section "MainSection" SEC01
@@ -577,11 +466,7 @@ SetOutPath $PROGRAMFILES64
   File /r /x ".svn" "OpenVanilla"
   nsExec::ExecToStack '"$PROGRAMFILES64\Openvanilla\OVUtil.exe" uninstall "$PROGRAMFILES64\Openvanilla\OVUIServer.dll"'
   nsExec::ExecToStack '"$PROGRAMFILES64\Openvanilla\OVUtil.exe" install "$PROGRAMFILES64\Openvanilla\OVUIServer.dll"'
-  Delete "$INSTDIR\vcredist_x64.exe"
-  Delete "$INSTDIR\vcredist_x86.exe"
-
 ;SetOutPath "$APPDATA\OpenVanilla\"
-;  File /r /x ".svn" "UserData\*.*"
 ;  File "config.xml"
 
 SectionEnd
@@ -595,11 +480,16 @@ SectionEnd
 
 Section -Post
   WriteUninstaller "$PROGRAMFILES64\OpenVanilla\uninst.exe"
+  ${If} ${RunningX64}
+  	SetRegView 64
+  ${EndIf}
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$PROGRAMFILES64\OpenVanilla\uninst.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "${PRODUCT_NAME}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
+  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$SYSDIR\OVIME.IME"
+  WriteRegDWORD ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "EstimatedSize" 16931
   ;Call dotNet2AppachKeyIns
   System::Call 'imm32::ImmInstallIME(t "$SYSDIR\OVIME.ime", t "$(^Name)")'
   ${registry::Open} "${IME_ROOT_KEY}\${IME_KEY}" "/N='OVIME.ime' /G=1 /T=REG_SZ" $0
@@ -682,6 +572,9 @@ Section Uninstall
   Delete "$SMPROGRAMS\OpenVanilla\Uninstall.lnk"
   Delete "$SMPROGRAMS\OpenVanilla\OVPreferences.lnk"
   RMDir "$SMPROGRAMS\OpenVanilla"
+  ${If} ${RunningX64}
+  	SetRegView 64
+  ${EndIf}
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
   SetAutoClose true
 SectionEnd
