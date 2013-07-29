@@ -1,5 +1,9 @@
 Dep/*
-Distributions/InstallerWin/*
+*.exe
+*.dll
+*.ime
+Distributions/InstallerWin/OpenVanilla/*
+
 Loaders/Windows/OVTSF/Dictionary/*
 
 #################
