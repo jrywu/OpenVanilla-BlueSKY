@@ -127,6 +127,9 @@ ShowInstDetails show
 ShowUnInstDetails show
 
 Function .onInit
+   ${If} ${RunningX64}
+   	SetRegView 64
+   ${EndIf}
   ReadRegStr $0 ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion"
   StrCmp $0 "" StartInstall 0
 ;  	  MessageBox MB_OK  "偵測到舊版 $0，必須先移除才能安裝新版。"
@@ -134,6 +137,7 @@ Function .onInit
     	Abort
    ExecWait '"$INSTDIR\uninst.exe" /S _?=$INSTDIR'
    ${If} ${RunningX64}
+   	SetRegView 64
   	${DisableX64FSRedirection}
    	IfFileExists "$SYSDIR\OVIME.ime"  0 CheckX64     ;代表反安裝失敗 
    		Abort
@@ -174,7 +178,9 @@ Function IsDotNetInstalledAdv
   StrCpy $0 "0"
   StrCpy $1 "SOFTWARE\Microsoft\.NETFramework" ;registry entry to look in.
   StrCpy $2 0
- 
+   ${If} ${RunningX64}
+   	SetRegView 64
+   ${EndIf}
   StartEnum:
     ;Enumerate the versions installed.
     EnumRegKey $3 HKLM "$1\policy" $2
@@ -211,23 +217,7 @@ Function IsDotNetInstalledAdv
       IntOp $2 $2 + 1
       goto StartEnum
  
- ; yesDotNetReg: 
-    ;Now that we've found a good RegKey, let's make sure it's actually
-    ;installed by getting the install path and checking to see if the 
-    ;mscorlib.dll exists.
-    ;EnumRegValue $2 HKLM "$1\policy\$3" 0
-    ;$2 should equal whatever comes after the major and minor versions 
-    ;(ie, v1.1.4322)
-    ;StrCmp $2 "" noDotNet
-    ;ReadRegStr $4 HKLM $1 "InstallRoot"
-    ;Hopefully the install root isn't empty.
-    ;StrCmp $4 "" noDotNet
-    ;build the actuall directory path to mscorlib.dll.
-    ;StrCpy $4 "$4$3.$2\mscorlib.dll"
-    ;IfFileExists $4 yesDotNet noDotNet
-    ;Goto yesDotNet
-    
-  noDotNet:
+   noDotNet:
     ;Nope, something went wrong along the way.  Looks like the 
     ;proper .NET Framework isn't installed.  
  

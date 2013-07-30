@@ -134,7 +134,7 @@ FunctionEnd
 
 Function .onInit
  ${If} ${RunningX64}
-        ${EnableX64FSRedirection}
+  	SetRegView 64
         ${else}
         MessageBox MB_OK "此安裝檔為64bit版本, 請重新下載32bit版本"
         Abort
@@ -145,7 +145,7 @@ Function .onInit
     MessageBox MB_OKCANCEL|MB_ICONQUESTION "偵測到舊版 $0，必須先移除才能安裝新版。是否要現在進行？" IDOK +2
     	Abort
    ExecWait '"$INSTDIR\uninst.exe" /S _?=$INSTDIR'
-    ${DisableX64FSRedirection}
+   ${DisableX64FSRedirection}
    IfFileExists "$SYSDIR\OVIME.ime"  0 CheckX64     ;代表反安裝失敗 
    	Abort
   CheckX64:
