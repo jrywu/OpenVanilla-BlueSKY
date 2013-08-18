@@ -221,48 +221,50 @@ void OVIMArrayContext::sendAndReset(const char *ch, OVBuffer* buf,
                                     OVCandidate* candibar, OVService* srv)
 {
     bool notifySP = false;
-    
+    char notifyString[16];
+
     // lookup special code
     if((parent->isAutoSP() || parent->isForceSP()) &&
-       tabs[SPECIAL_TAB]->getWordVectorByCharWithWildcardSupport(ch, specialCodeVector, '?', '*') > 0) {
+       //tabs[SPECIAL_TAB]->getWordVectorByCharWithWildcardSupport(ch, specialCodeVector, '?', '*') > 0) {
+		tabs[SPECIAL_TAB]->getCharVectorByWord(ch,specialCodeVector) ) {
         int splen = specialCodeVector[0].length();
         const char *spcode = specialCodeVector[0].c_str();
         if (!(splen == keyseq.length() && 
               equal(spcode, spcode+splen, keyseq.getSeq()))) {
-            char buf[16];
+          
             string keynames;
             queryKeyName(specialCodeVector[0].c_str(), keynames);
-            sprintf(buf, "%s: %s", ch, keynames.c_str());
-            srv->notify(buf);
+            sprintf(notifyString, "%s: %s", ch, keynames.c_str());
+            //srv->notify(notifyString);
             notifySP = true;
         }
     }
 
     bool committed = false;
 
-    if (isForceSPSeq()) {
-        parent->setForceSP(!parent->isForceSP());
-	}
-    else {
-        if (!(parent->isForceSP() && notifySP)) {
+    if (!(parent->isForceSP() && notifySP)) {
             buf->clear()->append(ch)->send();
             committed = true;
         }
         else {
             srv->beep();
 		}
-    }
+    
     
     // clearAll(buf, candibar);
     
     // we can't call clearAll becaue clearAll does one extra clean-up, this causes problem in WoW
     clearCandidate(candibar);
-    if (!committed)
-        buf->clear()->update();
+    if (!committed) {
+		buf->clear()->update(); 
+	}else{
+		updateFreqFetchAssociatedPhrase(ch,candibar);
+	}
     keyseq.clear();
-        
     changeState(STATE_WAIT_KEY1);
-	updateFreqFetchAssociatedPhrase(ch,candibar);
+	if(notifySP) 
+		srv->notify(notifyString);
+	
 }
 
 void OVIMArrayContext::clearAll(OVBuffer* buf, OVCandidate* candi_bar)
@@ -375,8 +377,17 @@ int OVIMArrayContext::keyEvent(OVKeyCode* key, OVBuffer* buf,
         if (candidateStringVector.size() == 1) {
             if (selectCandidate(0, c))
                 sendAndReset(c.c_str(), buf, candi_bar, srv);
-        }
-        else if (candidateStringVector.size() > 1) {
+        }else if (isForceSPSeq()) {
+			parent->setForceSP(!parent->isForceSP());
+			clearAll(buf, candi_bar);
+			changeState(STATE_WAIT_KEY1);
+			if(parent->isForceSP()){
+				srv->notify("\xE5\xBF\xAB\xE6\x89\x93\xE6\xA8\xA1\xE5\xBC\x8F\xe9\x96\x8b\xe5\x95\x9f"); //快打模式開啟
+			}else{
+				srv->notify("\xE5\xBF\xAB\xE6\x89\x93\xE6\xA8\xA1\xE5\xBC\x8F\xe9\x97\x9c\xe9\x96\x89"); //快打模式關閉
+			}
+			
+		} else if (candidateStringVector.size() > 1) {
             updateCandidate(tabs[MAIN_TAB], buf, candi_bar);
             if (selectCandidate(0, c))
                 buf->clear()->append(c.c_str())->update();
