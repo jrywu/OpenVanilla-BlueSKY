@@ -639,7 +639,7 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
 		[_activatedOutputFilterModuleIDs removeObject:outputFilterID];
 	}
 	else {
-		NSArray *outputFilters = [self outputFiƒ[lterTitlesAndModuleIDs];
+		NSArray *outputFilters = [self outputFilterTitlesAndModuleIDs];
 		NSEnumerator *ofe = [outputFilters objectEnumerator];
 		NSMutableArray *fa = [NSMutableArray array];
 		
@@ -692,7 +692,7 @@ NSString *LVModuleConfigChangedNotification = @"LVModuleConfigChangedNotificatio
         if (!configDict) {
 			configDict = [NSMutableDictionary dictionary];
 			[_configDictionary setObject:configDict forKey:[module moduleIdentifier]];
-		}/Users/jrywu/OpenVanilla-BlueSKY/Distributions/InstallerMac/OpenVanilla.pmdoc
+		}
         //----
         if([module lazyInitWithLoaderService:_loaderService configDictionary:configDict]){
             if (![oldConfigDict isEqualTo:_configDictionary]) {

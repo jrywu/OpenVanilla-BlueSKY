@@ -9,11 +9,11 @@
 	<key>CFBundleIconFile</key>
 	<string>OpenVanilla</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.openvanilla.inputmethod.LoaderIMK</string>
-	<key>CFBundleName</key>
-	<string>${PRODUCT_NAME}</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
@@ -39,8 +39,6 @@ All Rights Reserved.</string>
 	<string>NSApplication</string>
 	<key>TISInputSourceID</key>
 	<string>org.openvanilla.inputmethod.LoaderIMK</string>
-	<key>tsInputMethodIconFileKey</key>
-	<string>OpenVanillaSmall.icns</string>
 	<key>TISIntendedLanguage</key>
 	<string>zh-Hant</string>
 	<key>tsInputMethodCharacterRepertoireKey</key>
@@ -48,5 +46,7 @@ All Rights Reserved.</string>
 		<string>Hant</string>
 		<string>Hans</string>
 	</array>
+	<key>tsInputMethodIconFileKey</key>
+	<string>OpenVanillaSmall.icns</string>
 </dict>
 </plist>

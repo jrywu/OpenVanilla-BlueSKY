@@ -28,7 +28,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-//#define OV_DEBUG
+#define OV_DEBUG
 #define wildcardAutoCompose
 
 #include "OVIMGenericSQ.h"
@@ -268,7 +268,7 @@ void OVGenericContext::clear() {
 
 
 int OVGenericContext::keyEvent(OVKeyCode *key, OVBuffer *buf, OVCandidate *textbar, OVService *srv) {
-	//murmur("OVGenericContext::Keyevent:%c; assoconduty:%d",key->code(), assoconduty);
+	murmur("OVGenericContext::Keyevent: code = %c, isshift=%d isshift; assoconduty:%d",key->code(), key->isShift(), assoconduty);
     if (candi.onDuty())
     {
 		string output;
